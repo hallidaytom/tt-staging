@@ -3,31 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Life In My Hands | Coaching. Clarity. Change.</title>
+  <title>Life In My Hands — Coaching · Clarity · Change</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Droid+Serif:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
-    /* ============================================================
-       RESET & BASE
-    ============================================================ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #7cb159;
-      --green-dark: #5f9140;
-      --green-glow: rgba(124, 177, 89, 0.35);
-      --charcoal: #2F2F3B;
-      --charcoal-light: #3a3a4a;
-      --white: #FFFFFF;
-      --off-white: #f5f5f0;
-      --text-muted: #aaaaaa;
-      --overlay: rgba(20, 20, 28, 0.72);
-      --overlay-deep: rgba(10, 10, 18, 0.82);
+      --green:   #7cb159;
+      --dark:    #2F2F3B;
+      --black:   #0d0d0d;
+      --white:   #ffffff;
+      --panel:   #1a1a22;
+      --panel2:  #242430;
+      --ease:    cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     html {
@@ -36,176 +28,173 @@
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
-      color: var(--charcoal);
-      background: var(--white);
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
       overflow-x: hidden;
-      line-height: 1.7;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Droid Serif', serif;
-      line-height: 1.2;
+      -webkit-font-smoothing: antialiased;
     }
 
     img {
       display: block;
-      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
-    /* ============================================================
-       NAVIGATION
-    ============================================================ */
-    #navbar {
+    /* ─── SCROLL REVEAL BASE ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── FIXED NAV ────────────────────────────────────────────── */
+    #site-nav {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.97);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.10);
-      transition: box-shadow 0.3s ease, padding 0.3s ease;
-      backdrop-filter: blur(8px);
-    }
-
-    #navbar.scrolled {
-      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-    }
-
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 24px 60px;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.3s ease;
+    }
+    #site-nav.scrolled {
+      background: rgba(13, 13, 13, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 18px 60px;
     }
 
     .nav-logo {
-      font-family: 'Droid Serif', serif;
-      font-size: 1.25rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--green);
       letter-spacing: 0.02em;
-      transition: opacity 0.2s;
-    }
-
-    .nav-logo:hover {
-      opacity: 0.85;
     }
 
     .nav-links {
       display: flex;
+      gap: 40px;
       list-style: none;
-      gap: 0.25rem;
-      align-items: center;
     }
-
     .nav-links a {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--charcoal);
-      padding: 0.5rem 0.85rem;
-      border-radius: 4px;
-      transition: color 0.25s ease, background 0.25s ease;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.25s ease;
     }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--green);
-    }
-
-    .nav-cta {
-      background: var(--green) !important;
-      color: var(--white) !important;
-      padding: 0.5rem 1.2rem !important;
-      border-radius: 30px !important;
-      font-weight: 600 !important;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.2s !important;
-      box-shadow: 0 4px 14px rgba(124,177,89,0.3) !important;
-    }
-
-    .nav-cta:hover {
-      background: var(--green-dark) !important;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(124,177,89,0.45) !important;
-    }
+    .nav-links a:hover { color: var(--green); }
 
     /* Hamburger */
-    .nav-toggle {
+    .hamburger {
       display: none;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
       gap: 5px;
-      background: none;
-      border: none;
+      cursor: pointer;
+      padding: 4px;
     }
-
-    .nav-toggle span {
+    .hamburger span {
       display: block;
       width: 24px;
-      height: 2px;
-      background: var(--charcoal);
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
+      height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s ease;
     }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    .nav-toggle.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 999;
+      background: rgba(13,13,13,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
     }
-
-    .nav-toggle.open span:nth-child(2) {
-      opacity: 0;
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.25s;
     }
+    .mobile-menu a:hover { color: var(--green); }
 
-    .nav-toggle.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* ============================================================
-       HERO
-    ============================================================ */
+    /* ─── SECTION 1: HERO ──────────────────────────────────────── */
     #hero {
       position: relative;
-      width: 100%;
       height: 100vh;
-      min-height: 640px;
+      min-height: 700px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
 
     .hero-bg {
       position: absolute;
-      inset: 0;
-      background: url('assets/img/aaron-workshop-1.jpg') center center / cover no-repeat;
-      transform: scale(1.08);
-      transition: transform 0.1s linear;
+      inset: -20%;
+      z-index: 0;
       will-change: transform;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
+      z-index: 1;
       background: linear-gradient(
-        160deg,
-        rgba(10,12,18,0.88) 0%,
-        rgba(20,24,34,0.78) 50%,
-        rgba(47,47,59,0.70) 100%
+        to bottom,
+        rgba(13,13,13,0.25) 0%,
+        rgba(13,13,13,0.3) 40%,
+        rgba(13,13,13,0.85) 70%,
+        rgba(13,13,13,0.97) 100%
       );
     }
 
@@ -213,752 +202,496 @@
     .particles {
       position: absolute;
       inset: 0;
-      overflow: hidden;
+      z-index: 2;
       pointer-events: none;
+      overflow: hidden;
     }
-
     .particle {
       position: absolute;
-      border-radius: 50%;
       background: var(--green);
+      border-radius: 1px;
       opacity: 0;
-      animation: floatParticle linear infinite;
+      animation: particleDrift var(--dur, 10s) var(--delay, 0s) infinite ease-in-out;
+    }
+    @keyframes particleDrift {
+      0%   { opacity: 0; transform: translate(0, 0) rotate(var(--angle, 45deg)); }
+      10%  { opacity: var(--op, 0.2); }
+      90%  { opacity: var(--op, 0.2); }
+      100% { opacity: 0; transform: translate(var(--dx, 30px), var(--dy, -80px)) rotate(var(--angle, 45deg)); }
     }
 
-    @keyframes floatParticle {
-      0% {
-        transform: translateY(0) scale(0.5);
-        opacity: 0;
-      }
-      10% { opacity: 0.55; }
-      90% { opacity: 0.3; }
-      100% {
-        transform: translateY(-110vh) scale(1.2);
-        opacity: 0;
-      }
-    }
-
+    /* Hero content */
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
-      padding: 0 1.5rem;
-      max-width: 820px;
+      padding: 0 40px;
+      max-width: 900px;
     }
 
-    .hero-eyebrow {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
+    .hero-line {
+      width: 0;
+      height: 1px;
+      background: var(--green);
+      margin: 0 auto 32px;
+      animation: lineExpand 0.8s var(--ease) 0.2s forwards;
+    }
+    @keyframes lineExpand {
+      to { width: 200px; }
+    }
+
+    .hero-title-1 {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: clamp(60px, 10vw, 120px);
+      line-height: 0.95;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: heroFadeUp 0.9s var(--ease) 0.5s forwards;
+    }
+    .hero-title-2 {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-style: italic;
+      font-size: clamp(60px, 10vw, 120px);
+      line-height: 0.95;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: heroFadeUp 0.9s var(--ease) 0.9s forwards;
+    }
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 0.72rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--green);
+      color: rgba(255,255,255,0.6);
       opacity: 0;
-      transform: translateY(16px);
-      animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
-      margin-bottom: 1.2rem;
+      animation: heroFadeIn 0.8s ease 1.4s forwards;
     }
-
-    .hero-title {
-      font-family: 'Droid Serif', serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.08;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: heroFadeUp 1.1s cubic-bezier(0.22,1,0.36,1) 0.75s forwards;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 4px 40px rgba(0,0,0,0.4);
-    }
-
-    .hero-title span {
-      color: var(--green);
-    }
-
-    .hero-sub {
-      font-family: 'Droid Serif', serif;
-      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
-      font-style: italic;
-      color: rgba(255,255,255,0.85);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: heroFadeUp 1s cubic-bezier(0.22,1,0.36,1) 1.3s forwards;
-      margin-bottom: 2.8rem;
-      letter-spacing: 0.04em;
-    }
-
     .hero-cta {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 1.8s forwards;
-    }
-
-    .btn-primary {
       display: inline-block;
+      margin-top: 44px;
+      padding: 16px 40px;
       background: var(--green);
       color: var(--white);
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 1rem 2.6rem;
-      border-radius: 50px;
-      border: 2px solid transparent;
+      border: none;
       cursor: pointer;
-      transition: background 0.3s, transform 0.25s, box-shadow 0.3s, border-color 0.3s;
-      box-shadow: 0 8px 30px rgba(124,177,89,0.45);
-    }
-
-    .btn-primary:hover {
-      background: transparent;
-      border-color: var(--green);
-      color: var(--green);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(124,177,89,0.5);
-    }
-
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
+      position: relative;
+      overflow: hidden;
       opacity: 0;
-      animation: heroFadeUp 0.8s ease 2.4s forwards;
+      animation: heroFadeIn 0.8s ease 1.9s forwards;
+      transition: background 0.3s ease;
+    }
+    .hero-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    .hero-cta:hover::after { transform: translateX(0); }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 48px;
+      right: 60px;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4rem;
+      gap: 12px;
+      opacity: 0;
+      animation: heroFadeIn 1s ease 2.4s forwards;
     }
-
+    .scroll-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      writing-mode: vertical-rl;
+    }
     .scroll-line {
       width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--green));
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(124,177,89,0.8), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
-
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.5; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
+      0%, 100% { transform: scaleY(1); opacity: 0.7; }
+      50%       { transform: scaleY(0.5); opacity: 0.3; }
     }
 
-    .scroll-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+    /* ─── SECTION 2: INTRO STATEMENT ──────────────────────────── */
+    #intro {
+      background: var(--black);
+      padding: 140px 60px;
+      text-align: center;
+      position: relative;
     }
-
-    @keyframes heroFadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ============================================================
-       SECTION COMMONS
-    ============================================================ */
-    section {
-      padding: 100px 0;
-    }
-
-    .container {
-      max-width: 1200px;
+    .intro-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(26px, 3.5vw, 48px);
+      line-height: 1.45;
+      color: var(--white);
+      max-width: 900px;
       margin: 0 auto;
-      padding: 0 2rem;
+      position: relative;
+    }
+    .intro-underline {
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--green);
+      margin: 36px auto 0;
+      transition: width 1.2s var(--ease) 0.3s;
+    }
+    .reveal.visible .intro-underline {
+      width: 120px;
     }
 
+    /* ─── SECTION 3: ABOUT ─────────────────────────────────────── */
+    #about {
+      display: flex;
+      min-height: 100vh;
+    }
+    .about-img {
+      flex: 0 0 50%;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(0.6);
+      transition: filter 0.8s ease;
+    }
+    .about-img:hover img { filter: grayscale(0); }
+
+    .about-content {
+      flex: 0 0 50%;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 80px;
+    }
     .section-label {
       display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.65rem;
+      font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--green);
-      margin-bottom: 0.9rem;
+      margin-bottom: 20px;
     }
-
-    .section-title {
-      font-family: 'Droid Serif', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      color: var(--charcoal);
-      margin-bottom: 1.2rem;
-    }
-
-    .section-title.light {
+    .about-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 800;
+      line-height: 1.1;
       color: var(--white);
+      margin-bottom: 32px;
+      white-space: pre-line;
     }
-
-    .section-divider {
-      width: 56px;
-      height: 3px;
-      background: var(--green);
-      border-radius: 3px;
-      margin-bottom: 2rem;
-    }
-
-    .section-divider.center {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Reveal animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
-    }
-
-    .reveal-left.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
-    }
-
-    .reveal-right.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.45s; }
-
-    /* ============================================================
-       ABOUT
-    ============================================================ */
-    #about {
-      background: var(--off-white);
-      padding: 110px 0;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.45fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .about-image-wrap {
-      position: relative;
-    }
-
-    .about-image-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -16px -16px auto auto;
-      width: 60%;
-      height: 60%;
-      border: 2px solid var(--green);
-      border-radius: 4px;
-      opacity: 0.4;
-      transition: opacity 0.4s;
-    }
-
-    .about-image-wrap::after {
-      content: '';
-      position: absolute;
-      inset: auto auto -16px -16px;
-      width: 50%;
-      height: 50%;
-      border: 2px solid var(--green);
-      border-radius: 4px;
-      opacity: 0.25;
-      transition: opacity 0.4s;
-    }
-
-    .about-image-wrap:hover::before,
-    .about-image-wrap:hover::after {
-      opacity: 0.65;
-    }
-
-    .about-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: 6px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-      position: relative;
-      z-index: 1;
-      filter: grayscale(10%);
-      transition: filter 0.4s;
-    }
-
-    .about-img:hover {
-      filter: grayscale(0%);
-    }
-
-    .about-text .section-label {
-      display: block;
-    }
-
-    .about-text p {
-      font-size: 1.025rem;
-      color: #555;
-      line-height: 1.85;
-      margin-bottom: 1.2rem;
-    }
-
-    .about-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .about-name-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 1.8rem;
-      padding: 0.75rem 1.4rem;
-      background: var(--white);
-      border-left: 3px solid var(--green);
-      border-radius: 4px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-
-    .about-name-tag strong {
-      font-family: 'Droid Serif', serif;
+    .about-body {
       font-size: 1rem;
-      color: var(--charcoal);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 56px;
     }
-
-    .about-name-tag span {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: block;
+    .about-stats {
+      display: flex;
+      gap: 60px;
     }
-
-    /* ============================================================
-       STATS BAR
-    ============================================================ */
-    #stats {
-      background: var(--charcoal);
-      padding: 80px 0;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-    }
-
-    .stat-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 20%;
-      height: 60%;
-      width: 1px;
-      background: rgba(255,255,255,0.1);
-    }
-
+    .stat-item {}
     .stat-number {
-      font-family: 'Droid Serif', serif;
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4vw, 52px);
       font-weight: 700;
       color: var(--green);
       line-height: 1;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 0.15rem;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 6px;
     }
 
-    .stat-suffix {
-      font-size: 0.55em;
+    /* ─── SECTION 4: SERVICES ──────────────────────────────────── */
+    #services {
+      background: var(--black);
+      padding: 120px 0;
+    }
+    .services-heading-wrap {
+      text-align: center;
+      margin-bottom: 80px;
+      padding: 0 60px;
+    }
+    .services-heading {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
       color: var(--green);
     }
 
-    .stat-label {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-    }
-
-    /* ============================================================
-       SERVICES
-    ============================================================ */
-    #services {
-      background: var(--white);
-      padding: 110px 0;
-      text-align: center;
-    }
-
-    .services-header {
-      margin-bottom: 4rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: var(--off-white);
-      border-radius: 12px;
-      padding: 2.8rem 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
-      border: 1px solid transparent;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 12px;
-      border: 1.5px solid transparent;
-      transition: border-color 0.35s, box-shadow 0.35s;
-      pointer-events: none;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 24px 60px rgba(124,177,89,0.18);
-    }
-
-    .service-card:hover::before {
-      border-color: var(--green);
-      box-shadow: 0 0 0 4px rgba(124,177,89,0.08);
-    }
-
-    .service-icon {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      background: var(--green);
+    .service-panel {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 8px 24px rgba(124,177,89,0.3);
-    }
-
-    .service-card:hover .service-icon {
-      transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(124,177,89,0.5);
-    }
-
-    .service-icon svg {
-      width: 28px;
-      height: 28px;
-      fill: none;
-      stroke: white;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .service-card h3 {
-      font-family: 'Droid Serif', serif;
-      font-size: 1.25rem;
-      color: var(--charcoal);
-      margin-bottom: 0.8rem;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      color: #777;
-      line-height: 1.75;
-    }
-
-    /* ============================================================
-       PERSONAL COACHING
-    ============================================================ */
-    #coaching {
+      justify-content: space-between;
+      padding: 0 80px;
+      height: 300px;
+      border-left: 2px solid var(--green);
+      margin: 0 60px 2px;
       position: relative;
-      padding: 120px 0;
       overflow: hidden;
+      cursor: pointer;
+      transition: background 0.5s ease, border-left-width 0.4s ease;
     }
-
-    #coaching .section-bg {
+    .service-panel::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: url('assets/img/aaron-workshop-1.jpg') center 30% / cover no-repeat;
-      transform: scale(1.05);
+      background: rgba(124,177,89,0.05);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease);
     }
+    .service-panel:hover::before { transform: scaleX(1); }
+    .service-panel:hover { border-left-width: 6px; }
 
-    #coaching .section-overlay {
+    .service-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(80px, 10vw, 120px);
+      font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      transition: color 0.5s ease;
+    }
+    .service-panel:hover .service-number { color: rgba(124,177,89,0.06); }
+
+    .service-text { position: relative; z-index: 1; }
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+    .service-panel:hover .service-title { color: var(--green); }
+    .service-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .service-explore {
+      position: relative;
+      z-index: 1;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: gap 0.3s ease;
+    }
+    .service-panel:hover .service-explore { gap: 14px; }
+
+    /* ─── SECTION 5: COACHING DETAIL ───────────────────────────── */
+    #coaching-detail {
+      position: relative;
+      overflow: hidden;
+      padding: 140px 80px;
+    }
+    .detail-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(10,12,18,0.9) 0%, rgba(47,47,59,0.82) 100%);
+      z-index: 0;
     }
-
-    .coaching-inner {
+    .detail-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .detail-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0.82);
+      z-index: 1;
+    }
+    .detail-grid {
       position: relative;
       z-index: 2;
-    }
-
-    .coaching-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
     }
-
-    .coaching-content .section-title.light {
-      margin-bottom: 1rem;
+    .detail-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 54px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin: 16px 0 24px;
     }
-
-    .coaching-content p {
-      color: rgba(255,255,255,0.78);
+    .detail-body {
       font-size: 0.98rem;
-      line-height: 1.85;
-      margin-bottom: 1rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
     }
-
-    .program-badge {
-      display: inline-block;
-      background: rgba(124,177,89,0.18);
-      border: 1px solid rgba(124,177,89,0.4);
-      color: var(--green);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      margin-bottom: 1.2rem;
-    }
-
     .feature-list {
       list-style: none;
-      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-
     .feature-list li {
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
       color: rgba(255,255,255,0.8);
-      font-size: 0.93rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.6;
     }
-
     .feature-list li::before {
-      content: '';
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1rem;
       flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-      margin-top: 3px;
-      background: var(--green);
-      border-radius: 50%;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      background-size: 11px;
-      background-position: center;
-      background-repeat: no-repeat;
     }
 
     .cta-box {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 12px;
-      padding: 2.2rem 2rem;
-      transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+      border: 1.5px solid var(--green);
+      padding: 48px;
+      background: rgba(13,13,13,0.6);
+      transition: background 0.4s ease;
       cursor: default;
     }
-
     .cta-box:hover {
       background: var(--green);
-      border-color: var(--green);
-      box-shadow: 0 12px 40px rgba(124,177,89,0.45);
     }
-
-    .cta-box h4 {
-      font-family: 'Droid Serif', serif;
-      font-size: 1.2rem;
+    .cta-box:hover .cta-title,
+    .cta-box:hover .cta-detail { color: var(--white); }
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
       color: var(--white);
-      margin-bottom: 1rem;
+      margin-bottom: 28px;
+      transition: color 0.4s;
     }
-
-    .cta-box .contact-link {
+    .cta-detail {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 10px;
+      transition: color 0.4s;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      color: rgba(255,255,255,0.8);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-      transition: color 0.3s;
+      gap: 10px;
+    }
+    .cta-detail span {
+      font-size: 1rem;
     }
 
-    .cta-box:hover .contact-link {
-      color: rgba(255,255,255,0.95);
-    }
-
-    .cta-box .contact-link svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-    }
-
-    /* ============================================================
-       BUSINESS SOLUTIONS
-    ============================================================ */
-    #business {
+    /* ─── SECTION 6: BUSINESS DETAIL ──────────────────────────── */
+    #business-detail {
       position: relative;
-      padding: 120px 0;
       overflow: hidden;
+      padding: 140px 80px;
     }
+    #business-detail .detail-grid { direction: rtl; }
+    #business-detail .detail-grid > * { direction: ltr; }
 
-    #business .section-bg {
-      position: absolute;
-      inset: 0;
-      background: url('assets/img/aaron-workshop-2.jpg') center 40% / cover no-repeat;
-      transform: scale(1.05);
+    .engagement-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
     }
-
-    #business .section-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(47,47,59,0.88) 0%, rgba(10,14,22,0.92) 100%);
+    .engagement-list li {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-
-    .business-inner {
-      position: relative;
-      z-index: 2;
-    }
-
-    .engagement-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      margin: 2rem 0 2.5rem;
-    }
-
-    .eng-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 1.4rem 1.2rem;
-      transition: background 0.3s, border-color 0.3s, transform 0.3s;
-    }
-
-    .eng-card:hover {
-      background: rgba(124,177,89,0.12);
-      border-color: rgba(124,177,89,0.4);
-      transform: translateY(-4px);
-    }
-
-    .eng-card h5 {
-      font-family: 'Droid Serif', serif;
-      font-size: 0.95rem;
-      color: var(--green);
-      margin-bottom: 0.4rem;
-    }
-
-    .eng-card p {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.6;
-    }
-
-    .price-badge {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.3rem;
-      background: rgba(124,177,89,0.15);
-      border: 1px solid rgba(124,177,89,0.35);
-      border-radius: 8px;
-      padding: 0.6rem 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .price-badge .price-num {
-      font-family: 'Droid Serif', serif;
-      font-size: 2rem;
+    .eng-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
       color: var(--green);
       font-weight: 700;
+      min-width: 36px;
     }
 
-    .price-badge .price-unit {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.6);
-    }
-
-    /* ============================================================
-       TESTIMONIAL VIDEO
-    ============================================================ */
-    #testimonials {
-      background: #1a1a24;
-      padding: 110px 0;
+    /* ─── SECTION 7: TESTIMONIAL ───────────────────────────────── */
+    #testimonial {
+      background: #000;
+      padding: 140px 60px;
       text-align: center;
     }
-
-    .testimonials-header {
-      margin-bottom: 3.5rem;
-    }
-
-    .testimonials-header .section-title {
+    .testimonial-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700;
       color: var(--white);
+      margin-bottom: 60px;
     }
-
-    .testimonials-header .section-label {
-      color: var(--green);
-    }
-
-    .video-container {
-      max-width: 860px;
+    .video-wrap {
+      position: relative;
+      max-width: 900px;
       margin: 0 auto;
+      border: 2px solid var(--green);
+      transition: box-shadow 0.4s ease;
+    }
+    .video-wrap:hover {
+      box-shadow: 0 0 40px rgba(124,177,89,0.4);
+    }
+    .video-ratio {
       position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
     }
-
-    .video-wrapper {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 16/9;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-      transition: box-shadow 0.4s;
-    }
-
-    .video-wrapper:hover {
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 3px var(--green), 0 0 60px rgba(124,177,89,0.2);
-    }
-
-    .video-wrapper iframe {
+    .video-ratio iframe {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -966,722 +699,530 @@
       border: none;
     }
 
-    /* ============================================================
-       CONTACT
-    ============================================================ */
+    /* ─── SECTION 8: LOGOS ─────────────────────────────────────── */
+    #clients {
+      background: #111118;
+      padding: 100px 60px;
+      text-align: center;
+    }
+    .clients-heading {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 60px;
+    }
+    .clients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px 80px;
+      align-items: center;
+    }
+    .client-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 600;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+      transition: color 0.4s ease;
+      cursor: default;
+    }
+    .client-logo:hover { color: rgba(255,255,255,0.7); }
+
+    /* ─── SECTION 9: CONTACT ───────────────────────────────────── */
     #contact {
-      background: var(--charcoal);
-      padding: 110px 0;
+      display: flex;
+      min-height: 80vh;
     }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 5rem;
-      align-items: start;
+    .contact-left {
+      flex: 0 0 50%;
+      background: var(--panel);
+      padding: 100px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-
-    .contact-info .section-title {
+    .contact-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 800;
       color: var(--white);
-      margin-bottom: 1rem;
+      line-height: 1;
+      margin-bottom: 24px;
     }
-
-    .contact-info p {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.95rem;
-      line-height: 1.75;
-      margin-bottom: 2rem;
+    .contact-tagline {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 48px;
+      max-width: 380px;
     }
-
-    .contact-detail {
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-info a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
       display: flex;
       align-items: center;
-      gap: 1rem;
-      color: rgba(255,255,255,0.8);
-      font-size: 0.93rem;
-      margin-bottom: 1rem;
+      gap: 12px;
       transition: color 0.25s;
     }
-
-    .contact-detail:hover {
-      color: var(--green);
+    .contact-info a:hover { color: var(--green); }
+    .contact-info .icon {
+      font-size: 1rem;
     }
 
-    .contact-detail svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
+    .contact-right {
+      flex: 0 0 50%;
+      background: var(--panel2);
+      padding: 100px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-
-    /* Form */
     .contact-form {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 2.8rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
     }
-
     .form-group {
-      margin-bottom: 1.4rem;
+      position: relative;
     }
-
     .form-group label {
       display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 10px;
     }
-
     .form-group input,
     .form-group textarea {
       width: 100%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      padding: 0.9rem 1.1rem;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 12px 0;
       color: var(--white);
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.93rem;
-      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
       outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(255,255,255,0.25);
-    }
-
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: var(--green);
-      background: rgba(124,177,89,0.06);
-      box-shadow: 0 0 0 3px rgba(124,177,89,0.12);
+      box-shadow: 0 2px 0 0 rgba(124,177,89,0.4);
     }
-
     .form-group textarea {
-      resize: vertical;
-      min-height: 130px;
+      resize: none;
+      height: 100px;
     }
-
-    .btn-submit {
-      width: 100%;
-      padding: 1rem;
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 44px;
       background: var(--green);
       color: var(--white);
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       border: none;
-      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
-      box-shadow: 0 6px 24px rgba(124,177,89,0.35);
+      transition: background 0.3s ease, gap 0.3s ease;
+      align-self: flex-start;
     }
-
-    .btn-submit:hover {
-      background: var(--green-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(124,177,89,0.5);
+    .form-submit:hover {
+      background: #8dc963;
+      gap: 18px;
     }
+    .form-submit .arrow {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .form-submit:hover .arrow { transform: translateX(4px); }
 
-    /* ============================================================
-       FOOTER
-    ============================================================ */
+    /* ─── FOOTER ──────────────────────────────────────────────── */
     footer {
-      background: #1e1e28;
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    .footer-inner {
+      background: #000;
+      padding: 36px 60px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
-
     .footer-logo {
-      font-family: 'Droid Serif', serif;
-      font-size: 1.1rem;
-      color: var(--green);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      color: var(--green);
     }
-
     .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.28);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
     }
 
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-    @media (max-width: 1024px) {
-      .about-grid {
-        grid-template-columns: 1fr 1.3fr;
-        gap: 3rem;
-      }
-
-      .coaching-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-    }
-
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
     @media (max-width: 768px) {
-      section { padding: 80px 0; }
+      #site-nav { padding: 20px 28px; }
+      #site-nav.scrolled { padding: 16px 28px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        flex-direction: column;
-        padding: 1.5rem 2rem 2rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        gap: 0.25rem;
-      }
+      #hero { min-height: 100svh; }
+      .hero-content { padding: 0 24px; }
+      .scroll-indicator { right: 24px; bottom: 32px; }
 
-      .nav-links.open {
-        display: flex;
-      }
+      #intro { padding: 100px 28px; }
 
-      .nav-links a {
-        padding: 0.6rem 0.4rem;
-        font-size: 0.88rem;
-      }
+      #about { flex-direction: column; min-height: auto; }
+      .about-img { flex: 0 0 55vw; min-height: 55vw; }
+      .about-content { flex: none; padding: 64px 28px; }
+      .about-stats { gap: 40px; }
 
-      .nav-cta {
-        margin-top: 0.5rem;
-        text-align: center;
-      }
+      #services { padding: 80px 0; }
+      .service-panel { margin: 0 20px 2px; padding: 0 28px; height: auto; min-height: 180px; flex-direction: column; align-items: flex-start; justify-content: center; gap: 16px; padding-top: 40px; padding-bottom: 40px; }
+      .service-number { display: none; }
+      .services-heading-wrap { padding: 0 28px; }
 
-      .nav-toggle {
-        display: flex;
-      }
+      #coaching-detail, #business-detail { padding: 80px 28px; }
+      .detail-grid { grid-template-columns: 1fr; gap: 48px; }
+      #business-detail .detail-grid { direction: ltr; }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
+      #testimonial { padding: 100px 28px; }
+      #clients { padding: 80px 28px; }
 
-      .about-image-wrap {
-        max-width: 380px;
-        margin: 0 auto;
-      }
+      #contact { flex-direction: column; }
+      .contact-left, .contact-right { flex: none; padding: 64px 28px; }
 
-      .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .stat-item:not(:last-child)::after {
-        display: none;
-      }
-
-      .stat-item:not(:last-child) {
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        max-width: 440px;
-        margin: 0 auto;
-      }
-
-      .coaching-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .engagement-cards {
-        grid-template-columns: 1fr;
-      }
-
-      #coaching, #business {
-        padding: 90px 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-title {
-        font-size: 2.4rem;
-      }
-
-      .contact-form {
-        padding: 2rem 1.5rem;
-      }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ============================================================
-       NAVIGATION
-  ============================================================ -->
-  <nav id="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="Life In My Hands — Home">Life In My Hands</a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#coaching">Coaching</a></li>
-        <li><a href="#business">Business</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact" class="nav-cta">Book a Session</a></li>
-      </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <!-- ─── FIXED NAV ─────────────────────────────────────────── -->
+  <nav id="site-nav" aria-label="Main navigation">
+    <a href="#" class="nav-logo">LIMH</a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+      <span></span><span></span><span></span>
     </div>
   </nav>
 
-  <!-- ============================================================
-       HERO
-  ============================================================ -->
-  <section id="hero" aria-label="Hero">
-    <div class="hero-bg" id="heroBg" role="img" aria-label="Aaron Montague presenting at a workshop"></div>
-    <div class="hero-overlay"></div>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#hero"     onclick="closeMob()">Home</a>
+    <a href="#about"    onclick="closeMob()">About</a>
+    <a href="#services" onclick="closeMob()">Services</a>
+    <a href="#contact"  onclick="closeMob()">Contact</a>
+  </div>
 
-    <!-- Floating particles (pure CSS, 20 particles) -->
-    <div class="particles" aria-hidden="true" id="particles"></div>
+  <main>
 
-    <div class="hero-content">
-      <p class="hero-eyebrow">Melbourne, Australia</p>
-      <h1 class="hero-title">Life In My <span>Hands</span></h1>
-      <p class="hero-sub">Coaching. Clarity. Change.</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn-primary">Book a Session</a>
+    <!-- ─── SECTION 1: HERO ──────────────────────────────────── -->
+    <section id="hero">
+
+      <div class="hero-bg" id="hero-bg">
+        <img src="assets/img/aaron-workshop-1.jpg" alt="Aaron Montague coaching workshop" />
       </div>
-    </div>
+      <div class="hero-overlay"></div>
 
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <div class="scroll-line"></div>
-      <span class="scroll-label">Scroll</span>
-    </div>
-  </section>
+      <!-- Particles -->
+      <div class="particles" id="particles"></div>
 
-  <!-- ============================================================
-       ABOUT
-  ============================================================ -->
-  <section id="about" aria-label="About Aaron Montague">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-image-wrap reveal-left">
-          <img
-            src="assets/img/aaron-face.jpg"
-            alt="Aaron Montague — Life Coach and Business Advisor"
-            class="about-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="about-text reveal-right">
-          <span class="section-label">About</span>
-          <h2 class="section-title">Aaron Montague</h2>
-          <div class="section-divider"></div>
-          <p>
-            Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition. He brings over 12 years experience in project management and change-focused roles within large, complex organisations in Australia and the UK.
-          </p>
-          <p>
-            This background shapes a grounded, no-nonsense coaching style, informed by a strong understanding of systems, governance and the realities of high-pressure environments.
-          </p>
-          <p>
-            His work integrates strategy, mindset and behaviour, helping clients move from insight to action in a way that feels aligned, practical and sustainable. Aaron is the sole practitioner delivering Life In My Hands services, ensuring consistency, accountability and continuity across every engagement.
-          </p>
-          <div class="about-name-tag">
-            <div>
-              <strong>Aaron Montague</strong>
-              <span>Coach &amp; Business Advisor · Melbourne, AU</span>
-            </div>
-          </div>
-        </div>
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-line"></div>
+        <span class="hero-title-1">Life In</span>
+        <span class="hero-title-2">My Hands</span>
+        <p class="hero-sub">Coaching &middot; Clarity &middot; Change</p>
+        <a href="#contact" class="hero-cta">Begin Your Journey &rarr;</a>
       </div>
-    </div>
-  </section>
 
-  <!-- ============================================================
-       STATS BAR
-  ============================================================ -->
-  <section id="stats" aria-label="Key statistics">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item reveal reveal-delay-1">
-          <div class="stat-number">
-            <span class="counter" data-target="12" data-suffix="+">0</span><span class="stat-suffix">+</span>
-          </div>
-          <p class="stat-label">Years Experience</p>
-        </div>
-        <div class="stat-item reveal reveal-delay-2">
-          <div class="stat-number">
-            <span class="counter" data-target="2011" data-start="1990">1990</span>
-          </div>
-          <p class="stat-label">Established</p>
-        </div>
-        <div class="stat-item reveal reveal-delay-3">
-          <div class="stat-number">
-            <span class="counter" data-target="3">0</span>
-          </div>
-          <p class="stat-label">Service Areas</p>
-        </div>
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll</span>
       </div>
-    </div>
-  </section>
 
-  <!-- ============================================================
-       SERVICES
-  ============================================================ -->
-  <section id="services" aria-label="Services">
-    <div class="container">
-      <div class="services-header reveal">
-        <span class="section-label">What We Offer</span>
-        <h2 class="section-title">Our Services</h2>
-        <div class="section-divider center"></div>
-        <p style="max-width:560px; margin: 0 auto; color: #777; font-size: 0.98rem; line-height: 1.75;">
-          Practical, transformative support for individuals and organisations ready to move forward with clarity and confidence.
+    </section>
+
+    <!-- ─── SECTION 2: INTRO STATEMENT ──────────────────────── -->
+    <section id="intro">
+      <div class="reveal">
+        <p class="intro-quote">
+          &ldquo;Helping individuals and organisations navigate change, growth and transition &mdash; with clarity, strategy, and purpose.&rdquo;
+          <span class="intro-underline"></span>
         </p>
       </div>
-      <div class="services-grid">
-        <!-- Card 1 -->
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon" aria-hidden="true">
-            <!-- Person icon -->
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+    </section>
+
+    <!-- ─── SECTION 3: ABOUT ─────────────────────────────────── -->
+    <section id="about">
+      <div class="about-img reveal-left">
+        <img src="assets/img/aaron-face.jpg" alt="Aaron Montague" />
+      </div>
+      <div class="about-content reveal-right">
+        <span class="section-label">About Aaron</span>
+        <h2 class="about-heading">A Coach Built&#10;For Real Change</h2>
+        <p class="about-body">Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition. He brings over 12 years of experience in project management and change-focused roles within large, complex organisations in Australia and the UK.<br /><br />This background shapes a grounded, no-nonsense coaching style, informed by a strong understanding of systems, governance and the realities of high-pressure environments. His work integrates strategy, mindset and behaviour &mdash; helping clients move from insight to action in a way that feels aligned, practical and sustainable.</p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number" data-count="12" data-suffix="+ Years">0+ Years</div>
+            <div class="stat-label">Of Experience</div>
           </div>
-          <h3>Personal Coaching</h3>
-          <p>One-on-one coaching designed to shift mindset, build clarity and drive real, lasting change in your personal and professional life.</p>
-        </div>
-        <!-- Card 2 -->
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon" aria-hidden="true">
-            <!-- Presentation icon -->
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21l4-4 4 4"/><path d="M12 17v4"/></svg>
+          <div class="stat-item">
+            <div class="stat-number" data-year="2011">Since 2011</div>
+            <div class="stat-label">Coaching Since</div>
           </div>
-          <h3>Education Workshops</h3>
-          <p>Engaging group workshops that build skills, strengthen teams and cultivate a culture of growth within your organisation.</p>
-        </div>
-        <!-- Card 3 -->
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon" aria-hidden="true">
-            <!-- Briefcase icon -->
-            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-          </div>
-          <h3>Business Solutions</h3>
-          <p>Strategic advisory support for leaders and organisations navigating complexity, transition and transformational change.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       PERSONAL COACHING
-  ============================================================ -->
-  <section id="coaching" aria-label="Personal Coaching — Mindset Advantage Program">
-    <div class="section-bg" role="img" aria-label="Aaron presenting at whiteboard"></div>
-    <div class="section-overlay"></div>
-    <div class="container coaching-inner">
-      <div class="coaching-grid">
-        <div class="coaching-content reveal-left">
+    <!-- ─── SECTION 4: SERVICES ──────────────────────────────── -->
+    <section id="services">
+      <div class="services-heading-wrap reveal">
+        <p class="services-heading">What We Offer</p>
+      </div>
+
+      <div class="service-panel reveal" style="transition-delay:0.12s">
+        <div class="service-text">
+          <h3 class="service-title">Personal Coaching</h3>
+          <p class="service-desc">Mindset, performance, and personal transformation.</p>
+        </div>
+        <span class="service-explore">→ Explore</span>
+        <span class="service-number">01</span>
+      </div>
+
+      <div class="service-panel reveal" style="transition-delay:0.24s">
+        <div class="service-text">
+          <h3 class="service-title">Education Workshops</h3>
+          <p class="service-desc">Enneagram personality profiling. Law of Attraction. Deep self-knowledge.</p>
+        </div>
+        <span class="service-explore">→ Explore</span>
+        <span class="service-number">02</span>
+      </div>
+
+      <div class="service-panel reveal" style="transition-delay:0.36s">
+        <div class="service-text">
+          <h3 class="service-title">Business Solutions</h3>
+          <p class="service-desc">Advisory, operational support, and organisational effectiveness.</p>
+        </div>
+        <span class="service-explore">→ Explore</span>
+        <span class="service-number">03</span>
+      </div>
+    </section>
+
+    <!-- ─── SECTION 5: PERSONAL COACHING DETAIL ─────────────── -->
+    <section id="coaching-detail">
+      <div class="detail-bg">
+        <img src="assets/img/aaron-workshop-1.jpg" alt="Aaron coaching" />
+      </div>
+      <div class="detail-overlay"></div>
+      <div class="detail-grid">
+        <div class="reveal" style="transition-delay:0s">
           <span class="section-label">Personal Coaching</span>
-          <div class="program-badge">Mindset Advantage Program</div>
-          <h2 class="section-title light">Transform the Way<br/>You Think &amp; Act</h2>
-          <div class="section-divider"></div>
-          <p>
-            The Mindset Advantage Program is a structured coaching journey built for high-performing individuals who want to break through plateaus, develop sharper self-awareness, and act with decisive clarity.
-          </p>
-          <p>
-            This isn't surface-level motivation. It's deep, practical work that integrates your goals, your context, and your psychology — creating a roadmap that's genuinely yours.
-          </p>
+          <h2 class="detail-heading">Mindset Advantage Program</h2>
+          <p class="detail-body">A performance mindset program for athletes seeking consistency, confidence and focus under pressure. Using individualised profiling and practical mindset tools, athletes learn to manage stress, reduce over-thinking and perform more reliably in training and competition.</p>
           <ul class="feature-list">
-            <li>Personalised goal mapping and strategic clarity</li>
-            <li>Mindset recalibration using evidence-based approaches</li>
-            <li>Behavioural pattern recognition and interruption</li>
-            <li>Accountability systems that actually hold</li>
-            <li>Post-session integration tools and resources</li>
+            <li>Individualised Profiling</li>
+            <li>Practical Mindset Tools</li>
+            <li>Stress Management</li>
+            <li>Performance Consistency</li>
           </ul>
         </div>
-        <div class="reveal-right">
+        <div class="reveal" style="transition-delay:0.2s">
           <div class="cta-box">
-            <h4>Ready to Get Started?</h4>
-            <p style="color:rgba(255,255,255,0.7); font-size:0.88rem; margin-bottom:1.2rem; line-height:1.7;">
-              Reach out directly to discuss your goals and explore whether this program is the right fit.
-            </p>
-            <a href="tel:0407938932" class="contact-link">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              Call 0407 938 932
-            </a>
-            <a href="mailto:aaron@lifeinmyhands.com.au" class="contact-link">
-              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              aaron@lifeinmyhands.com.au
-            </a>
+            <h3 class="cta-title">Ready to Begin?</h3>
+            <a href="tel:0407938932" class="cta-detail"><span class="icon">📞</span> 0407 938 932</a>
+            <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-detail"><span class="icon">✉</span> aaron@lifeinmyhands.com.au</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       BUSINESS SOLUTIONS
-  ============================================================ -->
-  <section id="business" aria-label="Business Solutions">
-    <div class="section-bg" role="img" aria-label="Workshop participants collaborating"></div>
-    <div class="section-overlay"></div>
-    <div class="container business-inner">
-      <div class="coaching-grid">
-        <div class="coaching-content reveal-left">
+    <!-- ─── SECTION 6: BUSINESS SOLUTIONS DETAIL ────────────── -->
+    <section id="business-detail">
+      <div class="detail-bg">
+        <img src="assets/img/aaron-workshop-2.jpg" alt="Aaron business workshop" />
+      </div>
+      <div class="detail-overlay"></div>
+      <div class="detail-grid">
+        <div class="reveal" style="transition-delay:0s">
           <span class="section-label">Business Solutions</span>
-          <h2 class="section-title light">Advisory for<br/>Leaders &amp; Organisations</h2>
-          <div class="section-divider"></div>
-          <p>
-            Aaron works alongside business leaders and teams to cut through complexity, sharpen strategy, and drive meaningful organisational progress. Drawing on 12 years at the coalface of large-scale change programs, the guidance is pragmatic, commercially aware, and directly applicable.
-          </p>
-
-          <div class="price-badge">
-            <span class="price-num">$150</span>
-            <span class="price-unit">/hr + GST</span>
-          </div>
-
-          <div class="engagement-cards">
-            <div class="eng-card">
-              <h5>Session-Based</h5>
-              <p>Targeted advisory sessions on specific challenges, decisions or initiatives as they arise.</p>
-            </div>
-            <div class="eng-card">
-              <h5>Program-Based</h5>
-              <p>A structured engagement with defined outcomes, milestones and deliverables over a fixed period.</p>
-            </div>
-            <div class="eng-card">
-              <h5>Ongoing Operational</h5>
-              <p>Retained advisory support embedded in your operations for sustained strategic momentum.</p>
-            </div>
-          </div>
+          <h2 class="detail-heading">Organisational Effectiveness</h2>
+          <p class="detail-body">Business Advisory &amp; Operational Support. <strong style="color:var(--green)">$150 per hour + GST.</strong><br /><br />Life In My Hands offers business solutions grounded in the principles of organisational effectiveness &mdash; the ability of a business to consistently execute its intent.</p>
+          <ul class="engagement-list">
+            <li><span class="eng-num">01</span> Session-Based Advisory</li>
+            <li><span class="eng-num">02</span> Program-Based Advisory</li>
+            <li><span class="eng-num">03</span> Ongoing Operational Support</li>
+          </ul>
         </div>
-        <div class="reveal-right">
+        <div class="reveal" style="transition-delay:0.2s">
           <div class="cta-box">
-            <h4>Discuss Your Business</h4>
-            <p style="color:rgba(255,255,255,0.7); font-size:0.88rem; margin-bottom:1.2rem; line-height:1.7;">
-              Every organisation is different. Get in touch to explore how business advisory can be tailored to your situation.
-            </p>
-            <a href="tel:0407938932" class="contact-link">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              Call 0407 938 932
-            </a>
-            <a href="mailto:aaron@lifeinmyhands.com.au" class="contact-link">
-              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              aaron@lifeinmyhands.com.au
-            </a>
+            <h3 class="cta-title">Discuss Your Business</h3>
+            <a href="tel:0407938932" class="cta-detail"><span class="icon">📞</span> 0407 938 932</a>
+            <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-detail"><span class="icon">✉</span> aaron@lifeinmyhands.com.au</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       TESTIMONIAL VIDEO
-  ============================================================ -->
-  <section id="testimonials" aria-label="Client testimonial video">
-    <div class="container">
-      <div class="testimonials-header reveal">
-        <span class="section-label">Client Stories</span>
-        <h2 class="section-title light">Hear From Our Clients</h2>
-        <div class="section-divider center"></div>
+    <!-- ─── SECTION 7: TESTIMONIAL VIDEO ────────────────────── -->
+    <section id="testimonial">
+      <div class="reveal">
+        <span class="section-label" style="display:block;text-align:center;margin-bottom:16px">Client Results</span>
+        <h2 class="testimonial-heading">Hear From Those We've Worked With</h2>
       </div>
-      <div class="video-container reveal">
-        <div class="video-wrapper">
+      <div class="video-wrap reveal" style="transition-delay:0.2s">
+        <div class="video-ratio">
           <iframe
             src="https://www.youtube.com/embed/sBEKq6mAtCc"
-            title="Life In My Hands — Client Testimonial"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
+            title="Life In My Hands client testimonial"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       CONTACT
-  ============================================================ -->
-  <section id="contact" aria-label="Contact and booking">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-info reveal-left">
-          <span class="section-label">Get In Touch</span>
-          <h2 class="section-title" style="color:var(--white);">Let's Start a<br/>Conversation</h2>
-          <div class="section-divider"></div>
-          <p>
-            Whether you're an individual ready to invest in your growth or an organisation seeking strategic advisory support, the first conversation is always complimentary.
-          </p>
-          <a href="tel:0407938932" class="contact-detail">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3-8.63A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            0407 938 932
-          </a>
-          <a href="mailto:aaron@lifeinmyhands.com.au" class="contact-detail">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            aaron@lifeinmyhands.com.au
-          </a>
-          <p style="margin-top: 2.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.3); line-height: 1.6;">
-            Melbourne, Victoria, Australia<br/>
-            Serving clients nationally and internationally.
-          </p>
-        </div>
-        <div class="reveal-right">
-          <form class="contact-form" action="/send.php" method="POST" novalidate>
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="John Smith" required autocomplete="name" />
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell me a little about what you're looking for..." required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Send Message</button>
-          </form>
-        </div>
+    <!-- ─── SECTION 8: CLIENT LOGOS ──────────────────────────── -->
+    <section id="clients">
+      <p class="clients-heading reveal">Trusted By</p>
+      <div class="clients-grid">
+        <span class="client-logo reveal" style="transition-delay:0.05s">Simone Haag</span>
+        <span class="client-logo reveal" style="transition-delay:0.15s">Xenon Underwriting</span>
+        <span class="client-logo reveal" style="transition-delay:0.25s">Andy's Water</span>
+        <span class="client-logo reveal" style="transition-delay:0.35s">Dragonfly Springwater</span>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-  <footer role="contentinfo">
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-logo">Life In My Hands</span>
-        <p class="footer-copy">© 2026 Life In My Hands. All Rights Reserved.</p>
+    <!-- ─── SECTION 9: CONTACT ───────────────────────────────── -->
+    <section id="contact">
+      <div class="contact-left reveal-left">
+        <h2 class="contact-heading">Let's<br/>Talk.</h2>
+        <p class="contact-tagline">Take the first step. One conversation changes everything.</p>
+        <div class="contact-info">
+          <a href="tel:0407938932"><span class="icon">📞</span> 0407 938 932</a>
+          <a href="mailto:aaron@lifeinmyhands.com.au"><span class="icon">✉</span> aaron@lifeinmyhands.com.au</a>
+        </div>
       </div>
-    </div>
+      <div class="contact-right reveal-right">
+        <form class="contact-form" action="/send.php" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            Send Message <span class="arrow">&rarr;</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ──────────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-logo">Life In My Hands</span>
+    <span class="footer-copy">&copy; 2026 Life In My Hands. All Rights Reserved.</span>
   </footer>
 
+  <!-- ─── JAVASCRIPT ───────────────────────────────────────────── -->
   <script>
-    // ============================================================
-    // PARTICLES — generate 28 CSS-animated particles
-    // ============================================================
-    (function() {
-      const container = document.getElementById('particles');
-      const count = 28;
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 4 + 2; // 2–6px
-        const left = Math.random() * 100;
-        const delay = Math.random() * 18;
-        const duration = Math.random() * 20 + 18; // 18–38s
-        const opacity = Math.random() * 0.4 + 0.15;
-        p.style.cssText = `
-          width: ${size}px;
-          height: ${size}px;
-          left: ${left}%;
-          bottom: -${size}px;
-          animation-delay: ${delay}s;
-          animation-duration: ${duration}s;
-          opacity: 0;
-        `;
-        container.appendChild(p);
-      }
-    })();
+    /* ── NAV SCROLL ─────────────────────────────────────────── */
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
 
-    // ============================================================
-    // PARALLAX HERO
-    // ============================================================
-    const heroBg = document.getElementById('heroBg');
-    let ticking = false;
+    /* ── HAMBURGER ──────────────────────────────────────────── */
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMob() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
 
-    function onScroll() {
+    /* ── HERO PARALLAX ──────────────────────────────────────── */
+    const heroBg = document.getElementById('hero-bg');
+    let ticking  = false;
+    window.addEventListener('scroll', () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          const scrollY = window.pageYOffset;
-          const winH = window.innerHeight;
-          if (scrollY < winH * 1.5) {
-            const pct = scrollY / winH;
-            heroBg.style.transform = `scale(1.08) translateY(${pct * 28}%)`;
-          }
+          const y = window.scrollY;
+          heroBg.style.transform = `translateY(${y * 0.35}px)`;
           ticking = false;
         });
         ticking = true;
       }
-    }
+    }, { passive: true });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // ============================================================
-    // NAVBAR SCROLL STATE & ACTIVE LINK
-    // ============================================================
-    const navbar = document.getElementById('navbar');
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-
-    function updateNav() {
-      const scrollY = window.pageYOffset;
-      navbar.classList.toggle('scrolled', scrollY > 50);
-
-      let current = '';
-      sections.forEach(section => {
-        const top = section.offsetTop - 100;
-        if (scrollY >= top) current = section.getAttribute('id');
+    /* ── PARTICLES ──────────────────────────────────────────── */
+    (function buildParticles() {
+      const container = document.getElementById('particles');
+      const count = 15;
+      const configs = [
+        { angle: '42deg',  dx: '25px',  dy: '-70px', dur: '11s', delay: '0s',    op: 0.18, top: '15%', left: '8%',  w: 55, h: 1 },
+        { angle: '-35deg', dx: '-20px', dy: '-60px', dur: '13s', delay: '1.5s',  op: 0.15, top: '30%', left: '18%', w: 40, h: 1 },
+        { angle: '60deg',  dx: '30px',  dy: '-80px', dur: '9s',  delay: '3s',    op: 0.22, top: '50%', left: '5%',  w: 70, h: 1 },
+        { angle: '-50deg', dx: '-15px', dy: '-55px', dur: '14s', delay: '0.8s',  op: 0.16, top: '70%', left: '12%', w: 45, h: 1 },
+        { angle: '30deg',  dx: '20px',  dy: '-65px', dur: '10s', delay: '2.2s',  op: 0.2,  top: '20%', left: '75%', w: 60, h: 1 },
+        { angle: '-45deg', dx: '-25px', dy: '-50px', dur: '12s', delay: '4s',    op: 0.17, top: '40%', left: '85%', w: 50, h: 1 },
+        { angle: '55deg',  dx: '35px',  dy: '-75px', dur: '8s',  delay: '1s',    op: 0.25, top: '60%', left: '90%', w: 65, h: 1 },
+        { angle: '-30deg', dx: '-18px', dy: '-60px', dur: '15s', delay: '2.5s',  op: 0.14, top: '80%', left: '78%', w: 42, h: 1 },
+        { angle: '48deg',  dx: '28px',  dy: '-72px', dur: '11s', delay: '3.5s',  op: 0.19, top: '10%', left: '45%', w: 58, h: 1 },
+        { angle: '-40deg', dx: '-22px', dy: '-58px', dur: '13s', delay: '0.5s',  op: 0.21, top: '35%', left: '55%', w: 48, h: 1 },
+        { angle: '25deg',  dx: '18px',  dy: '-50px', dur: '9s',  delay: '2s',    op: 0.18, top: '55%', left: '38%', w: 38, h: 1 },
+        { angle: '-55deg', dx: '-30px', dy: '-68px', dur: '10s', delay: '1.2s',  op: 0.23, top: '75%', left: '62%', w: 62, h: 1 },
+        { angle: '38deg',  dx: '22px',  dy: '-64px', dur: '12s', delay: '3.8s',  op: 0.16, top: '25%', left: '30%', w: 52, h: 1 },
+        { angle: '-28deg', dx: '-16px', dy: '-54px', dur: '14s', delay: '0.3s',  op: 0.2,  top: '88%', left: '25%', w: 44, h: 1 },
+        { angle: '52deg',  dx: '32px',  dy: '-78px', dur: '11s', delay: '2.8s',  op: 0.17, top: '45%', left: '70%', w: 68, h: 1 },
+      ];
+      configs.forEach(c => {
+        const el = document.createElement('div');
+        el.className = 'particle';
+        el.style.cssText = `
+          width:${c.w}px; height:${c.h}px;
+          top:${c.top}; left:${c.left};
+          --angle:${c.angle}; --dx:${c.dx}; --dy:${c.dy};
+          --dur:${c.dur}; --delay:${c.delay}; --op:${c.op};
+          animation-duration:${c.dur}; animation-delay:${c.delay};
+        `;
+        container.appendChild(el);
       });
+    })();
 
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
-
-    // ============================================================
-    // MOBILE NAV TOGGLE
-    // ============================================================
-    const navToggle = document.getElementById('navToggle');
-    const navLinksEl = document.getElementById('navLinks');
-
-    navToggle.addEventListener('click', () => {
-      const open = navLinksEl.classList.toggle('open');
-      navToggle.classList.toggle('open', open);
-      navToggle.setAttribute('aria-expanded', open);
-    });
-
-    navLinksEl.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinksEl.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', false);
-      });
-    });
-
-    // ============================================================
-    // INTERSECTION OBSERVER — REVEAL & COUNTERS
-    // ============================================================
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const counters = document.querySelectorAll('.counter');
-    let countersTriggered = false;
-
+    /* ── INTERSECTION OBSERVER ──────────────────────────────── */
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1689,61 +1230,52 @@
           revealObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.15 });
 
-    revealEls.forEach(el => revealObs.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      revealObs.observe(el);
+    });
 
-    // Counter animation
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.target, 10);
-      const start = parseInt(el.dataset.start || '0', 10);
-      const duration = 1800;
-      const startTime = performance.now();
+    /* ── COUNTER ANIMATION ──────────────────────────────────── */
+    function easeOutQuad(t) { return t * (2 - t); }
 
+    function animateCount(el, target, suffix, duration) {
+      const start = performance.now();
       function step(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // Ease out cubic
-        const ease = 1 - Math.pow(1 - progress, 3);
-        const value = Math.round(start + (target - start) * ease);
-        el.textContent = value;
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        } else {
-          el.textContent = target;
-        }
+        const elapsed = Math.min(now - start, duration);
+        const progress = easeOutQuad(elapsed / duration);
+        const current = Math.floor(progress * target);
+        el.textContent = current + suffix;
+        if (elapsed < duration) requestAnimationFrame(step);
       }
-
       requestAnimationFrame(step);
     }
 
-    const statsSection = document.getElementById('stats');
-    const statsObs = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !countersTriggered) {
-        countersTriggered = true;
-        counters.forEach((counter, i) => {
-          setTimeout(() => animateCounter(counter), i * 160);
-        });
-        statsObs.disconnect();
-      }
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const count  = parseInt(el.dataset.count, 10);
+          const suffix = el.dataset.suffix || '';
+          if (!isNaN(count)) animateCount(el, count, suffix, 2000);
+          counterObs.unobserve(el);
+        }
+      });
     }, { threshold: 0.3 });
 
-    statsObs.observe(statsSection);
+    document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
-    // ============================================================
-    // SMOOTH SCROLL (fallback for older browsers)
-    // ============================================================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
+    /* ── SMOOTH ANCHOR SCROLL ───────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
         if (target) {
           e.preventDefault();
-          const offset = navbar.offsetHeight;
-          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
   </script>
+
 </body>
 </html>
