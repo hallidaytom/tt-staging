@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life In My Hands — Aaron Montague</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* =====================================================
+       TOKENS
+    ===================================================== */
+    :root {
+      --ink:        #0D0D12;
+      --charcoal:   #2F2F3B;
+      --smoke:      #1A1A24;
+      --signal:     #7cb159;
+      --signal-dim: #5a8a40;
+      --ash:        #8A8A9A;
+      --mist:       #C8C8D8;
+      --white:      #F4F0E8;   /* warm white — not pure. dark bg needs warmth */
+      --rule:       rgba(124,177,89,0.15);
+
+      /* Fluid type scale */
+      --t-display: clamp(72px, 12vw, 160px);
+      --t-hero:    clamp(42px, 6.5vw, 90px);
+      --t-title:   clamp(28px, 3.5vw, 50px);
+      --t-lead:    clamp(17px, 1.8vw, 22px);
+      --t-body:    15px;
+      --t-label:   11px;
+
+      /* Spacing scale — 4px base */
+      --s-2:  8px;
+      --s-3:  12px;
+      --s-4:  16px;
+      --s-6:  24px;
+      --s-8:  32px;
+      --s-12: 48px;
+      --s-16: 64px;
+      --s-20: 80px;
+      --s-24: 96px;
+      --s-32: 128px;
+
+      /* Easing */
+      --ease-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      background: var(--ink);
+      color: var(--mist);
+      font-family: 'Inter', sans-serif;
+      font-size: var(--t-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none; /* custom cursor replaces default */
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* =====================================================
+       GRAIN OVERLAY
+    ===================================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -50%;
+      width: 200%; height: 200%;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+      z-index: 9000;
+      animation: grain 0.4s steps(2) infinite;
+    }
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      25%  { transform: translate(-2%,-3%); }
+      50%  { transform: translate(3%,1%); }
+      75%  { transform: translate(-1%,3%); }
+      100% { transform: translate(2%,-1%); }
+    }
+
+    /* =====================================================
+       CUSTOM CURSOR
+    ===================================================== */
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: var(--signal);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s ease, opacity 0.3s ease;
+      will-change: transform;
+    }
+    .cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(124,177,89,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width 0.4s var(--ease-expo),
+                  height 0.4s var(--ease-expo),
+                  border-color 0.4s ease;
+      will-change: transform;
+    }
+    .cursor-ring.expanded {
+      width: 60px; height: 60px;
+      border-color: rgba(124,177,89,0.6);
+    }
+    @media (hover: none) {
+      .cursor-dot, .cursor-ring { display: none; }
+      body { cursor: auto; }
+    }
+
+    /* =====================================================
+       PAGE LOADER
+    ===================================================== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      background: var(--ink);
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: var(--s-8);
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+    .page-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .loader-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fade-in 0.5s ease 0.2s forwards;
+    }
+    .loader-bar-wrap {
+      width: 140px; height: 1px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .loader-bar {
+      height: 100%;
+      background: var(--signal);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: bar-fill 1.2s var(--ease-expo) 0.4s forwards;
+    }
+    @keyframes bar-fill { to { transform: scaleX(1); } }
+    @keyframes fade-in  { to { opacity: 1; } }
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: var(--s-8) var(--s-12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding 0.4s var(--ease-expo),
+                  background 0.5s ease,
+                  backdrop-filter 0.5s ease;
+    }
+    nav.scrolled {
+      padding: var(--s-4) var(--s-12);
+      background: rgba(13,13,18,0.9);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-logo-dot { color: var(--signal); }
+
+    .nav-links {
+      display: flex;
+      gap: var(--s-12);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--signal);
+      transition: width 0.4s var(--ease-expo);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--signal);
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .nav-cta:hover { background: var(--white); }
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 1s var(--ease-expo),
+                  transform 1s var(--ease-expo);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.22s; }
+    .delay-3 { transition-delay: 0.38s; }
+    .delay-4 { transition-delay: 0.56s; }
+
+    /* =====================================================
+       SECTION LABELS
+    ===================================================== */
+    .section-label {
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--signal);
+      display: flex;
+      align-items: center;
+      gap: var(--s-6);
+      margin-bottom: var(--s-8);
+    }
+    .section-label::before {
+      content: '';
+      flex-shrink: 0;
+      width: 0; height: 1px;
+      background: var(--signal);
+      transition: width 1s var(--ease-expo) 0.2s;
+    }
+    .in .section-label::before,
+    .section-label.in::before { width: 32px; }
+
+    /* Vertical section index (desktop only) */
+    .section-index {
+      display: none;
+    }
+    @media (min-width: 1100px) {
+      .section-index {
+        display: block;
+        position: absolute;
+        left: -56px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(138,138,154,0.35);
+        white-space: nowrap;
+        pointer-events: none;
+      }
+    }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 0 var(--s-12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 80% at 70% 30%, rgba(47,47,59,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 10% 90%, rgba(124,177,89,0.06) 0%, transparent 55%),
+        var(--ink);
+    }
+
+    /* Barely-visible background numeral — Müller-Brockmann influence */
+    .hero-bg-numeral {
+      position: absolute;
+      right: -4vw;
+      bottom: -8vh;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(280px, 40vw, 520px);
+      font-weight: 300;
+      color: rgba(244,240,232,0.025);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 120px;
+      max-width: 1200px;
+    }
+
+    .hero-eyebrow {
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: var(--s-8);
+      display: flex;
+      align-items: center;
+      gap: var(--s-6);
+      opacity: 0;
+      animation: fade-in 0.8s ease 1.8s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 0; height: 1px;
+      background: var(--signal);
+      animation: line-grow 0.8s var(--ease-expo) 1.8s forwards;
+    }
+    @keyframes line-grow { to { width: 28px; } }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-display);
+      font-weight: 300;
+      line-height: 0.92;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      max-width: 10ch;
+      margin-bottom: var(--s-12);
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: rgba(244,240,232,0.6);
+    }
+
+    /* Staggered word entrance */
+    .word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: word-up 0.9s var(--ease-expo) forwards;
+    }
+    @keyframes word-up { to { transform: translateY(0); } }
+
+    .hero-sub {
+      font-size: var(--t-lead);
+      font-weight: 300;
+      color: var(--ash);
+      max-width: 44ch;
+      line-height: 1.65;
+      opacity: 0;
+      animation: fade-in 0.8s ease 1.5s forwards;
+    }
+
+    /* Bottom strip */
+    .hero-footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--s-8) 0 var(--s-12);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      animation: fade-in 0.8s ease 2s forwards;
+    }
+
+    .hero-identity {
+      font-size: var(--t-label);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ash);
+      display: flex;
+      align-items: center;
+      gap: var(--s-6);
+    }
+    .hero-identity strong { font-weight: 500; color: var(--mist); }
+    .hero-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.12); }
+
+    .hero-scroll {
+      font-size: var(--t-label);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ash);
+      display: flex;
+      align-items: center;
+      gap: var(--s-4);
+    }
+    .hero-scroll-line {
+      width: 0; height: 1px;
+      background: var(--signal);
+      animation: scroll-line 1.2s var(--ease-expo) 2.2s forwards;
+    }
+    @keyframes scroll-line { to { width: 44px; } }
+
+    /* =====================================================
+       MARQUEE TICKER
+    ===================================================== */
+    .marquee-section {
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 18px 0;
+      background: var(--smoke);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 24s linear infinite;
+      will-change: transform;
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding-right: 40px;
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(138,138,154,0.5);
+      flex-shrink: 0;
+    }
+    .marquee-dot {
+      width: 4px; height: 4px;
+      background: var(--signal);
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* =====================================================
+       ABOUT
+    ===================================================== */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 90vh;
+      position: relative;
+    }
+
+    .about-image-col {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(25%) contrast(1.05);
+      transform: scale(1.05);
+      transition: transform 10s ease;
+    }
+    #about:hover .about-image-col img { transform: scale(1); }
+    .about-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 60%, var(--ink) 100%),
+                  linear-gradient(0deg, rgba(13,13,18,0.5) 0%, transparent 40%);
+    }
+
+    .about-text-col {
+      padding: var(--s-24) var(--s-12) var(--s-24) var(--s-12);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .about-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-hero);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--s-8);
+    }
+    .about-headline em {
+      font-style: italic;
+      color: rgba(244,240,232,0.6);
+    }
+
+    .about-divider {
+      width: 40px; height: 1px;
+      background: var(--signal);
+      margin-bottom: var(--s-8);
+    }
+
+    .about-body {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--ash);
+      font-weight: 300;
+      max-width: 50ch;
+      margin-bottom: var(--s-4);
+    }
+    .about-body:last-of-type { margin-bottom: 0; }
+
+    /* =====================================================
+       SERVICES
+    ===================================================== */
+    #services {
+      padding: var(--s-32) var(--s-12);
+      background: var(--smoke);
+      position: relative;
+    }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--s-24);
+      align-items: end;
+      margin-bottom: var(--s-20);
+    }
+    .services-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-hero);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+    }
+    .services-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ash);
+      max-width: 42ch;
+      line-height: 1.75;
+      padding-bottom: 8px; /* aligns with headline baseline */
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.02);
+      padding: var(--s-16) var(--s-12);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s ease;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    /* Top accent bar — slides in on hover */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--signal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s var(--ease-expo);
+    }
+    .service-card:hover {
+      background: rgba(124,177,89,0.03);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--signal);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: var(--s-12);
+    }
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 2.8vw, 42px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--s-6);
+    }
+    .service-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ash);
+      font-weight: 300;
+      margin-bottom: var(--s-8);
+    }
+    .service-detail-body {
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(138,138,154,0.7);
+      padding-top: var(--s-4);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .workshop-block { margin-top: var(--s-4); }
+    .workshop-heading { margin-bottom: var(--s-3); }
+    .workshop-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .workshop-sub {
+      font-size: 12px;
+      color: var(--ash);
+      font-style: italic;
+    }
+
+    .service-programs {
+      list-style: none;
+      margin-top: var(--s-4);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .service-programs li {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ash);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s ease;
+    }
+    .service-programs li:hover { color: var(--mist); }
+    .service-programs li .price { color: var(--signal); font-size: 11px; }
+
+    .service-note {
+      font-size: 11px;
+      color: rgba(138,138,154,0.4);
+      line-height: 1.6;
+      margin-top: var(--s-4);
+    }
+
+    /* Arrow indicator */
+    .service-arrow {
+      position: absolute;
+      bottom: var(--s-8);
+      right: var(--s-8);
+      width: 36px; height: 36px;
+      border: 1px solid rgba(124,177,89,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .service-card:hover .service-arrow {
+      background: var(--signal);
+      border-color: var(--signal);
+    }
+    .service-arrow svg {
+      width: 14px; height: 14px;
+      stroke: var(--signal);
+      fill: none;
+      stroke-width: 1.5;
+      transition: stroke 0.3s ease, transform 0.3s ease;
+    }
+    .service-card:hover .service-arrow svg {
+      stroke: var(--ink);
+      transform: translate(2px,-2px);
+    }
+
+    /* =====================================================
+       GALLERY
+    ===================================================== */
+    #gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 65vh;
+    }
+
+    .gallery-pane {
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-pane img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.05);
+      transform: scale(1.1);
+      transition: transform 10s ease, filter 0.6s ease;
+    }
+    .gallery-pane:hover img {
+      transform: scale(1);
+      filter: grayscale(0%) contrast(1.02);
+    }
+    .gallery-pane-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(13,13,18,0.65) 0%, transparent 55%);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: var(--s-8);
+      left: var(--s-8);
+      font-size: var(--t-label);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.4s ease;
+    }
+    .gallery-pane:hover .gallery-caption { color: var(--white); }
+
+    /* =====================================================
+       PHILOSOPHY (NEW SECTION)
+       Three pillars, drawn from Aaron's bio:
+       "integrates strategy, mindset and behaviour"
+    ===================================================== */
+    #philosophy {
+      padding: var(--s-32) var(--s-12);
+      position: relative;
+    }
+
+    /* Enormous background word — Pentagram influence */
+    .philosophy-bg-word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(140px, 22vw, 340px);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(244,240,232,0.018);
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .philosophy-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--s-20);
+      position: relative;
+      z-index: 1;
+    }
+    .philosophy-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-hero);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+    }
+    .philosophy-headline em {
+      font-style: italic;
+      color: rgba(244,240,232,0.6);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .philosophy-pillar {
+      padding: var(--s-12) var(--s-12) var(--s-16);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.4s ease;
+    }
+    .philosophy-pillar:hover {
+      border-top-color: var(--signal);
+    }
+
+    .pillar-number {
+      font-size: var(--t-label);
+      font-weight: 400;
+      color: var(--signal);
+      letter-spacing: 0.14em;
+      display: block;
+      margin-bottom: var(--s-8);
+    }
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3vw, 48px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--s-6);
+    }
+    .pillar-body {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ash);
+      font-weight: 300;
+      max-width: 38ch;
+    }
+
+    /* =====================================================
+       METHOD / STATS
+    ===================================================== */
+    #method {
+      padding: var(--s-32) var(--s-12);
+      background: var(--smoke);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .method-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(120px, 18vw, 280px);
+      font-weight: 300;
+      color: rgba(124,177,89,0.04);
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .method-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-hero);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.1;
+      max-width: 18ch;
+      margin: 0 auto var(--s-8);
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    .method-body {
+      font-size: var(--t-lead);
+      line-height: 1.8;
+      color: var(--ash);
+      max-width: 520px;
+      margin: 0 auto var(--s-24);
+      font-weight: 300;
+      position: relative;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .stat-block {
+      padding: var(--s-12) var(--s-8);
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.015);
+      transition: background 0.4s ease;
+    }
+    .stat-block:hover { background: rgba(124,177,89,0.04); }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+      margin-bottom: var(--s-2);
+    }
+    .stat-number sup {
+      font-size: 0.4em;
+      vertical-align: top;
+      margin-top: 0.4em;
+      color: var(--signal);
+    }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    /* =====================================================
+       VIDEO
+    ===================================================== */
+    #video {
+      padding: var(--s-20) var(--s-12) var(--s-32);
+    }
+
+    .video-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: var(--s-12);
+    }
+    .video-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-title);
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .video-sub {
+      font-size: var(--t-label);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 52%;
+      background: #000;
+      overflow: hidden;
+    }
+    .video-frame::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border: 1px solid var(--rule);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* =====================================================
+       CTA
+    ===================================================== */
+    #cta {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--s-20) var(--s-12);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(124,177,89,0.05) 0%, transparent 70%);
+    }
+
+    .cta-eyebrow {
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: var(--s-6);
+      position: relative;
+    }
+
+    .cta-word {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(100px, 17vw, 240px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      position: relative;
+      display: block;
+      transition: letter-spacing 1s var(--ease-expo);
+    }
+    #cta:hover .cta-word { letter-spacing: 0.04em; }
+
+    .cta-sub {
+      font-size: var(--t-lead);
+      font-weight: 300;
+      color: var(--ash);
+      margin: var(--s-6) 0 var(--s-12);
+      letter-spacing: 0.02em;
+      position: relative;
+    }
+
+    /* Contact tiles */
+    .cta-contacts {
+      display: flex;
+      position: relative;
+    }
+    .cta-contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+      text-decoration: none;
+      padding: var(--s-8) var(--s-12);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.4s ease, background 0.4s ease;
+    }
+    .cta-contact-item:hover {
+      border-color: rgba(124,177,89,0.3);
+      background: rgba(124,177,89,0.03);
+    }
+    .cta-contact-label {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--signal);
+    }
+    .cta-contact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 400;
+      color: var(--white);
+    }
+    .cta-contact-sep {
+      width: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      padding: var(--s-12);
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ash);
+      letter-spacing: 0.04em;
+    }
+    .footer-logo-dot { color: var(--signal); }
+
+    .footer-copy {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(138,138,154,0.35);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--s-8);
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ash);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: var(--signal); }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links, .nav-cta { display: none; }
+
+      #hero { padding: 0 24px; }
+      .hero-bg-numeral { display: none; }
+      .hero-content { padding-top: 90px; }
+      .hero-footer { padding: 24px 0 40px; }
+      .hero-scroll { display: none; }
+
+      #about {
+        grid-template-columns: 1fr;
+      }
+      .about-image-col { height: 55vw; min-height: 260px; }
+      .about-text-col { padding: 56px 24px; }
+
+      #services { padding: 64px 24px; }
+      .services-header { grid-template-columns: 1fr; gap: 16px; }
+      .services-grid { grid-template-columns: 1fr; gap: 8px; }
+
+      #gallery { grid-template-columns: 1fr; height: auto; }
+      .gallery-pane { height: 55vw; min-height: 240px; }
+
+      #philosophy { padding: 64px 24px; }
+      .philosophy-bg-word { display: none; }
+      .philosophy-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .philosophy-grid { grid-template-columns: 1fr; gap: 0; }
+
+      #method { padding: 64px 24px; }
+      .stats-row { grid-template-columns: 1fr; max-width: 100%; }
+
+      #video { padding: 48px 24px; }
+      .video-header { flex-direction: column; gap: 8px; }
+
+      #cta { padding: 60px 24px; min-height: auto; }
+      .cta-contacts { flex-direction: column; }
+      .cta-contact-item { width: 100%; }
+      .cta-contact-sep { width: 100%; height: 1px; }
+
+      footer {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+        padding: 40px 24px;
+      }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Page loader -->
+  <div class="page-loader" id="loader">
+    <div class="loader-mark">LIMH</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Life In My Hands<span class="nav-logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#video">Talk</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">Begin</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-numeral" aria-hidden="true">01</div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Coaching · Clarity · Change</div>
+
+      <h1 class="hero-headline" aria-label="Life In My Hands">
+        <span class="word"><span class="word-inner" style="animation-delay:0.2s">Life</span></span>
+        <br>
+        <span class="word"><span class="word-inner" style="animation-delay:0.4s"><em>In My</em></span></span>
+        <br>
+        <span class="word"><span class="word-inner" style="animation-delay:0.62s">Hands</span></span>
+        <span class="word"><span class="word-inner" style="animation-delay:0.62s">.</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        Since 2011, working with individuals and small businesses seeking real change.
+      </p>
+    </div>
+
+    <div class="hero-footer">
+      <div class="hero-identity">
+        <strong>Aaron Montague</strong>
+        <div class="hero-sep"></div>
+        <span>Coach &amp; Advisor</span>
+        <div class="hero-sep"></div>
+        <span>Melbourne</span>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="hero-scroll-line"></div>
+        Scroll
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- Duplicated for seamless loop -->
+      <div class="marquee-item">Life In My Hands<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Aaron Montague<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Coaching<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Clarity<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Change<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Enneagram<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Mindset<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Melbourne<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Est. 2011<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Life In My Hands<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Aaron Montague<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Coaching<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Clarity<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Change<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Enneagram<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Mindset<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Melbourne<span class="marquee-dot"></span></div>
+      <div class="marquee-item">Est. 2011<span class="marquee-dot"></span></div>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="about-image-col reveal">
+      <img src="aaron-face.jpg" alt="Aaron Montague" loading="eager">
+      <div class="about-image-overlay"></div>
+    </div>
+    <div class="about-text-col">
+      <div class="section-label reveal">About Aaron</div>
+      <h2 class="about-headline reveal delay-1">A grounded,<br><em>no-nonsense</em><br>approach.</h2>
+      <div class="about-divider reveal delay-2"></div>
+      <p class="about-body reveal delay-2">Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition. He brings over 12 years' experience in project management and change-focused roles within large, complex organisations in Australia and the UK.</p>
+      <p class="about-body reveal delay-3">This background shapes a coaching style informed by a strong understanding of systems, governance and the realities of high-pressure environments. His work integrates strategy, mindset and behaviour — helping clients move from insight to action in a way that feels aligned, practical and sustainable.</p>
+      <p class="about-body reveal delay-4">Aaron is the sole practitioner delivering Life In My Hands services, ensuring consistency, accountability and continuity across every engagement.</p>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-label">Services</div>
+        <h2 class="services-headline">Three ways<br>to work<br><em>together</em></h2>
+      </div>
+      <p class="services-sub">Personal coaching, education workshops, and business advisory — each designed around what the individual or organisation actually needs.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal delay-1">
+        <span class="service-number">01</span>
+        <h3 class="service-title">Personal<br>Coaching</h3>
+        <p class="service-desc">Tailored programs to help participants realise their full potential.</p>
+        <div class="service-detail-body">
+          Mindset Advantage is a performance mindset program for athletes seeking consistency, confidence and focus under pressure. Using individualised profiling and practical mindset tools, athletes learn to manage stress, reduce over-thinking and perform more reliably in training and competition.
+        </div>
+        <div class="service-arrow">
+          <svg viewBox="0 0 16 16"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal delay-2">
+        <span class="service-number">02</span>
+        <h3 class="service-title">Education<br>Workshops</h3>
+        <p class="service-desc">Enneagram personality workshops for a deeper understanding of self and others.</p>
+
+        <div class="workshop-block">
+          <div class="workshop-heading">
+            <span class="workshop-tag">Enneagram Personality Types</span>
+            <span class="workshop-sub">Seeing life from a different perspective</span>
+          </div>
+          <ul class="service-programs">
+            <li><span>EP1 — Introduction</span><span class="price">$1,195 + GST</span></li>
+            <li><span>EP2 — The Art of Profiling</span><span class="price">$795 + GST</span></li>
+            <li><span>EP3 — Masterclass</span><span class="price">$1,395 + GST</span></li>
+          </ul>
+        </div>
+
+        <div class="workshop-block">
+          <div class="workshop-heading">
+            <span class="workshop-tag">Law of Attraction</span>
+            <span class="workshop-sub">Using spiritual teachings to guide life's choices</span>
+          </div>
+          <ul class="service-programs">
+            <li><span>LA1 — Introduction</span><span class="price">$795 + GST</span></li>
+            <li><span>LA2 — The Art of Allowing</span><span class="price">$795 + GST</span></li>
+          </ul>
+        </div>
+
+        <p class="service-note">Suitable for 17+. Gift Certificates available.</p>
+        <div class="service-arrow">
+          <svg viewBox="0 0 16 16"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal delay-3">
+        <span class="service-number">03</span>
+        <h3 class="service-title">Business<br>Solutions</h3>
+        <p class="service-desc">Small business advice, project management and ongoing operations support.</p>
+        <div class="service-detail-body">
+          Life In My Hands offers business solutions grounded in the principles of organisational effectiveness — the ability of a business to consistently execute its intent. It exists when strategy, structure, leadership, systems and ways of working are aligned and mutually reinforcing.
+        </div>
+        <ul class="service-programs" style="margin-top:var(--s-6)">
+          <li><span>Session-based advisory</span><span class="price">$150/hr + GST</span></li>
+          <li><span>Program-based advisory</span></li>
+          <li><span>Ongoing operational support</span></li>
+        </ul>
+        <div class="service-arrow">
+          <svg viewBox="0 0 16 16"><line x1="3" y1="13" x2="13" y2="3"/><polyline points="6,3 13,3 13,10"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery" aria-label="Workshop gallery">
+    <div class="gallery-pane">
+      <img src="aaron-workshop-1.jpg" alt="Aaron Montague facilitating a workshop" loading="lazy">
+      <div class="gallery-pane-overlay"></div>
+      <div class="gallery-caption">Workshops &amp; Group Sessions</div>
+    </div>
+    <div class="gallery-pane">
+      <img src="aaron-workshop-2.jpg" alt="Aaron Montague presenting" loading="lazy">
+      <div class="gallery-pane-overlay"></div>
+      <div class="gallery-caption">Aaron Montague — Coach &amp; Advisor</div>
+    </div>
+  </section>
+
+  <!-- ===== PHILOSOPHY ===== -->
+  <section id="philosophy">
+    <div class="philosophy-bg-word" aria-hidden="true">Change</div>
+
+    <div class="philosophy-header reveal">
+      <div>
+        <div class="section-label">The Approach</div>
+        <h2 class="philosophy-headline">Three<br><em>pillars</em></h2>
+      </div>
+    </div>
+
+    <div class="philosophy-grid">
+      <div class="philosophy-pillar reveal delay-1">
+        <span class="pillar-number">—01</span>
+        <h3 class="pillar-title">Strategy</h3>
+        <p class="pillar-body">Clarity about direction. Knowing what to do and why — with an understanding of systems and governance that comes from operating at scale in complex organisations.</p>
+      </div>
+      <div class="philosophy-pillar reveal delay-2">
+        <span class="pillar-number">—02</span>
+        <h3 class="pillar-title">Mindset</h3>
+        <p class="pillar-body">The internal architecture beneath every decision. How you think under pressure, manage uncertainty, and maintain consistency when it matters most.</p>
+      </div>
+      <div class="philosophy-pillar reveal delay-3">
+        <span class="pillar-number">—03</span>
+        <h3 class="pillar-title">Behaviour</h3>
+        <p class="pillar-body">Insight without action is entertainment. The work is in the translation — from understanding to practice, in a way that feels aligned, practical and sustainable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METHOD / STATS ===== -->
+  <section id="method">
+    <div class="method-bg-text" aria-hidden="true">CHANGE</div>
+    <div class="section-label reveal" style="justify-content:center;">By the numbers</div>
+    <h2 class="method-headline reveal delay-1"><em>Depth of</em><br>experience</h2>
+    <p class="method-body reveal delay-2">
+      Over a decade working with individuals and organisations — from solo practitioners to complex multi-site businesses — across Australia and the UK.
+    </p>
+    <div class="stats-row">
+      <div class="stat-block reveal delay-1">
+        <span class="stat-number"><span class="count-up" data-target="12">0</span><sup>+</sup></span>
+        <span class="stat-label">Years experience</span>
+      </div>
+      <div class="stat-block reveal delay-2">
+        <span class="stat-number"><span class="count-up" data-target="5">0</span></span>
+        <span class="stat-label">Workshop programs</span>
+      </div>
+      <div class="stat-block reveal delay-3">
+        <span class="stat-number"><span class="count-up" data-target="2">0</span></span>
+        <span class="stat-label">Countries</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEO ===== -->
+  <section id="video">
+    <div class="video-header reveal">
+      <h2 class="video-title">See Aaron in action</h2>
+      <span class="video-sub">Featured Talk</span>
+    </div>
+    <div class="video-frame reveal delay-1">
+      <iframe
+        src="https://www.youtube.com/embed/sBEKq6mAtCc"
+        title="Aaron Montague — Life In My Hands"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section id="cta">
+    <div class="cta-eyebrow reveal">Get in touch</div>
+    <span class="cta-word reveal delay-1">Begin.</span>
+    <p class="cta-sub reveal delay-2">Book a conversation with Aaron</p>
+    <div class="cta-contacts reveal delay-3">
+      <a href="tel:0407938932" class="cta-contact-item">
+        <span class="cta-contact-label">Call</span>
+        <span class="cta-contact-value">0407 938 932</span>
+      </a>
+      <div class="cta-contact-sep"></div>
+      <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-item">
+        <span class="cta-contact-label">Email</span>
+        <span class="cta-contact-value">aaron@lifeinmyhands.com.au</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Life In My Hands<span class="footer-logo-dot">.</span></div>
+    <div class="footer-copy">© 2026 Aaron Montague. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    /* =====================================================
+       PAGE LOADER
+    ===================================================== */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('done');
+      }, 1700);
+    });
+
+    /* =====================================================
+       CUSTOM CURSOR
+    ===================================================== */
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = -100, my = -100, rx = -100, ry = -100;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left  = mx + 'px';
+      dot.style.top   = my + 'px';
+    });
+
+    // Ring lags behind cursor for a fluid feel
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Expand ring on interactive elements
+    document.querySelectorAll('a, button, .service-card, .gallery-pane').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
+    });
+
+    /* =====================================================
+       NAV SCROLL
+    ===================================================== */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* =====================================================
+       COUNT UP
+    ===================================================== */
+    const countObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el     = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const dur    = 1400;
+        const start  = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / dur, 1);
+          const e = 1 - Math.pow(1 - p, 3); // ease out cubic
+          el.textContent = Math.round(e * target);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        countObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
+
+    /* =====================================================
+       GALLERY PARALLAX
+    ===================================================== */
+    const galleryImgs = document.querySelectorAll('.gallery-pane img');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      galleryImgs.forEach((img, i) => {
+        const offset = (i === 0 ? 1 : -1) * y * 0.035;
+        img.style.transform = `scale(1.1) translateY(${offset}px)`;
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>
