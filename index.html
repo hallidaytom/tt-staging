@@ -50,44 +50,6 @@
       font-size: var(--t-body);
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* =====================================================
-       CUSTOM CURSOR
-    ===================================================== */
-    .cursor {
-      position: fixed;
-      top: 0; left: 0;
-      width: 8px; height: 8px;
-      background: var(--signal);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s var(--ease-out-expo),
-                  height 0.3s var(--ease-out-expo),
-                  background 0.3s ease;
-      mix-blend-mode: screen;
-    }
-    .cursor-ring {
-      position: fixed;
-      top: 0; left: 0;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(124,177,89,0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.5s var(--ease-out-expo),
-                  height 0.5s var(--ease-out-expo),
-                  border-color 0.3s ease,
-                  transform 0.12s var(--ease-out-expo);
-    }
-    body.cursor-hover .cursor { width: 12px; height: 12px; }
-    body.cursor-hover .cursor-ring {
-      width: 56px; height: 56px;
-      border-color: rgba(124,177,89,0.8);
     }
 
     /* =====================================================
@@ -120,18 +82,21 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 500;
-      padding: 28px 48px;
+      padding: 32px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      /* Transparent by default — hero handles its own gradient mask */
+      background: transparent;
       transition: padding 0.4s var(--ease-out-expo),
-                  background 0.4s ease,
-                  backdrop-filter 0.4s ease;
+                  background 0.5s ease,
+                  backdrop-filter 0.5s ease;
     }
     nav.scrolled {
       padding: 18px 48px;
-      background: rgba(13,13,18,0.88);
-      backdrop-filter: blur(20px);
+      background: rgba(13,13,18,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--rule);
     }
     .nav-logo {
@@ -206,44 +171,75 @@
     ===================================================== */
     #hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 48px 80px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 0 48px;
       position: relative;
       overflow: hidden;
     }
 
+    /* Full-viewport atmospheric background — this IS the hero image */
     .hero-bg {
       position: absolute;
       inset: 0;
+      /* Deep, layered dark — gives dimension without a photo */
       background:
-        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(47,47,59,0.4) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(124,177,89,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 70% at 65% 35%, rgba(47,47,59,0.55) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 15% 85%, rgba(124,177,89,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 30% 40% at 85% 75%, rgba(124,177,89,0.04) 0%, transparent 50%),
         var(--ink);
     }
 
+    /* Gradient mask at top so nav links don't fight hero text */
+    .hero-nav-mask {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 160px;
+      background: linear-gradient(180deg, rgba(13,13,18,0.7) 0%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Horizontal rule — top edge signal */
     .hero-line-top {
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--signal), transparent);
-      animation: line-glow 3s ease-in-out infinite alternate;
+      background: linear-gradient(90deg, transparent 0%, var(--signal) 40%, transparent 100%);
+      opacity: 0;
+      animation: fade-in 1s ease 0.5s forwards;
     }
-    @keyframes line-glow {
-      from { opacity: 0.3; }
-      to   { opacity: 0.8; }
+
+    /* Content sits in the middle vertically */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 100px; /* clears nav */
     }
 
     .hero-eyebrow {
-      position: relative;
       font-family: 'Inter', sans-serif;
       font-size: var(--t-label);
       font-weight: 500;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--signal);
-      margin-bottom: 24px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fade-in 0.8s ease 1.6s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--signal);
+      flex-shrink: 0;
     }
 
     .hero-headline {
@@ -251,22 +247,19 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: var(--t-display);
       font-weight: 300;
-      line-height: 0.96;
+      line-height: 0.94;
       color: var(--white);
-      letter-spacing: -0.02em;
-      max-width: 14ch;
-      margin-bottom: 48px;
+      letter-spacing: -0.025em;
+      max-width: 13ch;
+      margin-bottom: 56px;
     }
     .hero-headline em {
       font-style: italic;
-      color: var(--mist);
-    }
-    .hero-headline .accent-word {
-      display: inline-block;
-      color: var(--white);
+      /* Italics slightly lighter — creates contrast within the headline */
+      color: rgba(244,244,246,0.75);
     }
 
-    /* Word-by-word entrance */
+    /* Word-by-word entrance — Locomotive pattern */
     .word {
       display: inline-block;
       overflow: hidden;
@@ -275,83 +268,65 @@
     .word-inner {
       display: inline-block;
       transform: translateY(110%);
-      animation: word-up 0.8s var(--ease-out-expo) forwards;
+      animation: word-up 0.85s var(--ease-out-expo) forwards;
     }
-
     @keyframes word-up {
       to { transform: translateY(0); }
     }
 
-    .hero-sub {
+    /* Bottom strip: identity + scroll indicator */
+    .hero-footer {
       position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
-      gap: 48px;
+      justify-content: space-between;
+      padding: 32px 0 52px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      animation: fade-in 0.8s ease 1.8s forwards;
     }
+
     .hero-identity {
       font-family: 'Inter', sans-serif;
       font-size: var(--t-label);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--ash);
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
-    .hero-identity span { color: var(--mist); }
-    .hero-divider {
-      width: 60px; height: 1px;
-      background: var(--rule);
-      flex-shrink: 0;
+    .hero-identity strong {
+      font-weight: 500;
+      color: var(--mist);
     }
+    .hero-identity-sep {
+      width: 1px; height: 14px;
+      background: rgba(255,255,255,0.15);
+    }
+
     .hero-scroll {
-      position: absolute;
-      right: 0; bottom: 0;
       font-family: 'Inter', sans-serif;
       font-size: var(--t-label);
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--ash);
       display: flex;
       align-items: center;
       gap: 16px;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
     }
     .hero-scroll-line {
-      width: 1px;
-      height: 0;
+      width: 0; height: 1px;
       background: var(--signal);
-      animation: scroll-line 2s var(--ease-out-expo) 1.5s forwards;
+      animation: scroll-expand 1.4s var(--ease-out-expo) 2s forwards;
     }
-    @keyframes scroll-line {
-      to { height: 60px; }
+    @keyframes scroll-expand {
+      to { width: 48px; }
     }
 
-    /* Counter in hero */
-    .hero-counter {
-      position: absolute;
-      top: 50%;
-      right: 48px;
-      transform: translateY(-50%);
-      text-align: right;
-      opacity: 0;
-      animation: fade-in 1s ease 1.8s forwards;
-    }
     @keyframes fade-in {
       to { opacity: 1; }
-    }
-    .counter-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(64px, 8vw, 120px);
-      font-weight: 300;
-      color: rgba(124,177,89,0.08);
-      line-height: 1;
-      display: block;
-    }
-    .counter-label {
-      font-family: 'Inter', sans-serif;
-      font-size: var(--t-label);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(124,177,89,0.3);
     }
 
     /* =====================================================
@@ -491,7 +466,6 @@
       position: relative;
       overflow: hidden;
       transition: background 0.4s ease, border-color 0.4s ease;
-      cursor: none;
     }
     .service-card::before {
       content: '';
@@ -892,8 +866,9 @@
       nav.scrolled { padding: 14px 24px; }
       .nav-links, .nav-cta { display: none; }
 
-      #hero { padding: 0 24px 60px; }
-      .hero-counter { display: none; }
+      #hero { padding: 0 24px; }
+      .hero-content { padding-top: 80px; }
+      .hero-footer { padding: 24px 0 40px; }
       .hero-scroll { display: none; }
 
       #statement {
@@ -925,8 +900,7 @@
       }
       .footer-links { flex-wrap: wrap; justify-content: center; }
 
-      .cursor, .cursor-ring { display: none; }
-      body { cursor: auto; }
+
     }
 
     /* =====================================================
@@ -991,10 +965,6 @@
     </div>
   </div>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- Navigation -->
   <nav id="nav">
     <a href="#" class="nav-logo">Life In My Hands<span>.</span></a>
@@ -1010,42 +980,38 @@
   <!-- ===== HERO ===== -->
   <section id="hero">
     <div class="hero-bg"></div>
+    <div class="hero-nav-mask"></div>
     <div class="hero-line-top"></div>
 
-    <div class="hero-counter" aria-hidden="true">
-      <span class="counter-number">15+</span>
-      <span class="counter-label">Years</span>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Life &amp; Business Coaching — Melbourne</div>
+
+      <h1 class="hero-headline" aria-label="What would you do if you trusted yourself completely?">
+        <span class="word"><span class="word-inner" style="animation-delay:0.2s">What</span></span>
+        <span class="word"><span class="word-inner" style="animation-delay:0.32s">&nbsp;would</span></span>
+        <span class="word"><span class="word-inner" style="animation-delay:0.44s">&nbsp;you</span></span>
+        <br>
+        <span class="word"><span class="word-inner" style="animation-delay:0.56s"><em>do</em></span></span>
+        <span class="word"><span class="word-inner" style="animation-delay:0.68s">&nbsp;if you</span></span>
+        <br>
+        <span class="word"><span class="word-inner" style="animation-delay:0.82s">trusted</span></span>
+        <br>
+        <span class="word"><span class="word-inner" style="animation-delay:0.96s"><em>yourself</em></span></span>
+        <br>
+        <span class="word"><span class="word-inner" style="animation-delay:1.1s">completely?</span></span>
+      </h1>
     </div>
 
-    <div class="hero-eyebrow" style="opacity:0;animation:fade-in 0.8s ease 1.8s forwards;">
-      Life &amp; Business Coaching — Melbourne
-    </div>
-
-    <h1 class="hero-headline" aria-label="What would you do if you trusted yourself completely?">
-      <span class="word"><span class="word-inner" style="animation-delay:0.2s">What</span></span>
-      <span class="word"><span class="word-inner" style="animation-delay:0.32s"> would</span></span>
-      <span class="word"><span class="word-inner" style="animation-delay:0.44s"> you</span></span>
-      <br>
-      <span class="word"><span class="word-inner" style="animation-delay:0.56s"><em>do</em></span></span>
-      <span class="word"><span class="word-inner" style="animation-delay:0.68s"> if you</span></span>
-      <br>
-      <span class="word"><span class="word-inner" style="animation-delay:0.82s">trusted</span></span>
-      <br>
-      <span class="word"><span class="word-inner" style="animation-delay:0.96s"><em>yourself</em></span></span>
-      <br>
-      <span class="word"><span class="word-inner" style="animation-delay:1.12s; font-style:normal; font-weight:500;">completely?</span></span>
-    </h1>
-
-    <div class="hero-sub" style="opacity:0;animation:fade-in 0.8s ease 1.6s forwards;">
-      <div class="hero-divider"></div>
+    <div class="hero-footer">
       <div class="hero-identity">
-        <span>Aaron Montague</span> &nbsp;·&nbsp; Coach &amp; Advisor
+        <strong>Aaron Montague</strong>
+        <div class="hero-identity-sep"></div>
+        <span>Coach &amp; Advisor</span>
       </div>
-    </div>
-
-    <div class="hero-scroll" aria-hidden="true">
-      <div class="hero-scroll-line"></div>
-      Scroll
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="hero-scroll-line"></div>
+        Scroll
+      </div>
     </div>
   </section>
 
@@ -1231,35 +1197,6 @@
       setTimeout(() => {
         document.getElementById('loader').classList.add('done');
       }, 1600);
-    });
-
-    /* =====================================================
-       CUSTOM CURSOR
-    ===================================================== */
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    document.querySelectorAll('a, button, .service-card').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
     /* =====================================================
