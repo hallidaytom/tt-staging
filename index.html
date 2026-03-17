@@ -330,6 +330,131 @@
     }
 
     /* =====================================================
+       HERO BODY TEXT
+    ===================================================== */
+    .hero-body {
+      font-family: 'Inter', sans-serif;
+      font-size: var(--t-lead);
+      font-weight: 300;
+      color: var(--ash);
+      max-width: 46ch;
+      line-height: 1.65;
+      margin-top: 32px;
+      letter-spacing: 0.01em;
+    }
+
+    /* =====================================================
+       ABOUT SECTION
+    ===================================================== */
+    #about {
+      padding: 120px 48px;
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-left {
+      position: relative;
+    }
+    .about-left .statement-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(20%) contrast(1.05);
+      display: block;
+    }
+    .about-left .statement-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(13,13,18,0.5) 0%, transparent 40%);
+    }
+    .about-left .section-label {
+      margin-bottom: 24px;
+    }
+    .about-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-hero);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+    .about-headline em {
+      font-style: italic;
+      color: rgba(244,244,246,0.7);
+    }
+    .about-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ash);
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .about-body:last-child { margin-bottom: 0; }
+
+    /* =====================================================
+       SERVICE DETAIL TEXT
+    ===================================================== */
+    .service-detail {
+      margin: 16px 0 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .service-detail-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--ash);
+    }
+
+    /* =====================================================
+       CTA CONTACT ITEMS
+    ===================================================== */
+    .cta-contacts {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .cta-contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      padding: 28px 40px;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .cta-contact-item:hover {
+      border-color: rgba(124,177,89,0.35);
+      background: rgba(124,177,89,0.04);
+    }
+    .cta-contact-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--signal);
+    }
+    .cta-contact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+    .cta-contact-sep {
+      width: 1px;
+      height: 60px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* =====================================================
        SECTION UTILITIES
     ===================================================== */
     section { position: relative; }
@@ -884,8 +1009,12 @@
       #gallery { grid-template-columns: 1fr; height: auto; }
       .gallery-pane { height: 50vw; min-height: 260px; }
 
-      #method { padding: 80px 24px; }
-      .stats-row { grid-template-columns: 1fr; gap: 8px; }
+      #about { padding: 80px 24px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+
+      .cta-contacts { flex-direction: column; width: 100%; }
+      .cta-contact-item { width: 100%; }
+      .cta-contact-sep { width: 100%; height: 1px; }
 
       #video { padding: 60px 24px; }
       .video-header { flex-direction: column; gap: 8px; }
@@ -969,9 +1098,9 @@
   <nav id="nav">
     <a href="#" class="nav-logo">Life In My Hands<span>.</span></a>
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#method">Approach</a></li>
-      <li><a href="#video">About</a></li>
+      <li><a href="#video">Talk</a></li>
       <li><a href="#cta">Contact</a></li>
     </ul>
     <a href="#cta" class="nav-cta">Begin</a>
@@ -984,22 +1113,19 @@
     <div class="hero-line-top"></div>
 
     <div class="hero-content">
-      <div class="hero-eyebrow">Life &amp; Business Coaching — Melbourne</div>
+      <div class="hero-eyebrow">Coaching · Clarity · Change</div>
 
-      <h1 class="hero-headline" aria-label="What would you do if you trusted yourself completely?">
-        <span class="word"><span class="word-inner" style="animation-delay:0.2s">What</span></span>
-        <span class="word"><span class="word-inner" style="animation-delay:0.32s">&nbsp;would</span></span>
-        <span class="word"><span class="word-inner" style="animation-delay:0.44s">&nbsp;you</span></span>
+      <h1 class="hero-headline" aria-label="Life In My Hands">
+        <span class="word"><span class="word-inner" style="animation-delay:0.2s">Life</span></span>
         <br>
-        <span class="word"><span class="word-inner" style="animation-delay:0.56s"><em>do</em></span></span>
-        <span class="word"><span class="word-inner" style="animation-delay:0.68s">&nbsp;if you</span></span>
+        <span class="word"><span class="word-inner" style="animation-delay:0.38s"><em>In My</em></span></span>
         <br>
-        <span class="word"><span class="word-inner" style="animation-delay:0.82s">trusted</span></span>
-        <br>
-        <span class="word"><span class="word-inner" style="animation-delay:0.96s"><em>yourself</em></span></span>
-        <br>
-        <span class="word"><span class="word-inner" style="animation-delay:1.1s">completely?</span></span>
+        <span class="word"><span class="word-inner" style="animation-delay:0.56s">Hands</span></span>
       </h1>
+
+      <p class="hero-body reveal" style="opacity:0;animation:fade-in 0.8s ease 1.4s forwards;">
+        Since 2011, Life In My Hands has worked with individuals and small businesses seeking real change.
+      </p>
     </div>
 
     <div class="hero-footer">
@@ -1015,30 +1141,32 @@
     </div>
   </section>
 
-  <!-- ===== STATEMENT ===== -->
-  <section id="statement">
-    <div class="statement-left reveal">
-      <div class="section-label">The Work</div>
-      <blockquote class="statement-quote">
-        The work isn't about finding answers. It's about asking better questions.
-      </blockquote>
-      <p class="statement-attribution">— Aaron Montague</p>
-    </div>
-    <div class="statement-right reveal reveal-delay-2">
-      <img
-        src="assets/img/aaron-face.jpg"
-        alt="Aaron Montague"
-        class="statement-img"
-        loading="eager"
-      >
-      <div class="statement-img-overlay"></div>
+  <!-- ===== ABOUT (Aaron bio) ===== -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-left reveal">
+        <div class="section-label">About Aaron</div>
+        <img
+          src="aaron-face.jpg"
+          alt="Aaron Montague"
+          class="statement-img"
+          loading="eager"
+        >
+        <div class="statement-img-overlay"></div>
+      </div>
+      <div class="about-right reveal reveal-delay-2">
+        <h2 class="about-headline">A grounded,<br><em>no-nonsense</em><br>approach.</h2>
+        <p class="about-body">Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition. He brings over 12 years' experience in project management and change-focused roles within large, complex organisations in Australia and the UK. This background shapes a grounded, no-nonsense coaching style, informed by a strong understanding of systems, governance and the realities of high-pressure environments.</p>
+        <p class="about-body">Alongside his corporate experience, Aaron works closely with individuals seeking greater clarity, self-awareness and direction. His work integrates strategy, mindset and behaviour, helping clients move from insight to action in a way that feels aligned, practical and sustainable.</p>
+        <p class="about-body">Aaron is the sole practitioner delivering Life In My Hands services, ensuring consistency, accountability and continuity across every engagement.</p>
+      </div>
     </div>
   </section>
 
   <!-- ===== SERVICES ===== -->
   <section id="services">
     <div class="services-header reveal">
-      <div class="section-label">What We Do</div>
+      <div class="section-label">Services</div>
       <h2 class="services-headline">Three ways<br>to work<br><em>together</em></h2>
     </div>
 
@@ -1047,12 +1175,10 @@
       <div class="service-card reveal reveal-delay-1">
         <span class="service-number">01</span>
         <h3 class="service-title">Personal<br>Coaching</h3>
-        <p class="service-desc">Deep individual work that shifts how you see yourself and the world. Built around the Enneagram — the most accurate personality system available.</p>
-        <ul class="service-programs">
-          <li><span>Enneagram Profiling</span></li>
-          <li><span>Mindset Advantage</span><span class="price">Athletes</span></li>
-          <li><span>One-on-One Coaching</span></li>
-        </ul>
+        <p class="service-desc">Tailored coaching programs designed to help participants realise their full potential.</p>
+        <div class="service-detail">
+          <p class="service-detail-body">Mindset Advantage is a performance mindset program for athletes seeking consistency, confidence and focus under pressure. Using individualised profiling and practical mindset tools, athletes learn to manage stress, reduce over-thinking and perform more reliably in training and competition.</p>
+        </div>
         <div class="service-arrow">
           <svg viewBox="0 0 16 16" stroke-width="1.5">
             <line x1="3" y1="13" x2="13" y2="3"/>
@@ -1061,15 +1187,16 @@
         </div>
       </div>
 
-      <!-- Business Advisory -->
+      <!-- Education Workshops -->
       <div class="service-card reveal reveal-delay-2">
         <span class="service-number">02</span>
-        <h3 class="service-title">Business<br>Advisory</h3>
-        <p class="service-desc">Strategic counsel for leaders and organisations. Bring clarity, alignment, and momentum to your most complex decisions. Trusted by CEOs across Melbourne.</p>
+        <h3 class="service-title">Education<br>Workshops</h3>
+        <p class="service-desc">Enneagram personality workshops for a deeper understanding of self and others.</p>
         <ul class="service-programs">
-          <li><span>Executive Advisory</span><span class="price">$150/hr + GST</span></li>
-          <li><span>Leadership Development</span></li>
-          <li><span>Team Dynamics</span></li>
+          <li><span>EP1 — Introduction to Enneagram</span><span class="price">$1,195</span></li>
+          <li><span>EP2 — Enneagram Profiling</span><span class="price">$795</span></li>
+          <li><span>EP3 — Masterclass</span><span class="price">$1,395</span></li>
+          <li><span>LA1 / LA2 — Law of Attraction</span></li>
         </ul>
         <div class="service-arrow">
           <svg viewBox="0 0 16 16" stroke-width="1.5">
@@ -1079,16 +1206,18 @@
         </div>
       </div>
 
-      <!-- Workshops -->
+      <!-- Business Solutions -->
       <div class="service-card reveal reveal-delay-3">
         <span class="service-number">03</span>
-        <h3 class="service-title">Education<br>Workshops</h3>
-        <p class="service-desc">Structured learning experiences in Enneagram Personality Profiling and Law of Attraction. Progressive pathways from introduction through masterclass.</p>
-        <ul class="service-programs">
-          <li><span>EP1 — Intro to Enneagram</span><span class="price">$1,195</span></li>
-          <li><span>EP2 — Profiling</span><span class="price">$795</span></li>
-          <li><span>EP3 — Masterclass</span><span class="price">$1,395</span></li>
-          <li><span>LA1 / LA2 — Law of Attraction</span></li>
+        <h3 class="service-title">Business<br>Solutions</h3>
+        <p class="service-desc">Small business advice, project management and/or ongoing operations support.</p>
+        <div class="service-detail">
+          <p class="service-detail-body">Life In My Hands offers business solutions grounded in the principles of organisational effectiveness — the ability of a business to consistently execute its intent. It exists when strategy, structure, leadership, systems and ways of working are aligned and mutually reinforcing.</p>
+        </div>
+        <ul class="service-programs" style="margin-top:20px;">
+          <li><span>Session-based advisory</span><span class="price">$150/hr + GST</span></li>
+          <li><span>Program-based advisory</span></li>
+          <li><span>Ongoing operational support</span></li>
         </ul>
         <div class="service-arrow">
           <svg viewBox="0 0 16 16" stroke-width="1.5">
@@ -1103,46 +1232,14 @@
   <!-- ===== GALLERY ===== -->
   <section id="gallery" aria-label="Workshop gallery">
     <div class="gallery-pane">
-      <img src="assets/img/aaron-workshop-1.jpg" alt="Aaron facilitating a workshop" loading="lazy">
+      <img src="aaron-workshop-1.jpg" alt="Aaron Montague facilitating a workshop" loading="lazy">
       <div class="gallery-pane-overlay"></div>
       <div class="gallery-caption">Workshops &amp; Group Sessions</div>
     </div>
     <div class="gallery-pane">
-      <img src="assets/img/aaron-workshop-2.jpg" alt="Aaron presenting to a group" loading="lazy">
+      <img src="aaron-workshop-2.jpg" alt="Aaron Montague presenting" loading="lazy">
       <div class="gallery-pane-overlay"></div>
-      <div class="gallery-caption">Aaron Montague — Melbourne</div>
-    </div>
-  </section>
-
-  <!-- ===== METHOD ===== -->
-  <section id="method">
-    <div class="section-label reveal" style="justify-content:center;margin-bottom:24px;">The Approach</div>
-    <div class="green-rule reveal"></div>
-
-    <h2 class="method-headline reveal">
-      <em>Clarity changes everything</em>
-    </h2>
-
-    <p class="method-body reveal reveal-delay-1">
-      Aaron Montague has spent over fifteen years in the space between who people are and who they're capable of becoming. Drawing on the Enneagram system, Law of Attraction principles, and hard-won experience in high-stakes environments, his work creates lasting shifts — not temporary motivation.
-    </p>
-    <p class="method-body reveal reveal-delay-2" style="margin-top:-40px;">
-      His clients include business owners, executives, athletes, and anyone who senses there's a gap between where they are and where they know they could be.
-    </p>
-
-    <div class="stats-row">
-      <div class="stat-block reveal reveal-delay-1">
-        <span class="stat-number"><span class="count-up" data-target="15">0</span><sup>+</sup></span>
-        <span class="stat-label">Years Experience</span>
-      </div>
-      <div class="stat-block reveal reveal-delay-2">
-        <span class="stat-number"><span class="count-up" data-target="9">0</span></span>
-        <span class="stat-label">Enneagram Personality Types</span>
-      </div>
-      <div class="stat-block reveal reveal-delay-3">
-        <span class="stat-number"><span class="count-up" data-target="5">0</span></span>
-        <span class="stat-label">Workshop Programs</span>
-      </div>
+      <div class="gallery-caption">Aaron Montague — Coach &amp; Advisor</div>
     </div>
   </section>
 
@@ -1165,27 +1262,32 @@
 
   <!-- ===== CTA ===== -->
   <section id="cta">
-    <div class="section-label reveal" style="justify-content:center;">Ready?</div>
-    <span class="cta-word reveal">Begin.</span>
+    <div class="section-label reveal" style="justify-content:center;">Get in touch</div>
+    <span class="cta-word reveal">Let&#8217;s talk.</span>
     <p class="cta-sub reveal reveal-delay-1">
-      Book a discovery call with Aaron
+      Book a conversation with Aaron
     </p>
-    <a href="https://lifeinmyhands.com.au/#contact" class="cta-button reveal reveal-delay-2">
-      <span>Start the conversation</span>
-    </a>
-    <p class="cta-contact reveal reveal-delay-3">
-      Or email directly: <a href="mailto:aaron@lifeinmyhands.com.au">aaron@lifeinmyhands.com.au</a>
-    </p>
+    <div class="cta-contacts reveal reveal-delay-2">
+      <a href="tel:0407938932" class="cta-contact-item">
+        <span class="cta-contact-label">Call</span>
+        <span class="cta-contact-value">0407 938 932</span>
+      </a>
+      <div class="cta-contact-sep"></div>
+      <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-item">
+        <span class="cta-contact-label">Email</span>
+        <span class="cta-contact-value">aaron@lifeinmyhands.com.au</span>
+      </a>
+    </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-logo">Life In My Hands<span>.</span></div>
-    <div class="footer-copy">© 2026 Aaron Montague. Melbourne, Australia.</div>
+    <div class="footer-copy">© 2026 Aaron Montague. All rights reserved.</div>
     <ul class="footer-links">
       <li><a href="#services">Services</a></li>
-      <li><a href="#method">Approach</a></li>
-      <li><a href="https://lifeinmyhands.com.au">Full Site</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#cta">Contact</a></li>
     </ul>
   </footer>
 
