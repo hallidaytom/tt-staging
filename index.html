@@ -1261,9 +1261,15 @@
           counterObs.unobserve(el);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+    // Delay counter observer so reveal animations have time to fire first
+    setTimeout(() => {
+      document.querySelectorAll('[data-count]').forEach(el => {
+        el.textContent = '0' + (el.dataset.suffix || '');
+        counterObs.observe(el);
+      });
+    }, 500);
 
     /* ── SMOOTH ANCHOR SCROLL ───────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
