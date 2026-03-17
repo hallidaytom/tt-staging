@@ -398,6 +398,44 @@
     .about-body:last-child { margin-bottom: 0; }
 
     /* =====================================================
+       WORKSHOP BLOCKS
+    ===================================================== */
+    .workshop-block {
+      margin: 20px 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .workshop-heading {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .workshop-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--signal);
+    }
+    .workshop-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--ash);
+      font-style: italic;
+    }
+    .service-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(138,138,154,0.5);
+      line-height: 1.6;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* =====================================================
        SERVICE DETAIL TEXT
     ===================================================== */
     .service-detail {
@@ -1192,12 +1230,47 @@
         <span class="service-number">02</span>
         <h3 class="service-title">Education<br>Workshops</h3>
         <p class="service-desc">Enneagram personality workshops for a deeper understanding of self and others.</p>
-        <ul class="service-programs">
-          <li><span>EP1 — Introduction to Enneagram</span><span class="price">$1,195</span></li>
-          <li><span>EP2 — Enneagram Profiling</span><span class="price">$795</span></li>
-          <li><span>EP3 — Masterclass</span><span class="price">$1,395</span></li>
-          <li><span>LA1 / LA2 — Law of Attraction</span></li>
-        </ul>
+
+        <div class="workshop-block">
+          <div class="workshop-heading">
+            <span class="workshop-tag">Enneagram Personality Types</span>
+            <span class="workshop-sub">Helping to see life from a different perspective</span>
+          </div>
+          <ul class="service-programs">
+            <li>
+              <span>EP1 — Introduction to Enneagram Personality Types</span>
+              <span class="price">$1,195 + GST</span>
+            </li>
+            <li>
+              <span>EP2 — The Art of Enneagram Personality Profiling</span>
+              <span class="price">$795 + GST</span>
+            </li>
+            <li>
+              <span>EP3 — Enneagram Personality Profiling Masterclass</span>
+              <span class="price">$1,395 + GST</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="workshop-block">
+          <div class="workshop-heading">
+            <span class="workshop-tag">Law of Attraction</span>
+            <span class="workshop-sub">Using spiritual teachings to guide life's choices</span>
+          </div>
+          <ul class="service-programs">
+            <li>
+              <span>LA1 — Introduction to Law of Attraction</span>
+              <span class="price">$795 + GST</span>
+            </li>
+            <li>
+              <span>LA2 — Perfecting the Art of Allowing</span>
+              <span class="price">$795 + GST</span>
+            </li>
+          </ul>
+        </div>
+
+        <p class="service-note">Suitable for 17+. Gift Certificates available. Contact Aaron to register interest.</p>
+
         <div class="service-arrow">
           <svg viewBox="0 0 16 16" stroke-width="1.5">
             <line x1="3" y1="13" x2="13" y2="3"/>
