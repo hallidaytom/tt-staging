@@ -7,160 +7,256 @@
   <meta name="description" content="Snooty Tooty delivers luxury portable restroom hire across South Australia with premium amenities, immaculate presentation, and full-service convenience.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
 </head>
 <body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ── HEADER ──────────────────────────────── -->
   <header class="site-header">
     <div class="container nav-container">
       <a href="#home" class="logo" aria-label="Snooty Tooty">
-        <img src="assets/img/logo.png" alt="Snooty Tooty logo">
+        <img src="assets/img/wordmark.webp" alt="Snooty Tooty" class="nav-wordmark-img">
       </a>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
       <nav class="nav-links">
         <a href="#home">Home</a>
         <a href="#features">Features</a>
+        <a href="#gallery">Gallery</a>
         <a href="#reviews">Reviews</a>
         <a href="#faqs">FAQs</a>
-        <a href="#quote" class="nav-cta">Get a Quote</a>
+        <a href="#" class="nav-cta" data-open-quote>Get a Quote</a>
       </nav>
     </div>
   </header>
 
   <main>
+
+    <!-- ── PAGE 1 — HERO ──────────────────────── -->
     <section id="home" class="hero">
       <div class="hero-overlay"></div>
       <div class="container hero-content">
-        <img src="assets/img/logo.png" alt="Snooty Tooty wordmark" class="hero-logo">
         <p class="hero-eyebrow">SOUTH AUSTRALIA'S MOST LUXURIOUS</p>
         <div class="hero-title-wrap">
           <div class="hero-deco"></div>
           <h1>Luxury Portable<br>Restroom Hire</h1>
           <div class="hero-deco"></div>
         </div>
-        <p class="hero-subtext">Snooty Tooty offers a VIP experience that will amaze your guests and help them feel at home.</p>
+        <p class="hero-subtext"><em>Indulge your guests. Elevate your event.</em></p>
         <div class="hero-actions">
-          <a href="tel:0488036717" class="btn btn-primary">CALL NOW — 0488 036 717</a>
-          <a href="#quote" class="btn btn-secondary">GET A QUOTE</a>
+          <a href="tel:0488036717" class="btn btn-primary">CALL NOW &mdash; 0488 036 717</a>
+          <a href="#" class="btn btn-secondary" data-open-quote><span>GET A QUOTE</span></a>
         </div>
       </div>
       <a href="#about" class="scroll-indicator" aria-label="Scroll to learn more">
-        <span>&#x25BC;</span>
+        <span class="scroll-indicator-line"></span>
+        <svg class="scroll-indicator-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+          <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
       </a>
     </section>
 
+    <!-- ── MARQUEE STRIP ────────────────────────── -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Luxury</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Portable Restroom Hire</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">South Australia</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Weddings</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Corporate Events</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Garden Parties</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Luxury</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Portable Restroom Hire</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">South Australia</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Weddings</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Corporate Events</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+        <span class="marquee-item">Garden Parties</span>
+        <span class="marquee-item marquee-item--dot">·</span>
+      </div>
+    </div>
+
+    <!-- ── PAGE 2 — ABOUT ─────────────────────── -->
     <section id="about" class="section section-light intro reveal">
       <div class="container intro-grid">
         <div class="intro-text">
-          <h2>Introducing Snooty Tooty</h2>
-          <p>Are you looking for a luxury portable restroom to hire in South Australia? Snooty Tooty offers a VIP experience that will amaze your guests and help them feel at home.</p>
+          <span class="section-rule" aria-hidden="true"></span>
+          <p class="intro-lead text-reveal-target">Are you looking for a luxury portable restroom to hire in South Australia?</p>
+          <p class="intro-body">Snooty Tooty offers a VIP experience that will amaze your guests and help them feel at home.</p>
           <div class="intro-features">
             <div class="intro-feature">
-              <span class="feature-icon">✷</span>
               <div>
                 <strong>Luxurious Features</strong>
                 <p>Our ultra-modern twin suites feature marble vanities and quality fittings, designed for elegance and comfort.</p>
               </div>
             </div>
             <div class="intro-feature">
-              <span class="feature-icon">✷</span>
               <div>
                 <strong>Perfect for Every Occasion</strong>
                 <p>Whether it's a wedding, birthday, or corporate event, Snooty Tooty caters for up to 150 guests, ensuring an unforgettable experience.</p>
               </div>
             </div>
             <div class="intro-feature">
-              <span class="feature-icon">✷</span>
               <div>
                 <strong>Comprehensive Service</strong>
-                <p>Enjoy a hassle-free experience with our full "drop off, set up, and collect" service. We deliver clean, sanitised units ready for use!</p>
+                <p>Enjoy a hassle-free experience with our full &ldquo;drop off, set up, and collect&rdquo; service. We deliver clean, sanitised units ready for use.</p>
               </div>
             </div>
           </div>
-          <p class="intro-quote"><em>"Snooty Tooty really is Australia's most luxurious portable restroom. Nothing out-shines our beautifully clean, well-presented first-class amenities!"</em></p>
+          <div class="intro-pullquote">
+            <p><em>&ldquo;Snooty Tooty really is Australia&rsquo;s most luxurious portable restroom. Nothing out-shines our beautifully clean, well-presented first-class amenities.&rdquo;</em></p>
+          </div>
         </div>
         <div class="intro-image">
-          <img src="assets/img/interior.png" alt="Interior of Snooty Tooty luxury portable restroom">
+          <img src="assets/img/hero-trailer.webp" alt="Snooty Tooty luxury portable restroom trailer at a garden event">
         </div>
       </div>
     </section>
 
+    <!-- ── PAGE 3 — AMENITIES ─────────────────── -->
     <section id="features" class="section section-dark amenities reveal">
       <div class="container">
-        <h2>Explore Our Premium Amenities</h2>
-        <p class="section-subtitle">Snooty Tooty is equipped with:</p>
+        <span class="section-rule" aria-hidden="true"></span>
+        <h2 class="text-reveal-target">Explore Our Premium Amenities</h2>
         <div class="amenities-grid">
           <article class="amenity-card">
-            <div class="amenity-icon">🪞</div>
             <h3>Spacious Cubicles &amp; Elegant Vanities</h3>
             <p>Enjoy large mirrors and ample space for your comfort.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">💧</div>
             <h3>Handwashing Facilities</h3>
             <p>Equipped with running water for easy and effective handwashing.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">🚽</div>
             <h3>Pedal-Flush Porcelain Toilets</h3>
             <p>Modern and hygienic facilities for your convenience.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">☀️</div>
             <h3>Eco-Friendly Lighting</h3>
-            <p>Solar-powered interior and exterior lighting enhances your experience.</p>
+            <p>Solar-powered interior and exterior lighting enhances your experience while being kind to the environment.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">🧴</div>
             <h3>Premium Hygiene Supplies</h3>
-            <p>Soft liquid soap, hand sanitiser and paper towels available.</p>
+            <p>Soft liquid soap, hand sanitiser and paper towels provided for your convenience.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">✦</div>
             <h3>Sanitary Bins</h3>
             <p>Discreetly maintained for your comfort.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">🎵</div>
             <h3>Bluetooth Sound System</h3>
-            <p>Create the perfect ambiance for your occasion!</p>
+            <p>Create the perfect ambiance for your occasion.</p>
           </article>
           <article class="amenity-card">
-            <div class="amenity-icon">⚡</div>
             <h3>Internal Power Points</h3>
-            <p>Perfect for hair dryers, straighteners, and other styling tools.</p>
+            <p>Available with an external power source — perfect for hair dryers, straighteners, and styling tools.</p>
           </article>
-        </div>
-        <div class="amenities-image">
-          <img src="assets/img/interior-bench.png" alt="Luxury vanity bench inside Snooty Tooty">
-        </div>
-        <div class="event-partners">
-          <p class="partners-eyebrow">ELEVATE YOUR EVENT</p>
-          <div class="partner-strip">
-            <div class="partner-card">
-              <h3>Andy's Water</h3>
-              <p>Premium spring water in mobile solutions from 1,500 to 2,000 litres — delivered and set up at your event.</p>
-              <a class="partner-link" href="https://andyswater.com.au" target="_blank" rel="noopener noreferrer">Visit Andy's Water</a>
-            </div>
-            <div class="partner-card partner-card--media">
-              <div class="partner-media">
-                <img src="assets/img/dragonfly-water.jpg" alt="Dragonfly Springwater">
-              </div>
-              <div class="partner-card-body">
-                <h3>Dragonfly Springwater</h3>
-                <p>Perfectly sourced premium water, delivered to your location. Keep your guests refreshed in style.</p>
-                <a class="partner-link" href="https://www.dragonflyspringwater.com.au/" target="_blank" rel="noopener noreferrer">Visit Dragonfly</a>
-              </div>
-            </div>
-          </div>
+          <article class="amenity-card">
+            <h3>24/7 Emergency Support</h3>
+            <p>Rest easy with our round-the-clock support for your peace of mind.</p>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- ── PAGE 4 — GALLERY ───────────────────── -->
+    <section id="gallery" class="collage-section reveal">
+      <div class="collage-container">
+        <span class="section-rule" aria-hidden="true"></span>
+        <h2 class="text-reveal-target">A Look Inside</h2>
+        <div class="collage-grid">
+          <a href="assets/img/interior-suite.webp" class="collage-item glightbox" data-gallery="interior" data-description="Full suite interior — porcelain toilet, vanity sink, and timber-look flooring">
+            <img src="assets/img/interior-suite.webp" alt="Snooty Tooty full suite interior with porcelain toilet and vanity" loading="lazy">
+          </a>
+          <a href="assets/img/interior-vanity.webp" class="collage-item glightbox" data-gallery="interior" data-description="Vanity bench with full-length mirror and under-counter LED lighting">
+            <img src="assets/img/interior-vanity.webp" alt="Snooty Tooty vanity bench with mirror and LED lighting" loading="lazy">
+          </a>
+          <a href="assets/img/interior-sink.webp" class="collage-item glightbox" data-gallery="interior" data-description="Vanity sink with chrome fittings and hand soap">
+            <img src="assets/img/interior-sink.webp" alt="Snooty Tooty vanity sink with chrome fittings" loading="lazy">
+          </a>
+          <a href="assets/img/interior-toilet.webp" class="collage-item glightbox" data-gallery="interior" data-description="Pedal-flush porcelain toilet — clean, modern, and hygienic">
+            <img src="assets/img/interior-toilet.webp" alt="Snooty Tooty pedal-flush porcelain toilet" loading="lazy">
+          </a>
+          <a href="assets/img/interior-dispensers.webp" class="collage-item glightbox" data-gallery="interior" data-description="Kimberly-Clark paper towel dispenser and liquid soap station">
+            <img src="assets/img/interior-dispensers.webp" alt="Kimberly-Clark paper towel and soap dispensers" loading="lazy">
+          </a>
+          <a href="assets/img/interior-tp.webp" class="collage-item glightbox" data-gallery="interior" data-description="Premium toilet paper dispensers with chrome holder and phone shelf">
+            <img src="assets/img/interior-tp.webp" alt="Premium toilet paper dispensers with chrome holder" loading="lazy">
+          </a>
+          <a href="assets/img/interior-speaker.webp" class="collage-item glightbox" data-gallery="interior" data-description="Integrated Bluetooth sound system for ambient audio throughout the suite">
+            <img src="assets/img/interior-speaker.webp" alt="Snooty Tooty integrated Bluetooth speaker" loading="lazy">
+          </a>
+          <a href="assets/img/interior-audio.webp" class="collage-item glightbox" data-gallery="interior" data-description="Premium audio panel — pair your own device via Bluetooth">
+            <img src="assets/img/interior-audio.webp" alt="Snooty Tooty Bluetooth audio control panel" loading="lazy">
+          </a>
+          <a href="assets/img/interior-vents.webp" class="collage-item glightbox" data-gallery="interior" data-description="Climate ventilation and air conditioning vents for year-round comfort">
+            <img src="assets/img/interior-vents.webp" alt="Snooty Tooty climate control vents" loading="lazy">
+          </a>
+          <a href="assets/img/interior-bench.webp" class="collage-item glightbox" data-gallery="interior" data-description="Timber-look bench seating and interior fit-out detail">
+            <img src="assets/img/interior-bench.webp" alt="Snooty Tooty interior bench and fit-out" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 5 — PARTNERS ─────────────────── -->
+    <section id="partners" class="partners-section reveal">
+      <div class="partners-bg"></div>
+      <div class="partners-overlay"></div>
+      <div class="container partners-inner">
+        <p class="partners-eyebrow">IN PARTNERSHIP WITH</p>
+        <span class="section-rule" aria-hidden="true"></span>
+        <h2 class="text-reveal-target">Elevate Every Detail</h2>
+
+        <div class="partners-duo">
+
+          <div class="partners-duo-item" data-partner="0">
+            <div class="partners-duo-rule"></div>
+            <h3 class="partners-duo-name">Andy&rsquo;s Water</h3>
+            <p class="partners-duo-desc">Premium mobile spring water &mdash; 1,500 to 2,000 litres delivered and installed at your event.</p>
+            <a class="partners-duo-link" href="https://andyswater.com.au" target="_blank" rel="noopener noreferrer">
+              <span>andyswater.com.au</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+          <div class="partners-duo-divider" aria-hidden="true"></div>
+
+          <div class="partners-duo-item" data-partner="1">
+            <div class="partners-duo-rule"></div>
+            <h3 class="partners-duo-name">Dragonfly Springwater</h3>
+            <div class="partners-duo-media">
+              <img src="assets/img/dragonfly-water.webp" alt="Dragonfly Springwater bottles" loading="lazy">
+            </div>
+            <p class="partners-duo-desc">Perfectly sourced spring water delivered to your location &mdash; refined refreshment for refined occasions.</p>
+            <a class="partners-duo-link" href="https://www.dragonflyspringwater.com.au/" target="_blank" rel="noopener noreferrer">
+              <span>dragonflyspringwater.com.au</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PAGE 6 — REVIEWS ───────────────────── -->
     <section id="reviews" class="review reveal">
       <div class="review-bg-image"></div>
       <div class="review-overlay"></div>
@@ -171,121 +267,163 @@
             <span class="stat-label">Guest Capacity</span>
           </div>
           <div class="stat">
-            <span class="stat-num">5★</span>
+            <span class="stat-num">5&#9733;</span>
             <span class="stat-label">Rated Service</span>
           </div>
           <div class="stat">
-            <span class="stat-num">SA's</span>
+            <span class="stat-num">South Australia&rsquo;s</span>
             <span class="stat-label">Most Luxurious</span>
           </div>
         </div>
         <div class="testimonial">
           <span class="quote-open">&ldquo;</span>
-          <blockquote class="review-quote">We used Snooty Tooty for our son's garden engagement party recently and the communication, delivery and collection was excellent. The toilets were very modern, clean and had all the supplies needed including a Bluetooth sound system. The feedback from our guests was very positive and we would not hesitate to use this friendly local company again.</blockquote>
+          <blockquote class="review-quote">We used Snooty Tooty for our son&rsquo;s garden engagement party recently and the communication, delivery and collection was excellent. The toilets were very modern, clean and had all the supplies needed including a Bluetooth sound system. The feedback from our guests was very positive and we would not hesitate to use this friendly local company again.</blockquote>
           <div class="review-meta">
             <div class="review-rule"></div>
-            <span class="review-author">Catherine &nbsp;·&nbsp; Port Elliot</span>
-            <div class="review-stars" aria-label="5 star review">★★★★★</div>
+            <span class="review-author">Catherine &nbsp;&middot;&nbsp; Port Elliot</span>
+            <div class="review-stars" aria-label="5 star review">
+              <span class="star-item">&#9733;</span>
+              <span class="star-item">&#9733;</span>
+              <span class="star-item">&#9733;</span>
+              <span class="star-item">&#9733;</span>
+              <span class="star-item">&#9733;</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="faqs" class="section faqs reveal">
-      <div class="container">
-        <h2>Frequently Asked Questions</h2>
+    <!-- ── PAGE 7 — FAQs ──────────────────────── -->
+    <section id="faqs" class="faqs reveal">
+      <div class="faq-container">
+
+        <div class="faq-header">
+          <span class="section-rule" aria-hidden="true"></span>
+          <h2 class="text-reveal-target">Frequently<br>Asked<br>Questions</h2>
+          <p class="faq-intro">Everything you need to know before booking your luxury portable restroom hire.</p>
+          <a href="#" class="btn btn-primary faq-cta" data-open-quote>Make an Enquiry</a>
+        </div>
+
         <div class="faq-list">
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>How many guests can Snooty Tooty accommodate?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">01</span>
+              <span class="faq-q-text">How many guests can Snooty Tooty accommodate?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>Designed to cater to up to 150 guests over a 6-hour period, handling approximately 300 flushes. Our team will discuss your specific needs.</p>
+              <p>Snooty Tooty is designed to cater to up to 150 guests over a 6-hour period, handling approximately 300 flushes. Rest assured, our team will discuss your specific needs and recommend the best solution for your event.</p>
             </div>
           </article>
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>How is sanitation managed during events?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">02</span>
+              <span class="faq-q-text">How is sanitation managed during events?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>In most instances sanitation is not a concern due to ample capacity. For events over 6 hours or multi-day, we arrange a team visit to replenish water and restock essentials.</p>
+              <p>Our priority is to maintain a clean and comfortable environment for your guests. In most instances, sanitation considerations are not a concern due to the ample capacity of Snooty Tooty. However, for events that span multiple days or exceed 6 hours in a single day, we will arrange a visit from our team to reset the system — replenishing the water supply and restocking essentials to ensure continued comfort throughout your event.</p>
             </div>
           </article>
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>What types of events are suitable?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">03</span>
+              <span class="faq-q-text">What types of events are suitable for hiring Snooty Tooty?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>Weddings, corporate events, festivals and more!</p>
+              <p>Our luxury portable toilets are perfect for weddings, corporate events, festivals, private functions, garden parties and more.</p>
             </div>
           </article>
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>Where do I collect Snooty Tooty from?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">04</span>
+              <span class="faq-q-text">Where do I collect Snooty Tooty from?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>No collection needed - we provide full delivery, setup and pickup with every hire.</p>
+              <p>There&rsquo;s no need to collect Snooty Tooty. We provide a comprehensive delivery, setup and pickup service with every hire &mdash; all you need to do is enjoy your event.</p>
             </div>
           </article>
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>Why would I need an external power source?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">05</span>
+              <span class="faq-q-text">Why would I need an external power source?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>Lighting and Bluetooth are solar-powered; air conditioning and power points need external power. We can supply a generator - speak to us at booking.</p>
+              <p>While many elements of Snooty Tooty &mdash; including the Bluetooth sound system and lighting &mdash; are solar-powered, features such as air conditioning and internal power points require an external power source. If you need power, we can supply a generator perfectly suited to your event needs. Speak to our team at the time of booking.</p>
             </div>
           </article>
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>Are there any placement considerations?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">06</span>
+              <span class="faq-q-text">Are there any placement considerations?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>Yes - we consider access, solar exposure, and power access. We discuss all of this at booking as every event is unique.</p>
+              <p>Yes, our team will ensure Snooty Tooty is optimally positioned for the best experience. Placement considerations include:</p>
+              <ul>
+                <li><strong>Access</strong> &mdash; We account for the height and width of the unit, which may limit access to certain locations.</li>
+                <li><strong>Solar Access</strong> &mdash; We consider optimal sunlight exposure to maintain solar supply where needed.</li>
+                <li><strong>Power Access</strong> &mdash; We assess proximity to external power for air conditioning and internal power points.</li>
+              </ul>
+              <p>All considerations are discussed at the time of booking, as each event is unique and requires tailored planning.</p>
             </div>
           </article>
+
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
-              <span>Is an upfront deposit required?</span>
-              <span class="faq-icon">+</span>
+              <span class="faq-num" aria-hidden="true">07</span>
+              <span class="faq-q-text">Can I relocate Snooty Tooty after placement?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
             <div class="faq-answer">
-              <p>Yes, 50% of the full hire cost is required at booking to secure your reservation.</p>
+              <p>No, Snooty Tooty cannot be moved without permission once placed by our team. This policy ensures the safety and proper functioning of the unit, as well as the comfort of your guests.</p>
             </div>
           </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-num" aria-hidden="true">08</span>
+              <span class="faq-q-text">Is an upfront deposit required?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, 50% of the full hire cost is required at the time of booking to secure your reservation.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-num" aria-hidden="true">09</span>
+              <span class="faq-q-text">Do you hire to all locations in South Australia?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We generally service areas up to 150&thinsp;km from Adelaide CBD. We are open to hiring beyond this range for those prepared to cover the associated delivery and collection costs &mdash; speak to our team to discuss your location.</p>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
-    <section id="quote" class="section quote reveal">
-      <div class="container">
-        <h2>Ready to Elevate Your Next Event?</h2>
-        <p>We are dedicated to providing top-tier services that make your events memorable. Contact us today and let's make your event extraordinary!</p>
-        <div class="quote-contact">
-          <a href="tel:0488036717" class="contact-link">0488 036 717</a>
-          <a href="mailto:sales@snootytooty.com.au" class="contact-link">sales@snootytooty.com.au</a>
-          <div class="social-icons">
-            <a href="https://www.facebook.com/SnootyTootySA/" target="_blank" rel="noopener noreferrer" aria-label="Snooty Tooty on Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/snootytootysa/" target="_blank" rel="noopener noreferrer" aria-label="Snooty Tooty on Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- section removed — form lives in modal -->
+
   </main>
 
+  <!-- ── FOOTER ─────────────────────────────── -->
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <img src="assets/img/logo.png" alt="Snooty Tooty logo" class="footer-logo">
+        <img src="assets/img/logo-stacked.webp" alt="Snooty Tooty" class="footer-logo">
       </div>
       <p class="acknowledgement">We acknowledge Aboriginal and Torres Strait Islander Peoples as the traditional custodians of our land. We recognise the Kaurna people as the traditional custodians of this place we now call Adelaide and pay our respects to Elders past, present and future.</p>
       <div class="footer-logos">
@@ -294,11 +432,135 @@
       </div>
       <div class="footer-links">
         <a href="assets/ST_HTerms_022025.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+        <span>|</span>
+        <a href="#privacy">Privacy Policy</a>
       </div>
-      <p class="footer-copy">© Dragonfly Group (SA) 2026. All Rights Reserved.</p>
+      <p class="footer-copy">&copy; Dragonfly Group (SA) 2026. All Rights Reserved.</p>
     </div>
   </footer>
 
+  <!-- ── QUOTE MODAL ─────────────────────────────── -->
+  <div class="quote-modal" id="quote-modal" role="dialog" aria-modal="true" aria-label="Make an Enquiry" hidden>
+    <div class="quote-modal-backdrop" id="quote-modal-backdrop"></div>
+    <div class="quote-modal-panel">
+
+      <button class="quote-modal-close" id="quote-modal-close" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" stroke-linecap="square"/>
+        </svg>
+      </button>
+
+      <div class="enquiry-header">
+        <h2>Make an Enquiry</h2>
+        <p class="enquiry-sub">Tell us about your event and we&rsquo;ll be in touch within 24 hours.</p>
+      </div>
+
+      <form id="enquiry-form" class="enquiry-form" novalidate>
+        <input type="hidden" name="access_key"  value="YOUR_ACCESS_KEY">
+        <input type="hidden" name="subject"      value="New Enquiry — Snooty Tooty">
+        <input type="hidden" name="from_name"    value="Snooty Tooty Website">
+        <input type="hidden" name="redirect"     value="false">
+        <input type="checkbox" name="botcheck" class="enquiry-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="enquiry-grid">
+          <div class="field-group">
+            <label for="eq-name" class="field-label">Your Name <span class="field-req" aria-hidden="true">*</span></label>
+            <input type="text"  id="eq-name"  name="name"  class="field-input" required autocomplete="name" placeholder="Jane Smith">
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+          <div class="field-group">
+            <label for="eq-email" class="field-label">Email Address <span class="field-req" aria-hidden="true">*</span></label>
+            <input type="email" id="eq-email" name="email" class="field-input" required autocomplete="email" placeholder="jane@example.com">
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+          <div class="field-group">
+            <label for="eq-phone" class="field-label">Phone Number</label>
+            <input type="tel"   id="eq-phone" name="phone" class="field-input" autocomplete="tel" placeholder="04XX XXX XXX">
+          </div>
+          <div class="field-group">
+            <label for="eq-type" class="field-label">Event Type <span class="field-req" aria-hidden="true">*</span></label>
+            <div class="field-select-wrap">
+              <select id="eq-type" name="event_type" class="field-input field-select" required>
+                <option value="" disabled selected>Select event type</option>
+                <option>Wedding</option>
+                <option>Corporate Event</option>
+                <option>Birthday / Milestone</option>
+                <option>Garden Party</option>
+                <option>Festival / Market</option>
+                <option>Other</option>
+              </select>
+              <span class="field-select-arrow" aria-hidden="true">&#9662;</span>
+            </div>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+          <div class="field-group">
+            <label for="eq-date" class="field-label">Event Date</label>
+            <input type="date" id="eq-date" name="event_date" class="field-input">
+          </div>
+          <div class="field-group">
+            <label for="eq-guests" class="field-label">Approximate Guests</label>
+            <div class="field-select-wrap">
+              <select id="eq-guests" name="guest_count" class="field-input field-select">
+                <option value="" disabled selected>Select range</option>
+                <option>Under 50</option>
+                <option>50 – 100</option>
+                <option>100 – 150</option>
+                <option>150+</option>
+              </select>
+              <span class="field-select-arrow" aria-hidden="true">&#9662;</span>
+            </div>
+          </div>
+          <div class="field-group field-group--full">
+            <label for="eq-location" class="field-label">Event Location / Suburb</label>
+            <input type="text" id="eq-location" name="event_location" class="field-input" placeholder="e.g. Barossa Valley, SA">
+          </div>
+          <div class="field-group field-group--full">
+            <label for="eq-message" class="field-label">Anything else we should know?</label>
+            <textarea id="eq-message" name="message" class="field-input field-textarea" rows="4" placeholder="Any specific requirements, questions, or details about your event&hellip;"></textarea>
+          </div>
+        </div>
+
+        <div class="enquiry-actions">
+          <button type="submit" class="btn btn-primary enquiry-submit">
+            <span class="submit-label">Send Enquiry</span>
+            <span class="submit-spinner" aria-hidden="true"></span>
+          </button>
+          <p class="enquiry-privacy">Your details are used solely to respond to your enquiry and will never be shared.</p>
+        </div>
+
+        <div class="enquiry-success" aria-live="polite" role="status">
+          <div class="enquiry-success-icon" aria-hidden="true">&#10003;</div>
+          <h3>Enquiry Received</h3>
+          <p>Thank you &mdash; we&rsquo;ll be in touch within 24 hours.</p>
+        </div>
+        <div class="enquiry-error" aria-live="polite" role="alert">
+          <p>Something went wrong. Please try again or email us at <a href="mailto:sales@snootytooty.com.au">sales@snootytooty.com.au</a>.</p>
+        </div>
+      </form>
+
+      <div class="enquiry-alt">
+        <span class="enquiry-alt-label">Or reach us directly</span>
+        <div class="enquiry-alt-links">
+          <a href="tel:0488036717" class="contact-link">0488 036 717</a>
+          <span class="enquiry-alt-sep" aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+          <a href="mailto:sales@snootytooty.com.au" class="contact-link">sales@snootytooty.com.au</a>
+          <span class="enquiry-alt-sep" aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+          <a href="https://www.facebook.com/SnootyTootySA/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:middle"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script src="assets/js/app.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, zoomable: false });
+    });
+  </script>
 </body>
 </html>
