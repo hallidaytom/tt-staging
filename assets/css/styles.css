@@ -2523,3 +2523,205 @@ input[type="date"].field-input::-webkit-calendar-picker-indicator {
     transition: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1 — March 2026
+   Client-approved changes per SnootyTooty_RevisionInstructions_v1
+═══════════════════════════════════════════════════════════ */
+
+/* ── #1–2 Typography: unify fonts, standardise scale ─────── */
+/* Playfair Display = headings only. Lato = everything else.
+   Already set in :root — enforce here to catch orphans.      */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-style: normal; /* #3 — no italics on any heading */
+}
+
+body, p, a, li, label, input, select, textarea, button,
+.marquee-item, .stat-label, .field-label, .faq-q-text,
+.intro-body, .intro-lead, .partners-duo-desc,
+.review-author, .enquiry-sub, .footer-copy,
+.acknowledgement, .footer-links a {
+  font-family: 'Lato', sans-serif;
+  font-style: normal; /* #3 — no italics anywhere */
+}
+
+/* Remove italic from hero subtext, intro pullquote, review quote */
+.hero-subtext,
+.intro-pullquote p,
+.review-quote,
+em {
+  font-style: normal;
+}
+
+/* ── #4 Background: full black, no alternating sections ───── */
+body,
+.section,
+.section-light,
+.section-dark,
+.amenities,
+.collage-section,
+.partners-section,
+.review,
+.faqs,
+.intro,
+.footer {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Fix text that was dark on light sections */
+.section-light,
+.section-light p,
+.section-light h2,
+.section-light h3,
+.section-light strong,
+.intro-lead,
+.intro-body,
+.intro-feature p,
+.intro-feature strong {
+  color: #ffffff;
+}
+
+.section-rule {
+  background-color: var(--color-gold);
+}
+
+/* ── #5 Logo: increase letter-spacing on wordmark ─────────── */
+.nav-wordmark-text {
+  letter-spacing: 0.45em;
+  word-spacing: 0.3em;
+}
+
+/* If wordmark is an image, target the container */
+.logo {
+  letter-spacing: 0.45em;
+}
+
+/* ── #6 Hero: semi-transparent box behind text ────────────── */
+.hero-text-box {
+  display: inline-block;
+  background-color: rgba(40, 40, 40, 0.78);
+  padding: 40px 48px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Remove the old hero-deco lines (no longer in markup but just in case) */
+.hero-deco { display: none; }
+
+/* ── #8 Hero tagline — no italics (covered by em rule above) */
+.hero-subtext {
+  font-style: normal;
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.85);
+  margin-top: 12px;
+}
+
+/* ── #9 Call Now button — more prominent ──────────────────── */
+.btn-primary {
+  background-color: #D4964B;
+  border-color: #D4964B;
+  color: #000;
+  font-size: 1rem;
+  padding: 16px 40px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: #e8aa60;
+  transform: translateY(-1px);
+}
+
+/* ── #11 Marquee: same font, no italics, background strip ─── */
+.marquee-strip {
+  background-color: #111111;
+  border-top: 1px solid rgba(212, 150, 75, 0.2);
+  border-bottom: 1px solid rgba(212, 150, 75, 0.2);
+}
+.marquee-item {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+/* ── #12 Features: text list ──────────────────────────────── */
+.amenities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.amenities-list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-right: 32px;
+}
+.amenities-list-item::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-gold);
+  margin-bottom: 8px;
+}
+.amenities-list-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+.amenities-list-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Hide old amenity-card styles if any remain */
+.amenity-card { display: none; }
+
+/* ── #13 Gallery: 4-image 2×2 grid ──────────────────────── */
+.collage-grid--four {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+.collage-grid--four .collage-item {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  display: block;
+}
+.collage-grid--four .collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.collage-grid--four .collage-item:hover img {
+  transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .collage-grid--four {
+    grid-template-columns: 1fr;
+  }
+  .hero-text-box {
+    padding: 28px 24px;
+  }
+}
+
