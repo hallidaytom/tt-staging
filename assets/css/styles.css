@@ -2987,3 +2987,29 @@ body,
   .experience-section { padding: 64px 0; }
 }
 
+
+/* ── Dragonfly bottle bg image ───────────────── */
+.exp-partner--dragonfly {
+  position: relative;
+  overflow: hidden;
+}
+.exp-partner-bg-img {
+  position: absolute;
+  bottom: -10px;
+  right: -16px;
+  width: 110px;
+  height: auto;
+  opacity: 0.13;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(100%);
+}
+/* Ensure text sits above the bg image */
+.exp-partner--dragonfly .exp-partner-name,
+.exp-partner--dragonfly .exp-partner-desc,
+.exp-partner--dragonfly .exp-partner-link {
+  position: relative;
+  z-index: 1;
+}
+
