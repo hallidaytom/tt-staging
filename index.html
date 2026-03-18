@@ -3,1030 +3,302 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life In My Hands — Aaron Montague</title>
+  <title>Snooty Tooty | Luxury Portable Restroom Hire South Australia</title>
+  <meta name="description" content="Snooty Tooty delivers luxury portable restroom hire across South Australia with premium amenities, immaculate presentation, and full-service convenience.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-
-    /* ─── TOKENS ─────────────────────────────────────────── */
-    :root {
-      --bg:      hsl(240, 14%, 6%);
-      --surface: hsl(240, 10%, 9%);
-      --body:    hsl(240, 6%, 60%);
-      --head:    hsl(40, 18%, 91%);
-      --green:   hsl(100, 28%, 52%);
-      --rule:    hsla(100, 28%, 52%, 0.14);
-      --soft:    hsla(240, 6%, 60%, 0.08);
-
-      --t-display: clamp(52px, 8.5vw, 120px);
-      --t-h1:      clamp(44px, 6vw, 84px);
-      --t-h2:      clamp(26px, 2.8vw, 44px);
-      --t-lead:    clamp(16px, 1.5vw, 19px);
-      --t-body:    15px;
-      --t-label:   11px;
-
-      --pad: clamp(24px, 5.5vw, 80px);
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* ─── RESET ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body {
-      background: var(--bg);
-      color: var(--body);
-      font-family: 'Inter', sans-serif;
-      font-size: var(--t-body);
-      line-height: 1.7;
-      overflow-x: hidden;
-      opacity: 0;
-      animation: arrive 0.8s ease 0.1s forwards;
-    }
-    img { display: block; max-width: 100%; }
-    @keyframes arrive { to { opacity: 1; } }
-
-    /* ─── GRAIN ──────────────────────────────────────────── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: -100px;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none;
-      z-index: 9000;
-      animation: grain 0.5s steps(2) infinite;
-    }
-    @keyframes grain {
-      0%  { transform: translate(0,0); }
-      25% { transform: translate(-1%,-2%); }
-      50% { transform: translate(2%,1%); }
-      75% { transform: translate(-1%,2%); }
-    }
-
-    /* ─── REVEAL ─────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-    }
-    .reveal.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.08s; }
-    .d2 { transition-delay: 0.18s; }
-    .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.44s; }
-
-    /* ─── NAV ────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      padding: 28px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: padding 0.4s var(--ease), background 0.5s ease, backdrop-filter 0.5s ease;
-    }
-    nav.scrolled {
-      padding: 16px var(--pad);
-      background: hsla(240,14%,6%,0.94);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--rule);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 400;
-      color: var(--head);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-    .nav-logo-dot { color: var(--green); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-size: var(--t-label);
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--body);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--head); }
-    .nav-cta {
-      font-size: var(--t-label);
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--green);
-      padding: 10px 22px;
-      text-decoration: none;
-      transition: opacity 0.3s ease;
-    }
-    .nav-cta:hover { opacity: 0.82; }
-
-    /* ─── HERO ───────────────────────────────────────────── */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 42%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Left — the question */
-    .hero-left {
-      padding: 0 var(--pad);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-q {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: var(--t-display);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.08;
-      color: var(--head);
-      letter-spacing: -0.025em;
-      margin-bottom: 52px;
-    }
-    /* Final word — upright, full weight — lands like a full stop */
-    .hero-q .anchor {
-      font-style: normal;
-      font-weight: 400;
-    }
-
-    /* Word entrance */
-    .w  { display: inline-block; overflow: hidden; vertical-align: bottom; }
-    .wi {
-      display: inline-block;
-      transform: translateY(108%);
-      animation: wup 1s var(--ease) forwards;
-    }
-    @keyframes wup { to { transform: translateY(0); } }
-
-    /* Attribution strip */
-    .hero-attr {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 24px;
-      border-top: 1px solid var(--soft);
-      opacity: 0;
-      animation: fadein 0.7s ease 1.6s forwards;
-    }
-    @keyframes fadein { to { opacity: 1; } }
-
-    .hero-name {
-      font-size: var(--t-label);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--body);
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .hero-name strong { color: hsla(40,18%,91%,0.65); font-weight: 500; }
-    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-
-    .hero-est {
-      font-size: var(--t-label);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: hsla(240,6%,60%,0.3);
-    }
-
-    /* Right — Aaron's portrait, full bleed, edge to edge */
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-right img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: grayscale(15%) contrast(1.05);
-      transform: scale(1.04);
-      transition: transform 14s ease;
-    }
-    #hero:hover .hero-right img { transform: scale(1.0); }
-    /* Feather left edge — photo dissolves into the dark left panel */
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, var(--bg) 0%, transparent 30%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* ─── ABOUT ──────────────────────────────────────────── */
-    #about {
-      display: grid;
-      /* Photo wider — takes ownership of the left */
-      grid-template-columns: 52% 1fr;
-      position: relative;
-    }
-
-    .about-photo {
-      position: relative;
-      overflow: hidden;
-      /* Min-height so it's never squished on short viewports */
-      min-height: 600px;
-    }
-    .about-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: grayscale(20%) contrast(1.06);
-      transform: scale(1.04);
-      transition: transform 12s ease;
-    }
-    #about:hover .about-photo img { transform: scale(1.0); }
-    /* Feather right edge — photo dissolves into text column */
-    .about-photo::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent 50%, var(--bg) 100%);
-    }
-
-    .about-copy {
-      padding: 96px var(--pad) 96px 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .eyebrow {
-      font-size: var(--t-label);
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--green);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    /* Line grows on reveal */
-    .eyebrow::before {
-      content: '';
-      flex-shrink: 0;
-      height: 1px;
-      background: var(--green);
-      width: 0;
-      transition: width 0.9s var(--ease) 0.4s;
-    }
-    .in .eyebrow::before { width: 24px; }
-
-    .about-hl {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: var(--t-h1);
-      font-weight: 300;
-      color: var(--head);
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      margin-bottom: 36px;
-    }
-    .about-hl em { font-style: italic; color: hsla(40,18%,91%,0.48); }
-
-    .about-p {
-      font-size: 14px;
-      line-height: 1.9;
-      color: var(--body);
-      font-weight: 300;
-      max-width: 50ch;
-      margin-bottom: 14px;
-    }
-    .about-p:last-of-type { margin-bottom: 0; }
-
-    /* ─── SERVICES ───────────────────────────────────────── */
-    /*
-      Menu format — not a card grid.
-      Think: fine dining menu / law firm practice areas.
-      Horizontal rules, nested programmes, prices right-aligned.
-    */
-    #services {
-      padding: 112px var(--pad);
-      background: var(--surface);
-    }
-
-    .svc-head {
-      margin-bottom: 64px;
-    }
-    .svc-hl {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: var(--t-h1);
-      font-weight: 300;
-      color: var(--head);
-      line-height: 0.96;
-      letter-spacing: -0.025em;
-      margin-top: 20px;
-    }
-    .svc-hl em { font-style: italic; color: hsla(40,18%,91%,0.44); }
-
-    /* The menu table */
-    .svc-menu {
-      border-top: 1px solid var(--soft);
-    }
-
-    .svc-row {
-      display: grid;
-      grid-template-columns: 48px 1fr auto;
-      gap: 0 32px;
-      align-items: start;
-      padding: 40px 0;
-      border-bottom: 1px solid var(--soft);
-      transition: background 0.3s ease;
-      position: relative;
-    }
-    .svc-row::before {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; top: 0;
-      height: 1px;
-      background: var(--green);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s var(--ease);
-    }
-    .svc-row:hover::before { transform: scaleX(1); }
-
-    .svc-n {
-      font-size: var(--t-label);
-      letter-spacing: 0.1em;
-      color: var(--green);
-      padding-top: 6px; /* aligns with title baseline roughly */
-      font-weight: 400;
-    }
-
-    .svc-body {}
-
-    .svc-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 2.6vw, 40px);
-      font-weight: 300;
-      color: var(--head);
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-      margin-bottom: 10px;
-    }
-
-    .svc-desc {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--body);
-      font-weight: 300;
-      max-width: 52ch;
-      margin-bottom: 24px;
-    }
-
-    /* Nested programme lines */
-    .svc-programmes {
-      list-style: none;
-      border-top: 1px solid var(--soft);
-      margin-top: 4px;
-    }
-    .svc-programmes li {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      padding: 8px 0;
-      border-bottom: 1px solid hsla(240,6%,60%,0.05);
-      font-size: 12px;
-      letter-spacing: 0.03em;
-      color: hsla(240,6%,60%,0.6);
-      transition: color 0.2s ease;
-    }
-    .svc-programmes li:hover { color: var(--head); }
-    .svc-programmes .pr {
-      color: var(--green);
-      font-size: 11px;
-      flex-shrink: 0;
-      letter-spacing: 0.05em;
-    }
-    .prog-group {
-      display: block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      opacity: 0.7;
-      padding: 12px 0 4px;
-    }
-
-    .svc-note {
-      font-size: 11px;
-      color: hsla(240,6%,60%,0.3);
-      line-height: 1.6;
-      margin-top: 12px;
-    }
-
-    /* Third column — price or enquiry cue, vertically centred */
-    .svc-aside {
-      padding-top: 6px;
-      text-align: right;
-    }
-    .svc-rate {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(18px, 1.8vw, 26px);
-      font-weight: 300;
-      color: var(--head);
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-    }
-    .svc-rate-label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
-
-    /* ─── GALLERY ─────────────────────────────────────────── */
-    #gallery {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      height: 58vh;
-    }
-    .gp {
-      position: relative;
-      overflow: hidden;
-    }
-    .gp img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(25%) contrast(1.05);
-      transform: scale(1.07);
-      transition: transform 10s ease, filter 0.5s ease;
-    }
-    .gp:hover img { transform: scale(1.0); filter: grayscale(0%) contrast(1.02); }
-    .gp-scrim {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, hsla(240,14%,6%,0.65) 0%, transparent 55%);
-    }
-    .gp-cap {
-      position: absolute;
-      bottom: 24px; left: 28px;
-      font-size: var(--t-label);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: hsla(40,18%,91%,0.32);
-      transition: color 0.3s ease;
-    }
-    .gp:hover .gp-cap { color: var(--head); }
-
-    /* ─── VIDEO ───────────────────────────────────────────── */
-    #video {
-      padding: 96px var(--pad);
-    }
-    .vid-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 32px;
-    }
-    .vid-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: var(--t-h2);
-      font-weight: 300;
-      color: var(--head);
-      letter-spacing: -0.015em;
-    }
-    .vid-tag {
-      font-size: var(--t-label);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: hsla(240,6%,60%,0.35);
-    }
-    .vid-wrap {
-      position: relative;
-      width: 100%;
-      padding-bottom: 52%;
-      background: #000;
-    }
-    .vid-wrap::after {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border: 1px solid var(--rule);
-      pointer-events: none;
-      z-index: 2;
-    }
-    .vid-wrap iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    /* ─── CONTACT ─────────────────────────────────────────── */
-    #contact {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      background: var(--surface);
-      position: relative;
-    }
-    #contact::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 56px; height: 1px;
-      background: var(--green);
-    }
-
-    .contact-left {
-      padding: 112px var(--pad) 112px var(--pad);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .contact-ready {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 5vw, 72px);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--head);
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-
-    .contact-sub {
-      font-size: var(--t-lead);
-      font-weight: 300;
-      color: var(--body);
-      margin-bottom: 56px;
-      max-width: 36ch;
-      line-height: 1.7;
-    }
-
-    /* Direct contact links */
-    .contact-direct {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .ct {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      padding: 20px 28px;
-      border: 1px solid var(--soft);
-      text-decoration: none;
-      transition: border-color 0.4s ease, background 0.4s ease;
-    }
-    .ct:hover {
-      border-color: hsla(100,28%,52%,0.25);
-      background: hsla(100,28%,52%,0.03);
-    }
-    .ct-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--green);
-    }
-    .ct-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(16px, 1.6vw, 22px);
-      font-weight: 400;
-      color: var(--head);
-    }
-
-    /* Right — the form */
-    .contact-right {
-      padding: 112px var(--pad) 112px 64px;
-      border-left: 1px solid var(--soft);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .form-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 2.2vw, 32px);
-      font-weight: 300;
-      color: var(--head);
-      letter-spacing: -0.01em;
-      margin-bottom: 36px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--soft);
-      padding: 10px 0 12px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--head);
-      outline: none;
-      transition: border-color 0.3s ease;
-      -webkit-appearance: none;
-      appearance: none;
-      border-radius: 0;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: hsla(240,6%,60%,0.3); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--green); }
-    .form-group select { cursor: pointer; color: hsla(240,6%,60%,0.5); }
-    .form-group select option { background: var(--surface); color: var(--body); }
-    .form-group textarea { resize: none; height: 90px; line-height: 1.65; }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .form-submit {
-      margin-top: 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .form-btn {
-      font-family: 'Inter', sans-serif;
-      font-size: var(--t-label);
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--green);
-      border: none;
-      padding: 14px 36px;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-    .form-btn:hover { opacity: 0.82; }
-    .form-note {
-      font-size: 11px;
-      color: hsla(240,6%,60%,0.3);
-      line-height: 1.5;
-    }
-
-    /* ─── FOOTER ──────────────────────────────────────────── */
-    footer {
-      padding: 32px var(--pad);
-      border-top: 1px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .fl {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: hsla(240,6%,60%,0.4);
-      letter-spacing: 0.04em;
-    }
-    .fl-dot { color: var(--green); }
-    .fc {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: hsla(240,6%,60%,0.2);
-    }
-    .fn { display: flex; gap: 28px; list-style: none; }
-    .fn a {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: hsla(240,6%,60%,0.38);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .fn a:hover { color: var(--green); }
-
-    /* ─── MOBILE ──────────────────────────────────────────── */
-    @media (max-width: 860px) {
-      nav { padding: 18px var(--pad); }
-      nav.scrolled { padding: 12px var(--pad); }
-      .nav-links, .nav-cta { display: none; }
-
-      /* Hero — stack vertically on mobile */
-      #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 120px var(--pad) 48px; }
-      .hero-right { height: 65vw; min-height: 260px; }
-      .hero-right::before { background: linear-gradient(0deg, var(--bg) 0%, transparent 40%); }
-      .w { overflow: visible; }
-      .wi { transform: none; animation: fadein 0.8s ease 0.3s forwards; opacity: 0; }
-
-      /* About — no photo column (it's in the hero now) */
-      #about { grid-template-columns: 1fr; }
-      .about-photo { display: none; }
-      .about-copy { padding: 64px var(--pad); }
-
-      #services { padding: 72px var(--pad); }
-      .svc-row { grid-template-columns: 36px 1fr; }
-      .svc-aside { display: none; }
-
-      #gallery { grid-template-columns: 1fr; height: auto; }
-      .gp { height: 52vw; min-height: 180px; }
-
-      #video { padding: 64px var(--pad); }
-      .vid-head { flex-direction: column; gap: 6px; }
-
-      #contact { grid-template-columns: 1fr; }
-      .contact-left { padding: 72px var(--pad) 48px; }
-      .contact-right { padding: 48px var(--pad) 72px; border-left: none; border-top: 1px solid var(--soft); }
-      .form-row { grid-template-columns: 1fr; gap: 0; }
-      .ct { width: 100%; }
-
-      footer {
-        flex-direction: column;
-        gap: 18px;
-        text-align: center;
-        padding: 32px var(--pad);
-      }
-      .fn { flex-wrap: wrap; justify-content: center; }
-    }
-
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" aria-label="Snooty Tooty">
+        <img src="assets/img/logo.png" alt="Snooty Tooty logo">
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#quote" class="nav-cta">Get a Quote</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- NAV -->
-  <nav id="nav">
-    <a href="#" class="nav-logo">Life In My Hands<span class="nav-logo-dot">.</span></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#video">Talk</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Begin</a>
-  </nav>
-
-  <!-- ─── HERO ─────────────────────────────────────────────
-       Left: the question. Right: Aaron's face.
-       Two-column. The question earns the portrait.
-  ────────────────────────────────────────────────────────── -->
-  <section id="hero">
-
-    <div class="hero-left">
-      <h1 class="hero-q" aria-label="What would you do if you trusted yourself completely?">
-        <span class="w"><span class="wi" style="animation-delay:0.1s">What</span></span>
-        <span class="w"><span class="wi" style="animation-delay:0.18s">would</span></span>
-        <span class="w"><span class="wi" style="animation-delay:0.26s">you</span></span>
-        <span class="w"><span class="wi" style="animation-delay:0.34s">do</span></span><br>
-        <span class="w"><span class="wi" style="animation-delay:0.44s">if</span></span>
-        <span class="w"><span class="wi" style="animation-delay:0.52s">you</span></span>
-        <span class="w"><span class="wi" style="animation-delay:0.6s">trusted</span></span><br>
-        <span class="w"><span class="wi" style="animation-delay:0.72s">yourself</span></span><br>
-        <span class="w"><span class="wi" style="animation-delay:0.82s"><span class="anchor">completely?</span></span></span>
-      </h1>
-
-      <div class="hero-attr">
-        <div class="hero-name">
-          <strong>Aaron Montague</strong>
-          <span class="dot"></span>
-          <span>Coach &amp; Advisor</span>
-          <span class="dot"></span>
-          <span>Melbourne</span>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <img src="assets/img/logo.png" alt="Snooty Tooty wordmark" class="hero-logo">
+        <p class="hero-eyebrow">SOUTH AUSTRALIA'S MOST LUXURIOUS</p>
+        <div class="hero-title-wrap">
+          <div class="hero-deco"></div>
+          <h1>Luxury Portable<br>Restroom Hire</h1>
+          <div class="hero-deco"></div>
         </div>
-        <span class="hero-est">Est. 2011</span>
-      </div>
-    </div>
-
-    <div class="hero-right">
-      <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
-    </div>
-
-  </section>
-
-  <!-- ─── ABOUT ─────────────────────────────────────────── -->
-  <section id="about">
-    <div class="about-photo reveal" aria-hidden="true">
-      <img src="images/aaron-face.jpg" alt="" loading="lazy">
-    </div>
-    <div class="about-copy">
-      <p class="eyebrow reveal">About Aaron</p>
-      <h2 class="about-hl reveal d1">A grounded,<br><em>no-nonsense</em><br>approach.</h2>
-      <p class="about-p reveal d2">Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition. He brings over 12 years' experience in project management and change-focused roles within large, complex organisations in Australia and the UK.</p>
-      <p class="about-p reveal d3">This background shapes a coaching style informed by a strong understanding of systems, governance and the realities of high-pressure environments. His work integrates strategy, mindset and behaviour — helping clients move from insight to action in a way that feels aligned, practical and sustainable.</p>
-      <p class="about-p reveal d4">Aaron is the sole practitioner delivering Life In My Hands services, ensuring consistency, accountability and continuity across every engagement.</p>
-    </div>
-  </section>
-
-  <!-- ─── SERVICES ──────────────────────────────────────────
-       Menu format. Not cards. Think: restaurant menu,
-       law firm practice areas. Horizontal rules. Numbers.
-       Titles in Cormorant. Programmes nested within rows.
-  ────────────────────────────────────────────────────────── -->
-  <section id="services">
-    <div class="svc-head reveal">
-      <p class="eyebrow">Services</p>
-      <h2 class="svc-hl">Three ways<br>to work <em>together</em></h2>
-    </div>
-
-    <div class="svc-menu">
-
-      <!-- 01 Personal Coaching -->
-      <div class="svc-row reveal">
-        <span class="svc-n">01</span>
-        <div class="svc-body">
-          <h3 class="svc-title">Personal Coaching</h3>
-          <p class="svc-desc">Tailored coaching programs designed to help participants realise their full potential. Includes the Mindset Advantage performance program for athletes — building consistency, confidence and focus under pressure.</p>
-          <p class="svc-note">Contact Aaron to discuss a program suited to your goals.</p>
-        </div>
-        <div class="svc-aside">
-          <span class="svc-rate-label">Enquire</span>
-          <span class="svc-rate">—</span>
+        <p class="hero-subtext">Snooty Tooty offers a VIP experience that will amaze your guests and help them feel at home.</p>
+        <div class="hero-actions">
+          <a href="tel:0488036717" class="btn btn-primary">CALL NOW — 0488 036 717</a>
+          <a href="#quote" class="btn btn-secondary">GET A QUOTE</a>
         </div>
       </div>
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to learn more">
+        <span>&#x25BC;</span>
+      </a>
+    </section>
 
-      <!-- 02 Education Workshops -->
-      <div class="svc-row reveal d1">
-        <span class="svc-n">02</span>
-        <div class="svc-body">
-          <h3 class="svc-title">Education Workshops</h3>
-          <p class="svc-desc">Enneagram personality and Law of Attraction workshops for a deeper understanding of self, others, and direction. Suitable for 17+. Gift Certificates available.</p>
-          <ul class="svc-programmes">
-            <span class="prog-group">Enneagram Personality Types</span>
-            <li><span>EP1 — Introduction to Enneagram Personality Types</span><span class="pr">$1,195 + GST</span></li>
-            <li><span>EP2 — The Art of Enneagram Personality Profiling</span><span class="pr">$795 + GST</span></li>
-            <li><span>EP3 — Enneagram Personality Profiling Masterclass</span><span class="pr">$1,395 + GST</span></li>
-            <span class="prog-group">Law of Attraction</span>
-            <li><span>LA1 — Introduction to Law of Attraction</span><span class="pr">$795 + GST</span></li>
-            <li><span>LA2 — Perfecting the Art of Allowing</span><span class="pr">$795 + GST</span></li>
-          </ul>
-        </div>
-        <div class="svc-aside"></div>
-      </div>
-
-      <!-- 03 Business Solutions -->
-      <div class="svc-row reveal d2">
-        <span class="svc-n">03</span>
-        <div class="svc-body">
-          <h3 class="svc-title">Business Solutions</h3>
-          <p class="svc-desc">Small business advisory, project management, and ongoing operations support — grounded in real organisational experience across Australia and the UK.</p>
-          <ul class="svc-programmes">
-            <li><span>Session-based advisory</span><span class="pr">$150/hr + GST</span></li>
-            <li><span>Program-based advisory</span><span class="pr">Enquire</span></li>
-            <li><span>Ongoing operational support</span><span class="pr">Enquire</span></li>
-          </ul>
-        </div>
-        <div class="svc-aside">
-          <span class="svc-rate-label">From</span>
-          <span class="svc-rate">$150<small style="font-size:0.5em;color:var(--green)">/hr</small></span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ─── GALLERY ────────────────────────────────────────── -->
-  <section id="gallery" aria-label="Workshop photography">
-    <div class="gp">
-      <img src="images/aaron-workshop-1.jpg" alt="Aaron Montague facilitating a workshop" loading="lazy">
-      <div class="gp-scrim"></div>
-      <span class="gp-cap">Workshops &amp; Group Sessions</span>
-    </div>
-    <div class="gp">
-      <img src="images/aaron-workshop-2.jpg" alt="Aaron Montague presenting" loading="lazy">
-      <div class="gp-scrim"></div>
-      <span class="gp-cap">Aaron Montague</span>
-    </div>
-  </section>
-
-  <!-- ─── VIDEO ─────────────────────────────────────────── -->
-  <section id="video">
-    <div class="vid-head reveal">
-      <h2 class="vid-title">See Aaron in action</h2>
-      <span class="vid-tag">Featured Talk</span>
-    </div>
-    <div class="vid-wrap reveal d1">
-      <iframe
-        src="https://www.youtube.com/embed/sBEKq6mAtCc"
-        title="Aaron Montague — Life In My Hands"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-  </section>
-
-  <!-- ─── CONTACT ─────────────────────────────────────────── -->
-  <section id="contact">
-
-    <div class="contact-left">
-      <p class="eyebrow reveal">Get in touch</p>
-      <h2 class="contact-ready reveal d1">Ready<br>when you<br>are.</h2>
-      <p class="contact-sub reveal d2">No obligation, no agenda — just a conversation to see if working together makes sense.</p>
-      <div class="contact-direct reveal d3">
-        <a href="tel:0407938932" class="ct">
-          <span class="ct-label">Call</span>
-          <span class="ct-value">0407 938 932</span>
-        </a>
-        <a href="mailto:aaron@lifeinmyhands.com.au" class="ct">
-          <span class="ct-label">Email</span>
-          <span class="ct-value">aaron@lifeinmyhands.com.au</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="contact-right reveal d1">
-      <h3 class="form-title">Send a message</h3>
-      <form action="https://formspree.io/f/aaron-limh" method="POST" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">First name</label>
-            <input type="text" id="fname" name="first_name" placeholder="Your name" required>
+    <section id="about" class="section section-light intro reveal">
+      <div class="container intro-grid">
+        <div class="intro-text">
+          <h2>Introducing Snooty Tooty</h2>
+          <p>Are you looking for a luxury portable restroom to hire in South Australia? Snooty Tooty offers a VIP experience that will amaze your guests and help them feel at home.</p>
+          <div class="intro-features">
+            <div class="intro-feature">
+              <span class="feature-icon">✷</span>
+              <div>
+                <strong>Luxurious Features</strong>
+                <p>Our ultra-modern twin suites feature marble vanities and quality fittings, designed for elegance and comfort.</p>
+              </div>
+            </div>
+            <div class="intro-feature">
+              <span class="feature-icon">✷</span>
+              <div>
+                <strong>Perfect for Every Occasion</strong>
+                <p>Whether it's a wedding, birthday, or corporate event, Snooty Tooty caters for up to 150 guests, ensuring an unforgettable experience.</p>
+              </div>
+            </div>
+            <div class="intro-feature">
+              <span class="feature-icon">✷</span>
+              <div>
+                <strong>Comprehensive Service</strong>
+                <p>Enjoy a hassle-free experience with our full "drop off, set up, and collect" service. We deliver clean, sanitised units ready for use!</p>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="lname">Last name</label>
-            <input type="text" id="lname" name="last_name" placeholder="">
+          <p class="intro-quote"><em>"Snooty Tooty really is Australia's most luxurious portable restroom. Nothing out-shines our beautifully clean, well-presented first-class amenities!"</em></p>
+        </div>
+        <div class="intro-image">
+          <img src="assets/img/interior.png" alt="Interior of Snooty Tooty luxury portable restroom">
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section section-dark amenities reveal">
+      <div class="container">
+        <h2>Explore Our Premium Amenities</h2>
+        <p class="section-subtitle">Snooty Tooty is equipped with:</p>
+        <div class="amenities-grid">
+          <article class="amenity-card">
+            <div class="amenity-icon">🪞</div>
+            <h3>Spacious Cubicles &amp; Elegant Vanities</h3>
+            <p>Enjoy large mirrors and ample space for your comfort.</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">💧</div>
+            <h3>Handwashing Facilities</h3>
+            <p>Equipped with running water for easy and effective handwashing.</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">🚽</div>
+            <h3>Pedal-Flush Porcelain Toilets</h3>
+            <p>Modern and hygienic facilities for your convenience.</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">☀️</div>
+            <h3>Eco-Friendly Lighting</h3>
+            <p>Solar-powered interior and exterior lighting enhances your experience.</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">🧴</div>
+            <h3>Premium Hygiene Supplies</h3>
+            <p>Soft liquid soap, hand sanitiser and paper towels available.</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">✦</div>
+            <h3>Sanitary Bins</h3>
+            <p>Discreetly maintained for your comfort.</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">🎵</div>
+            <h3>Bluetooth Sound System</h3>
+            <p>Create the perfect ambiance for your occasion!</p>
+          </article>
+          <article class="amenity-card">
+            <div class="amenity-icon">⚡</div>
+            <h3>Internal Power Points</h3>
+            <p>Perfect for hair dryers, straighteners, and other styling tools.</p>
+          </article>
+        </div>
+        <div class="amenities-image">
+          <img src="assets/img/interior-bench.png" alt="Luxury vanity bench inside Snooty Tooty">
+        </div>
+        <div class="event-partners">
+          <p class="partners-eyebrow">ELEVATE YOUR EVENT</p>
+          <div class="partner-strip">
+            <div class="partner-card">
+              <h3>Andy's Water</h3>
+              <p>Premium spring water in mobile solutions from 1,500 to 2,000 litres — delivered and set up at your event.</p>
+              <a class="partner-link" href="https://andyswater.com.au" target="_blank" rel="noopener noreferrer">Visit Andy's Water</a>
+            </div>
+            <div class="partner-card partner-card--media">
+              <div class="partner-media">
+                <img src="assets/img/dragonfly-water.jpg" alt="Dragonfly Springwater">
+              </div>
+              <div class="partner-card-body">
+                <h3>Dragonfly Springwater</h3>
+                <p>Perfectly sourced premium water, delivered to your location. Keep your guests refreshed in style.</p>
+                <a class="partner-link" href="https://www.dragonflyspringwater.com.au/" target="_blank" rel="noopener noreferrer">Visit Dragonfly</a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+    </section>
+
+    <section id="reviews" class="review reveal">
+      <div class="review-bg-image"></div>
+      <div class="review-overlay"></div>
+      <div class="container review-inner">
+        <div class="stat-bar">
+          <div class="stat">
+            <span class="stat-num">150+</span>
+            <span class="stat-label">Guest Capacity</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">5★</span>
+            <span class="stat-label">Rated Service</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">SA's</span>
+            <span class="stat-label">Most Luxurious</span>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="interest">I'm interested in</label>
-          <select id="interest" name="interest">
-            <option value="" disabled selected>Select a service</option>
-            <option value="coaching">Personal Coaching</option>
-            <option value="workshops">Education Workshops</option>
-            <option value="business">Business Solutions</option>
-            <option value="other">Not sure yet</option>
-          </select>
+        <div class="testimonial">
+          <span class="quote-open">&ldquo;</span>
+          <blockquote class="review-quote">We used Snooty Tooty for our son's garden engagement party recently and the communication, delivery and collection was excellent. The toilets were very modern, clean and had all the supplies needed including a Bluetooth sound system. The feedback from our guests was very positive and we would not hesitate to use this friendly local company again.</blockquote>
+          <div class="review-meta">
+            <div class="review-rule"></div>
+            <span class="review-author">Catherine &nbsp;·&nbsp; Port Elliot</span>
+            <div class="review-stars" aria-label="5 star review">★★★★★</div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell Aaron a little about what you're looking for…"></textarea>
+      </div>
+    </section>
+
+    <section id="faqs" class="section faqs reveal">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How many guests can Snooty Tooty accommodate?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Designed to cater to up to 150 guests over a 6-hour period, handling approximately 300 flushes. Our team will discuss your specific needs.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How is sanitation managed during events?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>In most instances sanitation is not a concern due to ample capacity. For events over 6 hours or multi-day, we arrange a team visit to replenish water and restock essentials.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What types of events are suitable?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Weddings, corporate events, festivals and more!</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Where do I collect Snooty Tooty from?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No collection needed - we provide full delivery, setup and pickup with every hire.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Why would I need an external power source?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Lighting and Bluetooth are solar-powered; air conditioning and power points need external power. We can supply a generator - speak to us at booking.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Are there any placement considerations?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes - we consider access, solar exposure, and power access. We discuss all of this at booking as every event is unique.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Is an upfront deposit required?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, 50% of the full hire cost is required at booking to secure your reservation.</p>
+            </div>
+          </article>
         </div>
-        <div class="form-submit">
-          <button type="submit" class="form-btn">Send Message</button>
-          <span class="form-note">Aaron responds<br>within 48 hours.</span>
+      </div>
+    </section>
+
+    <section id="quote" class="section quote reveal">
+      <div class="container">
+        <h2>Ready to Elevate Your Next Event?</h2>
+        <p>We are dedicated to providing top-tier services that make your events memorable. Contact us today and let's make your event extraordinary!</p>
+        <div class="quote-contact">
+          <a href="tel:0488036717" class="contact-link">0488 036 717</a>
+          <a href="mailto:sales@snootytooty.com.au" class="contact-link">sales@snootytooty.com.au</a>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/SnootyTootySA/" target="_blank" rel="noopener noreferrer" aria-label="Snooty Tooty on Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/snootytootysa/" target="_blank" rel="noopener noreferrer" aria-label="Snooty Tooty on Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
         </div>
-      </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/img/logo.png" alt="Snooty Tooty logo" class="footer-logo">
+      </div>
+      <p class="acknowledgement">We acknowledge Aboriginal and Torres Strait Islander Peoples as the traditional custodians of our land. We recognise the Kaurna people as the traditional custodians of this place we now call Adelaide and pay our respects to Elders past, present and future.</p>
+      <div class="footer-logos">
+        <img src="assets/img/supply-nation.png" alt="Supply Nation certification logo">
+        <img src="assets/img/sa-logo.png" alt="South Australia emblem">
+      </div>
+      <div class="footer-links">
+        <a href="assets/ST_HTerms_022025.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+      </div>
+      <p class="footer-copy">© Dragonfly Group (SA) 2026. All Rights Reserved.</p>
     </div>
-
-  </section>
-
-  <!-- ─── FOOTER ────────────────────────────────────────── -->
-  <footer>
-    <div class="fl">Life In My Hands<span class="fl-dot">.</span></div>
-    <div class="fc">© 2026 Aaron Montague. All rights reserved.</div>
-    <ul class="fn">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
   </footer>
 
-  <script>
-    /* NAV */
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    /* SCROLL REVEAL */
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  </script>
-
+  <script src="assets/js/app.js" defer></script>
 </body>
 </html>
