@@ -129,18 +129,22 @@
     .nav-cta:hover { opacity: 0.82; }
 
     /* ─── HERO ───────────────────────────────────────────── */
-    /*
-      The hero is a question.
-      Not a brand name, not a headline, not a value proposition.
-      A question that a CEO sits with.
-    */
     #hero {
       min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 42%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left — the question */
+    .hero-left {
       padding: 0 var(--pad);
       display: flex;
       flex-direction: column;
       justify-content: center;
       position: relative;
+      z-index: 1;
     }
 
     .hero-q {
@@ -150,17 +154,16 @@
       font-style: italic;
       line-height: 1.08;
       color: var(--head);
-      letter-spacing: -0.02em;
-      max-width: 16ch;
-      margin-bottom: 56px;
+      letter-spacing: -0.025em;
+      margin-bottom: 52px;
     }
-    /* The non-italic last word — contrast within the question */
+    /* Final word — upright, full weight — lands like a full stop */
     .hero-q .anchor {
       font-style: normal;
-      color: var(--head);
+      font-weight: 400;
     }
 
-    /* Word entrance — staggered */
+    /* Word entrance */
     .w  { display: inline-block; overflow: hidden; vertical-align: bottom; }
     .wi {
       display: inline-block;
@@ -174,7 +177,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 28px;
+      padding-top: 24px;
       border-top: 1px solid var(--soft);
       opacity: 0;
       animation: fadein 0.7s ease 1.6s forwards;
@@ -198,6 +201,31 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: hsla(240,6%,60%,0.3);
+    }
+
+    /* Right — Aaron's portrait, full bleed, edge to edge */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(15%) contrast(1.05);
+      transform: scale(1.04);
+      transition: transform 14s ease;
+    }
+    #hero:hover .hero-right img { transform: scale(1.0); }
+    /* Feather left edge — photo dissolves into the dark left panel */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--bg) 0%, transparent 30%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* ─── ABOUT ──────────────────────────────────────────── */
@@ -508,12 +536,10 @@
     }
 
     /* ─── CONTACT ─────────────────────────────────────────── */
-    /*
-      Quiet. After the drama of the question hero,
-      this section doesn't shout. It waits.
-    */
     #contact {
-      padding: 120px var(--pad) 112px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
       background: var(--surface);
       position: relative;
     }
@@ -521,43 +547,54 @@
       content: '';
       position: absolute;
       top: 0; left: 0;
-      width: 64px; height: 1px;
+      width: 56px; height: 1px;
       background: var(--green);
+    }
+
+    .contact-left {
+      padding: 112px var(--pad) 112px var(--pad);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .contact-ready {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 5vw, 68px);
+      font-size: clamp(40px, 5vw, 72px);
       font-weight: 300;
       font-style: italic;
       color: var(--head);
-      letter-spacing: -0.015em;
-      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 20px;
     }
 
     .contact-sub {
       font-size: var(--t-lead);
       font-weight: 300;
       color: var(--body);
-      margin-bottom: 64px;
-      max-width: 38ch;
+      margin-bottom: 56px;
+      max-width: 36ch;
+      line-height: 1.7;
     }
 
-    .contact-row {
+    /* Direct contact links */
+    .contact-direct {
       display: flex;
+      flex-direction: column;
       gap: 2px;
     }
     .ct {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      padding: 28px 40px;
+      gap: 5px;
+      padding: 20px 28px;
       border: 1px solid var(--soft);
       text-decoration: none;
       transition: border-color 0.4s ease, background 0.4s ease;
     }
     .ct:hover {
-      border-color: hsla(100,28%,52%,0.28);
+      border-color: hsla(100,28%,52%,0.25);
       background: hsla(100,28%,52%,0.03);
     }
     .ct-label {
@@ -569,9 +606,98 @@
     }
     .ct-value {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(17px, 1.8vw, 24px);
+      font-size: clamp(16px, 1.6vw, 22px);
       font-weight: 400;
       color: var(--head);
+    }
+
+    /* Right — the form */
+    .contact-right {
+      padding: 112px var(--pad) 112px 64px;
+      border-left: 1px solid var(--soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 2.2vw, 32px);
+      font-weight: 300;
+      color: var(--head);
+      letter-spacing: -0.01em;
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--soft);
+      padding: 10px 0 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--head);
+      outline: none;
+      transition: border-color 0.3s ease;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: hsla(240,6%,60%,0.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--green); }
+    .form-group select { cursor: pointer; color: hsla(240,6%,60%,0.5); }
+    .form-group select option { background: var(--surface); color: var(--body); }
+    .form-group textarea { resize: none; height: 90px; line-height: 1.65; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-submit {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .form-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--green);
+      border: none;
+      padding: 14px 36px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    .form-btn:hover { opacity: 0.82; }
+    .form-note {
+      font-size: 11px;
+      color: hsla(240,6%,60%,0.3);
+      line-height: 1.5;
     }
 
     /* ─── FOOTER ──────────────────────────────────────────── */
@@ -613,19 +739,22 @@
       nav.scrolled { padding: 12px var(--pad); }
       .nav-links, .nav-cta { display: none; }
 
-      /* Hero question — no word stagger on small screens, just appear */
-      .hero-q { font-size: clamp(44px, 10vw, 72px); }
+      /* Hero — stack vertically on mobile */
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px var(--pad) 48px; }
+      .hero-right { height: 65vw; min-height: 260px; }
+      .hero-right::before { background: linear-gradient(0deg, var(--bg) 0%, transparent 40%); }
       .w { overflow: visible; }
-      .wi { transform: none; animation: none; opacity: 0; animation: fadein 0.8s ease 0.3s forwards; }
+      .wi { transform: none; animation: fadein 0.8s ease 0.3s forwards; opacity: 0; }
 
+      /* About — no photo column (it's in the hero now) */
       #about { grid-template-columns: 1fr; }
-      .about-photo { height: 65vw; min-height: 220px; }
-      .about-photo::after { background: linear-gradient(0deg, var(--bg) 0%, transparent 40%); }
-      .about-copy { padding: 48px var(--pad); }
+      .about-photo { display: none; }
+      .about-copy { padding: 64px var(--pad); }
 
       #services { padding: 72px var(--pad); }
       .svc-row { grid-template-columns: 36px 1fr; }
-      .svc-aside { display: none; } /* price shown inline in programmes instead */
+      .svc-aside { display: none; }
 
       #gallery { grid-template-columns: 1fr; height: auto; }
       .gp { height: 52vw; min-height: 180px; }
@@ -633,8 +762,10 @@
       #video { padding: 64px var(--pad); }
       .vid-head { flex-direction: column; gap: 6px; }
 
-      #contact { padding: 80px var(--pad); }
-      .contact-row { flex-direction: column; gap: 2px; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-left { padding: 72px var(--pad) 48px; }
+      .contact-right { padding: 48px var(--pad) 72px; border-left: none; border-top: 1px solid var(--soft); }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
       .ct { width: 100%; }
 
       footer {
@@ -663,11 +794,12 @@
   </nav>
 
   <!-- ─── HERO ─────────────────────────────────────────────
-       One object. A question. Nothing else above the fold.
-       The viewer has to scroll to find out who's asking.
+       Left: the question. Right: Aaron's face.
+       Two-column. The question earns the portrait.
   ────────────────────────────────────────────────────────── -->
   <section id="hero">
-    <div>
+
+    <div class="hero-left">
       <h1 class="hero-q" aria-label="What would you do if you trusted yourself completely?">
         <span class="w"><span class="wi" style="animation-delay:0.1s">What</span></span>
         <span class="w"><span class="wi" style="animation-delay:0.18s">would</span></span>
@@ -676,7 +808,7 @@
         <span class="w"><span class="wi" style="animation-delay:0.44s">if</span></span>
         <span class="w"><span class="wi" style="animation-delay:0.52s">you</span></span>
         <span class="w"><span class="wi" style="animation-delay:0.6s">trusted</span></span><br>
-        <span class="w"><span class="wi" style="animation-delay:0.72s">yourself</span></span>
+        <span class="w"><span class="wi" style="animation-delay:0.72s">yourself</span></span><br>
         <span class="w"><span class="wi" style="animation-delay:0.82s"><span class="anchor">completely?</span></span></span>
       </h1>
 
@@ -691,12 +823,17 @@
         <span class="hero-est">Est. 2011</span>
       </div>
     </div>
+
+    <div class="hero-right">
+      <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
+    </div>
+
   </section>
 
   <!-- ─── ABOUT ─────────────────────────────────────────── -->
   <section id="about">
-    <div class="about-photo reveal">
-      <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
+    <div class="about-photo reveal" aria-hidden="true">
+      <img src="images/aaron-face.jpg" alt="" loading="lazy">
     </div>
     <div class="about-copy">
       <p class="eyebrow reveal">About Aaron</p>
@@ -805,24 +942,63 @@
     </div>
   </section>
 
-  <!-- ─── CONTACT ───────────────────────────────────────────
-       Quiet. The hero was the drama.
-       This section just waits.
-  ────────────────────────────────────────────────────────── -->
+  <!-- ─── CONTACT ─────────────────────────────────────────── -->
   <section id="contact">
-    <p class="eyebrow reveal">Get in touch</p>
-    <h2 class="contact-ready reveal d1">Ready when you are.</h2>
-    <p class="contact-sub reveal d2">Book a conversation with Aaron — no obligation, no agenda.</p>
-    <div class="contact-row reveal d3">
-      <a href="tel:0407938932" class="ct">
-        <span class="ct-label">Call</span>
-        <span class="ct-value">0407 938 932</span>
-      </a>
-      <a href="mailto:aaron@lifeinmyhands.com.au" class="ct">
-        <span class="ct-label">Email</span>
-        <span class="ct-value">aaron@lifeinmyhands.com.au</span>
-      </a>
+
+    <div class="contact-left">
+      <p class="eyebrow reveal">Get in touch</p>
+      <h2 class="contact-ready reveal d1">Ready<br>when you<br>are.</h2>
+      <p class="contact-sub reveal d2">No obligation, no agenda — just a conversation to see if working together makes sense.</p>
+      <div class="contact-direct reveal d3">
+        <a href="tel:0407938932" class="ct">
+          <span class="ct-label">Call</span>
+          <span class="ct-value">0407 938 932</span>
+        </a>
+        <a href="mailto:aaron@lifeinmyhands.com.au" class="ct">
+          <span class="ct-label">Email</span>
+          <span class="ct-value">aaron@lifeinmyhands.com.au</span>
+        </a>
+      </div>
     </div>
+
+    <div class="contact-right reveal d1">
+      <h3 class="form-title">Send a message</h3>
+      <form action="https://formspree.io/f/aaron-limh" method="POST" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="first_name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="last_name" placeholder="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="interest">I'm interested in</label>
+          <select id="interest" name="interest">
+            <option value="" disabled selected>Select a service</option>
+            <option value="coaching">Personal Coaching</option>
+            <option value="workshops">Education Workshops</option>
+            <option value="business">Business Solutions</option>
+            <option value="other">Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell Aaron a little about what you're looking for…"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="form-btn">Send Message</button>
+          <span class="form-note">Aaron responds<br>within 48 hours.</span>
+        </div>
+      </form>
+    </div>
+
   </section>
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
