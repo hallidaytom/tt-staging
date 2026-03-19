@@ -3513,3 +3513,57 @@ span, div, nav, footer,
   .exp-bottle-img { height: 100px; opacity: 0.5; }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.5 — Compact amenities, fix background colour
+═══════════════════════════════════════════════════════════ */
+
+/* Background — match rest of site exactly, no warm tint */
+.experience-section {
+  background: #0e0c0a !important;
+  padding: 64px 0 !important;
+}
+
+/* Heading tighter */
+.exp-heading {
+  margin-bottom: 4px !important;
+}
+.exp-intro {
+  margin-bottom: 24px !important;
+}
+
+/* Amenities list — tighter rows, smaller type */
+.exp-amenities li {
+  margin-bottom: 6px !important;
+  font-size: 0.84rem !important;
+  line-height: 1.45 !important;
+}
+.exp-amenity-name {
+  font-size: 0.84rem !important;
+}
+.exp-amenity-desc {
+  font-size: 0.82rem !important;
+}
+
+/* Reduce gap between amenities and bottom row */
+.exp-layout {
+  gap: 24px !important;
+}
+
+/* Partner box — use site gold #c9a84c, legible dark text */
+.exp-partner-box {
+  background: var(--color-gold) !important; /* #c9a84c — site's own gold */
+  padding: 24px 110px 24px 24px !important;
+}
+.exp-partner-box-block {
+  color: #1a1400 !important;
+  font-size: 0.82rem !important;
+}
+.exp-partner-box-title {
+  color: #0d0900 !important;
+  font-size: 0.85rem !important;
+}
+.exp-partner-box-link {
+  color: #0d0900 !important;
+}
+
