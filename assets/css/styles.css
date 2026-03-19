@@ -3838,3 +3838,97 @@ span, div, nav, footer,
   }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.9 — Correct 2×2 grid layout
+   TL: 5 amenities  TR: 5 amenities
+   BL: gallery      BR: partner box
+═══════════════════════════════════════════════════════════ */
+
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px 40px;
+  align-items: end; /* bottom row items align to their base */
+}
+
+.exp-amenities-a { grid-column: 1; grid-row: 1; }
+.exp-amenities-b { grid-column: 2; grid-row: 1; }
+.exp-gallery-wrap { grid-column: 1; grid-row: 2; }
+.exp-partner-wrap { grid-column: 2; grid-row: 2; }
+
+/* Amenities lists */
+.exp-amenities-a .exp-amenities,
+.exp-amenities-b .exp-amenities {
+  list-style: disc !important;
+  padding-left: 18px !important;
+  margin: 0 !important;
+  color: #c9a84c !important;
+}
+
+.exp-amenities-a .exp-amenities li,
+.exp-amenities-b .exp-amenities li {
+  padding: 5px 0 !important;
+  margin: 0 !important;
+  font-size: 0.84rem !important;
+  line-height: 1.5 !important;
+  color: rgba(255,255,255,0.85) !important;
+  border: none !important;
+}
+
+/* Gallery fills its cell */
+.exp-gallery-wrap { align-self: end; }
+.exp-gallery {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 3px !important;
+}
+.exp-gallery-item {
+  display: block !important;
+  aspect-ratio: 1/1 !important;
+  overflow: hidden;
+}
+.exp-gallery-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.exp-gallery-item:hover img { transform: scale(1.04); }
+
+/* Partner box fills its cell, aligned to bottom */
+.exp-partner-wrap {
+  align-self: end;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.exp-partner-box {
+  background: #0e0c0a !important;
+  border: 1px solid rgba(201,168,76,0.35) !important;
+  border-top: 2px solid var(--color-gold) !important;
+  padding: 22px 110px 22px 22px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .exp-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  .exp-amenities-a,
+  .exp-amenities-b,
+  .exp-gallery-wrap,
+  .exp-partner-wrap {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .exp-partner-wrap { height: auto; }
+}
+
