@@ -3221,3 +3221,295 @@ body,
   display: block;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.4 — Font tidy, buttons, marquee, quote, amenities layout
+═══════════════════════════════════════════════════════════ */
+
+/* ── 1. GLOBAL FONT UNIFORMITY ───────────────────────────── */
+/* Single source of truth — everything uses these two faces  */
+h1, h2, h3, h4, h5, h6,
+.exp-heading,
+.form-title,
+.video-title,
+.faq-heading,
+.review-quote,
+.contact-ready,
+.about-hl,
+.svc-hl,
+.svc-title,
+.stat-num,
+.vid-title,
+.footer-logo,
+.partners-duo-name {
+  font-family: 'Playfair Display', serif;
+  font-style: normal;
+}
+
+body, p, li, a, label, input, select, textarea, button,
+span, div, nav, footer,
+.exp-amenity-name,
+.exp-amenity-desc,
+.exp-partner-box-block,
+.marquee-item,
+.hero-eyebrow,
+.hero-subtext,
+.section-rule,
+.nav-links a,
+.nav-cta,
+.btn-primary,
+.btn-secondary,
+.faq-q-text,
+.faq-intro,
+.review-author,
+.footer-copy,
+.acknowledgement {
+  font-family: 'Lato', sans-serif;
+}
+
+/* ── 2. BUTTONS — shadow box + character ────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 36px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Primary — gold fill, dark shadow below */
+.btn-primary {
+  background: var(--color-gold);
+  color: #111;
+  border-color: var(--color-gold);
+  box-shadow:
+    0 4px 12px rgba(201,168,76,0.35),
+    0 8px 28px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-primary:hover {
+  background: #d4b055;
+  box-shadow:
+    0 6px 20px rgba(201,168,76,0.5),
+    0 12px 36px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* Secondary — outlined gold, fills on hover */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(201,168,76,0.1);
+}
+.btn-secondary:hover {
+  background: var(--color-gold);
+  color: #111;
+  box-shadow:
+    0 6px 20px rgba(201,168,76,0.4),
+    0 8px 28px rgba(0,0,0,0.45);
+  transform: translateY(-2px);
+}
+/* Override the pseudo fill from original — we're doing it with bg now */
+.btn-secondary::before { display: none; }
+
+/* ── 3. MARQUEE — gold background (fix the #111 override) ── */
+.marquee-strip {
+  background: var(--color-gold) !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.marquee-item {
+  font-family: 'Lato', sans-serif !important;
+  font-style: normal !important;
+  color: #1a1200 !important;
+  font-weight: 700 !important;
+}
+.marquee-item--dot {
+  color: rgba(26,18,0,0.4) !important;
+}
+
+/* ── 4. DETAIL SECTION — reduce quote size ──────────────── */
+.intro-pullquote p,
+.review-quote {
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem) !important;
+  line-height: 1.7;
+}
+
+/* ── 5. AMENITIES SECTION — full layout rework ──────────── */
+
+/* Outer section */
+.experience-section {
+  background: #111108;
+  padding: 80px 0;
+}
+
+/* Heading */
+.exp-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.exp-intro {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 36px;
+}
+
+/* 
+  Layout: amenities list spans FULL WIDTH top row
+  Gallery bottom-left, partner box bottom-right
+*/
+.exp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 32px;
+}
+
+/* Left column: amenities only — spans full width */
+.exp-left {
+  grid-column: 1 / -1; /* spans both columns */
+}
+
+/* Two-sub-col amenity list */
+.exp-amenities-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+}
+
+.exp-amenities {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 0;
+  color: #C47D2A; /* bullet color */
+}
+.exp-amenities li {
+  margin-bottom: 9px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.8);
+  font-weight: 300;
+}
+.exp-amenity-name {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #C47D2A;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.exp-amenity-desc {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+/* Right column contains gallery + partner box, stacked */
+.exp-right {
+  display: contents; /* children participate in parent grid directly */
+}
+
+/* Gallery — bottom-left */
+.exp-gallery {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.exp-gallery-item {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.exp-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.exp-gallery-item:hover img { transform: scale(1.05); }
+
+/* Partner box — bottom-right */
+.exp-partner-box {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  background: #B8900A;
+  padding: 28px 110px 28px 28px;
+  overflow: hidden;
+}
+.exp-bottle-img {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  height: 150px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  opacity: 0.82;
+  pointer-events: none;
+}
+.exp-partner-box-content {
+  position: relative;
+  z-index: 1;
+}
+.exp-partner-box-block {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: #1a1200;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.exp-partner-box-block:last-child { margin-bottom: 0; }
+.exp-partner-box-title {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: #0d0900;
+}
+.exp-partner-box-link {
+  color: #0d0900;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* Mobile */
+@media (max-width: 780px) {
+  .exp-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .exp-left { grid-column: 1; }
+  .exp-amenities-wrap { grid-template-columns: 1fr; }
+  .exp-gallery { grid-column: 1; grid-row: 2; }
+  .exp-partner-box { grid-column: 1; grid-row: 3; padding-right: 28px; }
+  .exp-bottle-img { height: 100px; opacity: 0.5; }
+}
+
