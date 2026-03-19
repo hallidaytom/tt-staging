@@ -4040,3 +4040,23 @@ p, li, a, label, input, select, textarea,
   height: 100% !important;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v2.2 — Gallery raised flush to 3-item list base
+═══════════════════════════════════════════════════════════ */
+
+.exp-gallery-wrap {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Remove any gap between row 1 and row 2 in left column */
+.exp-grid {
+  row-gap: 0 !important;
+}
+
+/* Small breathing room between list items and gallery — 6px max */
+.exp-amenities-a {
+  padding-bottom: 6px !important;
+}
+
