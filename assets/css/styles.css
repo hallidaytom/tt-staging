@@ -3801,3 +3801,40 @@ span, div, nav, footer,
   .exp-bottle-img { display: none; }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.8 — All 10 amenities, partner box bottom-aligned
+═══════════════════════════════════════════════════════════ */
+
+/* Left col: flex column, gallery pushed to bottom */
+.exp-col--left {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.exp-col--left .exp-amenities {
+  flex: 1;
+  margin-bottom: 20px !important;
+}
+
+/* Right col: partner box aligned to bottom of column */
+.exp-col--right {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-self: end !important;
+}
+
+/* Parent grid must be stretch to allow align-self */
+.exp-layout {
+  align-items: stretch !important;
+}
+
+@media (max-width: 760px) {
+  .exp-col--right {
+    justify-content: flex-start !important;
+    align-self: auto !important;
+  }
+}
+
