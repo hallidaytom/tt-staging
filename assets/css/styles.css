@@ -3013,3 +3013,173 @@ body,
   z-index: 1;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.2 — Experience section: match screenshot exactly
+═══════════════════════════════════════════════════════════ */
+
+/* Section */
+.experience-section {
+  background: #111108;
+  padding: 80px 0;
+}
+
+/* Heading */
+.exp-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.exp-intro {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: #c8c8c8;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+/* Two-column layout */
+.exp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── LEFT: two sub-columns of amenities ─────── */
+.exp-amenities-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+  align-items: start;
+}
+
+.exp-amenities {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 0;
+}
+.exp-amenities li {
+  margin-bottom: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #d0cec8;
+  font-weight: 300;
+}
+/* Gold underlined label — matches screenshot */
+.exp-amenity-name {
+  color: #C47D2A;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  display: inline;
+  font-weight: 400;
+}
+.exp-amenity-desc {
+  color: #d0cec8;
+  display: inline;
+}
+
+/* Inline gallery image */
+.exp-inline-img-item {
+  list-style: none;
+  margin-left: -18px; /* undo ul padding */
+  margin-bottom: 12px;
+}
+.exp-inline-img {
+  width: 100%;
+  max-width: 340px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid #C47D2A;
+  display: block;
+}
+
+/* ── RIGHT: gallery + gold box ──────────────── */
+.exp-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 2×2 gallery */
+.exp-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.exp-gallery-item {
+  display: block;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.exp-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+.exp-gallery-item:hover img { transform: scale(1.05); }
+
+/* Gold partner box */
+.exp-partner-box {
+  position: relative;
+  background: #B8900A;
+  padding: 24px 100px 24px 24px; /* right padding for bottle */
+  overflow: hidden;
+}
+.exp-bottle-img {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  height: 160px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.exp-partner-box-content {
+  position: relative;
+  z-index: 1;
+}
+.exp-partner-box-block {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: #1a1200;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.exp-partner-box-block:last-child { margin-bottom: 0; }
+.exp-partner-box-title {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: #1a1200;
+}
+.exp-partner-box-link {
+  color: #1a1200;
+  text-decoration: underline;
+  font-weight: 700;
+}
+.exp-partner-box-link:hover { opacity: 0.7; }
+
+/* Bullet color to match gold */
+.exp-amenities { color: #C47D2A; }
+.exp-amenities li { color: #d0cec8; } /* reset text, only bullet stays gold via parent */
+
+/* Mobile */
+@media (max-width: 860px) {
+  .exp-layout { grid-template-columns: 1fr; gap: 40px; }
+  .exp-amenities-wrap { grid-template-columns: 1fr; }
+  .exp-inline-img { max-width: 100%; height: 180px; }
+  .experience-section { padding: 60px 0; }
+}
+
