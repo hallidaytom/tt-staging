@@ -4011,3 +4011,32 @@ p, li, a, label, input, select, textarea,
   .exp-gallery-wrap { margin-top: 0; }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v2.1 — Amenity columns align to top, not centre
+═══════════════════════════════════════════════════════════ */
+
+.exp-grid {
+  align-items: start !important;
+}
+
+.exp-amenities-a,
+.exp-amenities-b {
+  align-self: start !important;
+}
+
+/* Gallery sits flush directly below the 3-item list */
+.exp-gallery-wrap {
+  align-self: start !important;
+  margin-top: 12px !important;
+}
+
+/* Partner box stays pinned to bottom-right, matching gallery base */
+.exp-partner-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-self: end !important;
+  height: 100% !important;
+}
+
