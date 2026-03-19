@@ -3567,3 +3567,64 @@ span, div, nav, footer,
   color: #0d0900 !important;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.6 — Partner box: dark + gold accent treatment
+═══════════════════════════════════════════════════════════ */
+
+.exp-partner-box {
+  background: #0e0c0a !important;
+  border: 1px solid rgba(201,168,76,0.4) !important;
+  /* Top edge gold rule for visual anchor */
+  border-top: 2px solid var(--color-gold) !important;
+  padding: 28px 120px 28px 28px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold glow in top-right corner */
+.exp-partner-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.exp-partner-box-content { position: relative; z-index: 1; }
+
+.exp-partner-box-block {
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.7 !important;
+  margin-bottom: 18px !important;
+}
+.exp-partner-box-block:last-child { margin-bottom: 0 !important; }
+
+.exp-partner-box-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  color: var(--color-gold) !important;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px !important;
+  display: block;
+}
+
+.exp-partner-box-link {
+  color: var(--color-gold) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  font-weight: 600 !important;
+}
+.exp-partner-box-link:hover { opacity: 0.75; }
+
+/* Bottle image — lighter opacity on dark bg */
+.exp-bottle-img {
+  opacity: 0.18 !important;
+  mix-blend-mode: screen !important;
+  filter: grayscale(30%) !important;
+}
+
