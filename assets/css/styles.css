@@ -3628,3 +3628,176 @@ span, div, nav, footer,
   filter: grayscale(30%) !important;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v1.7 — Match screenshot layout exactly
+   Left: 3 amenities → 2×2 gallery
+   Right: 5 amenities → partner box
+   Even spacing, compact, formal
+═══════════════════════════════════════════════════════════ */
+
+.experience-section {
+  background: #0a0a0a !important;
+  padding: 56px 0 !important;
+}
+
+.exp-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem) !important;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  margin: 0 0 4px !important;
+}
+
+.exp-intro {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  margin: 0 0 28px !important;
+  font-weight: 300;
+}
+
+/* Two equal columns, no sub-grids */
+.exp-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: auto !important;
+  gap: 0 40px !important;
+  align-items: start;
+}
+
+.exp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Amenities list — matches screenshot proportions */
+.exp-amenities {
+  list-style: disc !important;
+  padding-left: 20px !important;
+  margin: 0 0 24px 0 !important;
+  color: #C47D2A !important; /* bullet colour */
+}
+
+.exp-amenities li {
+  padding: 6px 0 !important;
+  margin: 0 !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.84rem !important;
+  line-height: 1.5 !important;
+  color: rgba(255,255,255,0.85) !important;
+  border: none !important;
+}
+
+.exp-amenity-name {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  color: #c9a84c !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+}
+
+.exp-amenity-desc {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.84rem !important;
+  font-weight: 300 !important;
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* 2×2 gallery — left column bottom */
+.exp-gallery {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 3px !important;
+  width: 100%;
+}
+
+.exp-gallery-item {
+  display: block !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden;
+  background: #111;
+}
+
+.exp-gallery-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.exp-gallery-item:hover img { transform: scale(1.04); }
+
+/* Partner box — right column bottom, matches screenshot */
+.exp-partner-box {
+  background: #0e0c0a !important;
+  border: 1px solid rgba(201,168,76,0.35) !important;
+  border-top: 2px solid var(--color-gold) !important;
+  padding: 22px 110px 22px 22px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-partner-box::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 130px; height: 130px;
+  background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.exp-partner-box-content { position: relative; z-index: 1; }
+
+.exp-partner-box-title {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: rgba(255,255,255,0.95) !important;
+  display: block;
+  margin-bottom: 5px !important;
+}
+
+.exp-partner-box-block {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 0.8rem !important;
+  line-height: 1.65 !important;
+  color: rgba(255,255,255,0.65) !important;
+  margin-bottom: 16px !important;
+}
+.exp-partner-box-block:last-child { margin-bottom: 0 !important; }
+
+.exp-partner-box-link {
+  color: var(--color-gold) !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+.exp-bottle-img {
+  position: absolute !important;
+  right: -6px !important;
+  bottom: -6px !important;
+  height: 130px !important;
+  width: auto;
+  opacity: 0.2 !important;
+  mix-blend-mode: screen !important;
+  filter: grayscale(20%) !important;
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .exp-layout {
+    grid-template-columns: 1fr !important;
+    gap: 32px 0 !important;
+  }
+  .exp-partner-box { padding-right: 22px !important; }
+  .exp-bottle-img { display: none; }
+}
+
