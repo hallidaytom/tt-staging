@@ -3932,3 +3932,82 @@ span, div, nav, footer,
   .exp-partner-wrap { height: auto; }
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v2.0 — 3/7 amenity split, gallery flush to col 3 base
+   Global body font size increase
+═══════════════════════════════════════════════════════════ */
+
+/* ── Body font size — entire site ────────────── */
+body {
+  font-size: 1rem !important; /* was ~0.875rem effectively */
+}
+
+p, li, a, label, input, select, textarea,
+.faq-answer p,
+.intro-body,
+.intro-lead,
+.review-quote,
+.partners-duo-desc,
+.enquiry-sub,
+.acknowledgement,
+.footer-copy {
+  font-size: 1rem !important;
+}
+
+/* Slightly larger nav, labels stay compact */
+.nav-links a { font-size: 0.8rem !important; }
+.btn { font-size: 0.8rem !important; }
+.marquee-item { font-size: 0.75rem !important; }
+.field-label { font-size: 0.75rem !important; }
+
+/* ── Grid: row gap 0 between amenities and gallery ───────── */
+.exp-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  /* Row 1 auto-sizes to content, row 2 stretches to match */
+  grid-template-rows: auto 1fr !important;
+  column-gap: 40px !important;
+  row-gap: 0 !important; /* no gap — gallery butts up to list base */
+  align-items: end !important;
+}
+
+.exp-amenities-a { grid-column: 1; grid-row: 1; padding-bottom: 0 !important; margin-bottom: 0 !important; }
+.exp-amenities-b { grid-column: 2; grid-row: 1; padding-bottom: 0 !important; margin-bottom: 0 !important; }
+.exp-gallery-wrap { grid-column: 1; grid-row: 2; align-self: start; margin-top: 16px; }
+.exp-partner-wrap { grid-column: 2; grid-row: 2; align-self: end; }
+
+/* Remove any bottom margin on the amenity lists themselves */
+.exp-amenities-a .exp-amenities,
+.exp-amenities-b .exp-amenities {
+  margin-bottom: 0 !important;
+}
+
+/* Amenity font sizes bump up with body */
+.exp-amenities-a .exp-amenities li,
+.exp-amenities-b .exp-amenities li,
+.exp-amenity-name,
+.exp-amenity-desc {
+  font-size: 0.92rem !important;
+}
+
+/* Partner box */
+.exp-partner-box-block { font-size: 0.9rem !important; }
+.exp-partner-box-title { font-size: 0.95rem !important; }
+
+@media (max-width: 760px) {
+  .exp-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    row-gap: 24px !important;
+  }
+  .exp-amenities-a,
+  .exp-amenities-b,
+  .exp-gallery-wrap,
+  .exp-partner-wrap {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  .exp-gallery-wrap { margin-top: 0; }
+}
+
