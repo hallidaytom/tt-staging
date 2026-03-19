@@ -4060,3 +4060,30 @@ p, li, a, label, input, select, textarea,
   padding-bottom: 6px !important;
 }
 
+
+/* ═══════════════════════════════════════════════════════════
+   REVISION v2.3 — Audit fixes: buttons, footer logo, hero actions
+═══════════════════════════════════════════════════════════ */
+
+/* Fix 1: hero-actions now inside the text box — pad top for separation */
+.hero-text-box .hero-actions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* Fix 10: footer logo — ensure it renders white/visible on dark */
+.footer-logo {
+  filter: brightness(0) invert(1);
+  /* Inverts to white — works for any dark logo. If logo is already white/gold, remove this */
+  max-width: 160px;
+}
+
+/* Ensure footer background is dark so logos are visible */
+.footer {
+  background-color: #0a0a0a !important;
+  color: rgba(255,255,255,0.6) !important;
+}
+
