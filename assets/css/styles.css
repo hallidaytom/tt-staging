@@ -863,3 +863,132 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 /* flush gallery to amenity list base */
 .exp-amenities-a .exp-amenities { margin-bottom: 0; }
 .exp-amenities-a .exp-amenities li:last-child { padding-bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   TYPOGRAPHY SYSTEM — Major Third Scale (×1.25 ratio)
+   Base: 16px
+   Playfair Display = display/headings only
+   Lato = ALL body, labels, UI, lists, tables, nav, buttons
+   
+   Scale:
+   --fs-xs:   12px  (0.75rem)  — labels, captions, small UI
+   --fs-sm:   14px  (0.875rem) — secondary body, table cells
+   --fs-base: 16px  (1rem)     — primary body copy
+   --fs-md:   20px  (1.25rem)  — lead / intro paragraphs
+   --fs-lg:   25px  (1.563rem) — h3 / subsection titles
+   --fs-xl:   31px  (1.938rem) — h2 / section headings
+   --fs-2xl:  39px  (2.438rem) — h1 / page headings
+   --fs-3xl:  clamp(2.4rem, 5.5vw, 4.2rem) — hero display
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.25rem;
+  --fs-lg:   1.563rem;
+  --fs-xl:   1.938rem;
+  --fs-2xl:  2.438rem;
+  --fs-3xl:  clamp(2.4rem, 5.5vw, 4.2rem);
+}
+
+/* ── GLOBAL RESET — two faces, one weight system ─────────── */
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: var(--fs-base);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* All headings: Playfair Display, specific sizes from scale */
+h1 { font-family: 'Playfair Display', serif; font-size: var(--fs-3xl); font-weight: 400; font-style: normal; line-height: 1.08; letter-spacing: -0.01em; }
+h2 { font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); font-weight: 400; font-style: normal; line-height: 1.1; letter-spacing: 0.02em; }
+h3 { font-family: 'Playfair Display', serif; font-size: var(--fs-xl);  font-weight: 400; font-style: normal; line-height: 1.2; }
+
+/* All body elements: Lato */
+p, li, a, label, input, select, textarea, button,
+td, th, span, div {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+}
+
+/* ── NAV ────────────────────────────────────────── */
+.nav-links a { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.2em; }
+.nav-cta     { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.2em; }
+
+/* ── HERO ───────────────────────────────────────── */
+.hero h1        { font-size: var(--fs-3xl); text-transform: uppercase; letter-spacing: 0.06em; }
+.hero-subtext   { font-size: var(--fs-base); font-weight: 300; }
+
+/* ── MARQUEE ────────────────────────────────────── */
+.marquee-item { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.32em; }
+
+/* ── INTRO SECTION ──────────────────────────────── */
+.intro-lead  { font-family: 'Playfair Display', serif; font-size: var(--fs-xl); font-weight: 700; line-height: 1.4; }
+.intro-body  { font-size: var(--fs-base); font-weight: 300; line-height: 1.7; }
+.intro-pullquote p { font-family: 'Playfair Display', serif; font-size: var(--fs-sm); line-height: 1.7; font-style: normal; }
+.intro-features strong { font-size: var(--fs-base); }
+
+/* ── EXPERIENCE SECTION — COMPACT ───────────────── */
+.experience-section { padding: 48px 0; }
+
+.exp-heading { font-family: 'Playfair Display', serif; font-size: var(--fs-xl); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+/* Amenity list — tighter */
+.exp-amenities li       { font-size: var(--fs-sm); line-height: 1.45; padding: 4px 0; }
+.exp-amenity-name       { font-size: var(--fs-sm); font-weight: 600; }
+.exp-amenity-desc       { font-size: var(--fs-sm); }
+
+/* Zero gap between list bottom and gallery */
+.exp-amenities-a        { padding-bottom: 0; }
+.exp-amenities-a .exp-amenities { margin-bottom: 0; }
+.exp-amenities-a .exp-amenities li:last-child { padding-bottom: 0; }
+.exp-grid               { row-gap: 0; column-gap: 32px; }
+
+/* Partner box */
+.exp-partner-box-title  { font-size: var(--fs-sm); font-weight: 700; }
+.exp-partner-box-block  { font-size: var(--fs-xs); line-height: 1.65; }
+
+/* ── SECTION TITLES ─────────────────────────────── */
+/* Generic h2 within sections */
+.amenities h2,
+.collage-section h2,
+.partners-inner h2 { font-size: var(--fs-2xl); letter-spacing: 0.06em; }
+
+/* ── REVIEWS ────────────────────────────────────── */
+.stat-num           { font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); }
+.stat-label         { font-size: var(--fs-xs); letter-spacing: 0.2em; }
+.stat:last-child .stat-num { font-size: var(--fs-md); }
+.review-quote       { font-family: 'Playfair Display', serif; font-size: var(--fs-sm); line-height: 1.75; font-style: normal; }
+.quote-open         { font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); }
+.review-author      { font-size: var(--fs-xs); letter-spacing: 0.22em; }
+
+/* ── FAQ ────────────────────────────────────────── */
+.faq-header h2 { font-size: var(--fs-xl); letter-spacing: 0.01em; }
+.faq-q-text    { font-family: 'Playfair Display', serif; font-size: var(--fs-base); font-style: normal; }
+.faq-answer p  { font-size: var(--fs-sm); }
+.faq-answer li { font-size: var(--fs-sm); }
+.faq-intro     { font-size: var(--fs-sm); }
+.faq-num       { font-size: var(--fs-xs); }
+
+/* ── FOOTER ─────────────────────────────────────── */
+.footer-copy     { font-size: var(--fs-xs); }
+.acknowledgement { font-size: var(--fs-xs); line-height: 1.7; }
+.footer-links a  { font-size: var(--fs-sm); }
+
+/* ── MODAL / FORM ───────────────────────────────── */
+.enquiry-header h2  { font-size: var(--fs-lg); }
+.enquiry-sub        { font-size: var(--fs-sm); }
+.field-label        { font-size: var(--fs-xs); letter-spacing: 0.18em; }
+.field-input        { font-size: var(--fs-sm); }
+.field-error        { font-size: var(--fs-xs); }
+.enquiry-privacy    { font-size: var(--fs-xs); }
+.enquiry-alt-label  { font-size: var(--fs-xs); letter-spacing: 0.2em; }
+.contact-link       { font-size: var(--fs-sm); }
+.enquiry-success h3 { font-size: var(--fs-md); }
+.enquiry-success p,
+.enquiry-error p    { font-size: var(--fs-sm); }
+
+/* ── BUTTONS ────────────────────────────────────── */
+.btn { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.2em; }
+
