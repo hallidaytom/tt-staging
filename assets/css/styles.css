@@ -378,18 +378,28 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   margin-bottom: 28px;
 }
 
-/* 2×2 grid: TL amenities A, TR amenities B, BL gallery, BR partner box */
+/* Two independent flex columns — left and right don't affect each other's height */
 .exp-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 40px;
-  row-gap: 0;
-  align-items: start;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
 }
-.exp-amenities-a { grid-column: 1; grid-row: 1; padding-bottom: 0; }
-.exp-amenities-b { grid-column: 2; grid-row: 1; }
-.exp-gallery-wrap { grid-column: 1; grid-row: 2; align-self: start; }
-.exp-partner-wrap { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; justify-content: flex-end; align-self: end; height: 100%; }
+.exp-col-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.exp-col-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.exp-amenities-a { padding-bottom: 0; margin-bottom: 0; }
+.exp-amenities-a .exp-amenities { margin-bottom: 0; }
+.exp-amenities-a .exp-amenities li:last-child { padding-bottom: 0; margin-bottom: 0; }
+.exp-gallery-wrap { margin-top: 0; padding-top: 0; }
+.exp-amenities-b { flex: 1; }
+.exp-partner-wrap { margin-top: 20px; }
 
 /* Amenity lists */
 .exp-amenities {
