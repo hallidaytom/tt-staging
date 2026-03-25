@@ -24,7 +24,7 @@ a     { color: inherit; text-decoration: none; }
 
 body {
   font-family: var(--font-b);
-  font-size: 1rem;
+  font-size: var(--fs-base);
   font-weight: 300;
   line-height: 1.6;
   color: var(--white);
@@ -114,7 +114,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .nav-links a {
   font-family: var(--font-b);
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -160,7 +160,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   gap: 10px;
   padding: 14px 36px;
   font-family: var(--font-b);
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -249,7 +249,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .hero-title-wrap { margin: 0 0 16px; }
 .hero h1 {
   font-family: var(--font-h);
-  font-size: clamp(2.4rem,5.5vw,4.2rem);
+  font-size: var(--fs-hero);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -260,7 +260,6 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .hero-subtext {
   font-family: var(--font-b);
   font-style: normal;
-  font-size: 1rem;
   color: rgba(255,255,255,0.82);
   margin: 0 auto 4px;
   animation: fadeInUp 0.7s ease both 1s;
@@ -305,7 +304,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .marquee-item {
   font-family: var(--font-b);
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   font-style: normal;
   letter-spacing: 0.32em;
@@ -324,14 +323,13 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .intro-lead {
   font-family: var(--font-h);
-  font-size: clamp(1.35rem,2.4vw,1.85rem);
+  font-size: var(--fs-xl);
   font-weight: 700;
   line-height: 1.5;
   color: var(--dark);
   margin-bottom: 16px;
 }
 .intro-body {
-  font-size: 1rem;
   font-weight: 400;
   line-height: 1.65;
   color: rgba(26,26,26,0.72);
@@ -339,7 +337,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .intro-features { display: flex; flex-direction: column; gap: 12px; }
 .intro-feature  { display: flex; gap: 12px; align-items: flex-start; }
-.intro-features strong { font-size: 1rem; display: block; margin-bottom: 2px; }
+.intro-features strong { display: block; margin-bottom: 2px; }
 .intro-pullquote {
   margin-top: 20px;
   border-top: 1px solid rgba(201,168,76,0.35);
@@ -351,7 +349,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .intro-pullquote p {
   font-family: var(--font-h);
   font-style: normal;
-  font-size: clamp(0.9rem,1.4vw,1.1rem);
+  font-size: var(--fs-base);
   line-height: 1.7;
   color: var(--dark);
 }
@@ -370,7 +368,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .exp-heading {
   font-family: var(--font-h);
-  font-size: clamp(1.6rem,2.6vw,2.2rem);
+  font-size: var(--fs-xl);
   font-weight: 400;
   color: var(--white);
   letter-spacing: 0.1em;
@@ -413,21 +411,21 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .exp-amenities li {
   padding: 5px 0;
-  font-size: 0.92rem;
+  font-size: var(--fs-base);
   line-height: 1.5;
   color: rgba(255,255,255,0.85);
   font-weight: 300;
 }
 .exp-amenity-name {
   font-family: var(--font-b);
-  font-size: 0.92rem;
+  font-size: var(--fs-base);
   font-weight: 600;
   color: var(--gold);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 .exp-amenity-desc {
-  font-size: 0.9rem;
+  font-size: var(--fs-base);
   color: rgba(255,255,255,0.6);
   font-weight: 300;
 }
@@ -473,7 +471,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .exp-partner-box-content { position: relative; z-index: 1; }
 .exp-partner-box-title {
   font-family: var(--font-b);
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
   color: rgba(255,255,255,0.95);
   display: block;
@@ -481,7 +479,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .exp-partner-box-block {
   font-family: var(--font-b);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   line-height: 1.65;
   color: rgba(255,255,255,0.65);
   margin-bottom: 16px;
@@ -539,14 +537,14 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .stat-num {
   display: block;
   font-family: var(--font-h);
-  font-size: clamp(2rem,4vw,3rem);
+  font-size: clamp(2rem,4vw,3rem); /* intentional display size */
   color: var(--gold);
   line-height: 1;
   margin-bottom: 8px;
 }
-.stat:last-child .stat-num { font-size: clamp(1rem,1.8vw,1.4rem); letter-spacing: 0.04em; line-height: 1.3; }
+.stat:last-child .stat-num { font-size: var(--fs-lg); letter-spacing: 0.04em; line-height: 1.3; }
 .stat-label {
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.55);
@@ -563,7 +561,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .quote-open {
   display: block;
   font-family: var(--font-h);
-  font-size: clamp(3.5rem,6vw,5.5rem);
+  font-size: clamp(3.5rem,6vw,5.5rem); /* intentional display size */
   color: var(--gold);
   line-height: 0.6;
   margin-bottom: 16px;
@@ -572,7 +570,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .review-quote {
   font-family: var(--font-h);
   font-style: normal;
-  font-size: clamp(0.9rem,1.4vw,1.1rem);
+  font-size: var(--fs-base);
   line-height: 1.7;
   color: #f2ede4;
   margin: 0 0 24px;
@@ -580,7 +578,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .review-meta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .review-rule { width: 48px; height: 1px; background: var(--gold); opacity: 0.7; }
 .review-author {
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
@@ -588,7 +586,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .review-stars { display: flex; gap: 5px; justify-content: center; font-size: 0; }
 .star-item {
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: var(--fs-base);
   color: var(--gold);
   opacity: 0;
   transform: scale(0) rotate(-25deg);
@@ -610,14 +608,13 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .faq-header { position: sticky; top: 120px; }
 .faq-header h2 {
   color: var(--cream);
-  font-size: clamp(2.2rem,3.5vw,3.4rem);
+  font-size: var(--fs-xl);
   line-height: 1.08;
   margin: 1rem 0 1.4rem;
   letter-spacing: 0.01em;
   text-transform: none;
 }
 .faq-intro {
-  font-size: 1rem;
   color: rgba(245,240,232,0.48);
   line-height: 1.75;
   margin-bottom: 2.25rem;
@@ -640,7 +637,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .faq-item.open .faq-question { color: var(--gold); }
 .faq-num {
   font-family: var(--font-b);
-  font-size: 0.6rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--gold);
@@ -654,7 +651,6 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   flex: 1;
   font-family: var(--font-h);
   font-style: normal;
-  font-size: 1rem;
   line-height: 1.45;
 }
 .faq-icon {
@@ -663,7 +659,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   border: 1px solid rgba(201,168,76,0.3);
   color: var(--gold);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
+  font-size: var(--fs-base);
   font-family: var(--font-b);
   font-style: normal;
   transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
@@ -682,7 +678,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .faq-item.open .faq-answer { opacity: 1; }
 .faq-answer p {
-  font-size: 1rem;
+  font-size: var(--fs-sm);
   line-height: 1.8;
   color: rgba(245,240,232,0.55);
   margin-bottom: 0.6rem;
@@ -690,14 +686,14 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .faq-answer ul { list-style: none; margin-bottom: 1rem; }
 .faq-answer ul li {
-  font-size: 1rem;
+  font-size: var(--fs-sm);
   line-height: 1.75;
   color: rgba(245,240,232,0.55);
   margin-bottom: 0.5rem;
   padding-left: 1.25rem;
   position: relative;
 }
-.faq-answer ul li::before { content:'—'; position:absolute; left:0; color:var(--gold); opacity:0.5; font-size:0.7rem; top:0.28em; }
+.faq-answer ul li::before { content:'—'; position:absolute; left:0; color:var(--gold); opacity:0.5; font-size:var(--fs-xs); top:0.28em; }
 .faq-answer ul li strong { color: rgba(245,240,232,0.82); font-weight: 700; }
 
 /* ── FOOTER ─────────────────────────────────────────────── */
@@ -726,8 +722,8 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .footer-logos img { width: 80px; filter: grayscale(0.1); }
 .footer-links a { color: var(--gold); }
-.footer-copy { font-size: 0.9rem; color: rgba(255,255,255,0.35); }
-.acknowledgement { font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.4); max-width: 600px; margin: 0 auto; }
+.footer-copy { font-size: var(--fs-base); color: rgba(255,255,255,0.35); }
+.acknowledgement { font-size: var(--fs-xs); line-height: 1.7; color: rgba(255,255,255,0.4); max-width: 600px; margin: 0 auto; }
 
 /* ── QUOTE MODAL ────────────────────────────────────────── */
 .quote-modal {
@@ -762,14 +758,14 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .quote-modal-close:hover { color: var(--gold); }
 .enquiry-header { margin-bottom: 32px; }
-.enquiry-header h2 { font-size: clamp(1.6rem,3vw,2.2rem); color: var(--white); margin-bottom: 8px; }
-.enquiry-sub { font-size: 0.9rem; color: rgba(255,255,255,0.45); }
+.enquiry-header h2 { font-size: var(--fs-xl); color: var(--white); margin-bottom: 8px; }
+.enquiry-sub { font-size: var(--fs-sm); color: rgba(255,255,255,0.45); }
 .enquiry-form {}
 .enquiry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 20px; }
 .field-group { display: flex; flex-direction: column; gap: 6px; }
 .field-group--full { grid-column: 1 / -1; }
 .field-label {
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -781,7 +777,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   border: 1px solid rgba(255,255,255,0.1);
   color: var(--white);
   font-family: var(--font-b);
-  font-size: 0.95rem;
+  font-size: var(--fs-base);
   font-weight: 300;
   padding: 10px 14px;
   outline: none;
@@ -796,13 +792,13 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .field-select-arrow {
   position: absolute; right: 12px; top: 50%;
   transform: translateY(-50%);
-  color: var(--gold); pointer-events: none; font-size: 0.75rem;
+  color: var(--gold); pointer-events: none; font-size: var(--fs-xs);
 }
 .field-textarea { resize: none; }
-.field-error { font-size: 0.75rem; color: #e07070; min-height: 1em; }
+.field-error { font-size: var(--fs-xs); color: #e07070; min-height: 1em; }
 .enquiry-actions { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
 .enquiry-submit { width: 100%; }
-.enquiry-privacy { font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 1.5; }
+.enquiry-privacy { font-size: var(--fs-xs); color: rgba(255,255,255,0.3); line-height: 1.5; }
 .submit-spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(26,26,26,0.3); border-top-color: var(--dark); border-radius: 50%; animation: spin 0.7s linear infinite; }
 .enquiry-submit.loading .submit-label { display: none; }
 .enquiry-submit.loading .submit-spinner { display: block; }
@@ -811,13 +807,13 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .enquiry-success, .enquiry-error { display: none; margin-top: 24px; padding: 20px; text-align: center; }
 .enquiry-success.visible { display: block; }
 .enquiry-error.visible { display: block; background: rgba(224,112,112,0.08); border: 1px solid rgba(224,112,112,0.25); }
-.enquiry-success-icon { font-size: 2rem; color: var(--gold); margin-bottom: 12px; }
-.enquiry-success h3 { font-size: 1.2rem; color: var(--white); margin-bottom: 8px; }
-.enquiry-success p, .enquiry-error p { font-size: 0.9rem; color: rgba(255,255,255,0.55); }
+.enquiry-success-icon { font-size: var(--fs-xl); color: var(--gold); margin-bottom: 12px; }
+.enquiry-success h3 { font-size: var(--fs-lg); color: var(--white); margin-bottom: 8px; }
+.enquiry-success p, .enquiry-error p { font-size: var(--fs-sm); color: rgba(255,255,255,0.55); }
 .enquiry-alt { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; }
-.enquiry-alt-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); display: block; margin-bottom: 12px; }
+.enquiry-alt-label { font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); display: block; margin-bottom: 12px; }
 .enquiry-alt-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; }
-.contact-link { font-size: 0.85rem; color: var(--gold); transition: opacity 0.2s ease; }
+.contact-link { font-size: var(--fs-sm); color: var(--gold); transition: opacity 0.2s ease; }
 .contact-link:hover { opacity: 0.7; }
 .enquiry-alt-sep { color: rgba(255,255,255,0.2); }
 
@@ -870,7 +866,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 @media (max-width: 480px) {
   .enquiry-grid { grid-template-columns: 1fr; }
   .quote-modal-panel { padding: 40px 24px 48px; }
-  .faq-q-text { font-size: 0.96rem; }
+  .faq-q-text { font-size: var(--fs-base); }
 }
 
 /* flush gallery to amenity list base */
@@ -883,26 +879,22 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
    Playfair Display = display/headings only
    Lato = ALL body, labels, UI, lists, tables, nav, buttons
    
-   Scale:
-   --fs-xs:   12px  (0.75rem)  — labels, captions, small UI
-   --fs-sm:   14px  (0.875rem) — secondary body, table cells
-   --fs-base: 16px  (1rem)     — primary body copy
-   --fs-md:   20px  (1.25rem)  — lead / intro paragraphs
-   --fs-lg:   25px  (1.563rem) — h3 / subsection titles
-   --fs-xl:   31px  (1.938rem) — h2 / section headings
-   --fs-2xl:  39px  (2.438rem) — h1 / page headings
-   --fs-3xl:  clamp(2.4rem, 5.5vw, 4.2rem) — hero display
+   6-token scale:
+   --fs-xs:   12px  (0.75rem)              — labels, captions, small UI
+   --fs-sm:   14px  (0.875rem)             — secondary body, meta text
+   --fs-base: 16px  (1rem)                 — primary body copy, nav, fields
+   --fs-lg:   25px  (1.563rem)             — h3, sub-headings, stat labels
+   --fs-xl:   31px  (1.938rem)             — h2, section headings
+   --fs-hero: clamp(2.4rem,5.5vw,4.2rem)  — hero h1 only
 ═══════════════════════════════════════════════════════════ */
 
 :root {
   --fs-xs:   0.75rem;
   --fs-sm:   0.875rem;
   --fs-base: 1rem;
-  --fs-md:   1.25rem;
   --fs-lg:   1.563rem;
   --fs-xl:   1.938rem;
-  --fs-2xl:  2.438rem;
-  --fs-3xl:  clamp(2.4rem, 5.5vw, 4.2rem);
+  --fs-hero: clamp(2.4rem, 5.5vw, 4.2rem);
 }
 
 /* ── GLOBAL RESET — two faces, one weight system ─────────── */
@@ -914,9 +906,9 @@ body {
 }
 
 /* All headings: Playfair Display, specific sizes from scale */
-h1 { font-family: 'Playfair Display', serif; font-size: var(--fs-3xl); font-weight: 400; font-style: normal; line-height: 1.08; letter-spacing: -0.01em; }
-h2 { font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); font-weight: 400; font-style: normal; line-height: 1.1; letter-spacing: 0.02em; }
-h3 { font-family: 'Playfair Display', serif; font-size: var(--fs-xl);  font-weight: 400; font-style: normal; line-height: 1.2; }
+h1 { font-family: 'Playfair Display', serif; font-size: var(--fs-hero); font-weight: 400; font-style: normal; line-height: 1.08; letter-spacing: -0.01em; }
+h2 { font-family: 'Playfair Display', serif; font-size: var(--fs-xl);  font-weight: 400; font-style: normal; line-height: 1.1; letter-spacing: 0.02em; }
+h3 { font-family: 'Playfair Display', serif; font-size: var(--fs-lg);  font-weight: 400; font-style: normal; line-height: 1.2; }
 
 /* All body elements: Lato */
 p, li, a, label, input, select, textarea, button,
@@ -930,22 +922,21 @@ td, th, span, div {
 .nav-cta     { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.2em; }
 
 /* ── HERO ───────────────────────────────────────── */
-.hero h1        { font-size: var(--fs-3xl); text-transform: uppercase; letter-spacing: 0.06em; }
-.hero-subtext   { font-size: var(--fs-base); font-weight: 300; }
+.hero h1        { font-size: var(--fs-hero); text-transform: uppercase; letter-spacing: 0.06em; }
+.hero-subtext   { font-weight: 300; }
 
 /* ── MARQUEE ────────────────────────────────────── */
 .marquee-item { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.32em; }
 
 /* ── INTRO SECTION ──────────────────────────────── */
 .intro-lead  { font-family: 'Playfair Display', serif; font-size: var(--fs-xl); font-weight: 700; line-height: 1.4; }
-.intro-body  { font-size: var(--fs-base); font-weight: 300; line-height: 1.7; }
+.intro-body  { font-weight: 300; line-height: 1.7; }
 .intro-pullquote p { font-family: 'Playfair Display', serif; font-size: var(--fs-sm); line-height: 1.7; font-style: normal; }
-.intro-features strong { font-size: var(--fs-base); }
 
 /* ── EXPERIENCE SECTION — COMPACT ───────────────── */
 .experience-section { padding: 48px 0; }
 
-.exp-heading { font-family: 'Playfair Display', serif; font-size: var(--fs-xl); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+.exp-heading { font-family: 'Playfair Display', serif; font-size: var(--fs-lg); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
 
 /* Amenity list — tighter */
 .exp-amenities li       { font-size: var(--fs-sm); line-height: 1.45; padding: 4px 0; }
@@ -966,19 +957,19 @@ td, th, span, div {
 /* Generic h2 within sections */
 .amenities h2,
 .collage-section h2,
-.partners-inner h2 { font-size: var(--fs-2xl); letter-spacing: 0.06em; }
+.partners-inner h2 { font-size: var(--fs-xl); letter-spacing: 0.06em; }
 
 /* ── REVIEWS ────────────────────────────────────── */
-.stat-num           { font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); }
+.stat-num           { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); }
 .stat-label         { font-size: var(--fs-xs); letter-spacing: 0.2em; }
-.stat:last-child .stat-num { font-size: var(--fs-md); }
+.stat:last-child .stat-num { font-size: var(--fs-lg); }
 .review-quote       { font-family: 'Playfair Display', serif; font-size: var(--fs-sm); line-height: 1.75; font-style: normal; }
-.quote-open         { font-family: 'Playfair Display', serif; font-size: var(--fs-2xl); }
+.quote-open         { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem,6vw,5.5rem); }
 .review-author      { font-size: var(--fs-xs); letter-spacing: 0.22em; }
 
 /* ── FAQ ────────────────────────────────────────── */
 .faq-header h2 { font-size: var(--fs-xl); letter-spacing: 0.01em; }
-.faq-q-text    { font-family: 'Playfair Display', serif; font-size: var(--fs-base); font-style: normal; }
+.faq-q-text    { font-family: 'Playfair Display', serif; font-style: normal; }
 .faq-answer p  { font-size: var(--fs-sm); }
 .faq-answer li { font-size: var(--fs-sm); }
 .faq-intro     { font-size: var(--fs-sm); }
@@ -990,7 +981,7 @@ td, th, span, div {
 .footer-links a  { font-size: var(--fs-sm); }
 
 /* ── MODAL / FORM ───────────────────────────────── */
-.enquiry-header h2  { font-size: var(--fs-lg); }
+.enquiry-header h2  { font-size: var(--fs-xl); }
 .enquiry-sub        { font-size: var(--fs-sm); }
 .field-label        { font-size: var(--fs-xs); letter-spacing: 0.18em; }
 .field-input        { font-size: var(--fs-sm); }
@@ -998,7 +989,7 @@ td, th, span, div {
 .enquiry-privacy    { font-size: var(--fs-xs); }
 .enquiry-alt-label  { font-size: var(--fs-xs); letter-spacing: 0.2em; }
 .contact-link       { font-size: var(--fs-sm); }
-.enquiry-success h3 { font-size: var(--fs-md); }
+.enquiry-success h3 { font-size: var(--fs-lg); }
 .enquiry-success p,
 .enquiry-error p    { font-size: var(--fs-sm); }
 
