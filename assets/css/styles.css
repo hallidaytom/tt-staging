@@ -712,7 +712,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .footer-logo {
   width: 180px;
   margin: 0 auto;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 .footer-logos {
   display: flex;
