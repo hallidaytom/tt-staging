@@ -378,14 +378,14 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   margin-bottom: 28px;
 }
 
-/* Two independent flex columns — left and right don't affect each other's height */
+/* Two independent flex columns — left ~40%, right ~60% */
 .exp-grid {
   display: flex;
   gap: 40px;
   align-items: flex-start;
 }
 .exp-col-left {
-  flex: 1;
+  flex: 0 0 42%;
   display: flex;
   flex-direction: column;
 }
@@ -394,11 +394,13 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   display: flex;
   flex-direction: column;
 }
+/* Left col: zero gap between amenities-a and gallery */
 .exp-amenities-a { padding-bottom: 0; margin-bottom: 0; }
-.exp-amenities-a .exp-amenities { margin-bottom: 0; }
+.exp-amenities-a .exp-amenities { margin-bottom: 0; padding-bottom: 0; }
 .exp-amenities-a .exp-amenities li:last-child { padding-bottom: 0; margin-bottom: 0; }
 .exp-gallery-wrap { margin-top: 0; padding-top: 0; }
-.exp-amenities-b { flex: 1; }
+/* Right col: amenities-b then partner box */
+.exp-amenities-b { margin-bottom: 0; }
 .exp-partner-wrap { margin-top: 20px; }
 
 /* Amenity lists */
