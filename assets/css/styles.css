@@ -992,3 +992,46 @@ td, th, span, div {
 /* ── BUTTONS ────────────────────────────────────── */
 .btn { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.2em; }
 
+
+/* ═══════════════════════════════════════════════════════════
+   TARGETED FIXES — 2026-03-25
+═══════════════════════════════════════════════════════════ */
+
+/* 1. Fonts — Playfair headings, Lato body, no italics, no exceptions */
+* { font-style: normal !important; }
+h1, h2, h3, h4, h5, h6,
+.faq-question .faq-q-text,
+.stat-num, .review-quote,
+.section-rule, .hero-title-wrap h1,
+.partners-duo-name { font-family: 'Playfair Display', serif !important; }
+body, p, li, span, a, label, input, select, textarea, button,
+.marquee-item, .amenity-card h3, .amenity-card p,
+.exp-amenity-name, .exp-amenity-desc, .exp-amenities li,
+.intro-body, .intro-features p, .footer-copy,
+.acknowledgement, .partners-duo-desc, .partners-duo-link,
+.nav-links a, .field-label, .enquiry-sub { font-family: 'Lato', sans-serif !important; }
+
+/* 2. Zero gap — exp-amenities-a bottom to exp-gallery-wrap top */
+.exp-amenities-a {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.exp-amenities-a .exp-amenities {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+.exp-amenities-a .exp-amenities li:last-child {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.exp-gallery-wrap {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  align-self: start;
+}
+.exp-grid { row-gap: 0 !important; }
+
+/* 3. exp-amenities-b independent — does not affect left column height */
+.exp-amenities-b {
+  align-self: start !important;
+}
