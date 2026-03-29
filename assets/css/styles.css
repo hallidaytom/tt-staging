@@ -1127,19 +1127,21 @@ body, p, li, span, a, label, input, select, textarea, button,
   margin: 0;
 }
 .partner-disclaimer__image {
-  flex: 0 0 120px;
+  flex: 0 0 180px;
   background: rgba(184,152,90,0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 16px;
+  padding: 32px 24px;
   border-right: 1px solid rgba(184,152,90,0.2);
+  min-height: 180px;
 }
 .partner-disclaimer__image img {
   width: 100%;
-  max-width: 90px;
+  max-width: 140px;
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7));
 }
 .partner-disclaimer__content {
   flex: 1;
@@ -1181,8 +1183,9 @@ body, p, li, span, a, label, input, select, textarea, button,
     flex: none;
     border-right: none;
     border-bottom: 1px solid rgba(184,152,90,0.2);
-    padding: 20px;
+    padding: 24px;
+    min-height: auto;
   }
-  .partner-disclaimer__image img { max-width: 70px; }
+  .partner-disclaimer__image img { max-width: 100px; }
   .partner-disclaimer__content { padding: 20px; }
 }
