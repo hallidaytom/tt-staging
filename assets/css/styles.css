@@ -1104,11 +1104,7 @@ body, p, li, span, a, label, input, select, textarea, button,
   padding-bottom: 20px;
 }
 
-/* Footer logos — mix-blend-mode to drop white bg on dark surface */
-.footer-logo,
-.footer-logos img {
-  mix-blend-mode: screen;
-}
+/* Footer logos — SVG assets, no blend-mode needed */
 
 /* Gallery spacing from amenities list — explicit top margin on gallery */
 .exp-col-left .exp-gallery-wrap {
