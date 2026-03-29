@@ -1039,3 +1039,73 @@ body, p, li, span, a, label, input, select, textarea, button,
 .exp-amenities-b {
   align-self: start !important;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FIXES — 2026-03-29
+═══════════════════════════════════════════════════════════ */
+
+/* Buttons — match CSS, Call Now (primary) is the stronger CTA */
+.btn-secondary {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.btn-secondary:hover {
+  background: var(--gold);
+  color: #000;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.4);
+}
+
+/* About section — unify font sizes, dark bg to match site */
+#about {
+  background: var(--bg) !important;
+  color: var(--white) !important;
+}
+.intro-lead {
+  font-family: var(--font-h);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.intro-body {
+  font-size: var(--fs-base);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 16px;
+}
+.intro-features strong {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--gold);
+}
+.intro-features p {
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+}
+.intro-pullquote p {
+  font-family: var(--font-h);
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  font-style: normal;
+}
+.intro-pullquote {
+  border-top: 1px solid rgba(201,168,76,0.35);
+  border-bottom: 1px solid rgba(201,168,76,0.35);
+}
+
+/* exp-amenities-a spacing — match exp-amenities-b to exp-partner-wrap gap */
+.exp-amenities-a {
+  padding-bottom: 20px;
+}
+
+/* Footer logos — mix-blend-mode to drop white bg on dark surface */
+.footer-logo,
+.footer-logos img {
+  mix-blend-mode: screen;
+}
