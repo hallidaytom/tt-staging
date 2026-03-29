@@ -1115,3 +1115,74 @@ body, p, li, span, a, label, input, select, textarea, button,
   margin-top: 24px !important;
   padding-top: 0;
 }
+
+/* ── Partner Disclaimer Box (DesiignerBot redesign 2026-03-29) ── */
+.partner-disclaimer {
+  display: flex;
+  align-items: stretch;
+  background: #0d0d0d;
+  border: 1px solid rgba(184,152,90,0.35);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0;
+}
+.partner-disclaimer__image {
+  flex: 0 0 120px;
+  background: rgba(184,152,90,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  border-right: 1px solid rgba(184,152,90,0.2);
+}
+.partner-disclaimer__image img {
+  width: 100%;
+  max-width: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
+}
+.partner-disclaimer__content {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.partner-entry h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--fs-base);
+  font-weight: 700;
+  font-style: normal;
+  color: #e8d5a3;
+  margin: 0 0 6px;
+  letter-spacing: 0.02em;
+}
+.partner-entry p {
+  font-family: 'Lato', sans-serif;
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.62);
+  line-height: 1.7;
+  margin: 0;
+  font-style: normal;
+}
+.partner-entry strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+.partner-entry a {
+  color: #b8985a;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184,152,90,0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.partner-entry a:hover { color: #d4af70; border-bottom-color: #d4af70; }
+.partner-divider { height: 1px; background: rgba(184,152,90,0.18); }
+
+@media (max-width: 600px) {
+  .partner-disclaimer { flex-direction: column; }
+  .partner-disclaimer__image {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(184,152,90,0.2);
+    padding: 20px;
+  }
+  .partner-disclaimer__image img { max-width: 70px; }
+  .partner-disclaimer__content { padding: 20px; }
+}
