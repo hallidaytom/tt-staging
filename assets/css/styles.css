@@ -494,10 +494,10 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .exp-bottle-img {
   position: absolute;
   right: -6px; bottom: -6px;
-  height: 130px; width: auto;
-  opacity: 0.2;
-  mix-blend-mode: screen;
-  filter: grayscale(20%);
+  height: 200px; width: auto;
+  opacity: 0.55;
+  mix-blend-mode: normal;
+  filter: none;
   pointer-events: none;
 }
 
