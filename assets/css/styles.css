@@ -457,6 +457,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   border: 1px solid rgba(201,168,76,0.35);
   border-top: 2px solid var(--gold);
   padding: 22px 110px 22px 22px;
+  min-height: 120px;
   position: relative;
   overflow: hidden;
 }
@@ -493,9 +494,12 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 .exp-partner-box-link:hover { opacity: 0.75; }
 .exp-bottle-img {
   position: absolute;
-  right: -6px; bottom: -6px;
-  height: 200px; width: auto;
-  opacity: 0.55;
+  right: 0; bottom: 0;
+  width: 100px;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+  opacity: 0.7;
   mix-blend-mode: normal;
   filter: none;
   pointer-events: none;
