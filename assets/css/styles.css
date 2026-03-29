@@ -1109,3 +1109,9 @@ body, p, li, span, a, label, input, select, textarea, button,
 .footer-logos img {
   mix-blend-mode: screen;
 }
+
+/* Gallery spacing from amenities list — explicit top margin on gallery */
+.exp-col-left .exp-gallery-wrap {
+  margin-top: 24px !important;
+  padding-top: 0;
+}
