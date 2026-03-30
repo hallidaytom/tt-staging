@@ -919,20 +919,20 @@ td, th, span, div {
 }
 
 /* ── NAV ────────────────────────────────────────── */
-.nav-links a { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.2em; }
-.nav-cta     { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.2em; }
+.nav-links a { font-size: var(--fs-sm); font-weight: 600; letter-spacing: 0.2em; }
+.nav-cta     { font-size: var(--fs-sm); font-weight: 600; letter-spacing: 0.2em; }
 
 /* ── HERO ───────────────────────────────────────── */
 .hero h1        { font-size: var(--fs-hero); text-transform: uppercase; letter-spacing: 0.06em; }
-.hero-subtext   { font-weight: 300; }
+.hero-subtext   { font-weight: 600; }
 
 /* ── MARQUEE ────────────────────────────────────── */
 .marquee-item { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.32em; }
 
 /* ── INTRO SECTION ──────────────────────────────── */
 .intro-lead  { font-family: 'Playfair Display', serif; font-size: var(--fs-xl); font-weight: 700; line-height: 1.4; }
-.intro-body  { font-weight: 300; line-height: 1.7; }
-.intro-pullquote p { font-family: 'Playfair Display', serif; font-size: var(--fs-sm); line-height: 1.7; font-style: normal; }
+.intro-body  { font-weight: 600; line-height: 1.7; }
+.intro-pullquote p { font-family: 'Lato', sans-serif; font-weight: 600; font-size: var(--fs-sm); line-height: 1.7; font-style: normal; }
 
 /* ── EXPERIENCE SECTION — COMPACT ───────────────── */
 .experience-section { padding: 48px 0; }
@@ -964,7 +964,7 @@ td, th, span, div {
 .stat-num           { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); }
 .stat-label         { font-size: var(--fs-xs); letter-spacing: 0.2em; }
 .stat:last-child .stat-num { font-size: var(--fs-lg); }
-.review-quote       { font-family: 'Playfair Display', serif; font-size: var(--fs-sm); line-height: 1.75; font-style: normal; }
+.review-quote       { font-family: 'Lato', sans-serif; font-weight: 600; font-size: var(--fs-sm); line-height: 1.75; font-style: normal; }
 .quote-open         { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem,6vw,5.5rem); }
 .review-author      { font-size: var(--fs-xs); letter-spacing: 0.22em; }
 
