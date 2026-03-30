@@ -1132,6 +1132,7 @@ body, p, li, span, a, label, input, select, textarea, button,
   height: 100%;
   max-width: none;
   object-fit: contain;
+  transform: scale(1.75);
   filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7));
 }
 .partner-disclaimer__content {
