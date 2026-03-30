@@ -98,7 +98,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   justify-content: space-between;
   padding: 16px 0;
 }
-.nav-wordmark-img { height: 56px; width: auto; max-width: 280px; object-fit: contain; }
+.nav-wordmark-img { height: 64px; width: auto; max-width: 300px; object-fit: contain; }
 .nav-links {
   display: flex;
   gap: 24px;
@@ -413,8 +413,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   font-size: var(--fs-base);
   font-weight: 600;
   color: var(--gold);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 .exp-amenity-desc {
   font-size: var(--fs-base);
@@ -1119,19 +1118,19 @@ body, p, li, span, a, label, input, select, textarea, button,
   margin: 0;
 }
 .partner-disclaimer__image {
-  flex: 0 0 180px;
+  flex: 0 0 200px;
   background: rgba(184,152,90,0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 24px;
+  padding: 16px;
   border-right: 1px solid rgba(184,152,90,0.2);
   min-height: 180px;
 }
 .partner-disclaimer__image img {
   width: 100%;
-  max-width: 140px;
-  height: auto;
+  height: 100%;
+  max-width: none;
   object-fit: contain;
   filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7));
 }
