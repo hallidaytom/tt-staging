@@ -106,7 +106,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .nav-links a {
   font-family: var(--font-b);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -251,6 +251,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
 }
 .hero-subtext {
   font-family: var(--font-b);
+  font-weight: 600;
   font-style: normal;
   color: rgba(255,255,255,0.82);
   margin: 0 auto 4px;
@@ -322,7 +323,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   margin-bottom: 16px;
 }
 .intro-body {
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.65;
   color: rgba(26,26,26,0.72);
   margin-bottom: 16px;
@@ -339,9 +340,10 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   animation: borderPulse 4s ease-in-out infinite;
 }
 .intro-pullquote p {
-  font-family: var(--font-h);
+  font-family: var(--font-b);
+  font-weight: 600;
   font-style: normal;
-  font-size: var(--fs-base);
+  font-size: var(--fs-lg);
   line-height: 1.7;
   color: var(--dark);
 }
@@ -406,7 +408,7 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   font-size: var(--fs-base);
   line-height: 1.5;
   color: rgba(255,255,255,0.85);
-  font-weight: 300;
+  font-weight: 600;
 }
 .exp-amenity-name {
   font-family: var(--font-b);
@@ -563,9 +565,10 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   opacity: 0.75;
 }
 .review-quote {
-  font-family: var(--font-h);
+  font-family: var(--font-b);
+  font-weight: 600;
   font-style: normal;
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   line-height: 1.7;
   color: #f2ede4;
   margin: 0 0 24px;
@@ -610,6 +613,9 @@ p, li, label, input, select, textarea, button { font-family: var(--font-b); font
   text-transform: none;
 }
 .faq-intro {
+  font-family: var(--font-b);
+  font-weight: 600;
+  font-size: var(--fs-sm);
   color: rgba(245,240,232,0.48);
   line-height: 1.75;
   margin-bottom: 2.25rem;
@@ -1141,20 +1147,22 @@ body, p, li, span, a, label, input, select, textarea, button,
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background: var(--gold);
 }
 .partner-entry h4 {
   font-family: 'Playfair Display', serif;
   font-size: var(--fs-base);
   font-weight: 700;
   font-style: normal;
-  color: #e8d5a3;
+  color: var(--dark);
   margin: 0 0 6px;
   letter-spacing: 0.02em;
 }
 .partner-entry p {
   font-family: 'Lato', sans-serif;
   font-size: var(--fs-xs);
-  color: rgba(255,255,255,0.62);
+  font-weight: 600;
+  color: rgba(26,26,26,0.85);
   line-height: 1.7;
   margin: 0;
   font-style: normal;
