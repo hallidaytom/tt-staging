@@ -979,12 +979,12 @@ h2.exp-heading {
 }
 .partner-entry strong { color: rgba(255,255,255,0.85); font-weight: 600; }
 .partner-entry a {
-  color: #b8985a;
+  color: var(--dark);
   text-decoration: none;
-  border-bottom: 1px solid rgba(184,152,90,0.3);
+  border-bottom: 1px solid rgba(26,26,26,0.3);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.partner-entry a:hover { color: #d4af70; border-bottom-color: #d4af70; }
+.partner-entry a:hover { color: #000; border-bottom-color: rgba(26,26,26,0.7); }
 .partner-divider { height: 1px; background: rgba(184,152,90,0.18); }
 
 /* ── RESPONSIVE ─────────────────────────────────────────── */
