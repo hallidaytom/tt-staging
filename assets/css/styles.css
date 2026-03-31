@@ -971,7 +971,7 @@ h2.exp-heading {
 }
 .partner-entry h4 {
   font-family: var(--font-h);
-  font-size: var(--fs-base);
+  font-size: var(--fs-lg);
   font-weight: 700;
   font-style: normal;
   color: var(--dark);
@@ -980,7 +980,7 @@ h2.exp-heading {
 }
 .partner-entry p {
   font-family: var(--font-b);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-base);
   font-weight: 600;
   color: rgba(26,26,26,0.85);
   line-height: 1.7;
