@@ -82,7 +82,7 @@ h2 { font-size: var(--fs-xl);  line-height: 1.1;  letter-spacing: 0.02em; }
 h3 { font-size: var(--fs-lg);  line-height: 1.2; }
 
 p, li, a, label, input, select, textarea, button,
-td, th, span {
+td, th {
   font-family: var(--font-b);
   font-style: normal;
 }
