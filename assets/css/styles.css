@@ -117,9 +117,9 @@ td, th {
   padding: 10px 0;
 }
 .nav-wordmark-img {
-  height: 72px;
+  height: 80px;
   width: auto;
-  max-width: 360px;
+  max-width: 420px;
   object-fit: contain;
 }
 .nav-links {
