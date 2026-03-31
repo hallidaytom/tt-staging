@@ -82,7 +82,7 @@ h2 { font-size: var(--fs-xl);  line-height: 1.1;  letter-spacing: 0.02em; }
 h3 { font-size: var(--fs-lg);  line-height: 1.2; }
 
 p, li, a, label, input, select, textarea, button,
-td, th, span, div {
+td, th, span {
   font-family: var(--font-b);
   font-style: normal;
 }
@@ -347,7 +347,7 @@ td, th, span, div {
   display: grid;
   gap: 24px;
 }
-.intro-lead {
+p.intro-lead {
   font-family: var(--font-h);
   font-size: var(--fs-xl);
   font-weight: 700;
@@ -406,7 +406,7 @@ td, th, span, div {
   background: #0a0a0a;
   padding: 48px 0;
 }
-.exp-heading {
+h2.exp-heading {
   font-family: var(--font-h);
   font-size: var(--fs-lg);
   font-weight: 400;
