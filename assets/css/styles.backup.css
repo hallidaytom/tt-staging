@@ -82,7 +82,7 @@ h2 { font-size: var(--fs-xl);  line-height: 1.1;  letter-spacing: 0.02em; }
 h3 { font-size: var(--fs-lg);  line-height: 1.2; }
 
 p, li, a, label, input, select, textarea, button,
-td, th {
+td, th, span, div {
   font-family: var(--font-b);
   font-style: normal;
 }
@@ -114,12 +114,12 @@ td, th {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 16px 0;
 }
 .nav-wordmark-img {
-  height: 72px;
+  height: 64px;
   width: auto;
-  max-width: 360px;
+  max-width: 300px;
   object-fit: contain;
 }
 .nav-links {
@@ -347,7 +347,7 @@ td, th {
   display: grid;
   gap: 24px;
 }
-p.intro-lead {
+.intro-lead {
   font-family: var(--font-h);
   font-size: var(--fs-xl);
   font-weight: 700;
@@ -385,8 +385,7 @@ p.intro-lead {
   text-align: center;
   animation: borderPulse 4s ease-in-out infinite;
 }
-.intro-pullquote p,
-.intro-pullquote em {
+.intro-pullquote p {
   font-family: var(--font-b);
   font-size: var(--fs-md);
   font-weight: 600;
@@ -407,7 +406,7 @@ p.intro-lead {
   background: #0a0a0a;
   padding: 48px 0;
 }
-h2.exp-heading {
+.exp-heading {
   font-family: var(--font-h);
   font-size: var(--fs-lg);
   font-weight: 400;
@@ -980,12 +979,12 @@ h2.exp-heading {
 }
 .partner-entry strong { color: rgba(255,255,255,0.85); font-weight: 600; }
 .partner-entry a {
-  color: #3d2b00;
-  font-weight: 700;
-  text-decoration: underline;
-  transition: opacity 0.2s ease;
+  color: #b8985a;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184,152,90,0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-.partner-entry a:hover { opacity: 0.7; }
+.partner-entry a:hover { color: #d4af70; border-bottom-color: #d4af70; }
 .partner-divider { height: 1px; background: rgba(184,152,90,0.18); }
 
 /* ── RESPONSIVE ─────────────────────────────────────────── */
