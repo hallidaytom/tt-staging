@@ -470,9 +470,16 @@
         </div>
 
         <div class="enquiry-success" aria-live="polite" role="status">
-          <div class="enquiry-success-icon" aria-hidden="true">&#10003;</div>
-          <h3>Enquiry Received</h3>
-          <p>Thank you &mdash; we&rsquo;ll be in touch within 24 hours.</p>
+          <div class="enquiry-success-ring" aria-hidden="true">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle class="ring-track" cx="40" cy="40" r="36" stroke="rgba(201,168,76,0.15)" stroke-width="2"/>
+              <circle class="ring-draw" cx="40" cy="40" r="36" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+              <polyline class="check-draw" points="24,40 35,52 56,28" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="enquiry-success-heading">Enquiry Received</h3>
+          <p class="enquiry-success-body">Thank you for reaching out. Our team will be in touch within 24 hours to discuss your event.</p>
+          <p class="enquiry-success-sub">In the meantime, feel free to call us on <a href="tel:0488036717" class="enquiry-success-link">0488 036 717</a>.</p>
         </div>
         <div class="enquiry-error" aria-live="polite" role="alert">
           <p>Something went wrong. Please try again or email us at <a href="mailto:sales@snootytooty.com.au">sales@snootytooty.com.au</a>.</p>

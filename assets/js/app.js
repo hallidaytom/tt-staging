@@ -281,7 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (data.success) {
           enquiryForm.classList.add('form-success');
-          // Scroll form into view
+          const successEl = enquiryForm.querySelector('.enquiry-success');
+          if (successEl) setTimeout(() => successEl.classList.add('visible'), 50);
           enquiryForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
           enquiryForm.classList.add('form-error');

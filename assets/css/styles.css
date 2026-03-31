@@ -1060,3 +1060,83 @@ h2.exp-heading {
   .quote-modal-panel { padding: 40px 24px 48px; }
   .faq-q-text { font-size: var(--fs-base); }
 }
+
+/* ── ENQUIRY SUCCESS — LUXURY ANIMATED ─────────────────── */
+@keyframes successFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ringDraw {
+  from { stroke-dashoffset: 226; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes checkDraw {
+  from { stroke-dashoffset: 50; opacity: 0; }
+  to   { stroke-dashoffset: 0;  opacity: 1; }
+}
+@keyframes ringGlow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(201,168,76,0.3)); }
+  50%       { filter: drop-shadow(0 0 12px rgba(201,168,76,0.7)); }
+}
+
+.enquiry-success {
+  display: none;
+  margin-top: 32px;
+  padding: 48px 32px;
+  text-align: center;
+}
+.enquiry-success.visible {
+  display: block;
+  animation: successFadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.enquiry-success-ring {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 28px;
+}
+.enquiry-success-ring svg {
+  width: 100%;
+  height: 100%;
+  animation: ringGlow 2.8s ease-in-out infinite 1.2s;
+}
+.ring-draw {
+  stroke-dasharray: 226;
+  stroke-dashoffset: 226;
+  animation: ringDraw 0.9s cubic-bezier(0.65,0,0.35,1) forwards 0.2s;
+}
+.check-draw {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: checkDraw 0.5s cubic-bezier(0.16,1,0.3,1) forwards 1.05s;
+}
+
+.enquiry-success-heading {
+  font-family: var(--font-h);
+  font-size: var(--fs-xl);
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  animation: successFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both 0.5s;
+}
+.enquiry-success-body {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 320px;
+  margin: 0 auto 12px;
+  animation: successFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both 0.65s;
+}
+.enquiry-success-sub {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  animation: successFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both 0.8s;
+}
+.enquiry-success-link {
+  color: var(--gold);
+  transition: opacity 0.2s ease;
+}
+.enquiry-success-link:hover { opacity: 0.7; }
