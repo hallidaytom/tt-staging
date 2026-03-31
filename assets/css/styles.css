@@ -87,6 +87,12 @@ td, th {
   font-style: normal;
 }
 
+p {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
 /* ── SCROLL REVEAL ──────────────────────────────────────── */
 .reveal {
   opacity: 0;
