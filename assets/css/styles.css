@@ -920,12 +920,9 @@ h2.exp-heading {
 .enquiry-submit.loading .submit-label { display: none; }
 .enquiry-submit.loading .submit-spinner { display: block; }
 .enquiry-honeypot { display: none; }
-.enquiry-success, .enquiry-error { display: none; margin-top: 24px; padding: 20px; text-align: center; }
-.enquiry-success.visible { display: block; }
-.enquiry-error.visible { display: block; background: rgba(224,112,112,0.08); border: 1px solid rgba(224,112,112,0.25); }
-.enquiry-success-icon { font-size: var(--fs-xl); color: var(--gold); margin-bottom: 12px; }
-.enquiry-success h3 { font-size: var(--fs-lg); color: var(--white); margin-bottom: 8px; }
-.enquiry-success p, .enquiry-error p { font-size: var(--fs-sm); color: rgba(255,255,255,0.55); }
+.enquiry-success, .enquiry-error { display: none; }
+.enquiry-error.visible { display: block; margin-top: 24px; padding: 20px; text-align: center; background: rgba(224,112,112,0.08); border: 1px solid rgba(224,112,112,0.25); }
+.enquiry-error p { font-size: var(--fs-sm); color: rgba(255,255,255,0.55); }
 .enquiry-alt { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; }
 .enquiry-alt-label { font-size: var(--fs-xs); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); display: block; margin-bottom: 12px; }
 .enquiry-alt-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; }

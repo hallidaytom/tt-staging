@@ -280,9 +280,14 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.classList.remove('loading');
 
         if (data.success) {
-          enquiryForm.classList.add('form-success');
           const successEl = enquiryForm.querySelector('.enquiry-success');
-          if (successEl) setTimeout(() => successEl.classList.add('visible'), 50);
+          // Hide form fields, show success
+          Array.from(enquiryForm.children).forEach(el => {
+            if (!el.classList.contains('enquiry-success') && !el.classList.contains('enquiry-error')) {
+              el.style.display = 'none';
+            }
+          });
+          if (successEl) successEl.classList.add('visible');
           enquiryForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
           enquiryForm.classList.add('form-error');
