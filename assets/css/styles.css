@@ -899,6 +899,12 @@ h2.exp-heading {
 .field-input::placeholder { color: rgba(255,255,255,0.22); }
 .field-select-wrap { position: relative; }
 .field-select { width: 100%; cursor: pointer; }
+.field-select option {
+  background: #1a1a1a;
+  color: var(--gold);
+  font-family: var(--font-b);
+  font-weight: 600;
+}
 .field-select-arrow {
   position: absolute; right: 12px; top: 50%;
   transform: translateY(-50%);
