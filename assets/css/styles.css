@@ -385,7 +385,8 @@ p.intro-lead {
   text-align: center;
   animation: borderPulse 4s ease-in-out infinite;
 }
-.intro-pullquote p {
+.intro-pullquote p,
+.intro-pullquote em {
   font-family: var(--font-b);
   font-size: var(--fs-md);
   font-weight: 600;
