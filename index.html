@@ -53,8 +53,8 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 }
 
 /* === UTILITIES === */
-.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-@media (max-width: 640px) { .container { padding: 0 24px; } }
+.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .container { padding: 0 20px; } }
 
 .section-label { font-family: var(--font-ui); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); display: block; margin-bottom: 12px; }
 .section-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px,4vw,52px); color: var(--heading-dark); line-height: 1.15; margin-bottom: 16px; }
@@ -70,14 +70,10 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 /* === NAVIGATION === */
 #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 72px; display: flex; align-items: center; transition: background 300ms var(--ease-out), box-shadow 300ms var(--ease-out); }
 #nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo svg { height: 36px; width: auto; transition: height 300ms var(--ease-out); }
-#nav.scrolled .nav-logo svg { height: 28px; }
-.nav-logo-text { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: white; letter-spacing: 0.05em; transition: color 300ms var(--ease-out); line-height: 1; }
-.nav-logo-sub { font-family: var(--font-ui); font-weight: 400; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); display: block; margin-top: 2px; transition: color 300ms var(--ease-out); }
-#nav.scrolled .nav-logo-text { color: var(--heading-dark); }
-#nav.scrolled .nav-logo-sub { color: var(--muted); }
+.nav-logo-img { height: 28px; width: auto; transition: height 300ms var(--ease-out); filter: brightness(0) invert(1); }
+#nav.scrolled .nav-logo-img { height: 22px; filter: none; }
 .nav-links { display: flex; align-items: center; gap: 36px; }
 .nav-link { font-family: var(--font-ui); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.85); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 200ms ease; }
 #nav.scrolled .nav-link { color: var(--body); }
@@ -100,18 +96,18 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .nav-drawer.open a:nth-child(4) { transition-delay: 290ms; }
 .nav-drawer.open a:nth-child(5) { transition-delay: 370ms; }
 .nav-drawer a:hover { color: var(--olive); }
-@media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-inner { padding: 0 24px; } }
+@media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-inner { padding: 0 20px; } }
 
 /* === HERO === */
 #hero { min-height: 100dvh; background: var(--charcoal); display: flex; flex-direction: column; justify-content: center; padding-top: 72px; position: relative; overflow: hidden; }
 .hero-bg-drift { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 40%, rgba(74,124,63,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(74,124,63,0.05) 0%, transparent 50%); animation: bgDrift 20s ease-in-out infinite; pointer-events: none; }
 @keyframes bgDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(20px,-10px) scale(1.02); } 66% { transform: translate(-10px,15px) scale(0.98); } }
-.hero-inner { max-width: 1280px; margin: 0 auto; padding: 80px 48px; width: 100%; display: grid; grid-template-columns: 55fr 45fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+.hero-inner { max-width: 1280px; margin: 0 auto; padding: 60px 32px; width: 100%; display: grid; grid-template-columns: 55fr 45fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
 .hero-left { position: relative; }
 .hero-since { font-family: var(--font-ui); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); opacity: 0; transform: translateY(20px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); transition-delay: 100ms; display: block; margin-bottom: 24px; }
 .hero-since.visible { opacity: 1; transform: translateY(0); }
 .hero-headline { font-family: var(--font-display); font-weight: 300; font-size: clamp(44px,6vw,72px); line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 28px; }
-.hero-headline mark { background: none; color: var(--olive); }
+.hero-headline mark { background: none; color: white; text-decoration: underline; text-decoration-color: var(--olive); text-underline-offset: 6px; text-decoration-thickness: 2px; }
 .hero-word-wrap { overflow: hidden; display: inline-block; vertical-align: bottom; padding-bottom: 4px; margin-right: 14px; }
 .hero-word { display: inline-block; transform: translateY(100%); transition: transform 600ms var(--ease-out); }
 .hero-word.visible { transform: translateY(0); }
@@ -126,6 +122,9 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 @keyframes scrollPulse { 0%,100% { transform: scaleY(1); opacity: 0.4; } 50% { transform: scaleY(0.6); opacity: 1; } }
 .hero-right { position: relative; display: flex; flex-direction: column; gap: 16px; padding-top: 24px; }
+.hero-portrait-card { width: 100%; max-width: 320px; aspect-ratio: 3/4; border-radius: 8px; overflow: hidden; border: 2px solid rgba(74,124,63,0.4); box-shadow: 0 20px 48px rgba(0,0,0,0.35); margin: 0 auto 16px; opacity: 0; transform: scale(0.96); animation: portraitReveal 700ms var(--ease-out) 1000ms forwards; }
+.hero-portrait-card img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+@keyframes portraitReveal { to { opacity: 1; transform: scale(1); } }
 .hero-cards { display: flex; flex-direction: column; gap: 16px; }
 .service-card { background: var(--white); border: 2px solid var(--border); border-radius: 8px; padding: 24px 28px; opacity: 0; transform: translateX(30px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out), box-shadow 250ms var(--ease-spring), border-color 250ms ease; }
 .service-card.visible { opacity: 1; transform: translateX(0); }
@@ -134,26 +133,23 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .service-card-desc { font-weight: 300; font-size: 14px; color: var(--body); line-height: 1.6; margin-bottom: 16px; }
 .service-card-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--olive); color: white; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: background 200ms ease; text-decoration: none; }
 .service-card-cta:hover { background: var(--olive-light); }
-.hero-portrait-wrap { position: absolute; right: -30px; top: 50%; transform: translateY(-50%); width: 280px; height: 280px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 24px 64px rgba(0,0,0,0.4); opacity: 0; transition: opacity 700ms var(--ease-out) 1200ms; animation: portraitFloat 4s ease-in-out infinite; animation-play-state: paused; z-index: 2; }
-.hero-portrait-wrap.visible { opacity: 1; animation-play-state: running; }
-@keyframes portraitFloat { 0%,100% { margin-top: 0; } 50% { margin-top: -8px; } }
-.hero-portrait-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
 @media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; padding: 60px 24px 80px; gap: 40px; }
-  .hero-portrait-wrap { position: relative; right: auto; top: auto; transform: none; width: 200px; height: 200px; margin: 0 auto; animation: none; }
+  .hero-inner { grid-template-columns: 1fr; padding: 60px 20px 80px; gap: 40px; }
+  .hero-portrait-card { max-width: 100%; height: 240px; margin: 0 auto; }
   .hero-cards { overflow-x: auto; flex-direction: row; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
   .service-card { min-width: 280px; scroll-snap-align: start; flex-shrink: 0; }
   .hero-right { padding-top: 0; }
 }
 
 /* === ABOUT === */
-#about { background: var(--cream); padding: 120px 0; }
+#about { background: var(--cream); padding: 64px 0; }
 .about-heading { text-align: center; margin-bottom: 48px; }
 .about-heading .section-title { text-align: center; }
 .about-heading .section-rule { margin: 0 auto 48px; }
 .about-text { max-width: 720px; margin: 0 auto; text-align: center; }
-.about-text p { font-weight: 300; font-size: 17px; line-height: 1.8; color: var(--body); margin-bottom: 20px; }
-.about-photos { max-width: 1180px; margin: 64px auto 0; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.about-text p { font-weight: 300; font-size: 16px; line-height: 1.8; color: var(--body); margin-bottom: 20px; }
+.about-photos { max-width: 100%; margin: 40px auto 0; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
 .about-photo-wrap { border-radius: 4px; overflow: hidden; }
 .about-photo-wrap:first-child { transform: rotate(-1.5deg); transition: transform 400ms var(--ease-out); }
 .about-photo-wrap:last-child { transform: rotate(1deg); margin-top: 40px; transition: transform 400ms var(--ease-out); }
@@ -162,14 +158,14 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .about-photo-wrap:hover { transform: rotate(0deg) !important; }
 .about-photo-wrap:hover img { transform: scale(1.02); filter: saturate(1.05) brightness(1.04) !important; }
 @media (max-width: 640px) {
-  .about-photos { grid-template-columns: 1fr; padding: 0 24px; }
+  .about-photos { grid-template-columns: 1fr; padding: 0 20px; }
   .about-photo-wrap:first-child, .about-photo-wrap:last-child { transform: none; margin-top: 0; }
 }
 
 /* === PERSONAL COACHING === */
-#coaching { background: var(--white); padding: 120px 0; }
-.coaching-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-.coaching-header { margin-bottom: 64px; }
+#coaching { background: var(--white); padding: 80px 0; }
+.coaching-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.coaching-header { margin-bottom: 40px; }
 .coaching-header p { font-weight: 300; font-size: 16px; color: var(--muted); max-width: 600px; line-height: 1.7; margin-top: 0; }
 .service-menu { max-width: 800px; }
 .service-tier { border-bottom: 1px dashed rgba(0,0,0,0.12); }
@@ -181,6 +177,11 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .service-tier-toggle::after { content: '+'; display: inline-block; transition: transform 300ms var(--ease-out), content 0ms; font-size: 16px; font-weight: 300; }
 .service-tier.open .service-tier-toggle::after { content: '−'; }
 .service-tier-header:hover .service-tier-toggle { color: var(--olive); }
+.service-tier-toggle-icon { display: inline-block; transition: transform 300ms var(--ease-out); margin-left: 4px; font-size: 10px; }
+.service-tier.open .service-tier-toggle-icon { transform: rotate(180deg); }
+.coaching-layout { display: grid; grid-template-columns: 60fr 40fr; gap: 48px; align-items: start; }
+.coaching-cta-sticky { position: sticky; top: 92px; }
+@media (max-width: 900px) { .coaching-layout { grid-template-columns: 1fr; } .coaching-cta-sticky { position: static; } }
 .service-tier-body { max-height: 0; overflow: hidden; transition: max-height 350ms var(--ease-out); }
 .service-tier.open .service-tier-body { max-height: 400px; }
 .service-tier-desc { font-weight: 300; font-size: 15px; color: var(--muted); line-height: 1.7; padding-bottom: 24px; padding-right: 80px; }
@@ -194,16 +195,16 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .cta-contact-line { display: flex; align-items: center; gap: 8px; font-weight: 400; font-size: 15px; color: var(--heading-dark); text-decoration: none; min-height: 44px; transition: color 300ms ease; }
 .cta-contact-icon { color: var(--olive); transition: color 300ms ease; width: 18px; height: 18px; flex-shrink: 0; }
 @media (max-width: 640px) {
-  .coaching-inner { padding: 0 24px; }
+  .coaching-inner { padding: 0 20px; }
   .cta-box { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
   .cta-contacts { align-items: flex-start; }
   .service-tier-desc { padding-right: 0; }
 }
 
 /* === ENNEAGRAM === */
-#enneagram { background: var(--olive-wash); padding: 120px 0; }
-.enneagram-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-.enneagram-header { text-align: center; margin-bottom: 60px; }
+#enneagram { background: var(--olive-wash); padding: 80px 0; }
+.enneagram-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.enneagram-header { text-align: center; margin-bottom: 40px; }
 .enneagram-header .section-rule { margin: 0 auto 16px; }
 .enneagram-subtitle { font-weight: 300; font-size: 16px; color: var(--body); max-width: 560px; margin: 16px auto 0; line-height: 1.7; }
 .enneagram-stage { display: flex; flex-direction: column; align-items: center; gap: 48px; }
@@ -245,80 +246,74 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .enn-info-cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--olive); border: 1px solid var(--border); padding: 12px 24px; border-radius: 4px; cursor: pointer; transition: background 300ms var(--ease-out), color 300ms ease, border-color 300ms ease; }
 .enn-info-cta:hover { background: var(--olive); color: white; border-color: var(--olive); }
 .enn-prompt { font-weight: 300; font-size: 14px; color: var(--muted); text-align: center; margin-top: 12px; }
-@media (max-width: 640px) { .enneagram-inner { padding: 0 24px; } }
+@media (max-width: 640px) { .enneagram-inner { padding: 0 20px; } }
 
 /* === BUSINESS SOLUTIONS === */
-#business { background: var(--charcoal); padding: 120px 0; }
-.business-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+#business { background: var(--charcoal); padding: 80px 0; }
+.business-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .business-inner .section-label { color: var(--olive); }
 .business-rate { margin-bottom: 48px; }
 .business-rate-num { font-family: var(--font-display); font-weight: 600; font-size: 48px; color: white; line-height: 1; margin-bottom: 8px; }
 .business-rate-sub { font-weight: 300; font-size: 15px; color: var(--body-light); }
-.business-desc { font-weight: 300; font-size: 17px; color: var(--body-light); max-width: 680px; line-height: 1.8; margin-bottom: 56px; }
+.business-desc { font-weight: 300; font-size: 17px; color: var(--body-light); max-width: 680px; line-height: 1.8; margin-bottom: 40px; }
 .engagement-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
 .engagement-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 32px; }
 .engagement-card-title { font-weight: 600; font-size: 16px; color: white; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .engagement-card-body { font-weight: 300; font-size: 15px; color: var(--body-light); line-height: 1.7; }
-.engagement-card-full { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 32px; margin-bottom: 56px; }
+.engagement-card-full { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 32px; margin-bottom: 40px; }
 .engagement-card-full .engagement-card-title { font-size: 17px; }
 .engagement-card-full .engagement-card-body { font-size: 16px; max-width: 760px; }
 .packages-heading { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 24px; display: block; }
-.packages-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 56px; }
+.packages-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
 .package-item { padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.1); }
 .package-name { font-weight: 600; font-size: 15px; color: white; margin-bottom: 8px; }
 .package-price { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--olive-light); margin-bottom: 8px; }
 .package-desc { font-weight: 300; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-.trusted-by { margin-bottom: 56px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+.trusted-by { margin-bottom: 40px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
 .trusted-label { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 16px; display: block; }
 .trusted-names { font-weight: 400; font-size: 14px; color: rgba(255,255,255,0.5); line-height: 2; }
 .business-cta .cta-box { max-width: 100%; background: transparent; border-color: rgba(255,255,255,0.2); }
 .business-cta .cta-box-title { color: white; }
 .business-cta .cta-box-sub { color: rgba(255,255,255,0.5); }
 .business-cta .cta-contact-line { color: rgba(255,255,255,0.8); }
-@media (max-width: 900px) { .engagement-grid { grid-template-columns: 1fr; } .packages-row { grid-template-columns: 1fr; } .business-inner { padding: 0 24px; } }
+@media (max-width: 900px) { .engagement-grid { grid-template-columns: 1fr; } .packages-row { grid-template-columns: 1fr; } .business-inner { padding: 0 20px; } }
 
 /* === EDUCATION === */
-#education { background: var(--cream); padding: 120px 0; }
-.education-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-.workshop-category { margin-bottom: 64px; }
+#education { background: var(--cream); padding: 80px 0; }
+.education-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.workshop-category { margin-bottom: 48px; }
 .workshop-cat-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--olive); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
 .workshop-cat-label::after { content: ''; flex: 1; max-width: 200px; height: 1px; background: var(--rule); transform-origin: left; transform: scaleX(0); transition: transform 400ms var(--ease-out) 200ms; }
 .workshop-cat-label.rule-drawn::after { transform: scaleX(1); }
 .edu-gift-note { font-weight: 400; font-size: 13px; color: var(--muted); font-style: italic; padding: 16px 0; display: block; }
-@media (max-width: 640px) { .education-inner { padding: 0 24px; } }
+@media (max-width: 640px) { .education-inner { padding: 0 20px; } }
 
 /* === TESLA QUOTE === */
-#tesla-quote { background: var(--charcoal); padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
+#tesla-quote { background: var(--charcoal); padding: 56px 0; text-align: center; position: relative; overflow: hidden; }
 .tesla-quote-mark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -58%); font-family: var(--font-display); font-weight: 300; font-size: 300px; color: var(--olive); opacity: 0.05; line-height: 1; pointer-events: none; user-select: none; }
-.tesla-quote-inner { max-width: 700px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+.tesla-quote-inner { max-width: 700px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 .tesla-quote-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(20px,3vw,28px); line-height: 1.55; color: white; margin-bottom: 28px; }
 .tesla-quote-attr { font-weight: 400; font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.45); }
 
 /* === TESTIMONIALS === */
-#testimonials { background: var(--charcoal); padding: 120px 0; }
-.testimonials-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+#testimonials { background: var(--charcoal); padding: 80px 0; }
+.testimonials-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .testimonials-inner .section-title { color: white; }
-.testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.video-block {}
-.video-thumb { position: relative; border-radius: 4px; overflow: hidden; cursor: pointer; aspect-ratio: 16/9; background: var(--charcoal-soft); }
-.video-placeholder { width: 100%; height: 100%; min-height: 240px; background: linear-gradient(135deg, var(--charcoal-soft) 0%, #222530 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
-.video-ph-text { font-weight: 300; font-size: 12px; color: rgba(255,255,255,0.3); text-align: center; padding: 0 20px; }
-.video-thumb-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.video-play-btn { width: 80px; height: 80px; border-radius: 50%; background: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 250ms var(--ease-spring), transform 250ms var(--ease-spring); }
-.video-play-btn svg { width: 28px; height: 28px; fill: var(--olive); margin-left: 4px; transition: fill 250ms ease; }
-.video-play-btn:hover { background: var(--olive); transform: scale(1.1); }
-.video-play-btn:hover svg { fill: white; }
-.video-iframe-wrap { position: relative; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; display: none; }
-.video-iframe-wrap iframe { width: 100%; height: 100%; border: none; }
-.video-caption { margin-top: 16px; }
-.video-caption-name { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--olive); display: block; margin-bottom: 2px; }
-.video-caption-sub { font-weight: 300; font-size: 13px; color: var(--body-light); }
-.testimonials-carousel { position: relative; }
-.carousel-track-wrap { overflow: hidden; border-radius: 4px; }
-.carousel-track { display: flex; transition: transform 450ms var(--ease-in-out); }
-.testimonial-card { background: white; border-radius: 4px; padding: 40px 36px 36px; flex-shrink: 0; width: 100%; position: relative; }
-.testimonial-quote-open { font-family: var(--font-display); font-weight: 600; font-size: 80px; color: var(--olive); line-height: 0.8; position: absolute; top: 24px; left: 28px; opacity: 0; transform: scale(0.7); transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out); }
-.testimonial-card.active .testimonial-quote-open { opacity: 1; transform: scale(1); }
+.video-poster { position: relative; width: 100%; max-width: 800px; margin: 0 auto 48px; aspect-ratio: 16/9; background: #1e2028; border-radius: 8px; overflow: hidden; cursor: pointer; }
+.video-poster-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1e2028 0%, #2b2d35 100%); }
+.video-poster-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; transition: background 250ms var(--ease-spring), transform 250ms var(--ease-spring); }
+.video-poster-play svg { width: 28px; height: 28px; fill: var(--olive); margin-left: 4px; transition: fill 250ms ease; }
+.video-poster:hover .video-poster-play { background: var(--olive); transform: translate(-50%, -50%) scale(1.1); }
+.video-poster:hover .video-poster-play svg { fill: white; }
+.video-poster-caption { position: absolute; bottom: 20px; left: 24px; }
+.video-poster-name { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--olive); display: block; margin-bottom: 2px; }
+.video-poster-sub { font-weight: 300; font-size: 13px; color: rgba(255,255,255,0.6); }
+.video-embed { display: none; width: 100%; max-width: 800px; margin: 0 auto 48px; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; }
+.video-embed iframe { width: 100%; height: 100%; border: none; }
+.testimonials-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 640px) { .testimonials-cards-grid { grid-template-columns: 1fr; } }
+.testimonial-card { background: white; border-radius: 4px; border-top: 3px solid var(--olive); padding: 32px; position: relative; }
+.testimonial-quote-open { font-family: var(--font-display); font-weight: 600; font-size: 100px; color: var(--olive); line-height: 0.8; position: absolute; top: 24px; left: 28px; opacity: 0.25; }
 .testimonial-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 19px; color: var(--body); line-height: 1.7; padding-top: 52px; margin-bottom: 24px; }
 .testimonial-rule { width: 40px; height: 1px; background: var(--rule); margin-bottom: 20px; }
 .testimonial-author { display: flex; align-items: center; gap: 14px; }
@@ -326,20 +321,11 @@ button { font-family: var(--font-ui); cursor: pointer; border: none; background:
 .testimonial-initials { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--olive); }
 .testimonial-name { font-weight: 600; font-size: 14px; color: var(--heading-dark); }
 .testimonial-role { font-weight: 400; font-size: 13px; color: var(--muted); margin-top: 2px; }
-.carousel-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; }
-.carousel-arrows { display: flex; gap: 12px; }
-.carousel-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--olive); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 200ms ease, border-color 200ms ease; }
-.carousel-arrow svg { width: 16px; height: 16px; stroke: var(--olive); fill: none; transition: stroke 200ms ease; }
-.carousel-arrow:hover { background: var(--olive); border-color: var(--olive); }
-.carousel-arrow:hover svg { stroke: white; }
-.carousel-dots { display: flex; gap: 8px; align-items: center; }
-.carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(74,124,63,0.3); cursor: pointer; transition: background 200ms ease, transform 200ms ease; border: none; }
-.carousel-dot.active { background: var(--olive); transform: scale(1.3); }
-@media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } .testimonials-inner { padding: 0 24px; } }
+@media (max-width: 900px) { .testimonials-inner { padding: 0 20px; } }
 
 /* === CONTACT === */
-#contact { background: var(--white); padding: 120px 0; }
-.contact-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+#contact { background: var(--white); padding: 80px 0; }
+.contact-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .contact-name { font-family: var(--font-display); font-weight: 600; font-size: 28px; color: var(--heading-dark); margin-bottom: 4px; }
 .contact-biz { font-weight: 300; font-size: 15px; color: var(--muted); margin-bottom: 32px; }
@@ -363,21 +349,22 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
 .form-submit.loading .btn-text { display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .form-note { font-weight: 300; font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
-@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } .contact-inner { padding: 0 24px; } }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } .contact-inner { padding: 0 20px; } }
 
 /* === FOOTER === */
-#footer { background: var(--charcoal); padding: 56px 0; text-align: center; }
-.footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+#footer { background: var(--charcoal); padding: 40px 0; text-align: center; }
+.footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .footer-logo-text { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: white; letter-spacing: 0.05em; }
 .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
 .footer-link { font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 200ms ease; }
 .footer-link:hover { color: white; }
 .footer-copy { font-weight: 300; font-size: 12px; color: rgba(255,255,255,0.35); }
 @media (max-width: 640px) {
-  #about, #coaching, #enneagram, #business, #education, #testimonials, #contact { padding: 80px 0; }
-  #tesla-quote { padding: 60px 0; }
+  #about { padding: 64px 0; }
+  #coaching, #enneagram, #business, #education, #testimonials, #contact { padding: 80px 0; }
+  #tesla-quote { padding: 56px 0; }
   #footer { padding: 40px 0; }
-  .footer-inner { padding: 0 24px; }
+  .footer-inner { padding: 0 20px; }
 }
 </style>
 </head>
@@ -387,17 +374,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo" aria-label="Life In My Hands — Home">
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="24" cy="24" r="20" stroke="#4A7C3F" stroke-width="1.5"/>
-        <path d="M17 34V22c0-3.3 2.7-6 6-6h2c3.3 0 6 2.7 6 6v12" stroke="#4A7C3F" stroke-width="2" stroke-linecap="round"/>
-        <path d="M21 22v7M27 22v7" stroke="#4A7C3F" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M24 16v-4" stroke="#4A7C3F" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="24" cy="10" r="2" fill="#4A7C3F"/>
-      </svg>
-      <div>
-        <span class="nav-logo-text">Life In My Hands</span>
-        <span class="nav-logo-sub">Aaron Montague</span>
-      </div>
+      <img src="images/LIMHlogo.svg" alt="Life In My Hands" class="nav-logo-img">
     </a>
     <ul class="nav-links">
       <li><a href="#hero" class="nav-link" data-section="hero">Home</a></li>
@@ -443,8 +420,8 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-portrait-wrap" id="hero-portrait">
-        <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager" width="280" height="280">
+      <div class="hero-portrait-card" id="hero-portrait">
+        <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
       </div>
       <div class="hero-cards">
         <div class="service-card" id="hc1">
@@ -500,86 +477,88 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
       <p class="reveal" style="--reveal-delay:240ms">All programs are tailored to your individual needs. Select a program below to learn more.</p>
     </div>
-    <div class="service-menu">
-      <div class="service-tier reveal" style="--reveal-delay:0ms">
-        <div class="service-tier-header" onclick="toggleTier(this)">
-          <span class="service-tier-name">Initial Enneagram Profiling Session</span>
-          <span class="service-tier-price">$<span class="count-up" data-target="225">225</span> + GST</span>
-          <span class="service-tier-toggle">Read more</span>
-        </div>
-        <div class="service-tier-body">
-          <p class="service-tier-desc">1 × 90 minute session. A deep-dive one-on-one session to identify your Enneagram type, understand your core motivations, and create a personalised roadmap for growth. Ideal as a starting point or standalone exploration.</p>
-        </div>
-      </div>
-      <div class="service-tier reveal" style="--reveal-delay:80ms">
-        <div class="service-tier-header" onclick="toggleTier(this)">
-          <span class="service-tier-name">Essentials Program</span>
-          <span class="service-tier-price">$<span class="count-up" data-target="695">695</span> + GST</span>
-          <span class="service-tier-toggle">Read more</span>
-        </div>
-        <div class="service-tier-body">
-          <p class="service-tier-desc">A structured introduction to personal coaching using Enneagram profiling as the foundation. Covers self-awareness, core patterns, and practical growth strategies. Includes multiple sessions with summaries and between-session support.</p>
-        </div>
-      </div>
-      <div class="service-tier reveal" style="--reveal-delay:160ms">
-        <div class="service-tier-header" onclick="toggleTier(this)">
-          <span class="service-tier-name">Essentials Plus</span>
-          <span class="service-tier-price">$<span class="count-up" data-target="895">895</span> + GST</span>
-          <span class="service-tier-toggle">Read more</span>
-        </div>
-        <div class="service-tier-body">
-          <p class="service-tier-desc">An extended version of the Essentials Program with additional sessions, deeper Enneagram exploration, and more personalised coaching touchpoints. Ideal for those ready for a more comprehensive transformation journey.</p>
-        </div>
-      </div>
-      <div class="service-tier reveal" style="--reveal-delay:240ms">
-        <div class="service-tier-header" onclick="toggleTier(this)">
-          <span class="service-tier-name">Additional Coaching</span>
-          <span class="service-tier-price">$<span class="count-up" data-target="495">495</span> + GST</span>
-          <span class="service-tier-toggle">Read more</span>
-        </div>
-        <div class="service-tier-body">
-          <p class="service-tier-desc">For returning clients who have completed an initial program and wish to continue their growth journey. Sessions are tailored to your current goals and challenges.</p>
-        </div>
-      </div>
-      <div class="service-tier reveal" style="--reveal-delay:320ms">
-        <div class="service-tier-header" onclick="toggleTier(this)">
-          <span class="service-tier-name">Mindset Advantage Program</span>
-          <span class="service-tier-price" style="font-size:18px;">Enquire</span>
-          <span class="service-tier-toggle">Read more</span>
-        </div>
-        <div class="service-tier-body">
-          <p class="service-tier-desc">Specialised program for athletes and high-performers seeking a competitive edge through mental conditioning and performance mindset. Pricing scoped individually.
-            <!-- PLACEHOLDER: Confirm whether a Mindset Advantage PDF/brochure link should be included here. Aaron to provide URL. -->
-            <br><br><a href="#contact" style="color:var(--olive); font-weight:500;">Enquire about this program →</a>
-          </p>
-        </div>
-      </div>
-      <div class="service-tier reveal" style="--reveal-delay:400ms">
-        <div class="service-tier-header" style="cursor:default; pointer-events:none;">
-          <span class="service-tier-name">Gift Certificates</span>
-          <span class="service-tier-price" style="font-size:16px; font-family:var(--font-ui); color:var(--muted); font-weight:400;">Available</span>
-        </div>
-      </div>
-    </div>
-    <div class="reveal" style="--reveal-delay:0ms">
-      <a href="#contact" style="text-decoration:none; display:block;">
-        <div class="cta-box">
-          <div class="cta-box-text">
-            <div class="cta-box-title">Ready to Get Started?</div>
-            <div class="cta-box-sub">Reach out to discuss which program is right for you.</div>
+    <div class="coaching-layout">
+      <div class="service-menu">
+        <div class="service-tier reveal" style="--reveal-delay:0ms">
+          <div class="service-tier-header" onclick="toggleTier(this)">
+            <span class="service-tier-name">Initial Enneagram Profiling Session</span>
+            <span class="service-tier-price">$225 + GST</span>
+            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
           </div>
-          <div class="cta-contacts">
-            <a href="tel:0407938932" class="cta-contact-line">
-              <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-              0407 938 932
-            </a>
-            <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
-              <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              aaron@lifeinmyhands.com.au
-            </a>
+          <div class="service-tier-body">
+            <p class="service-tier-desc">1 × 90 minute session. A deep-dive one-on-one session to identify your Enneagram type, understand your core motivations, and create a personalised roadmap for growth. Ideal as a starting point or standalone exploration.</p>
           </div>
         </div>
-      </a>
+        <div class="service-tier reveal" style="--reveal-delay:80ms">
+          <div class="service-tier-header" onclick="toggleTier(this)">
+            <span class="service-tier-name">Essentials Program</span>
+            <span class="service-tier-price">$695 + GST</span>
+            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
+          </div>
+          <div class="service-tier-body">
+            <p class="service-tier-desc">A structured introduction to personal coaching using Enneagram profiling as the foundation. Covers self-awareness, core patterns, and practical growth strategies. Includes multiple sessions with summaries and between-session support.</p>
+          </div>
+        </div>
+        <div class="service-tier reveal" style="--reveal-delay:160ms">
+          <div class="service-tier-header" onclick="toggleTier(this)">
+            <span class="service-tier-name">Essentials Plus</span>
+            <span class="service-tier-price">$895 + GST</span>
+            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
+          </div>
+          <div class="service-tier-body">
+            <p class="service-tier-desc">An extended version of the Essentials Program with additional sessions, deeper Enneagram exploration, and more personalised coaching touchpoints. Ideal for those ready for a more comprehensive transformation journey.</p>
+          </div>
+        </div>
+        <div class="service-tier reveal" style="--reveal-delay:240ms">
+          <div class="service-tier-header" onclick="toggleTier(this)">
+            <span class="service-tier-name">Additional Coaching</span>
+            <span class="service-tier-price">$495 + GST</span>
+            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
+          </div>
+          <div class="service-tier-body">
+            <p class="service-tier-desc">For returning clients who have completed an initial program and wish to continue their growth journey. Sessions are tailored to your current goals and challenges.</p>
+          </div>
+        </div>
+        <div class="service-tier reveal" style="--reveal-delay:320ms">
+          <div class="service-tier-header" onclick="toggleTier(this)">
+            <span class="service-tier-name">Mindset Advantage Program</span>
+            <span class="service-tier-price" style="font-size:18px;">Enquire</span>
+            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
+          </div>
+          <div class="service-tier-body">
+            <p class="service-tier-desc">Specialised program for athletes and high-performers seeking a competitive edge through mental conditioning and performance mindset. Pricing scoped individually.
+              <!-- PLACEHOLDER: Confirm whether a Mindset Advantage PDF/brochure link should be included here. Aaron to provide URL. -->
+              <br><br><a href="#contact" style="color:var(--olive); font-weight:500;">Enquire about this program →</a>
+            </p>
+          </div>
+        </div>
+        <div class="service-tier reveal" style="--reveal-delay:400ms">
+          <div class="service-tier-header" style="cursor:default; pointer-events:none;">
+            <span class="service-tier-name">Gift Certificates</span>
+            <span class="service-tier-price" style="font-size:16px; font-family:var(--font-ui); color:var(--muted); font-weight:400;">Available</span>
+          </div>
+        </div>
+      </div>
+      <div class="coaching-cta-sticky reveal" style="--reveal-delay:0ms">
+        <a href="#contact" style="text-decoration:none; display:block;">
+          <div class="cta-box" style="margin-top:0; max-width:100%;">
+            <div class="cta-box-text">
+              <div class="cta-box-title">Ready to Get Started?</div>
+              <div class="cta-box-sub">Reach out to discuss which program is right for you.</div>
+            </div>
+            <div class="cta-contacts">
+              <a href="tel:0407938932" class="cta-contact-line">
+                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+                0407 938 932
+              </a>
+              <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
+                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                aaron@lifeinmyhands.com.au
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -911,116 +890,78 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
   <div class="testimonials-inner">
     <span class="section-label reveal">Testimonials</span>
     <h2 class="section-title section-title--light reveal" style="--reveal-delay:80ms">What clients say</h2>
-    <div class="section-rule reveal" style="--reveal-delay:160ms; margin-bottom:56px;"></div>
-    <div class="testimonials-grid">
+    <div class="section-rule reveal" style="--reveal-delay:160ms; margin-bottom:48px;"></div>
 
-      <!-- Video -->
-      <div class="video-block reveal">
-        <div class="video-thumb" id="video-thumb" onclick="loadVideo()" onkeydown="if(event.key==='Enter'||event.key===' ')loadVideo()" role="button" tabindex="0" aria-label="Play Ron's video testimonial on YouTube">
-          <div class="video-placeholder">
-            <!-- PLACEHOLDER: Replace this placeholder with a still/thumbnail image from Ron's testimonial video, or Aaron's headshot as the video cover. Pending confirmation from Aaron on thumbnail image. -->
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="opacity:0.25">
-              <rect width="64" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
-              <path d="M22 20l22 12-22 12V20z" fill="rgba(255,255,255,0.4)"/>
-            </svg>
-            <span class="video-ph-text"><!-- PLACEHOLDER: Video thumbnail image → Ron's video testimonial (YouTube: sBEKq6mAtCc). Pending thumbnail/poster from Aaron. --></span>
+    <!-- Video -->
+    <div class="video-poster reveal" id="video-poster" onclick="loadVideo()" onkeydown="if(event.key==='Enter'||event.key===' ')loadVideo()" role="button" tabindex="0" aria-label="Play Ron's video testimonial on YouTube">
+      <div class="video-poster-bg"></div>
+      <div class="video-poster-play">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="video-poster-caption">
+        <span class="video-poster-name">Ron</span>
+        <span class="video-poster-sub">Video Testimonial, Feb 2025</span>
+      </div>
+    </div>
+    <div class="video-embed" id="video-embed">
+      <!-- YouTube iframe injected on click -->
+    </div>
+
+    <!-- 2×2 grid -->
+    <div class="testimonials-cards-grid">
+
+      <!-- Mitch -->
+      <div class="testimonial-card reveal" style="--reveal-delay:0ms">
+        <div class="testimonial-quote-open">"</div>
+        <p class="testimonial-text">Working with Aaron completely shifted my perspective on leadership. His Enneagram profiling cut straight to the core of who I am and why I lead the way I do. The growth I've experienced has been profound and lasting.</p>
+        <div class="testimonial-rule"></div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"><span class="testimonial-initials">M</span></div>
+          <div>
+            <div class="testimonial-name">Mitch</div>
+            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
           </div>
-          <div class="video-thumb-overlay">
-            <button class="video-play-btn" aria-label="Play video" tabindex="-1">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-          </div>
-        </div>
-        <div class="video-iframe-wrap" id="video-iframe-wrap">
-          <!-- YouTube iframe injected on click -->
-        </div>
-        <div class="video-caption">
-          <span class="video-caption-name">Ron</span>
-          <span class="video-caption-sub">Video Testimonial, Feb 2025</span>
         </div>
       </div>
 
-      <!-- Text carousel -->
-      <div class="testimonials-carousel reveal" style="--reveal-delay:150ms">
-        <div class="carousel-track-wrap">
-          <div class="carousel-track" id="carousel-track">
-
-            <!-- Mitch -->
-            <div class="testimonial-card active" data-index="0">
-              <div class="testimonial-quote-open">"</div>
-              <p class="testimonial-text">Working with Aaron completely shifted my perspective on leadership. His Enneagram profiling cut straight to the core of who I am and why I lead the way I do. The growth I've experienced has been profound and lasting.</p>
-              <div class="testimonial-rule"></div>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><span class="testimonial-initials">M</span></div>
-                <div>
-                  <div class="testimonial-name">Mitch</div>
-                  <!-- PLACEHOLDER: Mitch's surname/role/organisation — not confirmed. Pending headshot. -->
-                  <div class="testimonial-role">[PLACEHOLDER: Role / Organisation]</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Corrine -->
-            <div class="testimonial-card" data-index="1">
-              <div class="testimonial-quote-open">"</div>
-              <p class="testimonial-text">Aaron has an extraordinary ability to hold space for deep work while keeping things grounded and practical. I came in unsure and left with real clarity about who I am and where I'm heading.</p>
-              <div class="testimonial-rule"></div>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><span class="testimonial-initials">C</span></div>
-                <div>
-                  <div class="testimonial-name">Corrine</div>
-                  <!-- PLACEHOLDER: Corrine's surname/role/organisation — not confirmed. Pending headshot. -->
-                  <div class="testimonial-role">[PLACEHOLDER: Role / Organisation]</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Rony -->
-            <div class="testimonial-card" data-index="2">
-              <div class="testimonial-quote-open">"</div>
-              <p class="testimonial-text">The business advisory work Aaron provided was exactly what we needed — grounded, honest and deeply practical. He understood our culture and helped us see patterns we'd been blind to for years.</p>
-              <div class="testimonial-rule"></div>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><span class="testimonial-initials">R</span></div>
-                <div>
-                  <div class="testimonial-name">Rony</div>
-                  <!-- PLACEHOLDER: Rony's full name/role/organisation — not confirmed. Pending headshot. -->
-                  <div class="testimonial-role">[PLACEHOLDER: Role / Organisation]</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Jarrad -->
-            <div class="testimonial-card" data-index="3">
-              <div class="testimonial-quote-open">"</div>
-              <p class="testimonial-text">As an athlete, I came to Aaron for the performance edge. What I got was so much more — a complete understanding of what drives me, what holds me back, and how to channel everything I have toward what matters.</p>
-              <div class="testimonial-rule"></div>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar"><span class="testimonial-initials">J</span></div>
-                <div>
-                  <div class="testimonial-name">Jarrad</div>
-                  <!-- PLACEHOLDER: Jarrad's full name/role/sport — not confirmed. Pending headshot. -->
-                  <div class="testimonial-role">[PLACEHOLDER: Role / Sport]</div>
-                </div>
-              </div>
-            </div>
-
+      <!-- Corrine -->
+      <div class="testimonial-card reveal" style="--reveal-delay:100ms">
+        <div class="testimonial-quote-open">"</div>
+        <p class="testimonial-text">Aaron has an extraordinary ability to hold space for deep work while keeping things grounded and practical. I came in unsure and left with real clarity about who I am and where I'm heading.</p>
+        <div class="testimonial-rule"></div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"><span class="testimonial-initials">C</span></div>
+          <div>
+            <div class="testimonial-name">Corrine</div>
+            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
           </div>
         </div>
-        <div class="carousel-nav">
-          <div class="carousel-arrows">
-            <button class="carousel-arrow" id="carousel-prev" aria-label="Previous testimonial" onclick="carouselNav(-1)">
-              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15,18 9,12 15,6"/></svg>
-            </button>
-            <button class="carousel-arrow" id="carousel-next" aria-label="Next testimonial" onclick="carouselNav(1)">
-              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,18 15,12 9,6"/></svg>
-            </button>
+      </div>
+
+      <!-- Rony -->
+      <div class="testimonial-card reveal" style="--reveal-delay:200ms">
+        <div class="testimonial-quote-open">"</div>
+        <p class="testimonial-text">The business advisory work Aaron provided was exactly what we needed — grounded, honest and deeply practical. He understood our culture and helped us see patterns we'd been blind to for years.</p>
+        <div class="testimonial-rule"></div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"><span class="testimonial-initials">R</span></div>
+          <div>
+            <div class="testimonial-name">Rony</div>
+            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
           </div>
-          <div class="carousel-dots" id="carousel-dots">
-            <button class="carousel-dot active" aria-label="Go to testimonial 1" onclick="carouselGo(0)"></button>
-            <button class="carousel-dot" aria-label="Go to testimonial 2" onclick="carouselGo(1)"></button>
-            <button class="carousel-dot" aria-label="Go to testimonial 3" onclick="carouselGo(2)"></button>
-            <button class="carousel-dot" aria-label="Go to testimonial 4" onclick="carouselGo(3)"></button>
+        </div>
+      </div>
+
+      <!-- Jarrad -->
+      <div class="testimonial-card reveal" style="--reveal-delay:300ms">
+        <div class="testimonial-quote-open">"</div>
+        <p class="testimonial-text">As an athlete, I came to Aaron for the performance edge. What I got was so much more — a complete understanding of what drives me, what holds me back, and how to channel everything I have toward what matters.</p>
+        <div class="testimonial-rule"></div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar"><span class="testimonial-initials">J</span></div>
+          <div>
+            <div class="testimonial-name">Jarrad</div>
+            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
           </div>
         </div>
       </div>
@@ -1034,7 +975,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
   <div class="contact-inner">
     <span class="section-label reveal">Contact</span>
     <h2 class="section-title reveal" style="--reveal-delay:80ms">Get in touch</h2>
-    <div class="section-rule reveal" style="--reveal-delay:160ms; margin-bottom:56px;"></div>
+    <div class="section-rule reveal" style="--reveal-delay:160ms; margin-bottom:40px;"></div>
     <div class="contact-grid">
       <div class="reveal" style="--reveal-delay:0ms">
         <div class="contact-name">Aaron Montague</div>
@@ -1220,7 +1161,6 @@ function initHeroEntrance() {
   const subhead = document.getElementById('hero-subhead');
   const body = document.getElementById('hero-body');
   const cards = [document.getElementById('hc1'), document.getElementById('hc2'), document.getElementById('hc3')];
-  const portrait = document.getElementById('hero-portrait');
   const scroll = document.getElementById('hero-scroll');
 
   // Stagger timeline
@@ -1233,7 +1173,6 @@ function initHeroEntrance() {
   setTimeout(() => cards[0].classList.add('visible'), 950);
   setTimeout(() => cards[1].classList.add('visible'), 1050);
   setTimeout(() => cards[2].classList.add('visible'), 1150);
-  setTimeout(() => portrait.classList.add('visible'), 1200);
   setTimeout(() => scroll.classList.add('visible'), 1400);
 }
 window.addEventListener('load', initHeroEntrance);
@@ -1411,9 +1350,9 @@ function toggleTier(header) {
    VIDEO LAZY LOAD
 --------------------------------------------------------------- */
 function loadVideo() {
-  const thumb = document.getElementById('video-thumb');
-  const iframeWrap = document.getElementById('video-iframe-wrap');
-  if (!thumb || iframeWrap.style.display === 'block') return;
+  const poster = document.getElementById('video-poster');
+  const embedWrap = document.getElementById('video-embed');
+  if (!poster || embedWrap.style.display === 'block') return;
 
   const iframe = document.createElement('iframe');
   iframe.src = 'https://www.youtube.com/embed/sBEKq6mAtCc?autoplay=1&rel=0&modestbranding=1';
@@ -1421,59 +1360,13 @@ function loadVideo() {
   iframe.allowFullscreen = true;
   iframe.title = 'Ron\'s video testimonial — Life In My Hands';
 
-  iframeWrap.appendChild(iframe);
-  iframeWrap.style.display = 'block';
-  thumb.style.display = 'none';
+  embedWrap.appendChild(iframe);
+  embedWrap.style.display = 'block';
+  poster.style.display = 'none';
 }
 
 
-/* ---------------------------------------------------------------
-   TESTIMONIALS CAROUSEL
---------------------------------------------------------------- */
-let carouselIndex = 0;
-let carouselTimer = null;
-const CAROUSEL_AUTO = 6000;
 
-function carouselNav(dir) {
-  const cards = document.querySelectorAll('.testimonial-card');
-  carouselGo((carouselIndex + dir + cards.length) % cards.length);
-}
-
-function carouselGo(idx) {
-  const track = document.getElementById('carousel-track');
-  const cards = document.querySelectorAll('.testimonial-card');
-  const dots = document.querySelectorAll('.carousel-dot');
-
-  if (!track) return;
-
-  cards.forEach((c, i) => c.classList.toggle('active', i === idx));
-  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  track.style.transform = `translateX(-${idx * 100}%)`;
-  carouselIndex = idx;
-  resetCarouselTimer();
-}
-
-function resetCarouselTimer() {
-  if (carouselTimer) clearInterval(carouselTimer);
-  carouselTimer = setInterval(() => carouselNav(1), CAROUSEL_AUTO);
-}
-
-function initCarousel() {
-  const wrap = document.querySelector('.carousel-track-wrap');
-  if (!wrap) return;
-  resetCarouselTimer();
-  wrap.addEventListener('mouseenter', () => { if (carouselTimer) clearInterval(carouselTimer); });
-  wrap.addEventListener('mouseleave', resetCarouselTimer);
-
-  // Touch/swipe
-  let touchStartX = 0;
-  wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  wrap.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) carouselNav(diff > 0 ? 1 : -1);
-  });
-}
-document.addEventListener('DOMContentLoaded', initCarousel);
 
 
 /* ---------------------------------------------------------------
