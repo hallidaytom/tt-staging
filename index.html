@@ -132,14 +132,15 @@
     #hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 42%;
+      grid-template-columns: 1fr 44%;
       position: relative;
       overflow: hidden;
+      align-items: center;
     }
 
     /* Left — the question */
     .hero-left {
-      padding: 0 var(--pad);
+      padding: 120px var(--pad) 80px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -203,30 +204,36 @@
       color: hsla(240,6%,60%,0.3);
     }
 
-    /* Right — Aaron's portrait, full bleed, edge to edge */
+    /* Right — Aaron's portrait card */
     .hero-right {
       position: relative;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 60px 80px 24px;
     }
     .hero-right img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: clamp(420px, 72vh, 680px);
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
       object-position: center top;
-      filter: grayscale(15%) contrast(1.05);
-      transform: scale(1.04);
-      transition: transform 14s ease;
+      filter: none;
+      border-radius: 6px;
+      border: 2px solid hsla(100, 28%, 52%, 0.65);
+      box-shadow:
+        0 0 0 10px hsla(100, 28%, 52%, 0.06),
+        0 32px 80px hsla(0, 0%, 0%, 0.55);
+      transition: box-shadow 0.5s ease, border-color 0.5s ease;
     }
-    #hero:hover .hero-right img { transform: scale(1.0); }
-    /* Feather left edge — photo dissolves into the dark left panel */
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, var(--bg) 0%, transparent 30%);
-      z-index: 1;
-      pointer-events: none;
+    #hero:hover .hero-right img {
+      border-color: hsla(100, 28%, 52%, 0.9);
+      box-shadow:
+        0 0 0 10px hsla(100, 28%, 52%, 0.1),
+        0 40px 100px hsla(0, 0%, 0%, 0.65);
     }
+    /* No gradient needed — portrait card is self-contained */
+    .hero-right::before { display: none; }
 
     /* ─── ABOUT ──────────────────────────────────────────── */
     #about {
@@ -312,133 +319,100 @@
 
     /* ─── SERVICES ───────────────────────────────────────── */
     /*
-      Menu format — not a card grid.
-      Think: fine dining menu / law firm practice areas.
-      Horizontal rules, nested programmes, prices right-aligned.
+      Compact 3-column info cards — not the hero of the page.
     */
     #services {
-      padding: 112px var(--pad);
+      padding: 80px var(--pad);
       background: var(--surface);
     }
 
     .svc-head {
-      margin-bottom: 64px;
+      margin-bottom: 40px;
     }
     .svc-hl {
       font-family: 'Cormorant Garamond', serif;
-      font-size: var(--t-h1);
+      font-size: clamp(28px, 3vw, 44px);
       font-weight: 300;
       color: var(--head);
-      line-height: 0.96;
+      line-height: 1.0;
       letter-spacing: -0.025em;
-      margin-top: 20px;
+      margin-top: 12px;
     }
     .svc-hl em { font-style: italic; color: hsla(40,18%,91%,0.44); }
 
-    /* The menu table */
+    /* 3-column compact card grid */
     .svc-menu {
-      border-top: 1px solid var(--soft);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
     .svc-row {
-      display: grid;
-      grid-template-columns: 48px 1fr auto;
-      gap: 0 32px;
-      align-items: start;
-      padding: 40px 0;
-      border-bottom: 1px solid var(--soft);
-      transition: background 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 22px;
+      border: 1px solid var(--soft);
+      max-height: 180px;
+      overflow: hidden;
+      transition: border-color 0.3s ease, background 0.3s ease;
       position: relative;
+    }
+    .svc-row:hover {
+      border-color: hsla(100, 28%, 52%, 0.25);
+      background: hsla(100, 28%, 52%, 0.03);
     }
     .svc-row::before {
       content: '';
       position: absolute;
-      left: 0; right: 0; top: 0;
-      height: 1px;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
       background: var(--green);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s var(--ease);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s var(--ease);
     }
-    .svc-row:hover::before { transform: scaleX(1); }
+    .svc-row:hover::before { transform: scaleY(1); }
 
     .svc-n {
-      font-size: var(--t-label);
-      letter-spacing: 0.1em;
+      font-size: 10px;
+      letter-spacing: 0.18em;
       color: var(--green);
-      padding-top: 6px; /* aligns with title baseline roughly */
-      font-weight: 400;
+      font-weight: 500;
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
-    .svc-body {}
+    .svc-body { flex: 1; min-height: 0; }
 
     .svc-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 2.6vw, 40px);
+      font-size: clamp(17px, 1.5vw, 22px);
       font-weight: 300;
       color: var(--head);
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-      margin-bottom: 10px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
     }
 
     .svc-desc {
-      font-size: 14px;
-      line-height: 1.75;
+      font-size: 12px;
+      line-height: 1.6;
       color: var(--body);
       font-weight: 300;
-      max-width: 52ch;
-      margin-bottom: 24px;
+      max-width: 100%;
+      margin-bottom: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    /* Nested programme lines */
-    .svc-programmes {
-      list-style: none;
-      border-top: 1px solid var(--soft);
-      margin-top: 4px;
-    }
-    .svc-programmes li {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      padding: 8px 0;
-      border-bottom: 1px solid hsla(240,6%,60%,0.05);
-      font-size: 12px;
-      letter-spacing: 0.03em;
-      color: hsla(240,6%,60%,0.6);
-      transition: color 0.2s ease;
-    }
-    .svc-programmes li:hover { color: var(--head); }
-    .svc-programmes .pr {
-      color: var(--green);
-      font-size: 11px;
-      flex-shrink: 0;
-      letter-spacing: 0.05em;
-    }
-    .prog-group {
-      display: block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      opacity: 0.7;
-      padding: 12px 0 4px;
-    }
+    /* Programme details hidden in compact card view */
+    .svc-programmes { display: none; }
+    .svc-note { display: none; }
 
-    .svc-note {
-      font-size: 11px;
-      color: hsla(240,6%,60%,0.3);
-      line-height: 1.6;
-      margin-top: 12px;
-    }
-
-    /* Third column — price or enquiry cue, vertically centred */
-    .svc-aside {
-      padding-top: 6px;
-      text-align: right;
-    }
+    /* Price aside hidden in compact card view */
+    .svc-aside { display: none; }
     .svc-rate {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(18px, 1.8vw, 26px);
@@ -494,33 +468,34 @@
     /* ─── VIDEO ───────────────────────────────────────────── */
     #video {
       padding: 96px var(--pad);
+      background: var(--surface);
     }
-    .vid-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 32px;
+
+    /* Split layout: portrait video left, editorial text right */
+    .vid-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 80px;
+      align-items: center;
     }
-    .vid-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: var(--t-h2);
-      font-weight: 300;
-      color: var(--head);
-      letter-spacing: -0.015em;
-    }
-    .vid-tag {
-      font-size: var(--t-label);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: hsla(240,6%,60%,0.35);
-    }
-    .vid-wrap {
+
+    /* Portrait video column */
+    .vid-frame-wrap {
       position: relative;
       width: 100%;
-      padding-bottom: 52%;
-      background: #000;
+      max-width: 340px;
     }
-    .vid-wrap::after {
+    /* Green accent line — top of frame */
+    .vid-frame-wrap::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--green);
+      z-index: 3;
+    }
+    /* Border around the frame */
+    .vid-frame-wrap::after {
       content: '';
       position: absolute;
       inset: -1px;
@@ -528,11 +503,89 @@
       pointer-events: none;
       z-index: 2;
     }
-    .vid-wrap iframe {
+    /* 9:16 aspect ratio for portrait video */
+    .vid-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 177.78%; /* 9:16 */
+      background: #000;
+      overflow: hidden;
+    }
+    .vid-frame iframe {
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
       border: none;
+    }
+
+    /* Editorial text column */
+    .vid-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .vid-tag {
+      font-size: var(--t-label);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .vid-tag::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--green);
+    }
+    .vid-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-h1);
+      font-weight: 300;
+      color: var(--head);
+      letter-spacing: -0.02em;
+      line-height: 1.0;
+    }
+    .vid-title em {
+      font-style: italic;
+      color: hsla(40,18%,91%,0.5);
+    }
+    .vid-desc {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--body);
+      font-weight: 300;
+      max-width: 44ch;
+    }
+    .vid-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--t-label);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      margin-top: 8px;
+      transition: gap 0.3s ease;
+    }
+    .vid-cta:hover { gap: 16px; }
+    .vid-cta::after {
+      content: '→';
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .vid-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .vid-frame-wrap {
+        max-width: 280px;
+        margin: 0 auto;
+      }
     }
 
     /* ─── CONTACT ─────────────────────────────────────────── */
@@ -740,10 +793,10 @@
       .nav-links, .nav-cta { display: none; }
 
       /* Hero — stack vertically on mobile */
-      #hero { grid-template-columns: 1fr; min-height: auto; }
+      #hero { grid-template-columns: 1fr; min-height: auto; align-items: start; }
       .hero-left { padding: 120px var(--pad) 48px; }
-      .hero-right { height: 65vw; min-height: 260px; }
-      .hero-right::before { background: linear-gradient(0deg, var(--bg) 0%, transparent 40%); }
+      .hero-right { padding: 0 var(--pad) 64px; justify-content: center; }
+      .hero-right img { height: auto; min-height: 0; max-height: 70vw; width: 70vw; }
       .w { overflow: visible; }
       .wi { transform: none; animation: fadein 0.8s ease 0.3s forwards; opacity: 0; }
 
@@ -752,9 +805,9 @@
       .about-photo { display: none; }
       .about-copy { padding: 64px var(--pad); }
 
-      #services { padding: 72px var(--pad); }
-      .svc-row { grid-template-columns: 36px 1fr; }
-      .svc-aside { display: none; }
+      #services { padding: 56px var(--pad); }
+      .svc-menu { grid-template-columns: 1fr; gap: 12px; }
+      .svc-row { max-height: none; overflow: visible; }
 
       #gallery { grid-template-columns: 1fr; height: auto; }
       .gp { height: 52vw; min-height: 180px; }
@@ -927,18 +980,29 @@
 
   <!-- ─── VIDEO ─────────────────────────────────────────── -->
   <section id="video">
-    <div class="vid-head reveal">
-      <h2 class="vid-title">See Aaron in action</h2>
-      <span class="vid-tag">Featured Talk</span>
-    </div>
-    <div class="vid-wrap reveal d1">
-      <iframe
-        src="https://www.youtube.com/embed/sBEKq6mAtCc"
-        title="Aaron Montague — Life In My Hands"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
+    <div class="vid-layout">
+
+      <!-- Portrait video frame -->
+      <div class="vid-frame-wrap reveal">
+        <div class="vid-frame">
+          <iframe
+            src="https://www.youtube.com/embed/sBEKq6mAtCc"
+            title="Aaron Montague — Life In My Hands"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Editorial copy -->
+      <div class="vid-copy reveal d1">
+        <span class="vid-tag">Featured Talk</span>
+        <h2 class="vid-title">Hear Aaron<br><em>in his own words</em></h2>
+        <p class="vid-desc">A conversation about the work — what coaching really is, why most people avoid the questions that matter, and what becomes possible when you stop.</p>
+        <a href="https://www.youtube.com/watch?v=sBEKq6mAtCc" target="_blank" rel="noopener noreferrer" class="vid-cta">Watch on YouTube</a>
+      </div>
+
     </div>
   </section>
 
