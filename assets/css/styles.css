@@ -485,13 +485,13 @@ h2.exp-heading {
 }
 .exp-amenity-name {
   font-family: var(--font-b);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
 }
 .exp-amenity-desc {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   color: rgba(255,255,255,0.6);
   font-weight: 600;
 }
@@ -538,16 +538,17 @@ h2.exp-heading {
 .exp-partner-box-content { position: relative; z-index: 1; }
 .exp-partner-box-title {
   font-family: var(--font-b);
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  font-size: var(--fs-base);
+  font-weight: 600;
   color: rgba(255,255,255,0.95);
   display: block;
   margin-bottom: 5px;
 }
 .exp-partner-box-block {
   font-family: var(--font-b);
-  font-size: var(--fs-xs);
-  line-height: 1.65;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.6;
   color: rgba(255,255,255,0.65);
   margin-bottom: 16px;
 }
@@ -767,7 +768,8 @@ h2.exp-heading {
 }
 .faq-item.open .faq-answer { opacity: 1; }
 .faq-answer p {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
+  font-weight: 600;
   line-height: 1.8;
   color: rgba(245,240,232,0.55);
   margin-bottom: 0.6rem;
@@ -775,7 +777,8 @@ h2.exp-heading {
 }
 .faq-answer ul { list-style: none; margin-bottom: 1rem; }
 .faq-answer ul li {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
+  font-weight: 600;
   line-height: 1.75;
   color: rgba(245,240,232,0.55);
   margin-bottom: 0.5rem;
