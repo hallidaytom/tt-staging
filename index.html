@@ -126,8 +126,8 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 @keyframes scrollPulse { 0%,100% { transform: scaleY(1); opacity: 0.4; } 50% { transform: scaleY(0.6); opacity: 1; } }
 .hero-right { position: relative; display: flex; flex-direction: column; gap: 10px; padding-top: 24px; }
-.hero-portrait-card { width: 100%; max-width: 260px; aspect-ratio: 3/4; border-radius: 8px; overflow: hidden; border: 2px solid rgba(74,124,63,0.4); box-shadow: 0 20px 48px rgba(0,0,0,0.35); margin: 0 auto 16px; opacity: 0; transform: scale(0.96); animation: portraitReveal 700ms var(--ease-out) 1000ms forwards; }
-.hero-portrait-card img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.hero-portrait-circular { width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 24px 64px rgba(0,0,0,0.4); margin: 20px auto 0; opacity: 0; transform: scale(0.96); animation: portraitReveal 700ms var(--ease-out) 1000ms forwards; flex-shrink: 0; }
+.hero-portrait-circular img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 @keyframes portraitReveal { to { opacity: 1; transform: scale(1); } }
 .hero-cards { display: flex; flex-direction: column; gap: 10px; }
 .service-card { background: var(--white); border: 2px solid var(--border); border-radius: 8px; padding: 16px 20px; opacity: 0; transform: translateX(30px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out), box-shadow 250ms var(--ease-spring), border-color 250ms ease; }
@@ -140,7 +140,7 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; padding: 60px 20px 80px; gap: 40px; }
-  .hero-portrait-card { max-width: 100%; height: 240px; margin: 0 auto; }
+  .hero-portrait-circular { max-width: 100%; height: 240px; margin: 0 auto; }
   .hero-cards { overflow-x: auto; flex-direction: row; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
   .service-card { min-width: 280px; scroll-snap-align: start; flex-shrink: 0; }
   .hero-right { padding-top: 0; }
@@ -427,9 +427,6 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-portrait-card" id="hero-portrait">
-        <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
-      </div>
       <div class="hero-cards">
         <div class="service-card" id="hc1">
           <div class="service-card-name">Personal Coaching</div>
@@ -446,6 +443,9 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           <div class="service-card-desc">Enneagram programs, Law of Attraction workshops and Goal Setting masterclasses open to all.</div>
           <a href="#education" class="service-card-cta">Learn more →</a>
         </div>
+      </div>
+      <div class="hero-portrait-circular" id="hero-portrait">
+        <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
       </div>
     </div>
   </div>
@@ -565,106 +565,6 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
             </div>
           </div>
         </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ENNEAGRAM INTERACTIVE -->
-<section id="enneagram" aria-label="Enneagram — Discover Your Type">
-  <div class="enneagram-inner">
-    <div class="enneagram-header">
-      <span class="section-label reveal">Personality Framework</span>
-      <h2 class="section-title reveal" style="--reveal-delay:80ms">Discover Your Type</h2>
-      <div class="section-rule section-rule--center reveal" style="--reveal-delay:160ms"></div>
-      <p class="enneagram-subtitle reveal" style="--reveal-delay:240ms">The Enneagram is a profound map of human personality. Nine interconnected types — each with its own gifts, motivations and growth path. Click any node to explore.</p>
-    </div>
-    <div class="enneagram-stage">
-      <div class="enneagram-svg-wrap reveal">
-        <svg id="enneagram-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Enneagram wheel">
-          <!-- Outer circle: r=200, cx=250, cy=250 -->
-          <circle id="enn-outer-circle" cx="250" cy="250" r="200" fill="none" stroke="rgba(74,124,63,0.3)" stroke-width="1.5"/>
-          <!-- Node positions (r=200):
-            9: angle=270° → (250, 50)
-            1: angle=310° → (379.28, 96.86) ≈ (379,97)
-            2: angle=350° → (447.02, 215.27) ≈ (447,215)
-            3: angle=30°  → (423.21, 350.0) ≈ (423,350)
-            4: angle=70°  → (318.40, 437.94) ≈ (318,438)
-            5: angle=110° → (181.60, 437.94) ≈ (182,438)
-            6: angle=150° → (76.79, 350.0) ≈ (77,350)
-            7: angle=190° → (52.98, 215.27) ≈ (53,215)
-            8: angle=230° → (120.72, 96.86) ≈ (121,97)
-          -->
-          <g id="enn-lines">
-            <!-- Triangle: 3-6-9 -->
-            <line class="enn-connecting-line enn-line" data-types="3,6" x1="423" y1="350" x2="77" y2="350"/>
-            <line class="enn-connecting-line enn-line" data-types="6,9" x1="77" y1="350" x2="250" y2="50"/>
-            <line class="enn-connecting-line enn-line" data-types="9,3" x1="250" y1="50" x2="423" y2="350"/>
-            <!-- Hexad: 1-4-2-8-5-7-1 -->
-            <line class="enn-connecting-line enn-line" data-types="1,4" x1="379" y1="97" x2="318" y2="438"/>
-            <line class="enn-connecting-line enn-line" data-types="4,2" x1="318" y1="438" x2="447" y2="215"/>
-            <line class="enn-connecting-line enn-line" data-types="2,8" x1="447" y1="215" x2="121" y2="97"/>
-            <line class="enn-connecting-line enn-line" data-types="8,5" x1="121" y1="97" x2="182" y2="438"/>
-            <line class="enn-connecting-line enn-line" data-types="5,7" x1="182" y1="438" x2="53" y2="215"/>
-            <line class="enn-connecting-line enn-line" data-types="7,1" x1="53" y1="215" x2="379" y2="97"/>
-          </g>
-          <!-- Nodes — drawn in data-type order for stagger -->
-          <g class="enn-node-group" data-type="9" onclick="selectType(9)" tabindex="0" role="button" aria-label="Type 9 The Peacemaker">
-            <circle class="enn-node-circle" cx="250" cy="50" r="26"/>
-            <text class="enn-node-num" x="250" y="51">9</text>
-            <text class="enn-node-label" x="250" y="84">Peacemaker</text>
-          </g>
-          <g class="enn-node-group" data-type="1" onclick="selectType(1)" tabindex="0" role="button" aria-label="Type 1 The Reformer">
-            <circle class="enn-node-circle" cx="379" cy="97" r="26"/>
-            <text class="enn-node-num" x="379" y="98">1</text>
-            <text class="enn-node-label" x="413" y="116">Reformer</text>
-          </g>
-          <g class="enn-node-group" data-type="2" onclick="selectType(2)" tabindex="0" role="button" aria-label="Type 2 The Helper">
-            <circle class="enn-node-circle" cx="447" cy="215" r="26"/>
-            <text class="enn-node-num" x="447" y="216">2</text>
-            <text class="enn-node-label" x="461" y="248">Helper</text>
-          </g>
-          <g class="enn-node-group" data-type="3" onclick="selectType(3)" tabindex="0" role="button" aria-label="Type 3 The Achiever">
-            <circle class="enn-node-circle" cx="423" cy="350" r="26"/>
-            <text class="enn-node-num" x="423" y="351">3</text>
-            <text class="enn-node-label" x="444" y="381">Achiever</text>
-          </g>
-          <g class="enn-node-group" data-type="4" onclick="selectType(4)" tabindex="0" role="button" aria-label="Type 4 The Individualist">
-            <circle class="enn-node-circle" cx="318" cy="438" r="26"/>
-            <text class="enn-node-num" x="318" y="439">4</text>
-            <text class="enn-node-label" x="318" y="472">Individualist</text>
-          </g>
-          <g class="enn-node-group" data-type="5" onclick="selectType(5)" tabindex="0" role="button" aria-label="Type 5 The Investigator">
-            <circle class="enn-node-circle" cx="182" cy="438" r="26"/>
-            <text class="enn-node-num" x="182" y="439">5</text>
-            <text class="enn-node-label" x="182" y="472">Investigator</text>
-          </g>
-          <g class="enn-node-group" data-type="6" onclick="selectType(6)" tabindex="0" role="button" aria-label="Type 6 The Loyalist">
-            <circle class="enn-node-circle" cx="77" cy="350" r="26"/>
-            <text class="enn-node-num" x="77" y="351">6</text>
-            <text class="enn-node-label" x="52" y="381">Loyalist</text>
-          </g>
-          <g class="enn-node-group" data-type="7" onclick="selectType(7)" tabindex="0" role="button" aria-label="Type 7 The Enthusiast">
-            <circle class="enn-node-circle" cx="53" cy="215" r="26"/>
-            <text class="enn-node-num" x="53" y="216">7</text>
-            <text class="enn-node-label" x="30" y="248">Enthusiast</text>
-          </g>
-          <g class="enn-node-group" data-type="8" onclick="selectType(8)" tabindex="0" role="button" aria-label="Type 8 The Challenger">
-            <circle class="enn-node-circle" cx="121" cy="97" r="26"/>
-            <text class="enn-node-num" x="121" y="98">8</text>
-            <text class="enn-node-label" x="87" y="116">Challenger</text>
-          </g>
-        </svg>
-        <p class="enn-prompt" id="enn-prompt">Click a type to explore</p>
-      </div>
-      <!-- Info panel -->
-      <div class="enn-info-panel" id="enn-info-panel" aria-live="polite" aria-atomic="true">
-        <div class="enn-info-number" id="enn-num"></div>
-        <div class="enn-info-name" id="enn-name"></div>
-        <div class="enn-info-tagline" id="enn-tagline"></div>
-        <div class="enn-info-desire" id="enn-desire"></div>
-        <div class="enn-info-desc" id="enn-desc"></div>
-        <a href="#education" class="enn-info-cta">Explore Enneagram Workshops →</a>
       </div>
     </div>
   </div>
@@ -878,6 +778,106 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         </a>
       </div>
     </div>
+  </div>
+
+  <!-- Enneagram Wheel — visual anchor for Education section -->
+  <div class="education-enneagram-wrap" id="enneagram">
+  <div class="enneagram-inner">
+    <div class="enneagram-header">
+      <span class="section-label reveal">Personality Framework</span>
+      <h2 class="section-title reveal" style="--reveal-delay:80ms">Discover Your Type</h2>
+      <div class="section-rule section-rule--center reveal" style="--reveal-delay:160ms"></div>
+      <p class="enneagram-subtitle reveal" style="--reveal-delay:240ms">The Enneagram is a profound map of human personality. Nine interconnected types — each with its own gifts, motivations and growth path. Click any node to explore.</p>
+    </div>
+    <div class="enneagram-stage">
+      <div class="enneagram-svg-wrap reveal">
+        <svg id="enneagram-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Enneagram wheel">
+          <!-- Outer circle: r=200, cx=250, cy=250 -->
+          <circle id="enn-outer-circle" cx="250" cy="250" r="200" fill="none" stroke="rgba(74,124,63,0.3)" stroke-width="1.5"/>
+          <!-- Node positions (r=200):
+            9: angle=270° → (250, 50)
+            1: angle=310° → (379.28, 96.86) ≈ (379,97)
+            2: angle=350° → (447.02, 215.27) ≈ (447,215)
+            3: angle=30°  → (423.21, 350.0) ≈ (423,350)
+            4: angle=70°  → (318.40, 437.94) ≈ (318,438)
+            5: angle=110° → (181.60, 437.94) ≈ (182,438)
+            6: angle=150° → (76.79, 350.0) ≈ (77,350)
+            7: angle=190° → (52.98, 215.27) ≈ (53,215)
+            8: angle=230° → (120.72, 96.86) ≈ (121,97)
+          -->
+          <g id="enn-lines">
+            <!-- Triangle: 3-6-9 -->
+            <line class="enn-connecting-line enn-line" data-types="3,6" x1="423" y1="350" x2="77" y2="350"/>
+            <line class="enn-connecting-line enn-line" data-types="6,9" x1="77" y1="350" x2="250" y2="50"/>
+            <line class="enn-connecting-line enn-line" data-types="9,3" x1="250" y1="50" x2="423" y2="350"/>
+            <!-- Hexad: 1-4-2-8-5-7-1 -->
+            <line class="enn-connecting-line enn-line" data-types="1,4" x1="379" y1="97" x2="318" y2="438"/>
+            <line class="enn-connecting-line enn-line" data-types="4,2" x1="318" y1="438" x2="447" y2="215"/>
+            <line class="enn-connecting-line enn-line" data-types="2,8" x1="447" y1="215" x2="121" y2="97"/>
+            <line class="enn-connecting-line enn-line" data-types="8,5" x1="121" y1="97" x2="182" y2="438"/>
+            <line class="enn-connecting-line enn-line" data-types="5,7" x1="182" y1="438" x2="53" y2="215"/>
+            <line class="enn-connecting-line enn-line" data-types="7,1" x1="53" y1="215" x2="379" y2="97"/>
+          </g>
+          <!-- Nodes — drawn in data-type order for stagger -->
+          <g class="enn-node-group" data-type="9" onclick="selectType(9)" tabindex="0" role="button" aria-label="Type 9 The Peacemaker">
+            <circle class="enn-node-circle" cx="250" cy="50" r="26"/>
+            <text class="enn-node-num" x="250" y="51">9</text>
+            <text class="enn-node-label" x="250" y="84">Peacemaker</text>
+          </g>
+          <g class="enn-node-group" data-type="1" onclick="selectType(1)" tabindex="0" role="button" aria-label="Type 1 The Reformer">
+            <circle class="enn-node-circle" cx="379" cy="97" r="26"/>
+            <text class="enn-node-num" x="379" y="98">1</text>
+            <text class="enn-node-label" x="413" y="116">Reformer</text>
+          </g>
+          <g class="enn-node-group" data-type="2" onclick="selectType(2)" tabindex="0" role="button" aria-label="Type 2 The Helper">
+            <circle class="enn-node-circle" cx="447" cy="215" r="26"/>
+            <text class="enn-node-num" x="447" y="216">2</text>
+            <text class="enn-node-label" x="461" y="248">Helper</text>
+          </g>
+          <g class="enn-node-group" data-type="3" onclick="selectType(3)" tabindex="0" role="button" aria-label="Type 3 The Achiever">
+            <circle class="enn-node-circle" cx="423" cy="350" r="26"/>
+            <text class="enn-node-num" x="423" y="351">3</text>
+            <text class="enn-node-label" x="444" y="381">Achiever</text>
+          </g>
+          <g class="enn-node-group" data-type="4" onclick="selectType(4)" tabindex="0" role="button" aria-label="Type 4 The Individualist">
+            <circle class="enn-node-circle" cx="318" cy="438" r="26"/>
+            <text class="enn-node-num" x="318" y="439">4</text>
+            <text class="enn-node-label" x="318" y="472">Individualist</text>
+          </g>
+          <g class="enn-node-group" data-type="5" onclick="selectType(5)" tabindex="0" role="button" aria-label="Type 5 The Investigator">
+            <circle class="enn-node-circle" cx="182" cy="438" r="26"/>
+            <text class="enn-node-num" x="182" y="439">5</text>
+            <text class="enn-node-label" x="182" y="472">Investigator</text>
+          </g>
+          <g class="enn-node-group" data-type="6" onclick="selectType(6)" tabindex="0" role="button" aria-label="Type 6 The Loyalist">
+            <circle class="enn-node-circle" cx="77" cy="350" r="26"/>
+            <text class="enn-node-num" x="77" y="351">6</text>
+            <text class="enn-node-label" x="52" y="381">Loyalist</text>
+          </g>
+          <g class="enn-node-group" data-type="7" onclick="selectType(7)" tabindex="0" role="button" aria-label="Type 7 The Enthusiast">
+            <circle class="enn-node-circle" cx="53" cy="215" r="26"/>
+            <text class="enn-node-num" x="53" y="216">7</text>
+            <text class="enn-node-label" x="30" y="248">Enthusiast</text>
+          </g>
+          <g class="enn-node-group" data-type="8" onclick="selectType(8)" tabindex="0" role="button" aria-label="Type 8 The Challenger">
+            <circle class="enn-node-circle" cx="121" cy="97" r="26"/>
+            <text class="enn-node-num" x="121" y="98">8</text>
+            <text class="enn-node-label" x="87" y="116">Challenger</text>
+          </g>
+        </svg>
+        <p class="enn-prompt" id="enn-prompt">Click a type to explore</p>
+      </div>
+      <!-- Info panel -->
+      <div class="enn-info-panel" id="enn-info-panel" aria-live="polite" aria-atomic="true">
+        <div class="enn-info-number" id="enn-num"></div>
+        <div class="enn-info-name" id="enn-name"></div>
+        <div class="enn-info-tagline" id="enn-tagline"></div>
+        <div class="enn-info-desire" id="enn-desire"></div>
+        <div class="enn-info-desc" id="enn-desc"></div>
+        <a href="#education" class="enn-info-cta">Explore Enneagram Workshops →</a>
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 
