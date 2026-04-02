@@ -181,9 +181,11 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .service-tier-header:hover .service-tier-toggle { color: var(--olive); }
 .service-tier-toggle-icon { display: inline-block; transition: transform 300ms var(--ease-out); margin-left: 4px; font-size: 10px; }
 .service-tier.open .service-tier-toggle-icon { transform: rotate(180deg); }
-.coaching-layout { display: grid; grid-template-columns: 60fr 40fr; gap: 32px; align-items: start; }
+.coaching-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.coaching-enneagram-col { min-width: 0; }
+.coaching-right-col { min-width: 0; display: flex; flex-direction: column; gap: 0; }
 .coaching-cta-sticky { position: sticky; top: 92px; }
-@media (max-width: 900px) { .coaching-layout { grid-template-columns: 1fr; } .coaching-cta-sticky { position: static; } }
+@media (max-width: 900px) { .coaching-layout { grid-template-columns: 1fr; } .coaching-cta-sticky { position: static; } .coaching-enneagram-col { order: 2; } .coaching-right-col { order: 1; } }
 .service-tier-body { max-height: 0; overflow: hidden; transition: max-height 350ms var(--ease-out); }
 .service-tier.open .service-tier-body { max-height: 400px; }
 .service-tier-desc { font-weight: 300; font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; padding-right: 80px; }
@@ -327,6 +329,7 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .testimonial-rule { width: 40px; height: 1px; background: var(--rule); margin-bottom: 20px; }
 .testimonial-author { display: flex; align-items: center; gap: 14px; }
 .testimonial-avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--olive); background: var(--olive-wash); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+.testimonial-avatar img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; display: block; }
 .testimonial-initials { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--olive); }
 .testimonial-name { font-weight: 600; font-size: 14px; color: var(--heading-dark); }
 .testimonial-role { font-weight: 400; font-size: 13px; color: var(--muted); margin-top: 2px; }
@@ -476,7 +479,50 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <p class="reveal" style="--reveal-delay:240ms">All programs are tailored to your individual needs. Select a program below to learn more.</p>
     </div>
     <div class="coaching-layout">
-      <div class="service-menu">
+      <!-- LEFT: Enneagram Wheel -->
+      <div class="coaching-enneagram-col">
+        <span class="section-label">Personality Framework</span>
+        <h3 class="section-title" style="font-size:clamp(20px,2vw,28px); margin-bottom:12px;">Discover Your Type</h3>
+        <div class="section-rule" style="margin-bottom:16px;"></div>
+        <p class="enneagram-subtitle" style="margin-bottom:20px;">The Enneagram maps nine personality types. Click any node to explore your motivations, patterns and growth path.</p>
+        <div class="enneagram-svg-wrap">
+          <svg id="enneagram-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Enneagram wheel">
+            <circle id="enn-outer-circle" cx="250" cy="250" r="200" fill="none" stroke="rgba(74,124,63,0.3)" stroke-width="1.5"/>
+            <g id="enn-lines">
+              <line class="enn-connecting-line enn-line" data-types="3,6" x1="423" y1="350" x2="77" y2="350"/>
+              <line class="enn-connecting-line enn-line" data-types="6,9" x1="77" y1="350" x2="250" y2="50"/>
+              <line class="enn-connecting-line enn-line" data-types="9,3" x1="250" y1="50" x2="423" y2="350"/>
+              <line class="enn-connecting-line enn-line" data-types="1,4" x1="379" y1="97" x2="318" y2="438"/>
+              <line class="enn-connecting-line enn-line" data-types="4,2" x1="318" y1="438" x2="447" y2="215"/>
+              <line class="enn-connecting-line enn-line" data-types="2,8" x1="447" y1="215" x2="121" y2="97"/>
+              <line class="enn-connecting-line enn-line" data-types="8,5" x1="121" y1="97" x2="182" y2="438"/>
+              <line class="enn-connecting-line enn-line" data-types="5,7" x1="182" y1="438" x2="53" y2="215"/>
+              <line class="enn-connecting-line enn-line" data-types="7,1" x1="53" y1="215" x2="379" y2="97"/>
+            </g>
+            <g class="enn-node-group" data-type="9" onclick="selectType(9)" tabindex="0" role="button" aria-label="Type 9 The Peacemaker"><circle class="enn-node-circle" cx="250" cy="50" r="26"/><text class="enn-node-num" x="250" y="51">9</text><text class="enn-node-label" x="250" y="84">Peacemaker</text></g>
+            <g class="enn-node-group" data-type="1" onclick="selectType(1)" tabindex="0" role="button" aria-label="Type 1 The Reformer"><circle class="enn-node-circle" cx="379" cy="97" r="26"/><text class="enn-node-num" x="379" y="98">1</text><text class="enn-node-label" x="413" y="116">Reformer</text></g>
+            <g class="enn-node-group" data-type="2" onclick="selectType(2)" tabindex="0" role="button" aria-label="Type 2 The Helper"><circle class="enn-node-circle" cx="447" cy="215" r="26"/><text class="enn-node-num" x="447" y="216">2</text><text class="enn-node-label" x="461" y="248">Helper</text></g>
+            <g class="enn-node-group" data-type="3" onclick="selectType(3)" tabindex="0" role="button" aria-label="Type 3 The Achiever"><circle class="enn-node-circle" cx="423" cy="350" r="26"/><text class="enn-node-num" x="423" y="351">3</text><text class="enn-node-label" x="444" y="381">Achiever</text></g>
+            <g class="enn-node-group" data-type="4" onclick="selectType(4)" tabindex="0" role="button" aria-label="Type 4 The Individualist"><circle class="enn-node-circle" cx="318" cy="438" r="26"/><text class="enn-node-num" x="318" y="439">4</text><text class="enn-node-label" x="318" y="472">Individualist</text></g>
+            <g class="enn-node-group" data-type="5" onclick="selectType(5)" tabindex="0" role="button" aria-label="Type 5 The Investigator"><circle class="enn-node-circle" cx="182" cy="438" r="26"/><text class="enn-node-num" x="182" y="439">5</text><text class="enn-node-label" x="182" y="472">Investigator</text></g>
+            <g class="enn-node-group" data-type="6" onclick="selectType(6)" tabindex="0" role="button" aria-label="Type 6 The Loyalist"><circle class="enn-node-circle" cx="77" cy="350" r="26"/><text class="enn-node-num" x="77" y="351">6</text><text class="enn-node-label" x="52" y="381">Loyalist</text></g>
+            <g class="enn-node-group" data-type="7" onclick="selectType(7)" tabindex="0" role="button" aria-label="Type 7 The Enthusiast"><circle class="enn-node-circle" cx="53" cy="215" r="26"/><text class="enn-node-num" x="53" y="216">7</text><text class="enn-node-label" x="30" y="248">Enthusiast</text></g>
+            <g class="enn-node-group" data-type="8" onclick="selectType(8)" tabindex="0" role="button" aria-label="Type 8 The Challenger"><circle class="enn-node-circle" cx="121" cy="97" r="26"/><text class="enn-node-num" x="121" y="98">8</text><text class="enn-node-label" x="87" y="116">Challenger</text></g>
+          </svg>
+          <p class="enn-prompt" id="enn-prompt">Click a type to explore</p>
+        </div>
+        <div class="enn-info-panel" id="enn-info-panel" aria-live="polite">
+          <div class="enn-info-number" id="enn-num"></div>
+          <div class="enn-info-name" id="enn-name"></div>
+          <div class="enn-info-tagline" id="enn-tagline"></div>
+          <div class="enn-info-desire" id="enn-desire"></div>
+          <div class="enn-info-desc" id="enn-desc"></div>
+          <a href="#contact" class="enn-info-cta">Book a Session →</a>
+        </div>
+      </div>
+      <!-- RIGHT: Programs + CTA -->
+      <div class="coaching-right-col">
+        <div class="service-menu">
         <div class="service-tier reveal" style="--reveal-delay:0ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">Initial Enneagram Profiling Session</span>
@@ -557,6 +603,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           </div>
         </a>
       </div>
+      </div><!-- /.coaching-right-col -->
     </div>
   </div>
 </section>
@@ -771,105 +818,6 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     </div>
   </div>
 
-  <!-- Enneagram Wheel — visual anchor for Education section -->
-  <div class="education-enneagram-wrap" id="enneagram">
-  <div class="enneagram-inner">
-    <div class="enneagram-header">
-      <span class="section-label reveal">Personality Framework</span>
-      <h2 class="section-title reveal" style="--reveal-delay:80ms">Discover Your Type</h2>
-      <div class="section-rule section-rule--center reveal" style="--reveal-delay:160ms"></div>
-      <p class="enneagram-subtitle reveal" style="--reveal-delay:240ms">The Enneagram is a profound map of human personality. Nine interconnected types — each with its own gifts, motivations and growth path. Click any node to explore.</p>
-    </div>
-    <div class="enneagram-stage">
-      <div class="enneagram-svg-wrap reveal">
-        <svg id="enneagram-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Enneagram wheel">
-          <!-- Outer circle: r=200, cx=250, cy=250 -->
-          <circle id="enn-outer-circle" cx="250" cy="250" r="200" fill="none" stroke="rgba(74,124,63,0.3)" stroke-width="1.5"/>
-          <!-- Node positions (r=200):
-            9: angle=270° → (250, 50)
-            1: angle=310° → (379.28, 96.86) ≈ (379,97)
-            2: angle=350° → (447.02, 215.27) ≈ (447,215)
-            3: angle=30°  → (423.21, 350.0) ≈ (423,350)
-            4: angle=70°  → (318.40, 437.94) ≈ (318,438)
-            5: angle=110° → (181.60, 437.94) ≈ (182,438)
-            6: angle=150° → (76.79, 350.0) ≈ (77,350)
-            7: angle=190° → (52.98, 215.27) ≈ (53,215)
-            8: angle=230° → (120.72, 96.86) ≈ (121,97)
-          -->
-          <g id="enn-lines">
-            <!-- Triangle: 3-6-9 -->
-            <line class="enn-connecting-line enn-line" data-types="3,6" x1="423" y1="350" x2="77" y2="350"/>
-            <line class="enn-connecting-line enn-line" data-types="6,9" x1="77" y1="350" x2="250" y2="50"/>
-            <line class="enn-connecting-line enn-line" data-types="9,3" x1="250" y1="50" x2="423" y2="350"/>
-            <!-- Hexad: 1-4-2-8-5-7-1 -->
-            <line class="enn-connecting-line enn-line" data-types="1,4" x1="379" y1="97" x2="318" y2="438"/>
-            <line class="enn-connecting-line enn-line" data-types="4,2" x1="318" y1="438" x2="447" y2="215"/>
-            <line class="enn-connecting-line enn-line" data-types="2,8" x1="447" y1="215" x2="121" y2="97"/>
-            <line class="enn-connecting-line enn-line" data-types="8,5" x1="121" y1="97" x2="182" y2="438"/>
-            <line class="enn-connecting-line enn-line" data-types="5,7" x1="182" y1="438" x2="53" y2="215"/>
-            <line class="enn-connecting-line enn-line" data-types="7,1" x1="53" y1="215" x2="379" y2="97"/>
-          </g>
-          <!-- Nodes — drawn in data-type order for stagger -->
-          <g class="enn-node-group" data-type="9" onclick="selectType(9)" tabindex="0" role="button" aria-label="Type 9 The Peacemaker">
-            <circle class="enn-node-circle" cx="250" cy="50" r="26"/>
-            <text class="enn-node-num" x="250" y="51">9</text>
-            <text class="enn-node-label" x="250" y="84">Peacemaker</text>
-          </g>
-          <g class="enn-node-group" data-type="1" onclick="selectType(1)" tabindex="0" role="button" aria-label="Type 1 The Reformer">
-            <circle class="enn-node-circle" cx="379" cy="97" r="26"/>
-            <text class="enn-node-num" x="379" y="98">1</text>
-            <text class="enn-node-label" x="413" y="116">Reformer</text>
-          </g>
-          <g class="enn-node-group" data-type="2" onclick="selectType(2)" tabindex="0" role="button" aria-label="Type 2 The Helper">
-            <circle class="enn-node-circle" cx="447" cy="215" r="26"/>
-            <text class="enn-node-num" x="447" y="216">2</text>
-            <text class="enn-node-label" x="461" y="248">Helper</text>
-          </g>
-          <g class="enn-node-group" data-type="3" onclick="selectType(3)" tabindex="0" role="button" aria-label="Type 3 The Achiever">
-            <circle class="enn-node-circle" cx="423" cy="350" r="26"/>
-            <text class="enn-node-num" x="423" y="351">3</text>
-            <text class="enn-node-label" x="444" y="381">Achiever</text>
-          </g>
-          <g class="enn-node-group" data-type="4" onclick="selectType(4)" tabindex="0" role="button" aria-label="Type 4 The Individualist">
-            <circle class="enn-node-circle" cx="318" cy="438" r="26"/>
-            <text class="enn-node-num" x="318" y="439">4</text>
-            <text class="enn-node-label" x="318" y="472">Individualist</text>
-          </g>
-          <g class="enn-node-group" data-type="5" onclick="selectType(5)" tabindex="0" role="button" aria-label="Type 5 The Investigator">
-            <circle class="enn-node-circle" cx="182" cy="438" r="26"/>
-            <text class="enn-node-num" x="182" y="439">5</text>
-            <text class="enn-node-label" x="182" y="472">Investigator</text>
-          </g>
-          <g class="enn-node-group" data-type="6" onclick="selectType(6)" tabindex="0" role="button" aria-label="Type 6 The Loyalist">
-            <circle class="enn-node-circle" cx="77" cy="350" r="26"/>
-            <text class="enn-node-num" x="77" y="351">6</text>
-            <text class="enn-node-label" x="52" y="381">Loyalist</text>
-          </g>
-          <g class="enn-node-group" data-type="7" onclick="selectType(7)" tabindex="0" role="button" aria-label="Type 7 The Enthusiast">
-            <circle class="enn-node-circle" cx="53" cy="215" r="26"/>
-            <text class="enn-node-num" x="53" y="216">7</text>
-            <text class="enn-node-label" x="30" y="248">Enthusiast</text>
-          </g>
-          <g class="enn-node-group" data-type="8" onclick="selectType(8)" tabindex="0" role="button" aria-label="Type 8 The Challenger">
-            <circle class="enn-node-circle" cx="121" cy="97" r="26"/>
-            <text class="enn-node-num" x="121" y="98">8</text>
-            <text class="enn-node-label" x="87" y="116">Challenger</text>
-          </g>
-        </svg>
-        <p class="enn-prompt" id="enn-prompt">Click a type to explore</p>
-      </div>
-      <!-- Info panel -->
-      <div class="enn-info-panel" id="enn-info-panel" aria-live="polite" aria-atomic="true">
-        <div class="enn-info-number" id="enn-num"></div>
-        <div class="enn-info-name" id="enn-name"></div>
-        <div class="enn-info-tagline" id="enn-tagline"></div>
-        <div class="enn-info-desire" id="enn-desire"></div>
-        <div class="enn-info-desc" id="enn-desc"></div>
-        <a href="#education" class="enn-info-cta">Explore Enneagram Workshops →</a>
-      </div>
-    </div>
-  </div>
-  </div>
 </section>
 
 <!-- TESLA QUOTE -->
@@ -880,8 +828,8 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     <path d="M60 30 C48 14, 28 10, 4 20 C28 18, 46 24, 60 30 C74 24, 92 18, 116 20 C92 10, 72 14, 60 30Z" fill="white"/>
   </svg>
   <div class="tesla-quote-inner">
-    <p class="tesla-quote-text" id="tesla-typewriter"></p>
-    <div class="tesla-quote-attr" id="tesla-attr">— Nikola Tesla</div>
+    <p class="tesla-quote-text done" id="tesla-typewriter">“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”</p>
+    <div class="tesla-quote-attr visible" id="tesla-attr">— Nikola Tesla</div>
   </div>
 </section>
 
