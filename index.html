@@ -75,8 +75,8 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 #nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo-img { height: 28px; width: auto; transition: height 300ms var(--ease-out); filter: brightness(0) invert(1); }
-#nav.scrolled .nav-logo-img { height: 22px; filter: none; }
+.nav-logo-img { height: 56px; width: auto; transition: height 300ms var(--ease-out); filter: brightness(0) invert(1); }
+#nav.scrolled .nav-logo-img { height: 40px; filter: none; }
 .nav-links { display: flex; align-items: center; gap: 36px; }
 .nav-link { font-family: var(--font-ui); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.85); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 200ms ease; }
 #nav.scrolled .nav-link { color: var(--body); }
@@ -125,25 +125,21 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .hero-scroll-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); }
 .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); animation: scrollPulse 2s ease-in-out infinite; }
 @keyframes scrollPulse { 0%,100% { transform: scaleY(1); opacity: 0.4; } 50% { transform: scaleY(0.6); opacity: 1; } }
-.hero-right { position: relative; display: flex; flex-direction: column; gap: 10px; padding-top: 24px; }
-.hero-portrait-circular { width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 24px 64px rgba(0,0,0,0.4); margin: 20px auto 0; opacity: 0; transform: scale(0.96); animation: portraitReveal 700ms var(--ease-out) 1000ms forwards; flex-shrink: 0; }
-.hero-portrait-circular img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-@keyframes portraitReveal { to { opacity: 1; transform: scale(1); } }
-.hero-cards { display: flex; flex-direction: column; gap: 10px; }
-.service-card { background: var(--white); border: 2px solid var(--border); border-radius: 8px; padding: 16px 20px; opacity: 0; transform: translateX(30px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out), box-shadow 250ms var(--ease-spring), border-color 250ms ease; }
-.service-card.visible { opacity: 1; transform: translateX(0); }
-.service-card:hover { transform: translateX(0) translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); border-color: var(--olive-light); }
-.service-card-name { font-weight: 600; font-size: 14px; color: var(--heading-dark); margin-bottom: 8px; }
-.service-card-desc { font-weight: 300; font-size: 13px; color: var(--body); line-height: 1.6; margin-bottom: 16px; }
-.service-card-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--olive); color: white; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: background 200ms ease; text-decoration: none; }
-.service-card-cta:hover { background: var(--olive-light); }
+.hero-right { position: relative; display: flex; align-items: stretch; padding-top: 24px; }
+.hero-img-wrap { position: relative; width: 100%; overflow: hidden; }
+.hero-img-wrap img { width: 100%; height: auto; display: block; object-fit: cover; object-position: top center; border: none; box-shadow: none; border-radius: 0; opacity: 0; animation: imgReveal 800ms var(--ease-out) 900ms forwards; }
+@keyframes imgReveal { to { opacity: 1; } }
+.hero-anchors { position: absolute; bottom: 24px; left: 0; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+.hero-anchor { display: block; background: rgba(16,18,24,0.80); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: none; border-left: 2px solid var(--olive); color: white; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; padding: 7px 14px; border-radius: 0; text-decoration: none; transition: background 200ms ease; opacity: 0; animation: imgReveal 600ms var(--ease-out) 1200ms forwards; }
+.hero-anchor:nth-child(2) { animation-delay: 1320ms; }
+.hero-anchor:nth-child(3) { animation-delay: 1440ms; }
+.hero-anchor:hover { background: var(--olive); }
 
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; padding: 60px 20px 80px; gap: 40px; }
-  .hero-portrait-circular { max-width: 100%; height: 240px; margin: 0 auto; }
-  .hero-cards { overflow-x: auto; flex-direction: row; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
-  .service-card { min-width: 280px; scroll-snap-align: start; flex-shrink: 0; }
+  .hero-img-wrap img { max-height: 60vw; }
   .hero-right { padding-top: 0; }
+  .hero-anchors { bottom: 12px; }
 }
 
 /* === ABOUT === */
@@ -295,7 +291,7 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 @media (max-width: 640px) { .education-inner { padding: 0 20px; } }
 
 /* === TESLA QUOTE === */
-#tesla-quote { background: var(--charcoal); padding: 40px 0; text-align: center; position: relative; overflow: hidden; }
+#tesla-quote { background: var(--charcoal); padding: 72px 0; text-align: center; position: relative; overflow: hidden; }
 .tesla-quote-mark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -58%); font-family: var(--font-display); font-weight: 300; font-size: 300px; color: var(--olive); opacity: 0.05; line-height: 1; pointer-events: none; user-select: none; }
 .tesla-quote-inner { max-width: 700px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 .tesla-quote-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(20px,3vw,28px); line-height: 1.55; color: white; margin-bottom: 28px; }
@@ -427,25 +423,13 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-cards">
-        <div class="service-card" id="hc1">
-          <div class="service-card-name">Personal Coaching</div>
-          <div class="service-card-desc">Enneagram-based 1:1 coaching programs tailored to unlock self-awareness, resilience and purpose.</div>
-          <a href="#coaching" class="service-card-cta">Learn more →</a>
-        </div>
-        <div class="service-card" id="hc2">
-          <div class="service-card-name">Business Solutions</div>
-          <div class="service-card-desc">Advisory and consulting for organisations navigating people, culture, and performance challenges.</div>
-          <a href="#business" class="service-card-cta">Learn more →</a>
-        </div>
-        <div class="service-card" id="hc3">
-          <div class="service-card-name">Education &amp; Workshops</div>
-          <div class="service-card-desc">Enneagram programs, Law of Attraction workshops and Goal Setting masterclasses open to all.</div>
-          <a href="#education" class="service-card-cta">Learn more →</a>
-        </div>
-      </div>
-      <div class="hero-portrait-circular" id="hero-portrait">
+      <div class="hero-img-wrap">
         <img src="images/aaron-face.jpg" alt="Aaron Montague" loading="eager">
+        <div class="hero-anchors">
+          <a href="#coaching" class="hero-anchor">Personal Coaching</a>
+          <a href="#business" class="hero-anchor">Business Solutions</a>
+          <a href="#education" class="hero-anchor">Education &amp; Workshops</a>
+        </div>
       </div>
     </div>
   </div>
@@ -577,7 +561,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     <h2 class="section-title section-title--light reveal" style="--reveal-delay:80ms">Advisory &amp; Consulting</h2>
     <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
     <div class="business-rate reveal" style="--reveal-delay:240ms">
-      <div class="business-rate-num">$<span class="count-up" data-target="150">150</span> / hr + GST</div>
+      <div class="business-rate-num">150 / hr + GST</div>
       <div class="business-rate-sub">Scoped individually based on engagement needs.</div>
     </div>
     <p class="business-desc reveal" style="--reveal-delay:320ms">Aaron works with organisations of all sizes to address the people and performance challenges that sit beneath the surface. Drawing on Enneagram-based frameworks, organisational psychology and two decades of hands-on experience, his advisory work creates lasting, systemic change — not just quick fixes.</p>
@@ -601,12 +585,12 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     <div class="packages-row">
       <div class="package-item reveal" style="--reveal-delay:0ms">
         <div class="package-name">People Management</div>
-        <div class="package-price">from $<span class="count-up" data-target="995">995</span> + GST</div>
+        <div class="package-price">from 995 + GST</div>
         <div class="package-desc">Leadership coaching, team dynamics, performance frameworks and people strategy support.</div>
       </div>
       <div class="package-item reveal" style="--reveal-delay:100ms">
         <div class="package-name">Business Optimisation</div>
-        <div class="package-price">from $<span class="count-up" data-target="495">495</span> + GST</div>
+        <div class="package-price">from 495 + GST</div>
         <div class="package-desc">Process review, efficiency improvements and strategic clarity for growing businesses.</div>
       </div>
       <div class="package-item reveal" style="--reveal-delay:200ms">
@@ -656,7 +640,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <div class="service-tier reveal" style="--reveal-delay:0ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">EP1 — Introduction to Enneagram (2-day)</span>
-            <span class="service-tier-price">$<span class="count-up" data-target="1195">1,195</span> + GST</span>
+            <span class="service-tier-price">1,195 + GST</span>
             <span class="service-tier-toggle">Details</span>
           </div>
           <div class="service-tier-body">
@@ -666,7 +650,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <div class="service-tier reveal" style="--reveal-delay:80ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">EP2 — Art of Enneagram Profiling (1-day)</span>
-            <span class="service-tier-price">$<span class="count-up" data-target="795">795</span> + GST</span>
+            <span class="service-tier-price">795 + GST</span>
             <span class="service-tier-toggle">Details</span>
           </div>
           <div class="service-tier-body">
@@ -676,7 +660,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <div class="service-tier reveal" style="--reveal-delay:160ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">EP3 — Enneagram Masterclass (6 × 2hr)</span>
-            <span class="service-tier-price">$<span class="count-up" data-target="1395">1,395</span> + GST</span>
+            <span class="service-tier-price">1,395 + GST</span>
             <span class="service-tier-toggle">Details</span>
           </div>
           <div class="service-tier-body">
@@ -710,7 +694,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <div class="service-tier reveal" style="--reveal-delay:0ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">LA1 — Introduction to Law of Attraction (1-day)</span>
-            <span class="service-tier-price">$<span class="count-up" data-target="795">795</span> + GST</span>
+            <span class="service-tier-price">795 + GST</span>
             <span class="service-tier-toggle">Details</span>
           </div>
           <div class="service-tier-body">
@@ -720,7 +704,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <div class="service-tier reveal" style="--reveal-delay:80ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">LA2 — Perfecting the Art of Allowing (1-day)</span>
-            <span class="service-tier-price">$<span class="count-up" data-target="795">795</span> + GST</span>
+            <span class="service-tier-price">795 + GST</span>
             <span class="service-tier-toggle">Details</span>
           </div>
           <div class="service-tier-body">
@@ -753,7 +737,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <div class="service-tier reveal" style="--reveal-delay:0ms">
           <div class="service-tier-header" onclick="toggleTier(this)">
             <span class="service-tier-name">Effective Goal Setting / Make New Year's Resolutions Stick</span>
-            <span class="service-tier-price">$<span class="count-up" data-target="595">595</span> + GST</span>
+            <span class="service-tier-price">595 + GST</span>
             <span class="service-tier-toggle">Details</span>
           </div>
           <div class="service-tier-body">
@@ -884,11 +868,13 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
 <!-- TESLA QUOTE -->
 <section id="tesla-quote" aria-label="Nikola Tesla quote">
   <div class="tesla-quote-mark" aria-hidden="true">"</div>
+  <!-- Animated bird SVG -->
+  <svg class="tesla-bird" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none">
+    <path d="M60 30 C48 14, 28 10, 4 20 C28 18, 46 24, 60 30 C74 24, 92 18, 116 20 C92 10, 72 14, 60 30Z" fill="white"/>
+  </svg>
   <div class="tesla-quote-inner">
-    <blockquote class="reveal">
-      <p class="tesla-quote-text">"If you want to find the secrets of the universe,<br>think in terms of energy, frequency and vibration."</p>
-      <footer class="tesla-quote-attr">— Nikola Tesla</footer>
-    </blockquote>
+    <p class="tesla-quote-text" id="tesla-typewriter"></p>
+    <div class="tesla-quote-attr" id="tesla-attr">— Nikola Tesla</div>
   </div>
 </section>
 
@@ -920,13 +906,13 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <!-- Mitch -->
       <div class="testimonial-card reveal" style="--reveal-delay:0ms">
         <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">Working with Aaron completely shifted my perspective on leadership. His Enneagram profiling cut straight to the core of who I am and why I lead the way I do. The growth I've experienced has been profound and lasting.</p>
+        <p class="testimonial-text">I've been racing triathlon at the top level for many years. Knowing my personality types, and what influences my mindset and behaviours, has made me more resilient and focused, giving me more consistent, positive results.</p>
         <div class="testimonial-rule"></div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar"><span class="testimonial-initials">M</span></div>
+          <div class="testimonial-avatar"><img src="images/testimonial_mitch-kibby.jpg" alt="Mitch Kibby"></div>
           <div>
-            <div class="testimonial-name">Mitch</div>
-            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
+            <div class="testimonial-name">Mitch Kibby</div>
+            <div class="testimonial-role">Professional Triathlete</div>
           </div>
         </div>
       </div>
@@ -934,13 +920,13 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <!-- Corrine -->
       <div class="testimonial-card reveal" style="--reveal-delay:100ms">
         <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">Aaron has an extraordinary ability to hold space for deep work while keeping things grounded and practical. I came in unsure and left with real clarity about who I am and where I'm heading.</p>
+        <p class="testimonial-text">Doing the Enneagram personality types course has helped me see people in a new light! I now better understand my family and friends, and work relationships are much easier. I'm more self-aware, and thus able to control my attitudes and behaviours. I thoroughly recommend his course and programs to everyone.</p>
         <div class="testimonial-rule"></div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar"><span class="testimonial-initials">C</span></div>
+          <div class="testimonial-avatar"><img src="images/testimonial_corrine-clewlow.jpg" alt="Corrine Clewlow"></div>
           <div>
-            <div class="testimonial-name">Corrine</div>
-            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
+            <div class="testimonial-name">Corrine Clewlow</div>
+            <div class="testimonial-role">Portfolio Manager</div>
           </div>
         </div>
       </div>
@@ -948,13 +934,13 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <!-- Rony -->
       <div class="testimonial-card reveal" style="--reveal-delay:200ms">
         <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">The business advisory work Aaron provided was exactly what we needed — grounded, honest and deeply practical. He understood our culture and helped us see patterns we'd been blind to for years.</p>
+        <p class="testimonial-text">His programs are awesome! I've learned so much about myself and those around me. I thoroughly recommend Aaron to anyone who's keen to be their best.</p>
         <div class="testimonial-rule"></div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar"><span class="testimonial-initials">R</span></div>
+          <div class="testimonial-avatar"><img src="images/testimonial_rony-roussetty.jpg" alt="Rony Roussetty"></div>
           <div>
-            <div class="testimonial-name">Rony</div>
-            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
+            <div class="testimonial-name">Rony Roussetty</div>
+            <div class="testimonial-role">Finance Manager</div>
           </div>
         </div>
       </div>
@@ -962,13 +948,13 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <!-- Jarrad -->
       <div class="testimonial-card reveal" style="--reveal-delay:300ms">
         <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">As an athlete, I came to Aaron for the performance edge. What I got was so much more — a complete understanding of what drives me, what holds me back, and how to channel everything I have toward what matters.</p>
+        <p class="testimonial-text">The Game Changer program is second to none. As someone who's played competitive sport, at the highest levels, all my life, I can definitely say, it's like no other. I highly recommend the program to anyone serious about their sport.</p>
         <div class="testimonial-rule"></div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar"><span class="testimonial-initials">J</span></div>
+          <div class="testimonial-avatar"><img src="images/testimonial_jarrod-matheson.jpg" alt="Jarrad Matheson"></div>
           <div>
-            <div class="testimonial-name">Jarrad</div>
-            <div class="testimonial-role"><span style="color: rgba(255,200,100,0.7); font-size: 11px;">[PLACEHOLDER]</span></div>
+            <div class="testimonial-name">Jarrad Matheson</div>
+            <div class="testimonial-role">Podiatrist &amp; Movement Specialist</div>
           </div>
         </div>
       </div>
@@ -1012,10 +998,6 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           <div class="form-group">
             <input type="email" class="form-field" id="f-email" name="email" placeholder=" " autocomplete="email" required>
             <label class="form-label" for="f-email">Email Address</label>
-          </div>
-          <div class="form-group">
-            <input type="tel" class="form-field" id="f-phone" name="phone" placeholder=" " autocomplete="tel">
-            <label class="form-label" for="f-phone">Mobile (optional)</label>
           </div>
           <div class="form-group">
             <select class="form-field" id="f-service" name="service" required>
@@ -1279,7 +1261,7 @@ function initCountUp() {
   }, { threshold: 0.5 });
   document.querySelectorAll('.count-up').forEach(el => observer.observe(el));
 }
-document.addEventListener('DOMContentLoaded', initCountUp);
+// count-up removed
 
 
 /* ---------------------------------------------------------------
@@ -1375,6 +1357,39 @@ function loadVideo() {
 
 
 
+
+/* ---------------------------------------------------------------
+   TESLA QUOTE TYPEWRITER
+--------------------------------------------------------------- */
+(function() {
+  const quote = '“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”';
+  const el = document.getElementById('tesla-typewriter');
+  const attr = document.getElementById('tesla-attr');
+  if (!el || !attr) return;
+  let started = false;
+  function typeIt() {
+    if (started) return;
+    started = true;
+    el.classList.add('typing');
+    let i = 0;
+    function tick() {
+      if (i < quote.length) {
+        el.textContent += quote[i++];
+        setTimeout(tick, 26);
+      } else {
+        el.classList.remove('typing');
+        el.classList.add('done');
+        attr.classList.add('visible');
+      }
+    }
+    tick();
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { typeIt(); obs.unobserve(e.target); } });
+  }, { threshold: 0.4 });
+  const section = document.getElementById('tesla-quote');
+  if (section) obs.observe(section);
+})();
 
 /* ---------------------------------------------------------------
    CONTACT FORM — Formspree async submit
