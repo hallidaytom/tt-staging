@@ -112,6 +112,7 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .hero-since.visible { opacity: 1; transform: translateY(0); }
 .hero-headline { font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,5vw,58px); line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 28px; }
 .hero-headline mark { background: none; color: white; text-decoration: underline; text-decoration-color: var(--olive); text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.hero-subhead mark, .hero-body mark { background: none; color: white; font-weight: 600; }
 .hero-word-wrap { overflow: hidden; display: inline-block; vertical-align: bottom; padding-bottom: 4px; margin-right: 14px; }
 .hero-word { display: inline-block; transform: translateY(100%); transition: transform 600ms var(--ease-out); }
 .hero-word.visible { transform: translateY(0); }
@@ -253,7 +254,7 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 @media (max-width: 640px) { .enneagram-inner { padding: 0 20px; } }
 
 /* === BUSINESS SOLUTIONS === */
-#business { background: var(--charcoal); padding: 56px 0; }
+#business { background: var(--charcoal); padding: 48px 0 32px; }
 .business-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .business-inner .section-label { color: var(--olive); }
 .business-rate { margin-bottom: 28px; }
@@ -285,6 +286,10 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 /* === EDUCATION === */
 #education { background: var(--cream); padding: 56px 0; }
 .education-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.education-grid { display: grid; grid-template-columns: 1fr 380px; gap: 56px; align-items: start; margin-top: 32px; }
+.education-left { min-width: 0; }
+.education-right { min-width: 0; position: sticky; top: 92px; }
+@media (max-width: 900px) { .education-grid { grid-template-columns: 1fr; } .education-right { position: static; } }
 .workshop-category { margin-bottom: 40px; }
 .workshop-cat-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--olive); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
 .workshop-cat-label::after { content: ''; flex: 1; max-width: 200px; height: 1px; background: var(--rule); transform-origin: left; transform: scaleX(0); transition: transform 400ms var(--ease-out) 200ms; }
@@ -323,7 +328,7 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .video-embed iframe { width: 100%; height: 100%; border: none; }
 .testimonials-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 640px) { .testimonials-cards-grid { grid-template-columns: 1fr; } }
-.testimonial-card { background: white; border-radius: 4px; border-top: 3px solid var(--olive); padding: 24px; position: relative; }
+.testimonial-card { background: hsla(240,10%,95%,0.05); border-radius: 4px; border-top: 2px solid var(--olive); padding: 24px; position: relative; }
 .testimonial-quote-open { font-family: var(--font-display); font-weight: 600; font-size: 72px; color: var(--olive); line-height: 0.8; position: absolute; top: 24px; left: 28px; opacity: 0.25; }
 .testimonial-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 16px; color: var(--body); line-height: 1.6; padding-top: 52px; margin-bottom: 24px; }
 .testimonial-rule { width: 40px; height: 1px; background: var(--rule); margin-bottom: 20px; }
@@ -421,10 +426,10 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <span class="hero-word-wrap"><span class="hero-word" id="hw3">potential.</span></span>
       </h1>
       <p class="hero-subhead" id="hero-subhead">
-        Transforming lives through <mark>Enneagram</mark> insight,<br>mindset coaching &amp; organisational wisdom.
+        Transforming lives through <em>Enneagram</em> insight,<br>mindset coaching &amp; organisational wisdom.
       </p>
       <div class="hero-body" id="hero-body">
-        <p>For over a decade, <mark>Aaron Montague</mark> and <mark>Life In My Hands</mark> have guided individuals and organisations toward clarity, resilience, and peak performance. Whether you're navigating personal challenges or driving systemic change, Aaron brings a rare combination of depth and pragmatism.</p>
+        <p>For over a decade, <strong>Aaron Montague</strong> and <strong>Life In My Hands</strong> have guided individuals and organisations toward clarity, resilience, and peak performance. Whether you're navigating personal challenges or driving systemic change, Aaron brings a rare combination of depth and pragmatism.</p>
         <p>Through Enneagram profiling, mindset coaching, and evidence-based frameworks, discover who you are — and who you're capable of becoming.</p>
       </div>
       <div class="hero-scroll-indicator" id="hero-scroll" aria-hidden="true">
@@ -685,8 +690,9 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
   <div class="education-inner">
     <span class="section-label reveal">Education</span>
     <h2 class="section-title reveal" style="--reveal-delay:80ms">Workshops &amp; Programs</h2>
-    <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
-
+    <div class="section-rule reveal" style="--reveal-delay:160px"></div>
+    <div class="education-grid">
+    <div class="education-left">
     <!-- Enneagram Programs -->
     <div class="workshop-category">
       <p class="workshop-cat-label reveal" data-cat-rule="true">Enneagram Programs</p>
@@ -815,7 +821,20 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           </div>
         </a>
       </div>
-    </div>
+    </div><!-- /.education-left -->
+    <div class="education-right reveal" style="--reveal-delay:100ms">
+      <div class="edu-gift-card">
+        <div class="edu-gift-card-title">Gift Certificates</div>
+        <div class="edu-gift-card-text">All workshops are available as gift certificates — a meaningful gift for anyone ready to invest in themselves. Suitable for ages 17 and over.</div>
+        <a href="#contact" class="edu-gift-card-cta">Enquire Now</a>
+      </div>
+      <div style="margin-top: 24px; padding: 20px 24px; border: 1px solid var(--rule); border-radius: 4px; background: rgba(74,124,63,0.04);">
+        <p style="font-weight:500; font-size:13px; color:var(--heading-dark); margin-bottom:8px;">Not sure where to start?</p>
+        <p style="font-weight:300; font-size:13px; color:var(--body); line-height:1.7; margin-bottom:16px;">Contact Aaron to discuss which workshop is the right fit for your goals and experience level.</p>
+        <a href="#contact" class="edu-gift-card-cta" style="background:transparent; color:var(--olive); border:1px solid var(--border); padding:8px 16px;">Get In Touch</a>
+      </div>
+    </div><!-- /.education-right -->
+    </div><!-- /.education-grid -->
   </div>
 
 </section>
