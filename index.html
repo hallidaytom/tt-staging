@@ -326,18 +326,67 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .video-poster-sub { font-weight: 300; font-size: 13px; color: rgba(255,255,255,0.6); }
 .video-embed { display: none; width: 100%; max-width: 800px; margin: 0 auto 40px; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; }
 .video-embed iframe { width: 100%; height: 100%; border: none; }
-.testimonials-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* Testimonial cards — circular photo overlapping top, white rounded card, green quote marks */
+.testimonials-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 32px; padding-top: 60px; }
 @media (max-width: 640px) { .testimonials-cards-grid { grid-template-columns: 1fr; } }
-.testimonial-card { background: hsla(240,10%,95%,0.05); border-radius: 4px; border-top: 2px solid var(--olive); padding: 24px; position: relative; }
-.testimonial-quote-open { font-family: var(--font-display); font-weight: 600; font-size: 72px; color: var(--olive); line-height: 0.8; position: absolute; top: 24px; left: 28px; opacity: 0.25; }
-.testimonial-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 16px; color: var(--body); line-height: 1.6; padding-top: 52px; margin-bottom: 24px; }
-.testimonial-rule { width: 40px; height: 1px; background: var(--rule); margin-bottom: 20px; }
-.testimonial-author { display: flex; align-items: center; gap: 14px; }
-.testimonial-avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--olive); background: var(--olive-wash); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-.testimonial-avatar img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; display: block; }
-.testimonial-initials { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--olive); }
-.testimonial-name { font-weight: 600; font-size: 14px; color: var(--heading-dark); }
-.testimonial-role { font-weight: 400; font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.testimonial-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 0 28px 28px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+/* Circular photo — overlaps top of card */
+.testimonial-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid var(--olive);
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: -55px;
+  margin-bottom: 0;
+  background: var(--olive-wash);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.testimonial-avatar img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; object-position: top center; display: block; }
+
+/* Green quote marks flanking the photo */
+.testimonial-quotes-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 12px 0 8px;
+  width: 100%;
+}
+.testimonial-q {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--olive);
+  line-height: 1;
+  user-select: none;
+}
+
+.testimonial-text {
+  font-family: var(--font-ui);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--body);
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.testimonial-name { font-weight: 700; font-size: 15px; color: var(--heading-dark); margin-bottom: 2px; }
+.testimonial-role { font-weight: 400; font-size: 13px; color: var(--olive); }
 @media (max-width: 900px) { .testimonials-inner { padding: 0 20px; } }
 
 /* === CONTACT === */
@@ -879,58 +928,38 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
 
       <!-- Mitch -->
       <div class="testimonial-card reveal" style="--reveal-delay:0ms">
-        <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">I've been racing triathlon at the top level for many years. Knowing my personality types, and what influences my mindset and behaviours, has made me more resilient and focused, giving me more consistent, positive results.</p>
-        <div class="testimonial-rule"></div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar"><img src="images/testimonial_mitch-kibby.jpg" alt="Mitch Kibby"></div>
-          <div>
-            <div class="testimonial-name">Mitch Kibby</div>
-            <div class="testimonial-role">Professional Triathlete</div>
-          </div>
-        </div>
+        <div class="testimonial-avatar"><img src="images/testimonial_mitch-kibby.jpg" alt="Mitch Kibby"></div>
+        <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
+        <p class="testimonial-text">"I've been racing triathlon at the top level for many years. Knowing my personality types, and what influences my mindset and behaviours, has made me more resilient and focused, giving me more consistent, positive results."</p>
+        <div class="testimonial-name">Mitch Kibby</div>
+        <div class="testimonial-role">Professional Triathlete</div>
       </div>
 
       <!-- Corrine -->
       <div class="testimonial-card reveal" style="--reveal-delay:100ms">
-        <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">Doing the Enneagram personality types course has helped me see people in a new light! I now better understand my family and friends, and work relationships are much easier. I'm more self-aware, and thus able to control my attitudes and behaviours. I thoroughly recommend his course and programs to everyone.</p>
-        <div class="testimonial-rule"></div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar"><img src="images/testimonial_corrine-clewlow.jpg" alt="Corrine Clewlow"></div>
-          <div>
-            <div class="testimonial-name">Corrine Clewlow</div>
-            <div class="testimonial-role">Portfolio Manager</div>
-          </div>
-        </div>
+        <div class="testimonial-avatar"><img src="images/testimonial_corrine-clewlow.jpg" alt="Corrine Clewlow"></div>
+        <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
+        <p class="testimonial-text">"Doing the Enneagram personality types course has helped me see people in a new light! I now better understand my family and friends, and work relationships are much easier. I'm more self-aware, and thus able to control my attitudes and behaviours. I thoroughly recommend his course and programs to everyone."</p>
+        <div class="testimonial-name">Corrine Clewlow</div>
+        <div class="testimonial-role">Portfolio Manager</div>
       </div>
 
       <!-- Rony -->
       <div class="testimonial-card reveal" style="--reveal-delay:200ms">
-        <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">His programs are awesome! I've learned so much about myself and those around me. I thoroughly recommend Aaron to anyone who's keen to be their best.</p>
-        <div class="testimonial-rule"></div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar"><img src="images/testimonial_rony-roussetty.jpg" alt="Rony Roussetty"></div>
-          <div>
-            <div class="testimonial-name">Rony Roussetty</div>
-            <div class="testimonial-role">Finance Manager</div>
-          </div>
-        </div>
+        <div class="testimonial-avatar"><img src="images/testimonial_rony-roussetty.jpg" alt="Rony Roussetty"></div>
+        <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
+        <p class="testimonial-text">"His programs are awesome! I've learned so much about myself and those around me. I thoroughly recommend Aaron to anyone who's keen to be their best."</p>
+        <div class="testimonial-name">Rony Roussetty</div>
+        <div class="testimonial-role">Finance Manager</div>
       </div>
 
       <!-- Jarrad -->
       <div class="testimonial-card reveal" style="--reveal-delay:300ms">
-        <div class="testimonial-quote-open">"</div>
-        <p class="testimonial-text">The Game Changer program is second to none. As someone who's played competitive sport, at the highest levels, all my life, I can definitely say, it's like no other. I highly recommend the program to anyone serious about their sport.</p>
-        <div class="testimonial-rule"></div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar"><img src="images/testimonial_jarrod-matheson.jpg" alt="Jarrad Matheson"></div>
-          <div>
-            <div class="testimonial-name">Jarrad Matheson</div>
-            <div class="testimonial-role">Podiatrist &amp; Movement Specialist</div>
-          </div>
-        </div>
+        <div class="testimonial-avatar"><img src="images/testimonial_jarrod-matheson.jpg" alt="Jarrad Matheson"></div>
+        <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
+        <p class="testimonial-text">"The Game Changer program is second to none. As someone who's played competitive sport, at the highest levels, all my life, I can definitely say, it's like no other. I highly recommend the program to anyone serious about their sport."</p>
+        <div class="testimonial-name">Jarrad Matheson</div>
+        <div class="testimonial-role">Podiatrist &amp; Movement Specialist</div>
       </div>
 
     </div>
