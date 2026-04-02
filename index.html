@@ -254,42 +254,67 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 @media (max-width: 640px) { .enneagram-inner { padding: 0 20px; } }
 
 /* === BUSINESS SOLUTIONS === */
-#business { background: var(--charcoal); padding: 48px 0 32px; }
+#business { background: var(--charcoal); padding: 56px 0; }
 .business-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .business-inner .section-label { color: var(--olive); }
-.business-rate { margin-bottom: 28px; }
-.business-rate-num { font-family: var(--font-display); font-weight: 600; font-size: 36px; color: white; line-height: 1; margin-bottom: 8px; }
-.business-rate-sub { font-weight: 300; font-size: 15px; color: var(--body-light); }
-.business-desc { font-weight: 300; font-size: 15px; color: var(--body-light); max-width: 680px; line-height: 1.65; margin-bottom: 28px; }
-.engagement-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 16px; }
-.engagement-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 20px; }
-.engagement-card-title { font-weight: 600; font-size: 16px; color: white; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.engagement-card-body { font-weight: 300; font-size: 15px; color: var(--body-light); line-height: 1.7; }
-.engagement-card-full { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 20px; margin-bottom: 28px; }
-.engagement-card-full .engagement-card-title { font-size: 17px; }
-.engagement-card-full .engagement-card-body { font-size: 16px; max-width: 760px; }
-.packages-heading { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 24px; display: block; }
-.packages-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+.business-desc { font-weight: 300; font-size: 15px; color: var(--body-light); line-height: 1.7; margin-bottom: 24px; }
+/* 2-col layout */
+.business-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-top: 32px; margin-bottom: 40px; }
+/* Left col */
+.business-advisory { }
+.biz-rate-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.biz-rate-figure { font-family: var(--font-display); font-weight: 600; font-size: 32px; color: white; line-height: 1; }
+.biz-rate-note { font-weight: 300; font-size: 14px; color: rgba(255,255,255,0.5); }
+.biz-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.biz-features li { font-weight: 300; font-size: 14px; color: var(--body-light); padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 10px; }
+.biz-features li::before { content: none !important; }
+.biz-features li::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--olive); flex-shrink: 0; margin-left: auto; }
+/* Right col */
+.business-packages-col { }
+.packages-heading { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 20px; display: block; }
+.packages-col { display: flex; flex-direction: column; gap: 0; }
 .package-item { padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.1); }
-.package-name { font-weight: 600; font-size: 15px; color: white; margin-bottom: 8px; }
-.package-price { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--olive-light); margin-bottom: 8px; }
-.package-desc { font-weight: 300; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-.trusted-by { margin-bottom: 32px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
-.trusted-label { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 16px; display: block; }
-.trusted-names { font-weight: 400; font-size: 14px; color: rgba(255,255,255,0.5); line-height: 2; }
-.business-cta .cta-box { max-width: 100%; background: transparent; border-color: rgba(255,255,255,0.2); }
-.business-cta .cta-box-title { color: white; }
-.business-cta .cta-box-sub { color: rgba(255,255,255,0.5); }
-.business-cta .cta-contact-line { color: rgba(255,255,255,0.8); }
-@media (max-width: 900px) { .engagement-grid { grid-template-columns: 1fr; } .packages-row { grid-template-columns: 1fr; } .business-inner { padding: 0 20px; } }
+.package-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.package-name { font-weight: 600; font-size: 15px; color: white; margin-bottom: 6px; }
+.package-price { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--olive-light); margin-bottom: 6px; }
+.package-desc { font-weight: 300; font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+/* Spanning bottom row */
+.business-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; }
+.trusted-by { margin-bottom: 24px; }
+.trusted-label { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 10px; display: block; }
+.trusted-names { font-weight: 400; font-size: 14px; color: rgba(255,255,255,0.45); line-height: 2; }
+#business .cta-box { background: transparent; border-color: rgba(255,255,255,0.2); }
+#business .cta-box-title { color: white; }
+#business .cta-box-sub { color: rgba(255,255,255,0.5); }
+#business .cta-contact-line { color: rgba(255,255,255,0.8); }
+@media (max-width: 900px) { .business-two-col { grid-template-columns: 1fr; gap: 32px; } .business-inner { padding: 0 20px; } }
 
 /* === EDUCATION === */
 #education { background: var(--cream); padding: 56px 0; }
 .education-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-.education-grid { display: grid; grid-template-columns: 1fr 380px; gap: 56px; align-items: start; margin-top: 32px; }
+.education-header { margin-bottom: 32px; }
+.education-grid { display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start; }
 .education-left { min-width: 0; }
 .education-right { min-width: 0; position: sticky; top: 92px; }
-@media (max-width: 900px) { .education-grid { grid-template-columns: 1fr; } .education-right { position: static; } }
+.edu-group-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 0; display: block; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+.edu-workshop-list { display: flex; flex-direction: column; }
+.edu-workshop-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+.edu-workshop-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.edu-workshop-code { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: var(--olive); text-transform: uppercase; }
+.edu-workshop-name { font-weight: 500; font-size: 14px; color: var(--heading-dark); }
+.edu-workshop-detail { font-weight: 300; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.edu-workshop-price { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--olive); white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
+.edu-gift-card { background: var(--olive-wash); border: 1px solid var(--rule); border-radius: 6px; padding: 24px; margin-bottom: 20px; }
+.edu-gift-card-title { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--heading-dark); margin-bottom: 8px; }
+.edu-gift-card-text { font-weight: 300; font-size: 13px; color: var(--body); line-height: 1.7; margin-bottom: 16px; }
+.edu-gift-card-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--olive); color: white; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: background 200ms ease; }
+.edu-gift-card-cta:hover { background: var(--olive-light); }
+.edu-note-card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 20px; }
+.edu-note-label { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--olive); margin-bottom: 10px; }
+.edu-note-list { padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.edu-note-list li { font-weight: 300; font-size: 13px; color: var(--body); line-height: 1.6; padding-left: 14px; position: relative; }
+.edu-note-list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--olive); }
+@media (max-width: 900px) { .education-grid { grid-template-columns: 1fr; } .education-right { position: static; } .education-inner { padding: 0 20px; } }
 .workshop-category { margin-bottom: 40px; }
 .workshop-cat-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--olive); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
 .workshop-cat-label::after { content: ''; flex: 1; max-width: 200px; height: 1px; background: var(--rule); transform-origin: left; transform: scaleX(0); transition: transform 400ms var(--ease-out) 200ms; }
@@ -523,6 +548,17 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
   </div>
 </section>
 
+<!-- TESLA QUOTE -->
+<section id="tesla-quote" aria-label="Nikola Tesla quote">
+  <div class="tesla-quote-mark" aria-hidden="true">"</div>
+  <!-- Animated brand bird -->
+  <img class="tesla-bird" src="images/LIMH-birddot.svg" alt="" aria-hidden="true" style="filter: invert(1) brightness(2);">
+  <div class="tesla-quote-inner">
+    <p class="tesla-quote-text done" id="tesla-typewriter">“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”</p>
+    <div class="tesla-quote-attr visible" id="tesla-attr">— Nikola Tesla</div>
+  </div>
+</section>
+
 <!-- PERSONAL COACHING -->
 <section id="coaching" aria-label="Personal Coaching Programs">
   <div class="coaching-inner">
@@ -668,52 +704,59 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     <span class="section-label reveal">Business Solutions</span>
     <h2 class="section-title section-title--light reveal" style="--reveal-delay:80ms">Advisory &amp; Consulting</h2>
     <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
-    <div class="business-rate reveal" style="--reveal-delay:240ms">
-      <div class="business-rate-num">150 / hr + GST</div>
-      <div class="business-rate-sub">Scoped individually based on engagement needs.</div>
-    </div>
-    <p class="business-desc reveal" style="--reveal-delay:320ms">Aaron works with organisations of all sizes to address the people and performance challenges that sit beneath the surface. Drawing on Enneagram-based frameworks, organisational psychology and two decades of hands-on experience, his advisory work creates lasting, systemic change — not just quick fixes.</p>
-    <div class="engagement-grid">
-      <div class="engagement-card reveal" style="--reveal-delay:0ms">
-        <div class="engagement-card-title">Session-Based Advisory</div>
-        <div class="engagement-card-body">For specific questions, decisions or issues where focused input is required. Ideal for leaders facing a particular challenge who need a trusted, expert perspective to move forward with confidence.</div>
+
+    <!-- 2-col grid: Left = Advisory features, Right = Packages -->
+    <div class="business-two-col">
+
+      <!-- LEFT: Advisory & Consulting -->
+      <div class="business-advisory reveal" style="--reveal-delay:0ms">
+        <div class="biz-rate-row">
+          <span class="biz-rate-figure">$150 / hr</span>
+          <span class="biz-rate-note">+ GST &mdash; scoped individually</span>
+        </div>
+        <p class="business-desc">Aaron works with organisations of all sizes to address the people and performance challenges that sit beneath the surface. Drawing on Enneagram-based frameworks and two decades of hands-on experience, his advisory work creates lasting, systemic change.</p>
+        <ul class="biz-features">
+          <li>Session-based input for specific challenges</li>
+          <li>Program-based advisory for systemic change</li>
+          <li>Ongoing operational / embedded advisory role</li>
+          <li>Enneagram-informed people strategy</li>
+          <li>Leadership coaching &amp; team effectiveness</li>
+          <li>Organisational culture &amp; performance review</li>
+        </ul>
       </div>
-      <div class="engagement-card reveal" style="--reveal-delay:150ms">
-        <div class="engagement-card-title">Program-Based Advisory</div>
-        <div class="engagement-card-body">For systemic or ongoing change — a tailored proposal covering scope, sequencing, timeframes and success metrics. Best suited to organisations undertaking transformation, culture work, or sustained performance improvement.</div>
+
+      <!-- RIGHT: Business Packages -->
+      <div class="business-packages-col reveal" style="--reveal-delay:150ms">
+        <span class="packages-heading">Business Packages</span>
+        <div class="packages-col">
+          <div class="package-item">
+            <div class="package-name">People Management</div>
+            <div class="package-price">from $995 + GST</div>
+            <div class="package-desc">Leadership coaching, team dynamics, performance frameworks and people strategy support.</div>
+          </div>
+          <div class="package-item">
+            <div class="package-name">Business Optimisation</div>
+            <div class="package-price">from $495 + GST</div>
+            <div class="package-desc">Process review, efficiency improvements and strategic clarity for growing businesses.</div>
+          </div>
+          <div class="package-item">
+            <div class="package-name">Workplace Harmony</div>
+            <div class="package-price">Price on enquiry</div>
+            <div class="package-desc">Conflict resolution, team culture rebuilding and sustained workplace wellbeing programs.</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="engagement-card-full reveal">
-      <div class="engagement-card-title">Ongoing Operational Role</div>
-      <div class="engagement-card-body">For organisations requiring an embedded advisory presence — Aaron can step into an ongoing operational role, attending leadership meetings, working alongside teams, and providing real-time guidance. Typically scoped on a retainer or project basis.
-        <!-- PLACEHOLDER: Organisational Effectiveness framework document — Aaron to provide URL if applicable. -->
+
+    </div><!-- /.business-two-col -->
+
+    <!-- SPANNING ROW: Trusted By + Discuss CTA -->
+    <div class="business-bottom reveal" style="--reveal-delay:200ms">
+      <div class="trusted-by">
+        <span class="trusted-label">Trusted By</span>
+        <p class="trusted-names">Simone Haag Pty Ltd &nbsp;&middot;&nbsp; Xenon Underwriting &nbsp;&middot;&nbsp; Andy's Water Transport &nbsp;&middot;&nbsp; Dragonfly Springwater</p>
       </div>
-    </div>
-    <span class="packages-heading reveal">Business Packages</span>
-    <div class="packages-row">
-      <div class="package-item reveal" style="--reveal-delay:0ms">
-        <div class="package-name">People Management</div>
-        <div class="package-price">from 995 + GST</div>
-        <div class="package-desc">Leadership coaching, team dynamics, performance frameworks and people strategy support.</div>
-      </div>
-      <div class="package-item reveal" style="--reveal-delay:100ms">
-        <div class="package-name">Business Optimisation</div>
-        <div class="package-price">from 495 + GST</div>
-        <div class="package-desc">Process review, efficiency improvements and strategic clarity for growing businesses.</div>
-      </div>
-      <div class="package-item reveal" style="--reveal-delay:200ms">
-        <div class="package-name">Workplace Harmony</div>
-        <div class="package-price">Price negotiated</div>
-        <div class="package-desc">Conflict resolution, team culture rebuilding and sustained workplace wellbeing programs.</div>
-      </div>
-    </div>
-    <div class="trusted-by reveal">
-      <span class="trusted-label">Trusted By</span>
-      <p class="trusted-names">Simone Haag Pty Ltd &nbsp;&middot;&nbsp; Xenon Underwriting &nbsp;&middot;&nbsp; Andy's Water Transport &nbsp;&middot;&nbsp; Dragonfly Springwater</p>
-    </div>
-    <div class="business-cta reveal">
       <a href="#contact" style="text-decoration:none; display:block;">
-        <div class="cta-box">
+        <div class="cta-box" style="max-width:100%">
           <div class="cta-box-text">
             <div class="cta-box-title">Discuss Your Business</div>
             <div class="cta-box-sub">Let's explore how Aaron can support your team and organisation.</div>
@@ -731,173 +774,108 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         </div>
       </a>
     </div>
+
   </div>
 </section>
 
 <!-- EDUCATION & WORKSHOPS -->
 <section id="education" aria-label="Education and Workshops">
   <div class="education-inner">
-    <span class="section-label reveal">Education</span>
-    <h2 class="section-title reveal" style="--reveal-delay:80ms">Workshops &amp; Programs</h2>
-    <div class="section-rule reveal" style="--reveal-delay:160px"></div>
-    <div class="education-grid">
-    <div class="education-left">
-    <!-- Enneagram Programs -->
-    <div class="workshop-category">
-      <p class="workshop-cat-label reveal" data-cat-rule="true">Enneagram Programs</p>
-      <div class="service-menu">
-        <div class="service-tier reveal" style="--reveal-delay:0ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">EP1 — Introduction to Enneagram (2-day)</span>
-            <span class="service-tier-price">1,195 + GST</span>
-            <span class="service-tier-toggle">Details</span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">A comprehensive two-day immersive workshop introducing the nine Enneagram types in depth. Participants discover their own type and begin the journey of self-understanding. Suitable for individuals and teams. Includes workbook materials.</p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:80ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">EP2 — Art of Enneagram Profiling (1-day)</span>
-            <span class="service-tier-price">795 + GST</span>
-            <span class="service-tier-toggle">Details</span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">Master the skill of identifying and working with Enneagram types in a professional context. Designed for coaches, HR professionals, and leaders who wish to integrate Enneagram profiling into their practice.</p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:160ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">EP3 — Enneagram Masterclass (6 × 2hr)</span>
-            <span class="service-tier-price">1,395 + GST</span>
-            <span class="service-tier-toggle">Details</span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">Six 2-hour sessions delivered over six weeks — the deepest dive into Enneagram theory and application available through Life In My Hands. Covers type structures, integration/disintegration paths, instinctual subtypes, and advanced profiling techniques.</p>
-          </div>
-        </div>
-      </div>
-      <span class="edu-gift-note reveal">🎁 Gift Certificates available for all Enneagram Programs — a meaningful gift for someone ready to grow.</span>
-      <div class="reveal" style="--reveal-delay:0ms">
-        <a href="#contact" style="text-decoration:none; display:block;">
-          <div class="cta-box" style="max-width:800px">
-            <div class="cta-box-text">
-              <div class="cta-box-title">Interested in Enneagram Programs?</div>
-              <div class="cta-box-sub">Get in touch to check upcoming dates and availability.</div>
-            </div>
-            <div class="cta-contacts">
-              <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
-                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Get In Touch
-              </a>
-            </div>
-          </div>
-        </a>
-      </div>
+
+    <div class="education-header">
+      <span class="section-label reveal">Education</span>
+      <h2 class="section-title reveal" style="--reveal-delay:80ms">Workshops &amp; Programs</h2>
+      <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
     </div>
 
-    <!-- Law of Attraction -->
-    <div class="workshop-category">
-      <p class="workshop-cat-label reveal" data-cat-rule="true">Law of Attraction</p>
-      <div class="service-menu">
-        <div class="service-tier reveal" style="--reveal-delay:0ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">LA1 — Introduction to Law of Attraction (1-day)</span>
-            <span class="service-tier-price">795 + GST</span>
-            <span class="service-tier-toggle">Details</span>
+    <div class="education-grid">
+
+      <!-- LEFT: Workshop listings -->
+      <div class="education-left">
+
+        <p class="edu-group-label">Enneagram Personality Types</p>
+        <div class="edu-workshop-list">
+          <div class="edu-workshop-row">
+            <div class="edu-workshop-info">
+              <span class="edu-workshop-code">EP1</span>
+              <span class="edu-workshop-name">Introduction to Enneagram Personality Types</span>
+              <span class="edu-workshop-detail">2-day workshop — learn all nine types in depth</span>
+            </div>
+            <span class="edu-workshop-price">$1,195 + GST</span>
           </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">A practical, grounded one-day workshop exploring the principles of Law of Attraction and how to consciously harness them in your daily life, relationships and work. Evidence-informed and deeply experiential.</p>
+          <div class="edu-workshop-row">
+            <div class="edu-workshop-info">
+              <span class="edu-workshop-code">EP2</span>
+              <span class="edu-workshop-name">The Art of Enneagram Personality Profiling</span>
+              <span class="edu-workshop-detail">1-day — learn to read personality through physiognomy. Prerequisite: EP1</span>
+            </div>
+            <span class="edu-workshop-price">$795 + GST</span>
+          </div>
+          <div class="edu-workshop-row">
+            <div class="edu-workshop-info">
+              <span class="edu-workshop-code">EP3</span>
+              <span class="edu-workshop-name">Enneagram Profiling Masterclass</span>
+              <span class="edu-workshop-detail">6 × 2hr intensive — perfect your profiling skills. Prerequisites: EP1 + EP2</span>
+            </div>
+            <span class="edu-workshop-price">$1,395 + GST</span>
           </div>
         </div>
-        <div class="service-tier reveal" style="--reveal-delay:80ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">LA2 — Perfecting the Art of Allowing (1-day)</span>
-            <span class="service-tier-price">795 + GST</span>
-            <span class="service-tier-toggle">Details</span>
+
+        <p class="edu-group-label" style="margin-top:32px;">Law of Attraction</p>
+        <div class="edu-workshop-list">
+          <div class="edu-workshop-row">
+            <div class="edu-workshop-info">
+              <span class="edu-workshop-code">LA1</span>
+              <span class="edu-workshop-name">Introduction to Law of Attraction</span>
+              <span class="edu-workshop-detail">1-day — tools and techniques to consciously shape your outcomes</span>
+            </div>
+            <span class="edu-workshop-price">$795 + GST</span>
           </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">The next step after LA1. This advanced workshop focuses on removing internal resistance and deepening your capacity to receive what you've set in motion. Explore how alignment, belief and energy shape your outcomes.</p>
+          <div class="edu-workshop-row">
+            <div class="edu-workshop-info">
+              <span class="edu-workshop-code">LA2</span>
+              <span class="edu-workshop-name">Perfecting the Art of Allowing</span>
+              <span class="edu-workshop-detail">1-day extension of LA1 — deepen alignment and flow. Prerequisite: LA1</span>
+            </div>
+            <span class="edu-workshop-price">$795 + GST</span>
+          </div>
+          <div class="edu-workshop-row">
+            <div class="edu-workshop-info">
+              <span class="edu-workshop-code">GS1</span>
+              <span class="edu-workshop-name">Effective Goal Setting</span>
+              <span class="edu-workshop-detail">Make resolutions stick — practical tools for lasting change</span>
+            </div>
+            <span class="edu-workshop-price">$595 + GST</span>
           </div>
         </div>
-      </div>
-      <div class="reveal" style="--reveal-delay:0ms">
-        <a href="#contact" style="text-decoration:none; display:block;">
-          <div class="cta-box" style="max-width:800px">
+
+      </div><!-- /.education-left -->
+
+      <!-- RIGHT: Gift cert + CTA -->
+      <div class="education-right reveal" style="--reveal-delay:100ms">
+        <div class="edu-gift-card">
+          <div class="edu-gift-card-title">🎁 Gift Certificates</div>
+          <div class="edu-gift-card-text">Every workshop is available as a gift certificate — a thoughtful and lasting gift for anyone ready to invest in themselves. Suitable for ages 17 and over.</div>
+          <a href="#contact" class="edu-gift-card-cta">Enquire Now</a>
+        </div>
+        <div class="edu-note-card">
+          <p class="edu-note-label">What's Included</p>
+          <ul class="edu-note-list">
+            <li>EP1 participants receive <em>The Wisdom of the Enneagram</em> by Riso &amp; Hudson + Enneagram Personality Cards</li>
+            <li>LA1 participants receive <em>Ask And It Is Given</em> by Esther &amp; Jerry Hicks</li>
+          </ul>
+        </div>
+        <a href="#contact" style="text-decoration:none; display:block; margin-top:20px;">
+          <div class="cta-box" style="border-color: var(--rule);">
             <div class="cta-box-text">
-              <div class="cta-box-title">Explore Law of Attraction Workshops</div>
+              <div class="cta-box-title" style="font-size:16px;">Register Your Interest</div>
               <div class="cta-box-sub">Contact Aaron for upcoming workshop dates.</div>
             </div>
-            <div class="cta-contacts">
-              <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
-                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Get In Touch
-              </a>
-            </div>
           </div>
         </a>
-      </div>
-    </div>
+      </div><!-- /.education-right -->
 
-    <!-- Goal Setting -->
-    <div class="workshop-category">
-      <p class="workshop-cat-label reveal" data-cat-rule="true">Goal Setting</p>
-      <div class="service-menu">
-        <div class="service-tier reveal" style="--reveal-delay:0ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">Effective Goal Setting / Make New Year's Resolutions Stick</span>
-            <span class="service-tier-price">595 + GST</span>
-            <span class="service-tier-toggle">Details</span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc"><!-- PLACEHOLDER: Full workshop description to be provided by Aaron. Confirm whether this is offered as standalone or bundled. Also confirm online/in-person availability and next scheduled dates. -->[PLACEHOLDER: Workshop description — please provide to Tom/Aaron for final copy before launch.]</p>
-          </div>
-        </div>
-      </div>
-      <div class="reveal" style="--reveal-delay:0ms">
-        <a href="#contact" style="text-decoration:none; display:block;">
-          <div class="cta-box" style="max-width:800px">
-            <div class="cta-box-text">
-              <div class="cta-box-title">Goal Setting Workshop</div>
-              <div class="cta-box-sub">Get in touch to find out more about upcoming dates.</div>
-            </div>
-            <div class="cta-contacts">
-              <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
-                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Get In Touch
-              </a>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div><!-- /.education-left -->
-    <div class="education-right reveal" style="--reveal-delay:100ms">
-      <div class="edu-gift-card">
-        <div class="edu-gift-card-title">Gift Certificates</div>
-        <div class="edu-gift-card-text">All workshops are available as gift certificates — a meaningful gift for anyone ready to invest in themselves. Suitable for ages 17 and over.</div>
-        <a href="#contact" class="edu-gift-card-cta">Enquire Now</a>
-      </div>
-      <div style="margin-top: 24px; padding: 20px 24px; border: 1px solid var(--rule); border-radius: 4px; background: rgba(74,124,63,0.04);">
-        <p style="font-weight:500; font-size:13px; color:var(--heading-dark); margin-bottom:8px;">Not sure where to start?</p>
-        <p style="font-weight:300; font-size:13px; color:var(--body); line-height:1.7; margin-bottom:16px;">Contact Aaron to discuss which workshop is the right fit for your goals and experience level.</p>
-        <a href="#contact" class="edu-gift-card-cta" style="background:transparent; color:var(--olive); border:1px solid var(--border); padding:8px 16px;">Get In Touch</a>
-      </div>
-    </div><!-- /.education-right -->
     </div><!-- /.education-grid -->
-  </div>
-
-</section>
-
-<!-- TESLA QUOTE -->
-<section id="tesla-quote" aria-label="Nikola Tesla quote">
-  <div class="tesla-quote-mark" aria-hidden="true">"</div>
-  <!-- Animated bird SVG -->
-  <svg class="tesla-bird" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none">
-    <path d="M60 30 C48 14, 28 10, 4 20 C28 18, 46 24, 60 30 C74 24, 92 18, 116 20 C92 10, 72 14, 60 30Z" fill="white"/>
-  </svg>
-  <div class="tesla-quote-inner">
-    <p class="tesla-quote-text done" id="tesla-typewriter">“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”</p>
-    <div class="tesla-quote-attr visible" id="tesla-attr">— Nikola Tesla</div>
   </div>
 </section>
 
