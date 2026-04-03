@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Asset150</title>
+  <meta name="description" content="Asset150 is led by three directors with deep experience across asset-intensive industries including utilities, transportation and defence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-primary: #2857eb;
+      --blue-deep: #0437a9;
+      --blue-electric: #04f3f5;
+      --navy: #0d1b3e;
+      --white: #ffffff;
+      --off-white: #f5f7fc;
+      --grey-mid: #6b7a99;
+      --grey-light: #e8ecf4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'DM Sans', system-ui, -apple-system, sans-serif;
+      font-size: 1rem;
+      color: var(--navy);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--blue-primary);
+      z-index: 9999;
+      transition: width 0.05s linear;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 72px;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--grey-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+      transition: backdrop-filter 0.3s;
+    }
+    nav.scrolled { backdrop-filter: blur(8px); background: rgba(255,255,255,0.93); }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--blue-primary);
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue-primary); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--blue-primary);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 11px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: #1e45cc;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(40,87,235,0.3);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      border-top: 1px solid var(--grey-light);
+      padding: 1.5rem 2rem 2rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1.25rem;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    body.menu-open { overflow: hidden; }
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--grey-light);
+    }
+    .mobile-menu .btn-primary { text-align: center; margin-top: 0.5rem; border: none; }
+
+    /* ─── HERO BAND ─── */
+    .about-hero {
+      background: var(--navy);
+      padding: 160px 2rem 80px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--blue-primary), var(--blue-electric), transparent);
+    }
+    .about-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1.25rem;
+    }
+    .about-hero-label::before {
+      content: '';
+      width: 2px;
+      height: 18px;
+      background: var(--blue-electric);
+    }
+    .about-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .about-hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      line-height: 1.65;
+    }
+
+    /* ─── BODY ─── */
+    .about-body {
+      position: relative;
+      background: var(--white);
+      padding: 96px 2rem 96px;
+      overflow: hidden;
+    }
+    .about-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 900px;
+      opacity: 0.06;
+      pointer-events: none;
+      user-select: none;
+    }
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .about-content p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--grey-mid);
+      margin-bottom: 1.75rem;
+    }
+    .about-content p:first-child {
+      font-size: 1.15rem;
+      color: var(--navy);
+      font-weight: 400;
+    }
+    .about-pullquote {
+      border-left: 3px solid var(--blue-primary);
+      padding: 1.5rem 1.75rem;
+      margin: 2.5rem 0;
+      background: var(--off-white);
+      border-radius: 0 4px 4px 0;
+    }
+    .about-pullquote p {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--navy);
+      margin: 0;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* Section label */
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── DIRECTORS ─── */
+    .directors-section {
+      background: var(--off-white);
+      padding: 80px 2rem;
+      border-top: 1px solid var(--grey-light);
+    }
+    .directors-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .directors-header {
+      margin-bottom: 3rem;
+    }
+    .directors-header h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--navy);
+      margin-top: 0.5rem;
+    }
+    .director-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .director-card {
+      background: var(--white);
+      border: 1px solid var(--grey-light);
+      border-radius: 4px;
+      padding: 2rem;
+      box-shadow: 0 2px 20px rgba(13,27,62,0.06);
+      text-align: center;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .director-card:hover {
+      box-shadow: 0 8px 32px rgba(13,27,62,0.1);
+      transform: translateY(-2px);
+    }
+    .director-silhouette {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--grey-light);
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .director-silhouette::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 38px;
+      background: #c4ccd8;
+      border-radius: 50%;
+      bottom: -4px;
+    }
+    .director-silhouette::after {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 22px;
+      background: #c4ccd8;
+      border-radius: 50%;
+    }
+    .director-role {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 0.4rem;
+    }
+    .director-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .director-bio {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--grey-mid);
+    }
+    .director-divider {
+      width: 28px;
+      height: 2px;
+      background: var(--grey-light);
+      margin: 0.75rem auto;
+    }
+
+    /* ─── FADE-UP ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0437a9;
+      color: var(--white);
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--blue-electric);
+    }
+    .footer-main { padding: 64px 0 48px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      margin-bottom: 1rem;
+      filter: brightness(0) invert(1);
+    }
+    .footer-abn {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+    }
+    .footer-col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1.25rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a { font-size: 0.9rem; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-cta-copy { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 1.5rem; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta-wrap { display: none; }
+      .hamburger { display: flex; }
+      .director-cards { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .about-hero { padding: 140px 1.5rem 60px; }
+      .about-body { padding: 60px 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a class="nav-logo" href="/">
+      <img src="assets/logo-asset150.svg" alt="Asset150">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#industries">Industries</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#products">Products</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="contact.html" class="btn-primary">Book a Discussion</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" onclick="closeMobile()">Home</a>
+    <a href="/#industries" onclick="closeMobile()">Industries</a>
+    <a href="/#services" onclick="closeMobile()">Services</a>
+    <a href="/#products" onclick="closeMobile()">Products</a>
+    <a href="about.html" onclick="closeMobile()">About</a>
+    <a href="contact.html" onclick="closeMobile()">Contact</a>
+    <a href="contact.html" class="btn-primary">Book a Discussion</a>
+  </div>
+
+  <!-- HERO BAND -->
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <div class="about-hero-label">Asset150</div>
+      <h1>About Asset150</h1>
+      <p class="about-hero-desc">Three directors. Decades of experience. One focused capability.</p>
+    </div>
+  </div>
+
+  <!-- BODY COPY -->
+  <div class="about-body">
+    <img class="about-watermark" src="assets/bg-australia-minimal.jpg" alt="" aria-hidden="true">
+    <div class="about-content">
+      <p class="fade-up">
+        Asset150 is led by three directors with deep experience across asset-intensive industries including utilities, transportation and defence.
+      </p>
+
+      <p class="fade-up" style="transition-delay: 0.1s;">
+        Collectively, the leadership team brings decades of experience in strategy, architecture and delivery of complex asset management and operational systems. Their background spans enterprise platforms such as SAP, GIS, and operational technologies, with a strong focus on delivering solutions that work in real-world environments.
+      </p>
+
+      <div class="about-pullquote fade-up" style="transition-delay: 0.18s;">
+        <p>"Combining strategic insight, strong governance and practical delivery capability — the Asset150 approach is built on experience earned in the field, not the boardroom."</p>
+      </div>
+
+      <p class="fade-up" style="transition-delay: 0.24s;">
+        The directors have held senior roles across major transformation programs, leading multidisciplinary teams and working closely with executives to align technology with operational outcomes. This experience underpins Asset150's approach — combining strategic insight, strong governance and practical delivery capability.
+      </p>
+
+      <p class="fade-up" style="transition-delay: 0.32s;">
+        Asset150 was established to bring this experience together into a focused capability — helping organisations design, implement and operate asset management solutions that are adopted, sustained and deliver measurable value.
+      </p>
+    </div>
+  </div>
+
+  <!-- DIRECTORS -->
+  <div class="directors-section">
+    <div class="directors-inner">
+      <div class="directors-header fade-up">
+        <span class="section-label">Leadership</span>
+        <h2>Our Directors</h2>
+      </div>
+      <div class="director-cards">
+        <div class="director-card fade-up" style="transition-delay: 0.08s;">
+          <div class="director-silhouette"></div>
+          <p class="director-role">Director</p>
+          <p class="director-name">Coming Soon</p>
+          <div class="director-divider"></div>
+          <p class="director-bio">Deep expertise in asset management strategy and enterprise system architecture across utilities and rail sectors.</p>
+        </div>
+        <div class="director-card fade-up" style="transition-delay: 0.18s;">
+          <div class="director-silhouette"></div>
+          <p class="director-role">Director</p>
+          <p class="director-name">Coming Soon</p>
+          <div class="director-divider"></div>
+          <p class="director-bio">Senior delivery leader with a track record of complex program governance across defence and transportation environments.</p>
+        </div>
+        <div class="director-card fade-up" style="transition-delay: 0.28s;">
+          <div class="director-silhouette"></div>
+          <p class="director-role">Director</p>
+          <p class="director-name">Coming Soon</p>
+          <div class="director-divider"></div>
+          <p class="director-bio">Specialist in SAP and GIS integration, operational technology, and asset data quality for critical infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/logo-asset150.svg" alt="Asset150">
+          </div>
+          <p class="footer-abn">ABN: 57 670 218 327<br>ACN: 670 218 327<br><br>Asset management consulting<br>for utilities, rail and defence.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Navigation</p>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#industries">Industries</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#products">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Work with us</p>
+          <p class="footer-cta-copy">Ready to strengthen your asset management capability? Let's have a conversation.</p>
+          <a href="contact.html" class="btn-primary">Book a Discussion</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Asset150 Pty Ltd. All rights reserved.</span>
+      <span class="footer-copy">Built for critical infrastructure.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Progress bar
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const t = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (window.scrollY / t * 100) + '%';
+    }, { passive: true });
+
+    // Nav scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // Fade-up
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
