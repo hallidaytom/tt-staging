@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thoth.au — Services Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark:       #1A1A2E;
+    --dark-2:     #252540;
+    --dark-3:     #2E2E50;
+    --gold:       #C9A84C;
+    --gold-dark:  #A8893A;
+    --gold-ghost: rgba(201,168,76,0.10);
+    --light:      #F2F2F2;
+    --light-2:    #C8C8C8;
+    --plum:       #AA5388;
+    --border:     rgba(242,242,242,0.08);
+  }
+
+  html, body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* PAGE LAYOUT */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 48px 48px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .logo-mark {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .logo-wordmark {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .logo-tagline {
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--light-2);
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--light-2);
+    line-height: 1.8;
+  }
+
+  .header-meta a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* INTRO */
+  .intro h1 {
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--light);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .intro h1 span {
+    color: var(--gold);
+  }
+
+  .intro p {
+    font-size: 0.95rem;
+    color: var(--light-2);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* WHAT WE DO */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .pillar {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .pillar-num {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--plum);
+    margin-bottom: 8px;
+  }
+
+  .pillar h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .pillar p {
+    font-size: 0.82rem;
+    color: var(--light-2);
+    line-height: 1.65;
+  }
+
+  /* PLANS */
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .plan {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plan.featured {
+    border-color: var(--gold);
+    background: var(--dark-3);
+  }
+
+  .plan-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light-2);
+  }
+
+  .plan.featured .plan-name {
+    color: var(--gold);
+  }
+
+  .plan-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--light);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .plan-price span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--light-2);
+    letter-spacing: 0;
+  }
+
+  .plan-includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .plan-includes li {
+    font-size: 0.8rem;
+    color: var(--light-2);
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .plan-includes li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-size: 0.7rem;
+  }
+
+  .plan.featured .plan-includes li::before {
+    color: var(--gold);
+  }
+
+  /* RATES */
+  .rates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .rate-block {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .rate-block h4 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 10px;
+  }
+
+  .rate-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+  }
+
+  .rate-row:last-child {
+    border-bottom: none;
+  }
+
+  .rate-row .label {
+    color: var(--light-2);
+  }
+
+  .rate-row .value {
+    color: var(--gold);
+    font-weight: 600;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+  }
+
+  /* WHY THOTH */
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .reason {
+    padding: 0 0 0 16px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .reason h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 4px;
+  }
+
+  .reason p {
+    font-size: 0.78rem;
+    color: var(--light-2);
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: var(--gold-ghost);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .cta-block p {
+    font-size: 0.9rem;
+    color: var(--light-2);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .cta-block strong {
+    color: var(--light);
+  }
+
+  .cta-contact {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .cta-contact a {
+    display: block;
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-contact span {
+    font-size: 0.75rem;
+    color: var(--light-2);
+  }
+
+  /* FOOTER */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 0.72rem;
+    color: rgba(242,242,242,0.35);
+  }
+
+  .footer a {
+    color: rgba(242,242,242,0.35);
+    text-decoration: none;
+  }
+
+  /* PRINT */
+  @media print {
+    html, body { background: white; color: #1A1A2E; }
+    .page { padding: 32px; }
+    .pillar, .plan, .rate-block { border-color: #ddd; }
+    .logo-wordmark { color: #1A1A2E; }
+    .section-label, .plan-name.featured, .value, .cta-block a { color: #A8893A; }
+    .cta-block { border-color: #A8893A; background: #faf8f3; }
+    .reason { border-color: #A8893A; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-mark">
+      <div class="logo-wordmark">THOTH</div>
+      <div class="logo-tagline">Integrated Technical Consultancy</div>
+    </div>
+    <div class="header-meta">
+      <a href="https://thoth.au">thoth.au</a><br>
+      hello@thoth.au<br>
+      ABN 44 717 606 282
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <h1>Technology that works —<br><span>built by someone who picks up the phone.</span></h1>
+    <p>We build websites, manage hosting, and connect business systems for regional and small businesses across Northeast Victoria. No jargon. No outsourcing. One point of contact for everything digital.</p>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section>
+    <div class="section-label">What we do</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Web & Hosting</h3>
+        <p>Website design and build, managed hosting, domain management, SSL, daily backups, uptime monitoring, and monthly reporting.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Business Systems</h3>
+        <p>Connect your tools so data flows automatically. Point of sale, bookkeeping, booking platforms, forms, automations — integrated and working.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Growth & Marketing</h3>
+        <p>SEO-structured content, Google Business, social presence, and digital strategy grounded in what actually drives enquiries for your business type.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section>
+    <div class="section-label">Hosting & support plans</div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">$39<span>/mo</span></div>
+        <ul class="plan-includes">
+          <li>Managed hosting</li>
+          <li>SSL & domain management</li>
+          <li>Uptime monitoring</li>
+          <li>Security updates</li>
+          <li>Monthly status report</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">Business</div>
+        <div class="plan-price">$59<span>/mo</span></div>
+        <ul class="plan-includes">
+          <li>Everything in Standard</li>
+          <li>E-commerce capability</li>
+          <li>Daily backups</li>
+          <li>Minor content edits (30 min/mo)</li>
+          <li>Priority response</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$99<span>/mo</span></div>
+        <ul class="plan-includes">
+          <li>Everything in Business</li>
+          <li>1 hr development/mo included</li>
+          <li>Same-business-day response</li>
+          <li>Fortnightly reporting</li>
+          <li>Multi-domain coverage</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RATES -->
+  <section>
+    <div class="section-label">Development & retainer rates</div>
+    <div class="rates-grid">
+      <div class="rate-block">
+        <h4>Project work</h4>
+        <div class="rate-row"><span class="label">General development</span><span class="value">$95/hr</span></div>
+        <div class="rate-row"><span class="label">Simple site (5 pages)</span><span class="value">from $700</span></div>
+        <div class="rate-row"><span class="label">CMS / WordPress site</span><span class="value">from $1,400</span></div>
+        <div class="rate-row"><span class="label">Custom build / integration</span><span class="value">from $1,000</span></div>
+        <div class="rate-row"><span class="label">Minimum engagement</span><span class="value">30 min</span></div>
+      </div>
+      <div class="rate-block">
+        <h4>Monthly retainers</h4>
+        <div class="rate-row"><span class="label">Launchpad — 1.5 hrs/mo</span><span class="value">$149/mo</span></div>
+        <div class="rate-row"><span class="label">Growth — 3 hrs/mo</span><span class="value">$299/mo</span></div>
+        <div class="rate-row"><span class="label">Retainer hourly rate</span><span class="value">$85/hr</span></div>
+        <div class="rate-row"><span class="label">Overage (above included hrs)</span><span class="value">$85/hr</span></div>
+        <div class="rate-row"><span class="label">Payment terms</span><span class="value">Net 14</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THOTH -->
+  <section>
+    <div class="section-label">Why Thoth</div>
+    <div class="reasons">
+      <div class="reason">
+        <h4>Local & accountable</h4>
+        <p>Based in Yarrawonga. When something breaks at 2am, you'll know about it before you wake up — and it'll be fixed.</p>
+      </div>
+      <div class="reason">
+        <h4>Plain English</h4>
+        <p>No jargon, no minimums, no mystery invoices. You'll always know what we're doing and why it costs what it costs.</p>
+      </div>
+      <div class="reason">
+        <h4>One point of contact</h4>
+        <p>Website, hosting, systems, strategy — one person, one invoice. No managing three different vendors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block">
+    <p><strong>Ready to talk?</strong> A 20-minute call is enough to understand your setup and tell you exactly what we'd recommend — and what it would cost. No obligation.</p>
+    <div class="cta-contact">
+      <a href="mailto:hello@thoth.au">hello@thoth.au</a>
+      <a href="https://thoth.au">thoth.au</a>
+      <span>ABN 44 717 606 282</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>Thoth.au — Integrated Technical Consultancy</span>
+    <span>All prices AUD · GST applicable · April 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
