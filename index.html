@@ -30,7 +30,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* PAGE LAYOUT */
   .page {
     max-width: 860px;
     margin: 0 auto;
@@ -115,37 +114,71 @@
     margin-bottom: 16px;
   }
 
-  /* WHAT WE DO */
-  .pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+  /* HOW IT WORKS */
+  .how-it-works {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    font-size: 0.88rem;
+    color: var(--light-2);
+    line-height: 1.75;
   }
 
-  .pillar {
+  .how-it-works strong {
+    color: var(--light);
+  }
+
+  /* COMPONENTS GRID */
+  .components {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .component {
     background: var(--dark-2);
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 20px;
   }
 
-  .pillar-num {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
-    color: var(--plum);
+  .component.premium {
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .component-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 8px;
   }
 
-  .pillar h3 {
-    font-size: 0.95rem;
+  .component-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .component-title {
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--light);
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
   }
 
-  .pillar p {
-    font-size: 0.82rem;
+  .component-badge {
+    margin-left: auto;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 2px;
+    padding: 2px 6px;
+  }
+
+  .component p {
+    font-size: 0.8rem;
     color: var(--light-2);
     line-height: 1.65;
   }
@@ -153,7 +186,7 @@
   /* PLANS */
   .plans {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
 
@@ -161,10 +194,10 @@
     background: var(--dark-2);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
   .plan.featured {
@@ -184,32 +217,23 @@
     color: var(--gold);
   }
 
-  .plan-price {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--light);
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-
-  .plan-price span {
-    font-size: 0.8rem;
-    font-weight: 400;
+  .plan-desc {
+    font-size: 0.82rem;
     color: var(--light-2);
-    letter-spacing: 0;
+    line-height: 1.6;
   }
 
   .plan-includes {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 7px;
   }
 
   .plan-includes li {
     font-size: 0.8rem;
     color: var(--light-2);
-    padding-left: 12px;
+    padding-left: 14px;
     position: relative;
     line-height: 1.4;
   }
@@ -218,7 +242,7 @@
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--border);
+    color: rgba(242,242,242,0.2);
     font-size: 0.7rem;
   }
 
@@ -226,49 +250,44 @@
     color: var(--gold);
   }
 
-  /* RATES */
-  .rates-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .rate-block {
+  /* DEV WORK */
+  .dev-block {
     background: var(--dark-2);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 20px;
+    padding: 24px 28px;
   }
 
-  .rate-block h4 {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--light);
-    margin-bottom: 10px;
-  }
-
-  .rate-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.8rem;
-  }
-
-  .rate-row:last-child {
-    border-bottom: none;
-  }
-
-  .rate-row .label {
+  .dev-block p {
+    font-size: 0.85rem;
     color: var(--light-2);
+    line-height: 1.7;
+    margin-bottom: 14px;
   }
 
-  .rate-row .value {
-    color: var(--gold);
-    font-weight: 600;
+  .dev-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .dev-block strong {
+    color: var(--light);
+  }
+
+  .dev-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .dev-tag {
+    font-size: 0.72rem;
+    color: var(--light-2);
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 10px;
     font-family: 'Fira Code', monospace;
-    font-size: 0.78rem;
   }
 
   /* WHY THOTH */
@@ -354,15 +373,28 @@
     text-decoration: none;
   }
 
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .page { padding: 32px 20px; }
+    .plans, .components, .reasons { grid-template-columns: 1fr; }
+    .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .header-meta { text-align: left; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+    .cta-contact { text-align: left; }
+  }
+
   /* PRINT */
   @media print {
     html, body { background: white; color: #1A1A2E; }
     .page { padding: 32px; }
-    .pillar, .plan, .rate-block { border-color: #ddd; }
+    .component, .plan, .dev-block, .how-it-works { background: #f8f8f8; border-color: #ddd; }
     .logo-wordmark { color: #1A1A2E; }
-    .section-label, .plan-name.featured, .value, .cta-block a { color: #A8893A; }
-    .cta-block { border-color: #A8893A; background: #faf8f3; }
+    .section-label, .plan.featured .plan-name, .component-badge { color: #A8893A; }
+    .plan.featured { border-color: #A8893A; background: #faf8f3; }
+    .plan.featured .plan-includes li::before { color: #A8893A; }
     .reason { border-color: #A8893A; }
+    .cta-block { border-color: #A8893A; background: #faf8f3; }
+    .cta-contact a { color: #A8893A; }
   }
 </style>
 </head>
@@ -373,7 +405,7 @@
   <header class="header">
     <div class="logo-mark">
       <div class="logo-wordmark">THOTH</div>
-      <div class="logo-tagline">Integrated Technical Consultancy</div>
+
     </div>
     <div class="header-meta">
       <a href="https://thoth.au">thoth.au</a><br>
@@ -388,87 +420,134 @@
     <p>We build websites, manage hosting, and connect business systems for regional and small businesses across Northeast Victoria. No jargon. No outsourcing. One point of contact for everything digital.</p>
   </section>
 
-  <!-- WHAT WE DO -->
+  <!-- HOW IT WORKS -->
   <section>
-    <div class="section-label">What we do</div>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-num">01</div>
-        <h3>Web & Hosting</h3>
-        <p>Website design and build, managed hosting, domain management, SSL, daily backups, uptime monitoring, and monthly reporting.</p>
+    <div class="section-label">How it works</div>
+    <div class="how-it-works">
+      <p>The website is built as a <strong>standalone project</strong> — quoted, built, and delivered. Once it's live, the client moves onto a <strong>monthly plan</strong> that keeps everything running: hosting, email, domain, security, backups, and ongoing support. Any major new features or development down the track gets scoped and quoted separately.</p>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section>
+    <div class="section-label">What's included</div>
+    <div class="components">
+
+      <div class="component">
+        <div class="component-header">
+          <span class="component-icon">🧱</span>
+          <span class="component-title">Core Infrastructure</span>
+        </div>
+        <p>Domain, DNS, website hosting. All the behind-the-scenes stuff that keeps the site live. The client never has to touch it.</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">02</div>
-        <h3>Business Systems</h3>
-        <p>Connect your tools so data flows automatically. Point of sale, bookkeeping, booking platforms, forms, automations — integrated and working.</p>
+
+      <div class="component">
+        <div class="component-header">
+          <span class="component-icon">🧩</span>
+          <span class="component-title">Systems</span>
+        </div>
+        <p>Website, business email, and enquiry forms. Set up and managed. Premium clients get e-commerce — taking payments online, product listings, and the compliance side that comes with it.</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">03</div>
-        <h3>Growth & Marketing</h3>
-        <p>SEO-structured content, Google Business, social presence, and digital strategy grounded in what actually drives enquiries for your business type.</p>
+
+      <div class="component">
+        <div class="component-header">
+          <span class="component-icon">🛠️</span>
+          <span class="component-title">Services</span>
+        </div>
+        <p>Content updates, fixes, and technical support. Something breaks, we deal with it. Menu needs updating, we update it. Major new development is scoped and quoted separately.</p>
       </div>
+
+      <div class="component">
+        <div class="component-header">
+          <span class="component-icon">🛡️</span>
+          <span class="component-title">Reliability</span>
+        </div>
+        <p>Daily backups, basic security hardening, and hosting that doesn't fall over. Monthly status report included for all clients.</p>
+      </div>
+
+      <div class="component">
+        <div class="component-header">
+          <span class="component-icon">🚀</span>
+          <span class="component-title">Setup & Migration</span>
+        </div>
+        <p>Switching from another provider? We handle the full transition — domain, DNS, email, content, the lot. Test sites and staging environments available on request.</p>
+      </div>
+
+      <div class="component">
+        <div class="component-header">
+          <span class="component-icon">🔌</span>
+          <span class="component-title">Integrations</span>
+        </div>
+        <p>Booking systems, payment gateways, ordering platforms — wired in properly, not just a link on a page. Standard platforms (Stripe, Shopify, Square) set up as part of the plan. Complex multi-system integrations scoped separately.</p>
+      </div>
+
+      <div class="component premium">
+        <div class="component-header">
+          <span class="component-icon">📡</span>
+          <span class="component-title">Monitoring</span>
+          <span class="component-badge">Premium</span>
+        </div>
+        <p>Active uptime checks and system monitoring. Problems get caught before the client notices.</p>
+      </div>
+
+      <div class="component premium">
+        <div class="component-header">
+          <span class="component-icon">🖥️</span>
+          <span class="component-title">Application Hosting</span>
+          <span class="component-badge">Premium</span>
+        </div>
+        <p>Custom web apps, booking platforms, internal tools. Anything that needs its own environment beyond a standard site.</p>
+      </div>
+
     </div>
   </section>
 
   <!-- PLANS -->
   <section>
-    <div class="section-label">Hosting & support plans</div>
+    <div class="section-label">Plans</div>
     <div class="plans">
       <div class="plan">
-        <div class="plan-name">Standard</div>
-        <div class="plan-price">$39<span>/mo</span></div>
+        <div class="plan-name">Basic</div>
+        <p class="plan-desc">Everything a business needs to be online and running properly.</p>
         <ul class="plan-includes">
-          <li>Managed hosting</li>
-          <li>SSL & domain management</li>
-          <li>Uptime monitoring</li>
-          <li>Security updates</li>
-          <li>Monthly status report</li>
+          <li>Core Infrastructure — domain, DNS, hosting</li>
+          <li>Systems — website, business email, enquiry forms</li>
+          <li>Services — content updates, fixes, support</li>
+          <li>Reliability — daily backups, security, uptime</li>
+          <li>Setup & Migration — full provider transitions</li>
+          <li>Standard integrations — Stripe, Shopify, Square</li>
         </ul>
       </div>
       <div class="plan featured">
-        <div class="plan-name">Business</div>
-        <div class="plan-price">$59<span>/mo</span></div>
+        <div class="plan-name">Premium</div>
+        <p class="plan-desc">Everything in Basic, plus e-commerce, custom applications, and proactive monitoring.</p>
         <ul class="plan-includes">
-          <li>Everything in Standard</li>
-          <li>E-commerce capability</li>
-          <li>Daily backups</li>
-          <li>Minor content edits (30 min/mo)</li>
+          <li>Everything in Basic</li>
+          <li>E-commerce — payments, product listings, compliance</li>
+          <li>Application Hosting — custom apps, internal tools</li>
+          <li>Monitoring — active uptime & system checks</li>
           <li>Priority response</li>
-        </ul>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">$99<span>/mo</span></div>
-        <ul class="plan-includes">
-          <li>Everything in Business</li>
-          <li>1 hr development/mo included</li>
-          <li>Same-business-day response</li>
-          <li>Fortnightly reporting</li>
-          <li>Multi-domain coverage</li>
+          <li>Retainer development hours included</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- RATES -->
+  <!-- DEVELOPMENT WORK -->
   <section>
-    <div class="section-label">Development & retainer rates</div>
-    <div class="rates-grid">
-      <div class="rate-block">
-        <h4>Project work</h4>
-        <div class="rate-row"><span class="label">General development</span><span class="value">$95/hr</span></div>
-        <div class="rate-row"><span class="label">Simple site (5 pages)</span><span class="value">from $700</span></div>
-        <div class="rate-row"><span class="label">CMS / WordPress site</span><span class="value">from $1,400</span></div>
-        <div class="rate-row"><span class="label">Custom build / integration</span><span class="value">from $1,000</span></div>
-        <div class="rate-row"><span class="label">Minimum engagement</span><span class="value">30 min</span></div>
-      </div>
-      <div class="rate-block">
-        <h4>Monthly retainers</h4>
-        <div class="rate-row"><span class="label">Launchpad — 1.5 hrs/mo</span><span class="value">$149/mo</span></div>
-        <div class="rate-row"><span class="label">Growth — 3 hrs/mo</span><span class="value">$299/mo</span></div>
-        <div class="rate-row"><span class="label">Retainer hourly rate</span><span class="value">$85/hr</span></div>
-        <div class="rate-row"><span class="label">Overage (above included hrs)</span><span class="value">$85/hr</span></div>
-        <div class="rate-row"><span class="label">Payment terms</span><span class="value">Net 14</span></div>
+    <div class="section-label">Development work</div>
+    <div class="dev-block">
+      <p>The monthly plan covers ongoing management and minor updates. Anything that's a <strong>new feature, new integration, or significant change</strong> gets scoped and quoted as a separate project. This keeps monthly fees predictable and ensures larger work gets the time it deserves.</p>
+      <p>Common examples of scoped development work:</p>
+      <div class="dev-examples">
+        <span class="dev-tag">new website build</span>
+        <span class="dev-tag">Xero / MYOB integration</span>
+        <span class="dev-tag">booking system setup</span>
+        <span class="dev-tag">custom web application</span>
+        <span class="dev-tag">e-commerce store</span>
+        <span class="dev-tag">data sync between systems</span>
+        <span class="dev-tag">VBA / Excel automation</span>
+        <span class="dev-tag">API connections</span>
       </div>
     </div>
   </section>
@@ -483,7 +562,7 @@
       </div>
       <div class="reason">
         <h4>Plain English</h4>
-        <p>No jargon, no minimums, no mystery invoices. You'll always know what we're doing and why it costs what it costs.</p>
+        <p>No jargon, no minimum contracts, no mystery invoices. You'll always know what we're doing and why it costs what it costs.</p>
       </div>
       <div class="reason">
         <h4>One point of contact</h4>
@@ -505,7 +584,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <span>Thoth.au — Integrated Technical Consultancy</span>
-    <span>All prices AUD · GST applicable · April 2026</span>
+    <span>April 2026</span>
   </footer>
 
 </div>
