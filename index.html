@@ -10,8 +10,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* === CSS CUSTOM PROPERTIES === */
+/* ================================================================
+   LIFE IN MY HANDS — Clean Stylesheet
+   ================================================================
+   Structure:
+   1. Custom Properties
+   2. Reset
+   3. Utilities & Shared Components
+   4. Navigation
+   5. Hero
+   6. About
+   7. Tesla Quote
+   8. Coaching (Personal)
+   9. Enneagram
+   10. Business Solutions
+   11. Education & Workshops
+   12. Testimonials
+   13. Contact
+   14. Footer
+   15. Animations & Keyframes
+   16. Responsive Overrides
+   ================================================================ */
+
+
+/* ----------------------------------------------------------------
+   1. CUSTOM PROPERTIES
+   ---------------------------------------------------------------- */
 :root {
+  /* Palette */
   --white: #FFFFFF;
   --cream: #F7F5F0;
   --charcoal: #2B2D35;
@@ -26,72 +52,295 @@
   --muted: #7A7A7A;
   --rule: rgba(74,124,63,0.3);
   --border: rgba(74,124,63,0.6);
+
+  /* Typography */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-ui: 'Jost', system-ui, sans-serif;
+
+  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration-fast: 200ms;
   --duration-base: 400ms;
   --duration-slow: 700ms;
-  --duration-xslow: 1100ms;
 }
 
-/* === RESET === */
+
+/* ----------------------------------------------------------------
+   2. RESET
+   ---------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: var(--font-ui); font-weight: 300; color: var(--body); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-ui);
+  font-weight: 300;
+  color: var(--body);
+  background: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { font-family: var(--font-ui); cursor: pointer; border: none; background: none; }
 
-/* === BIRD DOT BULLETS - content lists in sections only === */
-section ul li::before { content: ''; display: inline-block; width: 12px; height: 12px; background-image: url(images/LIMH-birddot.svg); background-size: contain; background-repeat: no-repeat; margin-right: 8px; vertical-align: middle; }
-
-/* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 200ms !important; animation-iteration-count: 1 !important; }
-  .reveal { transform: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms;
+    transition-duration: 200ms;
+    animation-iteration-count: 1;
+  }
+  .reveal { transform: none; }
 }
 
-/* === UTILITIES === */
-.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-@media (max-width: 640px) { .container { padding: 0 20px; } }
 
-.section-label { font-family: var(--font-ui); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); display: block; margin-bottom: 8px; }
-.section-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px,3vw,40px); color: var(--heading-dark); line-height: 1.15; margin-bottom: 16px; }
+/* ----------------------------------------------------------------
+   3. UTILITIES & SHARED COMPONENTS
+   ---------------------------------------------------------------- */
+
+/* Container */
+.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* Section heading elements */
+.section-label {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--olive);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 3vw, 40px);
+  color: var(--heading-dark);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
 .section-title--light { color: var(--white); }
-.section-rule { width: 60px; height: 2px; background: var(--olive); transform-origin: left; transform: scaleX(0); transition: transform 600ms var(--ease-out) 300ms; margin-bottom: 24px; }
+.section-title--sm { font-size: clamp(20px, 2vw, 28px); margin-bottom: 12px; }
+
+.section-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--olive);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 600ms var(--ease-out) 300ms;
+  margin-bottom: 24px;
+}
 .section-rule--center { margin-left: auto; margin-right: auto; transform-origin: center; }
+.section-rule--sm { margin-bottom: 16px; }
+.section-rule--lg { margin-bottom: 40px; }
+.section-rule--48 { margin-bottom: 48px; }
 .section-rule.revealed { transform: scaleX(1); }
 
-/* === SCROLL REVEAL === */
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
 .reveal.revealed { opacity: 1; transform: translateY(0); }
 
-/* === NAVIGATION === */
-#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 72px; display: flex; align-items: center; transition: background 300ms var(--ease-out), box-shadow 300ms var(--ease-out); }
-#nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+/* Bird dot bullets — only inside sections */
+section ul li::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url(images/LIMH-birddot.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* CTA box — reusable component */
+.cta-box {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  cursor: pointer;
+  transition: background 300ms var(--ease-out), border-color 300ms var(--ease-out);
+  max-width: 800px;
+}
+.cta-box:hover { background: var(--olive); border-color: var(--olive); }
+.cta-box:hover .cta-box-title,
+.cta-box:hover .cta-box-sub,
+.cta-box:hover .cta-contact-line,
+.cta-box:hover .cta-contact-icon { color: white; }
+.cta-box--full { max-width: 100%; }
+.cta-box--mt { margin-top: 48px; }
+.cta-box--sm-title .cta-box-title { font-size: 16px; }
+
+.cta-box-text { flex: 1; }
+.cta-box-title { font-weight: 600; font-size: 18px; color: var(--heading-dark); margin-bottom: 8px; transition: color 300ms ease; }
+.cta-box-sub { font-weight: 300; font-size: 14px; color: var(--muted); transition: color 300ms ease; }
+
+.cta-contacts { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.cta-contact-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--heading-dark);
+  text-decoration: none;
+  min-height: 44px;
+  transition: color 300ms ease;
+}
+.cta-contact-icon { color: var(--olive); transition: color 300ms ease; width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Background tree watermark — reusable */
+.bg-tree::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(images/LIMH-LogoTree.svg);
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* ----------------------------------------------------------------
+   4. NAVIGATION
+   ---------------------------------------------------------------- */
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  transition: background 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+}
+#nav.scrolled {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .nav-logo-img { height: 56px; width: auto; transition: height 300ms var(--ease-out); filter: brightness(0) invert(1); }
 #nav.scrolled .nav-logo-img { height: 40px; filter: none; }
+
 .nav-links { display: flex; align-items: center; gap: 36px; }
-.nav-link { font-family: var(--font-ui); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.85); text-decoration: none; position: relative; padding-bottom: 4px; transition: color 200ms ease; }
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 200ms ease;
+}
 #nav.scrolled .nav-link { color: var(--body); }
-.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--olive); transform: scaleX(0); transform-origin: left; transition: transform 200ms var(--ease-out); }
-.nav-link:hover, .nav-link.active { color: var(--olive); }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--olive);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms var(--ease-out);
+}
+.nav-link:hover,
+.nav-link.active { color: var(--olive); }
 .nav-link.active::after { transform: scaleX(1); }
-.nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; width: 44px; height: 44px; gap: 6px; cursor: pointer; background: none; border: none; position: relative; z-index: 1010; }
-.nav-hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: transform 300ms var(--ease-out), opacity 300ms ease; transform-origin: center; }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  z-index: 1010;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 300ms var(--ease-out), opacity 300ms ease;
+  transform-origin: center;
+}
 #nav.scrolled .nav-hamburger span { background: var(--charcoal); }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-.nav-drawer { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--charcoal); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; transform: translateY(-100%); opacity: 0; transition: transform 400ms var(--ease-out), opacity 400ms var(--ease-out); pointer-events: none; }
+
+/* Mobile drawer */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--charcoal);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 400ms var(--ease-out), opacity 400ms var(--ease-out);
+  pointer-events: none;
+}
 .nav-drawer.open { transform: translateY(0); opacity: 1; pointer-events: all; }
-.nav-drawer a { font-family: var(--font-display); font-weight: 600; font-size: 36px; color: white; text-decoration: none; opacity: 0; transform: translateY(20px); transition: color 200ms ease, opacity 400ms var(--ease-out), transform 400ms var(--ease-out); }
+.nav-drawer a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 36px;
+  color: white;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: color 200ms ease, opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+}
 .nav-drawer.open a { opacity: 1; transform: translateY(0); }
 .nav-drawer.open a:nth-child(1) { transition-delay: 50ms; }
 .nav-drawer.open a:nth-child(2) { transition-delay: 130ms; }
@@ -99,126 +348,409 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 .nav-drawer.open a:nth-child(4) { transition-delay: 290ms; }
 .nav-drawer.open a:nth-child(5) { transition-delay: 370ms; }
 .nav-drawer a:hover { color: var(--olive); }
-@media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .nav-inner { padding: 0 20px; } }
 
-/* === HERO === */
-#hero { min-height: 100dvh; background: var(--charcoal); display: flex; flex-direction: column; justify-content: center; padding-top: 72px; position: relative; overflow: hidden; }
-#hero::before { content: ''; position: absolute; inset: 0; background-image: url(images/LIMH-LogoTree.svg); background-size: 75%; background-repeat: no-repeat; background-position: center; opacity: 0.05; pointer-events: none; z-index: 0; }
-.hero-bg-drift { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 40%, rgba(74,124,63,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 70%, rgba(74,124,63,0.05) 0%, transparent 50%); animation: bgDrift 20s ease-in-out infinite; pointer-events: none; }
-@keyframes bgDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(20px,-10px) scale(1.02); } 66% { transform: translate(-10px,15px) scale(0.98); } }
-.hero-inner { max-width: 1280px; margin: 0 auto; padding: 40px 32px; width: 100%; display: grid; grid-template-columns: 55fr 45fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
-.hero-left { position: relative; }
-.hero-since { font-family: var(--font-ui); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); opacity: 0; transform: translateY(20px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); transition-delay: 100ms; display: block; margin-bottom: 24px; }
+
+/* ----------------------------------------------------------------
+   5. HERO
+   ---------------------------------------------------------------- */
+#hero {
+  min-height: 100dvh;
+  background: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 72px;
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url(images/LIMH-LogoTree.svg);
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg-drift {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(74,124,63,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(74,124,63,0.05) 0%, transparent 50%);
+  animation: bgDrift 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero left — text */
+.hero-since {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--olive);
+  display: block;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  transition-delay: 100ms;
+}
 .hero-since.visible { opacity: 1; transform: translateY(0); }
-.hero-headline { font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,5vw,58px); line-height: 1.1; letter-spacing: -0.02em; color: white; margin-bottom: 28px; }
-.hero-headline mark { background: none; color: white; text-decoration: underline; text-decoration-color: var(--olive); text-underline-offset: 6px; text-decoration-thickness: 2px; }
-.hero-subhead mark, .hero-body mark { background: none; color: white; font-weight: 600; }
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: white;
+  margin-bottom: 28px;
+}
+
 .hero-word-wrap { overflow: hidden; display: inline-block; vertical-align: bottom; padding-bottom: 4px; margin-right: 14px; }
 .hero-word { display: inline-block; transform: translateY(100%); transition: transform 600ms var(--ease-out); }
 .hero-word.visible { transform: translateY(0); }
-.hero-subhead { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(15px,1.7vw,20px); color: rgba(255,255,255,0.65); margin-bottom: 28px; opacity: 0; transform: translateY(20px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); transition-delay: 800ms; }
+
+.hero-subhead {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(15px, 1.7vw, 20px);
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  transition-delay: 800ms;
+}
 .hero-subhead.visible { opacity: 1; transform: translateY(0); }
-.hero-body { opacity: 0; transform: translateY(24px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); transition-delay: 900ms; }
+
+.hero-body {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  transition-delay: 900ms;
+}
 .hero-body.visible { opacity: 1; transform: translateY(0); }
-.hero-body p { font-weight: 300; font-size: 15px; line-height: 1.75; color: var(--body-light); margin-bottom: 16px; max-width: 560px; }
-.hero-scroll-indicator { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 20px; opacity: 0; transition: opacity 600ms ease; transition-delay: 1400ms; width: fit-content; }
+.hero-body p {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--body-light);
+  margin-bottom: 16px;
+  max-width: 560px;
+}
+.hero-body mark { background: none; color: white; font-weight: 600; }
+
+.hero-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  transition-delay: 1400ms;
+  width: fit-content;
+}
 .hero-scroll-indicator.visible { opacity: 1; }
 .hero-scroll-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); }
 .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-@keyframes scrollPulse { 0%,100% { transform: scaleY(1); opacity: 0.4; } 50% { transform: scaleY(0.6); opacity: 1; } }
+
+/* Hero right — image */
 .hero-right { position: relative; display: flex; align-items: stretch; padding-top: 24px; }
 .hero-img-wrap { position: relative; width: 100%; overflow: hidden; }
-.hero-img-wrap img { width: 100%; height: auto; display: block; object-fit: cover; object-position: top center; border: none; box-shadow: none; border-radius: 0; opacity: 0; animation: imgReveal 800ms var(--ease-out) 900ms forwards; }
-@keyframes imgReveal { to { opacity: 1; } }
+.hero-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0;
+  animation: imgReveal 800ms var(--ease-out) 900ms forwards;
+}
+
 .hero-anchors { position: absolute; bottom: 24px; left: 0; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
-.hero-anchor { display: block; background: rgba(16,18,24,0.80); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: none; border-left: 2px solid var(--olive); color: white; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; padding: 7px 14px; border-radius: 0; text-decoration: none; transition: background 200ms ease; opacity: 0; animation: imgReveal 600ms var(--ease-out) 1200ms forwards; }
+.hero-anchor {
+  display: block;
+  background: rgba(16,18,24,0.80);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: none;
+  border-left: 2px solid var(--olive);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: background 200ms ease;
+  opacity: 0;
+  animation: imgReveal 600ms var(--ease-out) 1200ms forwards;
+}
 .hero-anchor:nth-child(2) { animation-delay: 1320ms; }
 .hero-anchor:nth-child(3) { animation-delay: 1440ms; }
 .hero-anchor:hover { background: var(--olive); }
 
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; padding: 60px 20px 80px; gap: 40px; }
-  .hero-img-wrap img { max-height: 60vw; }
-  .hero-right { padding-top: 0; }
-  .hero-anchors { bottom: 12px; }
-}
 
-/* === ABOUT === */
-#about { background: var(--cream); padding: 48px 0; position: relative; overflow: hidden; }
-#about::before { content: ''; position: absolute; inset: 0; background-image: url(images/LIMH-LogoTree.svg); background-size: 70%; background-repeat: no-repeat; background-position: center; opacity: 0.05; pointer-events: none; z-index: 0; }
+/* ----------------------------------------------------------------
+   6. ABOUT
+   ---------------------------------------------------------------- */
+#about {
+  background: var(--cream);
+  padding: 48px 0;
+  position: relative;
+  overflow: hidden;
+}
 #about > * { position: relative; z-index: 1; }
+
 .about-heading { text-align: center; margin-bottom: 28px; }
 .about-heading .section-title { text-align: center; }
 .about-heading .section-rule { margin: 0 auto 16px; }
+
 .about-text { max-width: 720px; margin: 0 auto; text-align: center; }
 .about-text p { font-weight: 300; font-size: 15px; line-height: 1.6; color: var(--body); margin-bottom: 12px; }
-.about-photos { max-width: 530px; margin: 28px auto 0; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+
+.about-photos {
+  max-width: 530px;
+  margin: 28px auto 0;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
 .about-photo-wrap { border-radius: 4px; overflow: hidden; }
 .about-photo-wrap:first-child { transform: rotate(-1.5deg); transition: transform 400ms var(--ease-out); }
 .about-photo-wrap:last-child { transform: rotate(1deg); margin-top: 40px; transition: transform 400ms var(--ease-out); }
-.about-photo-wrap img { width: 100%; height: auto; display: block; filter: saturate(0) brightness(0.95); transition: filter 800ms ease, transform 400ms ease; }
+.about-photo-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(0) brightness(0.95);
+  transition: filter 800ms ease, transform 400ms ease;
+}
 .about-photo-wrap.revealed img { filter: saturate(1) brightness(1); }
-.about-photo-wrap:hover { transform: rotate(0deg) !important; }
-.about-photo-wrap:hover img { transform: scale(1.02); filter: saturate(1.05) brightness(1.04) !important; }
-@media (max-width: 640px) {
-  .about-photos { grid-template-columns: 1fr; padding: 0 20px; }
-  .about-photo-wrap:first-child, .about-photo-wrap:last-child { transform: none; margin-top: 0; }
+.about-photo-wrap:hover { transform: rotate(0deg); }
+.about-photo-wrap:hover img { transform: scale(1.02); filter: saturate(1.05) brightness(1.04); }
+
+
+/* ----------------------------------------------------------------
+   7. TESLA QUOTE
+   ---------------------------------------------------------------- */
+#tesla-quote {
+  background: var(--charcoal);
+  padding: 72px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* === PERSONAL COACHING === */
+.tesla-quote-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 300px;
+  color: var(--olive);
+  opacity: 0.05;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.tesla-bird {
+  position: absolute;
+  top: 18%;
+  left: -160px;
+  width: 120px;
+  height: auto;
+  opacity: 0.18;
+  animation: birdDrift 24s linear infinite;
+  pointer-events: none;
+}
+
+.tesla-quote-inner { max-width: 700px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+.tesla-quote-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(22px, 3.2vw, 32px);
+  line-height: 1.55;
+  color: white;
+  margin-bottom: 28px;
+  min-height: 3em;
+}
+.tesla-quote-text::after { content: '|'; animation: cursorBlink 600ms step-end infinite; opacity: 0; }
+.tesla-quote-text.typing::after { opacity: 1; }
+.tesla-quote-text.done::after { display: none; }
+
+.tesla-quote-attr {
+  font-weight: 400;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.45);
+  opacity: 0;
+  transition: opacity 700ms ease 0.3s;
+}
+.tesla-quote-attr.visible { opacity: 1; }
+
+
+/* ----------------------------------------------------------------
+   8. COACHING (Personal)
+   ---------------------------------------------------------------- */
 #coaching { background: var(--white); padding: 56px 0; }
+
 .coaching-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
 .coaching-header { margin-bottom: 24px; }
-.coaching-header p { font-weight: 300; font-size: 16px; color: var(--muted); max-width: 600px; line-height: 1.7; margin-top: 0; }
+.coaching-header p,
+.coaching-approach p {
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+}
+.coaching-approach p + p { margin-top: 10px; }
+.coaching-pillars { margin-top: 10px; }
+
+.coaching-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.coaching-enneagram-col { min-width: 0; }
+.coaching-right-col { min-width: 0; display: flex; flex-direction: column; }
+
+.coaching-cta-sticky { position: sticky; top: 92px; }
+
+/* Service tier accordion */
 .service-menu { max-width: 800px; }
 .service-tier { border-bottom: 1px dashed rgba(0,0,0,0.12); }
-.service-tier-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 16px 0 12px; cursor: pointer; min-height: 44px; }
+.service-tier-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0 12px;
+  cursor: pointer;
+  min-height: 44px;
+}
 .service-tier-header:hover .service-tier-name { color: var(--olive); }
+
 .service-tier-name { font-weight: 600; font-size: 15px; color: var(--heading-dark); transition: color 200ms ease; flex: 1; }
 .service-tier-price { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--olive); white-space: nowrap; flex-shrink: 0; }
-.service-tier-toggle { font-size: 13px; font-weight: 400; color: var(--muted); white-space: nowrap; margin-left: 16px; cursor: pointer; transition: color 200ms ease; display: flex; align-items: center; gap: 6px; }
-.service-tier-toggle::after { content: '+'; display: inline-block; transition: transform 300ms var(--ease-out), content 0ms; font-size: 16px; font-weight: 300; }
+.service-tier-price--enquire { font-size: 18px; }
+
+.service-tier-toggle {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: 16px;
+  cursor: pointer;
+  transition: color 200ms ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.service-tier-toggle::after {
+  content: '+';
+  display: inline-block;
+  transition: transform 300ms var(--ease-out);
+  font-size: 16px;
+  font-weight: 300;
+}
 .service-tier.open .service-tier-toggle::after { content: '−'; }
 .service-tier-header:hover .service-tier-toggle { color: var(--olive); }
-.service-tier-toggle-icon { display: inline-block; transition: transform 300ms var(--ease-out); margin-left: 4px; font-size: 10px; }
+
+.service-tier-toggle-icon {
+  display: inline-block;
+  transition: transform 300ms var(--ease-out);
+  margin-left: 4px;
+  font-size: 10px;
+}
 .service-tier.open .service-tier-toggle-icon { transform: rotate(180deg); }
-.coaching-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.coaching-enneagram-col { min-width: 0; }
-.coaching-right-col { min-width: 0; display: flex; flex-direction: column; gap: 0; }
-.coaching-cta-sticky { position: sticky; top: 92px; }
-@media (max-width: 900px) { .coaching-layout { grid-template-columns: 1fr; } .coaching-cta-sticky { position: static; } .coaching-enneagram-col { order: 2; } .coaching-right-col { order: 1; } }
+
 .service-tier-body { max-height: 0; overflow: hidden; transition: max-height 350ms var(--ease-out); }
 .service-tier.open .service-tier-body { max-height: 400px; }
+
 .service-tier-desc { font-weight: 300; font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; padding-right: 80px; }
-.cta-box { border: 1px solid var(--border); border-radius: 4px; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 32px; cursor: pointer; transition: background 300ms var(--ease-out), border-color 300ms var(--ease-out); max-width: 800px; margin-top: 48px; }
-.cta-box:hover { background: var(--olive); border-color: var(--olive); }
-.cta-box:hover .cta-box-title, .cta-box:hover .cta-box-sub, .cta-box:hover .cta-contact-line, .cta-box:hover .cta-contact-icon { color: white !important; }
-.cta-box-text { flex: 1; }
-.cta-box-title { font-weight: 600; font-size: 18px; color: var(--heading-dark); margin-bottom: 8px; transition: color 300ms ease; }
-.cta-box-sub { font-weight: 300; font-size: 14px; color: var(--muted); transition: color 300ms ease; }
-.cta-contacts { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-.cta-contact-line { display: flex; align-items: center; gap: 8px; font-weight: 400; font-size: 15px; color: var(--heading-dark); text-decoration: none; min-height: 44px; transition: color 300ms ease; }
-.cta-contact-icon { color: var(--olive); transition: color 300ms ease; width: 18px; height: 18px; flex-shrink: 0; }
-@media (max-width: 640px) {
-  .coaching-inner { padding: 0 20px; }
-  .cta-box { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
-  .cta-contacts { align-items: flex-start; }
-  .service-tier-desc { padding-right: 0; }
+.service-tier-desc + .service-tier-desc { margin-top: 8px; padding-bottom: 0; }
+
+.service-tier-pdf-link {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--olive);
+  text-decoration: none;
+  padding-bottom: 16px;
+  transition: color 200ms ease;
+}
+.service-tier-pdf-link:hover { color: var(--olive-light); }
+
+/* Mindset Advantage graphic inside tier */
+.ma-graphic-wrap { margin-bottom: 12px; }
+.ma-graphic { max-width: 100%; border-radius: 4px; }
+
+/* Gift cert row (non-interactive) */
+.service-tier--static .service-tier-header { cursor: default; pointer-events: none; }
+.service-tier--static .service-tier-price {
+  font-size: 16px;
+  font-family: var(--font-ui);
+  color: var(--muted);
+  font-weight: 400;
 }
 
-/* === ENNEAGRAM === */
-#enneagram { background: var(--olive-wash); padding: 80px 0; }
-.enneagram-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-.enneagram-header { text-align: center; margin-bottom: 28px; }
-.enneagram-header .section-rule { margin: 0 auto 16px; }
-.enneagram-subtitle { font-weight: 300; font-size: 14px; color: var(--body); max-width: 560px; margin: 16px auto 0; line-height: 1.7; }
-.enneagram-stage { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+
+/* ----------------------------------------------------------------
+   9. ENNEAGRAM
+   ---------------------------------------------------------------- */
 .enneagram-svg-wrap { width: 100%; max-width: 500px; }
+.enneagram-subtitle {
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--body);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
 #enneagram-svg { width: 100%; height: auto; display: block; }
+
+/* SVG draw-in animation */
 #enn-outer-circle { stroke-dasharray: 1257; stroke-dashoffset: 1257; transition: stroke-dashoffset 1200ms var(--ease-out); }
 #enneagram-svg.drawn #enn-outer-circle { stroke-dashoffset: 0; }
+
 .enn-line { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 800ms var(--ease-out) 200ms; }
 #enneagram-svg.drawn .enn-line { stroke-dashoffset: 0; }
+
 .enn-node-group { cursor: pointer; opacity: 0; transition: opacity 400ms var(--ease-out); }
 #enneagram-svg.drawn .enn-node-group { opacity: 1; }
 #enneagram-svg.drawn .enn-node-group:nth-child(1) { transition-delay: 400ms; }
@@ -230,130 +762,309 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
 #enneagram-svg.drawn .enn-node-group:nth-child(7) { transition-delay: 760ms; }
 #enneagram-svg.drawn .enn-node-group:nth-child(8) { transition-delay: 820ms; }
 #enneagram-svg.drawn .enn-node-group:nth-child(9) { transition-delay: 880ms; }
+
 .enn-node-circle { fill: white; stroke: var(--rule); stroke-width: 2; transition: fill 200ms ease, stroke 200ms ease; }
 .enn-node-group:hover .enn-node-circle { stroke: var(--olive); fill: var(--olive-wash); }
 .enn-node-group.selected .enn-node-circle { fill: var(--olive); stroke: var(--olive); }
-.enn-node-group.dimmed { opacity: 0.35 !important; }
-.enn-node-num { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; fill: var(--heading-dark); text-anchor: middle; dominant-baseline: central; pointer-events: none; transition: fill 200ms ease; }
+.enn-node-group.dimmed { opacity: 0.35; }
+
+.enn-node-num {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  fill: var(--heading-dark);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  transition: fill 200ms ease;
+}
 .enn-node-group.selected .enn-node-num { fill: white; }
-.enn-node-label { font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; fill: var(--muted); text-anchor: middle; pointer-events: none; transition: fill 200ms ease; }
+
+.enn-node-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 500;
+  fill: var(--muted);
+  text-anchor: middle;
+  pointer-events: none;
+  transition: fill 200ms ease;
+}
 .enn-node-group.selected .enn-node-label { fill: rgba(255,255,255,0.85); }
+
 .enn-connecting-line { stroke: var(--rule); stroke-width: 1.5; fill: none; transition: stroke 200ms ease, stroke-width 200ms ease, opacity 200ms ease; }
 .enn-connecting-line.active { stroke: var(--olive); stroke-width: 2.5; }
 .enn-connecting-line.dimmed { opacity: 0.15; }
-.enn-info-panel { width: 100%; max-width: 600px; opacity: 0; transform: translateY(16px); transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out); pointer-events: none; text-align: center; }
+
+/* Info panel */
+.enn-info-panel {
+  width: 100%;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+  pointer-events: none;
+  text-align: center;
+}
 .enn-info-panel.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
 .enn-info-number { font-family: var(--font-display); font-weight: 300; font-size: 60px; line-height: 1; color: var(--heading-dark); opacity: 0.12; margin-bottom: -20px; }
 .enn-info-name { font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--olive); margin-bottom: 12px; }
 .enn-info-tagline { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 20px; color: var(--body); margin-bottom: 12px; line-height: 1.3; }
 .enn-info-desire { font-weight: 300; font-size: 14px; color: var(--body); line-height: 1.7; margin-bottom: 12px; }
 .enn-info-desc { font-weight: 300; font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
-.enn-info-cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--olive); border: 1px solid var(--border); padding: 12px 24px; border-radius: 4px; cursor: pointer; transition: background 300ms var(--ease-out), color 300ms ease, border-color 300ms ease; }
+.enn-info-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--olive);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 300ms var(--ease-out), color 300ms ease, border-color 300ms ease;
+}
 .enn-info-cta:hover { background: var(--olive); color: white; border-color: var(--olive); }
 .enn-prompt { font-weight: 300; font-size: 14px; color: var(--muted); text-align: center; margin-top: 12px; }
-@media (max-width: 640px) { .enneagram-inner { padding: 0 20px; } }
 
-/* === BUSINESS SOLUTIONS === */
+
+/* ----------------------------------------------------------------
+   10. BUSINESS SOLUTIONS
+   ---------------------------------------------------------------- */
 #business { background: var(--charcoal); padding: 56px 0; }
 .business-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-.business-inner .section-label { color: var(--olive); }
+
 .business-desc { font-weight: 300; font-size: 15px; color: var(--body-light); line-height: 1.7; margin-bottom: 24px; }
-/* 2-col layout */
-.business-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-top: 32px; margin-bottom: 40px; }
-/* Left col */
-.business-advisory { }
+
+.biz-pdf-link {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--olive-light);
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: color 200ms ease;
+}
+.biz-pdf-link:hover { color: var(--olive); }
+
+.biz-oe-graphic-wrap { margin: 16px 0 24px; }
+.biz-oe-graphic { max-width: 100%; border-radius: 4px; }
+
+.business-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-top: 32px;
+  margin-bottom: 40px;
+}
+
+/* Left — advisory */
 .biz-rate-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
 .biz-rate-figure { font-family: var(--font-display); font-weight: 600; font-size: 32px; color: white; line-height: 1; }
 .biz-rate-note { font-weight: 300; font-size: 14px; color: rgba(255,255,255,0.5); }
-.biz-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
-.biz-features li { font-weight: 300; font-size: 14px; color: var(--body-light); padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 10px; }
-.biz-features li::before { content: none !important; }
+
+.biz-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+.biz-features li {
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--body-light);
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.biz-features li::before { content: none; }
 .biz-features li::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--olive); flex-shrink: 0; margin-left: auto; }
-/* Right col */
-.business-packages-col { }
+
+/* Right — packages */
 .packages-heading { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 20px; display: block; }
-.packages-col { display: flex; flex-direction: column; gap: 0; }
+.packages-intro { font-weight: 300; font-size: 13px; color: var(--body-light); margin-bottom: 20px; line-height: 1.7; }
+
+.packages-col { display: flex; flex-direction: column; }
 .package-item { padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.1); }
 .package-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
 .package-name { font-weight: 600; font-size: 15px; color: white; margin-bottom: 6px; }
-.package-price { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--olive-light); margin-bottom: 6px; }
 .package-desc { font-weight: 300; font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-/* Spanning bottom row */
+
+/* Bottom spanning row */
 .business-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 32px; }
 .trusted-by { margin-bottom: 24px; }
 .trusted-label { font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 10px; display: block; }
 .trusted-names { font-weight: 400; font-size: 14px; color: rgba(255,255,255,0.45); line-height: 2; }
+
+/* Dark-theme CTA overrides */
 #business .cta-box { background: transparent; border-color: rgba(255,255,255,0.2); }
 #business .cta-box-title { color: white; }
 #business .cta-box-sub { color: rgba(255,255,255,0.5); }
 #business .cta-contact-line { color: rgba(255,255,255,0.8); }
-@media (max-width: 900px) { .business-two-col { grid-template-columns: 1fr; gap: 32px; } .business-inner { padding: 0 20px; } }
 
-/* === EDUCATION === */
+
+/* ----------------------------------------------------------------
+   11. EDUCATION & WORKSHOPS
+   ---------------------------------------------------------------- */
 #education { background: var(--cream); padding: 56px 0; }
 .education-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .education-header { margin-bottom: 32px; }
-.education-grid { display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start; }
+
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 56px;
+  align-items: start;
+}
 .education-left { min-width: 0; }
 .education-right { min-width: 0; position: sticky; top: 92px; }
-.edu-group-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--olive); margin-bottom: 0; display: block; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+
+.edu-group-label {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--olive);
+  display: block;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.edu-group-label + .edu-group-label,
+.edu-group-label--spaced { margin-top: 32px; }
+
 .edu-workshop-list { display: flex; flex-direction: column; }
-.edu-workshop-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+.edu-workshop-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
 .edu-workshop-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .edu-workshop-code { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: var(--olive); text-transform: uppercase; }
 .edu-workshop-name { font-weight: 500; font-size: 14px; color: var(--heading-dark); }
 .edu-workshop-detail { font-weight: 300; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.edu-workshop-body { font-weight: 300; font-size: 13px; color: var(--muted); line-height: 1.6; margin-top: 6px; }
+.edu-workshop-body + .edu-workshop-body { margin-top: 8px; }
 .edu-workshop-price { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--olive); white-space: nowrap; flex-shrink: 0; padding-top: 2px; }
+
+/* Gift card + notes */
 .edu-gift-card { background: var(--olive-wash); border: 1px solid var(--rule); border-radius: 6px; padding: 24px; margin-bottom: 20px; }
 .edu-gift-card-title { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--heading-dark); margin-bottom: 8px; }
 .edu-gift-card-text { font-weight: 300; font-size: 13px; color: var(--body); line-height: 1.7; margin-bottom: 16px; }
-.edu-gift-card-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--olive); color: white; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; padding: 10px 20px; border-radius: 4px; text-decoration: none; transition: background 200ms ease; }
+.edu-gift-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--olive);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 200ms ease;
+}
 .edu-gift-card-cta:hover { background: var(--olive-light); }
+
 .edu-note-card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 20px; }
 .edu-note-label { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--olive); margin-bottom: 10px; }
 .edu-note-list { padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.edu-note-list li { font-weight: 300; font-size: 13px; color: var(--body); line-height: 1.6; padding-left: 14px; position: relative; }
-.edu-note-list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--olive); }
-@media (max-width: 900px) { .education-grid { grid-template-columns: 1fr; } .education-right { position: static; } .education-inner { padding: 0 20px; } }
+.edu-note-list li {
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.6;
+  padding-left: 14px;
+  position: relative;
+}
+.edu-note-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--olive);
+  background-image: none;
+}
+
 .workshop-category { margin-bottom: 40px; }
-.workshop-cat-label { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--olive); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-.workshop-cat-label::after { content: ''; flex: 1; max-width: 200px; height: 1px; background: var(--rule); transform-origin: left; transform: scaleX(0); transition: transform 400ms var(--ease-out) 200ms; }
+.workshop-cat-label {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--olive);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.workshop-cat-label::after {
+  content: '';
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: var(--rule);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 400ms var(--ease-out) 200ms;
+}
 .workshop-cat-label.rule-drawn::after { transform: scaleX(1); }
-.edu-gift-note { font-weight: 400; font-size: 13px; color: var(--muted); font-style: italic; padding: 16px 0; display: block; }
-@media (max-width: 640px) { .education-inner { padding: 0 20px; } }
 
-/* === TESLA QUOTE === */
-#tesla-quote { background: var(--charcoal); padding: 72px 0; text-align: center; position: relative; overflow: hidden; }
-.tesla-quote-mark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -58%); font-family: var(--font-display); font-weight: 300; font-size: 300px; color: var(--olive); opacity: 0.05; line-height: 1; pointer-events: none; user-select: none; }
-.tesla-quote-inner { max-width: 700px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-.tesla-bird { position: absolute; top: 18%; left: -160px; width: 120px; height: auto; opacity: 0.18; animation: birdDrift 24s linear infinite; pointer-events: none; }
-@keyframes birdDrift { 0% { left: -160px; opacity: 0; } 6% { opacity: 0.18; } 92% { opacity: 0.18; } 100% { left: calc(100vw + 160px); opacity: 0; } }
-.tesla-quote-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(22px,3.2vw,32px); line-height: 1.55; color: white; margin-bottom: 28px; min-height: 3em; }
-.tesla-quote-text::after { content: '|'; animation: cursorBlink 600ms step-end infinite; opacity: 0; }
-.tesla-quote-text.typing::after { opacity: 1; }
-.tesla-quote-text.done::after { display: none; }
-@keyframes cursorBlink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-.tesla-quote-attr { font-weight: 400; font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.45); opacity: 0; transition: opacity 700ms ease 0.3s; }
-.tesla-quote-attr.visible { opacity: 1; }
 
-/* === TESTIMONIALS === */
+/* ----------------------------------------------------------------
+   12. TESTIMONIALS
+   ---------------------------------------------------------------- */
 #testimonials { background: var(--charcoal); padding: 56px 0; }
 .testimonials-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 .testimonials-inner .section-title { color: white; }
-.video-poster { position: relative; width: 100%; max-width: 800px; margin: 0 auto 40px; aspect-ratio: 16/9; background: #1e2028; border-radius: 8px; overflow: hidden; cursor: pointer; }
+
+/* Video poster */
+.video-poster {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  aspect-ratio: 16/9;
+  background: #1e2028;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
 .video-poster-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1e2028 0%, #2b2d35 100%); }
-.video-poster-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; transition: background 250ms var(--ease-spring), transform 250ms var(--ease-spring); }
+.video-poster-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 250ms var(--ease-spring), transform 250ms var(--ease-spring);
+}
 .video-poster-play svg { width: 28px; height: 28px; fill: var(--olive); margin-left: 4px; transition: fill 250ms ease; }
 .video-poster:hover .video-poster-play { background: var(--olive); transform: translate(-50%, -50%) scale(1.1); }
 .video-poster:hover .video-poster-play svg { fill: white; }
+
 .video-poster-caption { position: absolute; bottom: 20px; left: 24px; }
 .video-poster-name { font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--olive); display: block; margin-bottom: 2px; }
 .video-poster-sub { font-weight: 300; font-size: 13px; color: rgba(255,255,255,0.6); }
+
 .video-embed { display: none; width: 100%; max-width: 800px; margin: 0 auto 40px; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; }
 .video-embed iframe { width: 100%; height: 100%; border: none; }
-/* Testimonial cards — circular photo overlapping top, white rounded card, green quote marks */
+
+/* Testimonial cards */
 .testimonials-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 32px; padding-top: 60px; }
-@media (max-width: 640px) { .testimonials-cards-grid { grid-template-columns: 1fr; } }
 
 .testimonial-card {
   background: var(--white);
@@ -367,7 +1078,6 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
   box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
-/* Circular photo — overlaps top of card */
 .testimonial-avatar {
   width: 110px;
   height: 110px;
@@ -376,13 +1086,11 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
   overflow: hidden;
   flex-shrink: 0;
   margin-top: -55px;
-  margin-bottom: 0;
   background: var(--olive-wash);
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
 }
 .testimonial-avatar img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; object-position: top center; display: block; }
 
-/* Green quote marks flanking the photo */
 .testimonial-quotes-row {
   display: flex;
   align-items: center;
@@ -400,62 +1108,232 @@ section ul li::before { content: ''; display: inline-block; width: 12px; height:
   user-select: none;
 }
 
-.testimonial-text {
-  font-family: var(--font-ui);
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.75;
-  color: var(--body);
-  margin: 0 0 20px;
-  text-align: center;
-}
-
+.testimonial-text { font-weight: 300; font-size: 14px; line-height: 1.75; color: var(--body); margin: 0 0 20px; text-align: center; }
 .testimonial-name { font-weight: 700; font-size: 15px; color: var(--heading-dark); margin-bottom: 2px; }
 .testimonial-role { font-weight: 400; font-size: 13px; color: var(--olive); }
-@media (max-width: 900px) { .testimonials-inner { padding: 0 20px; } }
 
-/* === CONTACT === */
+
+/* ----------------------------------------------------------------
+   13. CONTACT
+   ---------------------------------------------------------------- */
 #contact { background: var(--white); padding: 56px 0; }
 .contact-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .contact-name { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: var(--heading-dark); margin-bottom: 4px; }
 .contact-biz { font-weight: 300; font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+
 .contact-lines { display: flex; flex-direction: column; gap: 8px; }
-.contact-line { display: flex; align-items: center; gap: 12px; font-weight: 400; font-size: 16px; color: var(--body); text-decoration: none; min-height: 44px; transition: color 200ms ease; width: fit-content; }
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--body);
+  text-decoration: none;
+  min-height: 44px;
+  transition: color 200ms ease;
+  width: fit-content;
+}
 .contact-line:hover { color: var(--olive); }
 .contact-line svg { width: 20px; height: 20px; stroke: var(--olive); fill: none; flex-shrink: 0; }
+
+/* Form */
 .form-group { position: relative; margin-bottom: 16px; }
-.form-field { width: 100%; padding: 14px 12px 6px; border: 1px solid rgba(0,0,0,0.15); border-radius: 4px; background: transparent; font-family: var(--font-ui); font-weight: 300; font-size: 16px; color: var(--body); transition: border-color 200ms ease; outline: none; -webkit-appearance: none; appearance: none; }
+.form-field {
+  width: 100%;
+  padding: 14px 12px 6px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--body);
+  transition: border-color 200ms ease;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
 .form-field:focus { border-color: var(--olive); }
-.form-label { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 300; font-size: 15px; color: var(--muted); pointer-events: none; transition: top 200ms var(--ease-out), font-size 200ms var(--ease-out), color 200ms ease; }
-.form-field:focus ~ .form-label, .form-field.has-value ~ .form-label { top: 10px; transform: none; font-size: 11px; color: var(--olive); letter-spacing: 0.05em; }
+
+.form-label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: top 200ms var(--ease-out), font-size 200ms var(--ease-out), color 200ms ease;
+}
+.form-field:focus ~ .form-label,
+.form-field.has-value ~ .form-label {
+  top: 10px;
+  transform: none;
+  font-size: 11px;
+  color: var(--olive);
+  letter-spacing: 0.05em;
+}
+
 textarea.form-field { resize: vertical; min-height: 120px; padding-top: 24px; }
 textarea.form-field ~ .form-label { top: 20px; transform: none; }
-textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
-.form-submit { width: 100%; padding: 16px; background: var(--olive); color: white; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; border: none; border-radius: 4px; cursor: pointer; transition: background 200ms ease, transform 200ms var(--ease-spring), box-shadow 200ms ease; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 54px; }
+textarea.form-field:focus ~ .form-label,
+textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
+
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--olive);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms var(--ease-spring), box-shadow 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 54px;
+}
 .form-submit:hover { background: var(--olive-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,124,63,0.35); }
 .form-submit.success { background: #2d7d32; }
-.btn-spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 600ms linear infinite; display: none; }
+
+.btn-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 600ms linear infinite;
+  display: none;
+}
 .form-submit.loading .btn-spinner { display: block; }
 .form-submit.loading .btn-text { display: none; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.form-note { font-weight: 300; font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
-@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } .contact-inner { padding: 0 20px; } }
 
-/* === FOOTER === */
+.form-note { font-weight: 300; font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+
+/* ----------------------------------------------------------------
+   14. FOOTER
+   ---------------------------------------------------------------- */
 #footer { background: var(--charcoal); padding: 32px 0; text-align: center; }
-.footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
 .footer-logo-text { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: white; letter-spacing: 0.05em; }
 .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
 .footer-link { font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 200ms ease; }
 .footer-link:hover { color: white; }
 .footer-copy { font-weight: 300; font-size: 12px; color: rgba(255,255,255,0.35); }
+
+
+/* ----------------------------------------------------------------
+   15. ANIMATIONS & KEYFRAMES
+   ---------------------------------------------------------------- */
+@keyframes bgDrift {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(20px,-10px) scale(1.02); }
+  66% { transform: translate(-10px,15px) scale(0.98); }
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.4; }
+  50% { transform: scaleY(0.6); opacity: 1; }
+}
+@keyframes imgReveal { to { opacity: 1; } }
+@keyframes birdDrift {
+  0% { left: -160px; opacity: 0; }
+  6% { opacity: 0.18; }
+  92% { opacity: 0.18; }
+  100% { left: calc(100vw + 160px); opacity: 0; }
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+
+/* ----------------------------------------------------------------
+   16. RESPONSIVE OVERRIDES
+   ---------------------------------------------------------------- */
+
+/* Tablet (≤ 900px) */
+@media (max-width: 900px) {
+  /* Nav → hamburger */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-inner { padding: 0 20px; }
+
+  /* Hero → single column */
+  .hero-inner { grid-template-columns: 1fr; padding: 60px 20px 80px; gap: 40px; }
+  .hero-img-wrap img { max-height: 60vw; }
+  .hero-right { padding-top: 0; }
+  .hero-anchors { bottom: 12px; }
+
+  /* Coaching → stacked */
+  .coaching-layout { grid-template-columns: 1fr; }
+  .coaching-cta-sticky { position: static; }
+  .coaching-enneagram-col { order: 2; }
+  .coaching-right-col { order: 1; }
+
+  /* Business → stacked */
+  .business-two-col { grid-template-columns: 1fr; gap: 32px; }
+  .business-inner { padding: 0 20px; }
+
+  /* Education → stacked */
+  .education-grid { grid-template-columns: 1fr; }
+  .education-right { position: static; }
+  .education-inner { padding: 0 20px; }
+
+  /* Contact → stacked */
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .contact-inner { padding: 0 20px; }
+
+  /* Testimonials */
+  .testimonials-inner { padding: 0 20px; }
+}
+
+/* Mobile (≤ 640px) */
 @media (max-width: 640px) {
-  #about { padding: 48px 0; }
-  #coaching, #business, #education, #testimonials, #contact { padding: 56px 0; }
-  #enneagram { padding: 80px 0; }
+  .container { padding: 0 20px; }
+
+  /* Section padding adjustments */
   #tesla-quote { padding: 40px 0; }
-  #footer { padding: 32px 0; }
+
+  /* About photos → single column */
+  .about-photos { grid-template-columns: 1fr; padding: 0 20px; }
+  .about-photo-wrap:first-child,
+  .about-photo-wrap:last-child { transform: none; margin-top: 0; }
+
+  /* Testimonials → single column */
+  .testimonials-cards-grid { grid-template-columns: 1fr; }
+
+  /* Coaching tweaks */
+  .coaching-inner { padding: 0 20px; }
+  .cta-box { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .cta-contacts { align-items: flex-start; }
+  .service-tier-desc { padding-right: 0; }
+
+  /* Education */
+  .education-inner { padding: 0 20px; }
+
+  /* Enneagram */
+  .enneagram-inner { padding: 0 20px; }
+
+  /* Footer */
   .footer-inner { padding: 0 20px; }
 }
 </style>
@@ -503,7 +1381,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         Transforming lives through <em>Enneagram</em> insight,<br>mindset coaching &amp; organisational wisdom.
       </p>
       <div class="hero-body" id="hero-body">
-        <p>For over a decade, <strong>Aaron Montague</strong> and <strong>Life In My Hands</strong> have guided individuals and organisations toward clarity, resilience, and peak performance. Whether you're navigating personal challenges or driving systemic change, Aaron brings a rare combination of depth and pragmatism.</p>
+        <p>For over a decade, <mark>Aaron Montague</mark> and <mark>Life In My Hands</mark> have guided individuals and organisations toward clarity, resilience, and peak performance. Whether you're navigating personal challenges or driving systemic change, Aaron brings a rare combination of depth and pragmatism.</p>
         <p>Through Enneagram profiling, mindset coaching, and evidence-based frameworks, discover who you are — and who you're capable of becoming.</p>
       </div>
       <div class="hero-scroll-indicator" id="hero-scroll" aria-hidden="true">
@@ -525,22 +1403,22 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
 </section>
 
 <!-- ABOUT -->
-<section id="about" aria-label="About Aaron Montague">
-  <div class="container">
+<section id="about" class="bg-tree" aria-label="About Aaron Montague">
+  <div class="container" style="position:relative;z-index:1;">
     <div class="about-heading">
       <span class="section-label reveal">About</span>
       <h2 class="section-title reveal" style="--reveal-delay:80ms">Aaron Montague</h2>
       <div class="section-rule section-rule--center reveal" style="--reveal-delay:160ms"></div>
     </div>
     <div class="about-text">
-      <p class="reveal" style="--reveal-delay:0ms">Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition.</p>
+      <p class="reveal">Aaron Montague is a coach and advisor working with individuals and organisations navigating change, growth and transition.</p>
       <p class="reveal" style="--reveal-delay:80ms">He brings over 12 years' experience in project management and change-focused roles within large, complex organisations in Australia and the UK. This background shapes a grounded, no-nonsense coaching style, informed by a strong understanding of systems, governance and the realities of high-pressure environments.</p>
       <p class="reveal" style="--reveal-delay:160ms">Alongside his corporate experience, Aaron works closely with individuals seeking greater clarity, self-awareness and direction. His work integrates strategy, mindset and behaviour, helping clients move from insight to action in a way that feels aligned, practical and sustainable.</p>
       <p class="reveal" style="--reveal-delay:240ms">Aaron is the sole practitioner delivering Life In My Hands services, ensuring consistency, accountability and continuity across every engagement.</p>
     </div>
   </div>
   <div class="about-photos">
-    <div class="about-photo-wrap reveal" style="--reveal-delay:0ms">
+    <div class="about-photo-wrap reveal">
       <img src="images/aaron-profile.png" alt="Aaron Montague" loading="lazy">
     </div>
     <div class="about-photo-wrap reveal" style="--reveal-delay:150ms">
@@ -551,12 +1429,11 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
 
 <!-- TESLA QUOTE -->
 <section id="tesla-quote" aria-label="Nikola Tesla quote">
-  <div class="tesla-quote-mark" aria-hidden="true">"</div>
-  <!-- Animated brand bird -->
-  <img class="tesla-bird" src="images/LIMH-birddot.svg" alt="" aria-hidden="true" style="filter: invert(1) brightness(2);">
+  <div class="tesla-quote-mark" aria-hidden="true">&ldquo;</div>
+  <img class="tesla-bird" src="images/LIMH-birddot.svg" alt="" aria-hidden="true" style="filter:invert(1) brightness(2);">
   <div class="tesla-quote-inner">
-    <p class="tesla-quote-text done" id="tesla-typewriter">“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”</p>
-    <div class="tesla-quote-attr visible" id="tesla-attr">— Nikola Tesla</div>
+    <p class="tesla-quote-text done" id="tesla-typewriter">&ldquo;If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.&rdquo;</p>
+    <div class="tesla-quote-attr visible" id="tesla-attr">&mdash; Nikola Tesla</div>
   </div>
 </section>
 
@@ -569,21 +1446,21 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
       <div class="coaching-approach reveal" style="--reveal-delay:240ms">
         <p>Life In My Hands delivers coaching programs designed to help individuals realise their full potential. Each program takes a holistic view, addressing relationships, career, health and finances together.</p>
-        <p style="margin-top:10px;">At the core of the approach are two key pillars:</p>
+        <p>At the core of the approach are two key pillars:</p>
         <ul class="coaching-pillars">
           <li><strong>Enneagram personality profiling</strong> — deep insight into behavioural patterns, motivations and natural tendencies</li>
           <li><strong>Law of Attraction principles</strong> — understanding how thoughts, focus and emotional alignment shape life experience</li>
         </ul>
-        <p style="margin-top:10px;">Together these create both awareness and direction. Each participant receives practical tools they can apply independently for lasting change.</p>
+        <p>Together these create both awareness and direction. Each participant receives practical tools they can apply independently for lasting change.</p>
       </div>
     </div>
     <div class="coaching-layout">
       <!-- LEFT: Enneagram Wheel -->
       <div class="coaching-enneagram-col">
         <span class="section-label">Personality Framework</span>
-        <h3 class="section-title" style="font-size:clamp(20px,2vw,28px); margin-bottom:12px;">Discover Your Type</h3>
-        <div class="section-rule" style="margin-bottom:16px;"></div>
-        <p class="enneagram-subtitle" style="margin-bottom:20px;">The Enneagram maps nine personality types. Click any node to explore your motivations, patterns and growth path.</p>
+        <h3 class="section-title section-title--sm">Discover Your Type</h3>
+        <div class="section-rule section-rule--sm"></div>
+        <p class="enneagram-subtitle">The Enneagram maps nine personality types. Click any node to explore your motivations, patterns and growth path.</p>
         <div class="enneagram-svg-wrap">
           <svg id="enneagram-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Enneagram wheel">
             <circle id="enn-outer-circle" cx="250" cy="250" r="200" fill="none" stroke="rgba(74,124,63,0.3)" stroke-width="1.5"/>
@@ -616,94 +1493,93 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           <div class="enn-info-tagline" id="enn-tagline"></div>
           <div class="enn-info-desire" id="enn-desire"></div>
           <div class="enn-info-desc" id="enn-desc"></div>
-          <a href="#contact" class="enn-info-cta">Book a Session →</a>
+          <a href="#contact" class="enn-info-cta">Book a Session &rarr;</a>
         </div>
       </div>
       <!-- RIGHT: Programs + CTA -->
       <div class="coaching-right-col">
         <div class="service-menu">
-        <div class="service-tier reveal" style="--reveal-delay:0ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">Initial Enneagram Profiling Session</span>
-            <span class="service-tier-price">$225 + GST</span>
-            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">1 × 90 minute session. A deep-dive one-on-one session to identify your Enneagram type, understand your core motivations, and create a personalised roadmap for growth. Ideal as a starting point or standalone exploration.</p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:80ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">Essentials Program</span>
-            <span class="service-tier-price">$695 + GST</span>
-            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">A structured introduction to personal coaching using Enneagram profiling as the foundation. Covers self-awareness, core patterns, and practical growth strategies. Includes multiple sessions with summaries and between-session support.</p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:160ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">Essentials Plus</span>
-            <span class="service-tier-price">$895 + GST</span>
-            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">An extended version of the Essentials Program with additional sessions, deeper Enneagram exploration, and more personalised coaching touchpoints. Ideal for those ready for a more comprehensive transformation journey.</p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:240ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">Additional Coaching</span>
-            <span class="service-tier-price">$495 + GST</span>
-            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
-          </div>
-          <div class="service-tier-body">
-            <p class="service-tier-desc">For returning clients who have completed an initial program and wish to continue their growth journey. Sessions are tailored to your current goals and challenges.</p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:320ms">
-          <div class="service-tier-header" onclick="toggleTier(this)">
-            <span class="service-tier-name">Mindset Advantage Program</span>
-            <span class="service-tier-price" style="font-size:18px;">Enquire</span>
-            <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">▾</span></span>
-          </div>
-          <div class="service-tier-body">
-            <div class="ma-graphic-wrap"><img src="images/ma-graphic.png" alt="Mindset Advantage Program" class="ma-graphic"></div>
-            <p class="service-tier-desc">Mindset Advantage is a performance mindset program for athletes seeking consistency, confidence and focus under pressure. Using individualised profiling and practical mindset tools, athletes learn to manage stress, reduce over-thinking and perform more reliably in training and competition.</p>
-            <p class="service-tier-desc" style="margin-top:8px;">The program is tailored specifically to each athlete's needs — no generic scripts or motivational templates.</p>
-            <a href="docs/LIMH-Mindset-Advantage.pdf" target="_blank" rel="noopener" class="service-tier-pdf-link">View the Mindset Advantage Program Overview →</a>
-            </p>
-          </div>
-        </div>
-        <div class="service-tier reveal" style="--reveal-delay:400ms">
-          <div class="service-tier-header" style="cursor:default; pointer-events:none;">
-            <span class="service-tier-name">Gift Certificates</span>
-            <span class="service-tier-price" style="font-size:16px; font-family:var(--font-ui); color:var(--muted); font-weight:400;">Available</span>
-          </div>
-        </div>
-      </div>
-      <div class="coaching-cta-sticky reveal" style="--reveal-delay:0ms">
-        <a href="#contact" style="text-decoration:none; display:block;">
-          <div class="cta-box" style="margin-top:0; max-width:100%;">
-            <div class="cta-box-text">
-              <div class="cta-box-title">Ready to Get Started?</div>
-              <div class="cta-box-sub">Reach out to discuss which program is right for you.</div>
+          <div class="service-tier reveal">
+            <div class="service-tier-header" onclick="toggleTier(this)">
+              <span class="service-tier-name">Initial Enneagram Profiling Session</span>
+              <span class="service-tier-price">$225 + GST</span>
+              <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
             </div>
-            <div class="cta-contacts">
-              <a href="tel:0407938932" class="cta-contact-line">
-                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
-                0407 938 932
-              </a>
-              <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
-                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                aaron@lifeinmyhands.com.au
-              </a>
+            <div class="service-tier-body">
+              <p class="service-tier-desc">1 &times; 90 minute session. A deep-dive one-on-one session to identify your Enneagram type, understand your core motivations, and create a personalised roadmap for growth. Ideal as a starting point or standalone exploration.</p>
             </div>
           </div>
-        </a>
+          <div class="service-tier reveal" style="--reveal-delay:80ms">
+            <div class="service-tier-header" onclick="toggleTier(this)">
+              <span class="service-tier-name">Essentials Program</span>
+              <span class="service-tier-price">$695 + GST</span>
+              <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
+            </div>
+            <div class="service-tier-body">
+              <p class="service-tier-desc">A structured introduction to personal coaching using Enneagram profiling as the foundation. Covers self-awareness, core patterns, and practical growth strategies. Includes multiple sessions with summaries and between-session support.</p>
+            </div>
+          </div>
+          <div class="service-tier reveal" style="--reveal-delay:160ms">
+            <div class="service-tier-header" onclick="toggleTier(this)">
+              <span class="service-tier-name">Essentials Plus</span>
+              <span class="service-tier-price">$895 + GST</span>
+              <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
+            </div>
+            <div class="service-tier-body">
+              <p class="service-tier-desc">An extended version of the Essentials Program with additional sessions, deeper Enneagram exploration, and more personalised coaching touchpoints. Ideal for those ready for a more comprehensive transformation journey.</p>
+            </div>
+          </div>
+          <div class="service-tier reveal" style="--reveal-delay:240ms">
+            <div class="service-tier-header" onclick="toggleTier(this)">
+              <span class="service-tier-name">Additional Coaching</span>
+              <span class="service-tier-price">$495 + GST</span>
+              <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
+            </div>
+            <div class="service-tier-body">
+              <p class="service-tier-desc">For returning clients who have completed an initial program and wish to continue their growth journey. Sessions are tailored to your current goals and challenges.</p>
+            </div>
+          </div>
+          <div class="service-tier reveal" style="--reveal-delay:320ms">
+            <div class="service-tier-header" onclick="toggleTier(this)">
+              <span class="service-tier-name">Mindset Advantage Program</span>
+              <span class="service-tier-price service-tier-price--enquire">Enquire</span>
+              <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
+            </div>
+            <div class="service-tier-body">
+              <div class="ma-graphic-wrap"><img src="images/ma-graphic.png" alt="Mindset Advantage Program" class="ma-graphic"></div>
+              <p class="service-tier-desc">Mindset Advantage is a performance mindset program for athletes seeking consistency, confidence and focus under pressure. Using individualised profiling and practical mindset tools, athletes learn to manage stress, reduce over-thinking and perform more reliably in training and competition.</p>
+              <p class="service-tier-desc">The program is tailored specifically to each athlete's needs — no generic scripts or motivational templates.</p>
+              <a href="docs/LIMH-Mindset-Advantage.pdf" target="_blank" rel="noopener" class="service-tier-pdf-link">View the Mindset Advantage Program Overview &rarr;</a>
+            </div>
+          </div>
+          <div class="service-tier service-tier--static reveal" style="--reveal-delay:400ms">
+            <div class="service-tier-header">
+              <span class="service-tier-name">Gift Certificates</span>
+              <span class="service-tier-price">Available</span>
+            </div>
+          </div>
+        </div>
+        <div class="coaching-cta-sticky reveal">
+          <a href="#contact" style="text-decoration:none;display:block;">
+            <div class="cta-box cta-box--full cta-box--mt">
+              <div class="cta-box-text">
+                <div class="cta-box-title">Ready to Get Started?</div>
+                <div class="cta-box-sub">Reach out to discuss which program is right for you.</div>
+              </div>
+              <div class="cta-contacts">
+                <a href="tel:0407938932" class="cta-contact-line">
+                  <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+                  0407 938 932
+                </a>
+                <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
+                  <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  aaron@lifeinmyhands.com.au
+                </a>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
-      </div><!-- /.coaching-right-col -->
     </div>
   </div>
 </section>
@@ -715,18 +1591,16 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     <h2 class="section-title section-title--light reveal" style="--reveal-delay:80ms">Advisory &amp; Consulting</h2>
     <div class="section-rule reveal" style="--reveal-delay:160ms"></div>
 
-    <!-- 2-col grid: Left = Advisory features, Right = Packages -->
     <div class="business-two-col">
-
-      <!-- LEFT: Advisory & Consulting -->
-      <div class="business-advisory reveal" style="--reveal-delay:0ms">
+      <!-- LEFT: Advisory -->
+      <div class="business-advisory reveal">
         <div class="biz-rate-row">
           <span class="biz-rate-figure">$150 / hr</span>
           <span class="biz-rate-note">+ GST &mdash; scoped individually</span>
         </div>
         <p class="business-desc">Life In My Hands offers business solutions grounded in the principles of organisational effectiveness — the ability of a business to consistently execute its intent. It exists when strategy, structure, leadership, systems and ways of working are aligned and mutually reinforcing.</p>
         <p class="business-desc">When these foundations are clear, businesses reduce friction, improve accountability and create the conditions for sustainable performance.</p>
-        <a href="docs/LIMH-Organisational-Effectiveness.pdf" target="_blank" rel="noopener" class="biz-pdf-link">View the Organisational Effectiveness framework →</a>
+        <a href="docs/LIMH-Organisational-Effectiveness.pdf" target="_blank" rel="noopener" class="biz-pdf-link">View the Organisational Effectiveness framework &rarr;</a>
         <div class="biz-oe-graphic-wrap"><img src="images/oe-graphic.png" alt="Organisational Effectiveness Framework" class="biz-oe-graphic"></div>
         <ul class="biz-features">
           <li>Session-based input for specific challenges</li>
@@ -741,7 +1615,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
       <!-- RIGHT: Business Packages -->
       <div class="business-packages-col reveal" style="--reveal-delay:150ms">
         <span class="packages-heading">How Engagements Work</span>
-        <p style="font-weight:300;font-size:13px;color:var(--body-light);margin-bottom:20px;line-height:1.7;">Engagements typically begin with an initial advisory session to clarify the issue, understand context and determine the right path forward.</p>
+        <p class="packages-intro">Engagements typically begin with an initial advisory session to clarify the issue, understand context and determine the right path forward.</p>
         <div class="packages-col">
           <div class="package-item">
             <div class="package-name">Pathway 1: Session-Based Advisory</div>
@@ -757,17 +1631,16 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           </div>
         </div>
       </div>
+    </div>
 
-    </div><!-- /.business-two-col -->
-
-    <!-- SPANNING ROW: Trusted By + Discuss CTA -->
+    <!-- Trusted By + CTA -->
     <div class="business-bottom reveal" style="--reveal-delay:200ms">
       <div class="trusted-by">
         <span class="trusted-label">Trusted By</span>
         <p class="trusted-names">Simone Haag Pty Ltd &nbsp;&middot;&nbsp; Xenon Underwriting &nbsp;&middot;&nbsp; Andy's Water Transport &nbsp;&middot;&nbsp; Dragonfly Springwater</p>
       </div>
-      <a href="#contact" style="text-decoration:none; display:block;">
-        <div class="cta-box" style="max-width:100%">
+      <a href="#contact" style="text-decoration:none;display:block;">
+        <div class="cta-box cta-box--full">
           <div class="cta-box-text">
             <div class="cta-box-title">Discuss Your Business</div>
             <div class="cta-box-sub">Let's explore how Aaron can support your team and organisation.</div>
@@ -785,14 +1658,12 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         </div>
       </a>
     </div>
-
   </div>
 </section>
 
 <!-- EDUCATION & WORKSHOPS -->
 <section id="education" aria-label="Education and Workshops">
   <div class="education-inner">
-
     <div class="education-header">
       <span class="section-label reveal">Education</span>
       <h2 class="section-title reveal" style="--reveal-delay:80ms">Workshops &amp; Programs</h2>
@@ -800,10 +1671,8 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
     </div>
 
     <div class="education-grid">
-
       <!-- LEFT: Workshop listings -->
       <div class="education-left">
-
         <p class="edu-group-label">Enneagram Personality Types</p>
         <div class="edu-workshop-list">
           <div class="edu-workshop-row">
@@ -832,7 +1701,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
           </div>
         </div>
 
-        <p class="edu-group-label" style="margin-top:32px;">Goal Setting</p>
+        <p class="edu-group-label edu-group-label--spaced">Goal Setting</p>
         <div class="edu-workshop-list">
           <div class="edu-workshop-row">
             <div class="edu-workshop-info">
@@ -840,18 +1709,17 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
               <span class="edu-workshop-name">Effective Goal Setting / Make New Year's Resolutions Stick</span>
               <span class="edu-workshop-detail">A practical approach to setting goals that work with you, not against you. 1-day workshop.</span>
               <p class="edu-workshop-body">Most goal setting fails not because people lack discipline, but because they work against themselves. This workshop starts with alignment rather than pressure — participants learn how to clarify what they want, recognise emotional signals and set goals that feel both motivating and achievable.</p>
-              <p class="edu-workshop-body" style="margin-top:8px;">Delivered as <em>Make New Year's Resolutions Stick</em> at the start of each year — supporting participants to review, reset and set intentions with clarity and direction.</p>
+              <p class="edu-workshop-body">Delivered as <em>Make New Year's Resolutions Stick</em> at the start of each year — supporting participants to review, reset and set intentions with clarity and direction.</p>
             </div>
             <span class="edu-workshop-price">$595 + GST</span>
           </div>
         </div>
-
-      </div><!-- /.education-left -->
+      </div>
 
       <!-- RIGHT: Gift cert + CTA -->
       <div class="education-right reveal" style="--reveal-delay:100ms">
         <div class="edu-gift-card">
-          <div class="edu-gift-card-title">🎁 Gift Certificates</div>
+          <div class="edu-gift-card-title">&#127873; Gift Certificates</div>
           <div class="edu-gift-card-text">Every workshop is available as a gift certificate — a thoughtful and lasting gift for anyone ready to invest in themselves. Suitable for ages 17 and over.</div>
           <a href="#contact" class="edu-gift-card-cta">Enquire Now</a>
         </div>
@@ -862,17 +1730,16 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
             <li>Contact Aaron for current scheduled dates and upcoming availability</li>
           </ul>
         </div>
-        <a href="#contact" style="text-decoration:none; display:block; margin-top:20px;">
-          <div class="cta-box" style="border-color: var(--rule);">
+        <a href="#contact" style="text-decoration:none;display:block;margin-top:20px;">
+          <div class="cta-box cta-box--sm-title" style="border-color:var(--rule);">
             <div class="cta-box-text">
-              <div class="cta-box-title" style="font-size:16px;">Register Your Interest</div>
+              <div class="cta-box-title">Register Your Interest</div>
               <div class="cta-box-sub">Contact Aaron for upcoming workshop dates.</div>
             </div>
           </div>
         </a>
-      </div><!-- /.education-right -->
-
-    </div><!-- /.education-grid -->
+      </div>
+    </div>
   </div>
 </section>
 
@@ -881,7 +1748,7 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
   <div class="testimonials-inner">
     <span class="section-label reveal">Testimonials</span>
     <h2 class="section-title section-title--light reveal" style="--reveal-delay:80ms">What clients say</h2>
-    <div class="section-rule reveal" style="--reveal-delay:160ms; margin-bottom:48px;"></div>
+    <div class="section-rule section-rule--48 reveal" style="--reveal-delay:160ms"></div>
 
     <!-- Video -->
     <div class="video-poster reveal" id="video-poster" onclick="loadVideo()" onkeydown="if(event.key==='Enter'||event.key===' ')loadVideo()" role="button" tabindex="0" aria-label="Play Ron's video testimonial on YouTube">
@@ -894,49 +1761,41 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         <span class="video-poster-sub">Video Testimonial, Feb 2025</span>
       </div>
     </div>
-    <div class="video-embed" id="video-embed">
-      <!-- YouTube iframe injected on click -->
-    </div>
+    <div class="video-embed" id="video-embed"></div>
 
-    <!-- 2×2 grid -->
+    <!-- Cards -->
     <div class="testimonials-cards-grid">
-
-      <!-- Mitch -->
-      <div class="testimonial-card reveal" style="--reveal-delay:0ms">
+      <div class="testimonial-card reveal">
         <div class="testimonial-avatar"><img src="images/testimonial_mitch-kibby.jpg" alt="Mitch Kibby"></div>
         <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
-        <p class="testimonial-text">"I've been racing triathlon at the top level for many years. Knowing my personality types, and what influences my mindset and behaviours, has made me more resilient and focused, giving me more consistent, positive results."</p>
+        <p class="testimonial-text">&ldquo;I've been racing triathlon at the top level for many years. Knowing my personality types, and what influences my mindset and behaviours, has made me more resilient and focused, giving me more consistent, positive results.&rdquo;</p>
         <div class="testimonial-name">Mitch Kibby</div>
         <div class="testimonial-role">Professional Triathlete</div>
       </div>
 
-      <!-- Corrine -->
       <div class="testimonial-card reveal" style="--reveal-delay:100ms">
         <div class="testimonial-avatar"><img src="images/testimonial_corrine-clewlow.jpg" alt="Corrine Clewlow"></div>
         <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
-        <p class="testimonial-text">"Doing the Enneagram personality types course has helped me see people in a new light! I now better understand my family and friends, and work relationships are much easier. I'm more self-aware, and thus able to control my attitudes and behaviours. I thoroughly recommend his course and programs to everyone."</p>
+        <p class="testimonial-text">&ldquo;Doing the Enneagram personality types course has helped me see people in a new light! I now better understand my family and friends, and work relationships are much easier. I'm more self-aware, and thus able to control my attitudes and behaviours. I thoroughly recommend his course and programs to everyone.&rdquo;</p>
         <div class="testimonial-name">Corrine Clewlow</div>
         <div class="testimonial-role">Portfolio Manager</div>
       </div>
 
-      <!-- Rony -->
       <div class="testimonial-card reveal" style="--reveal-delay:200ms">
         <div class="testimonial-avatar"><img src="images/testimonial_rony-roussetty.jpg" alt="Rony Roussetty"></div>
         <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
-        <p class="testimonial-text">"His programs are awesome! I've learned so much about myself and those around me. I thoroughly recommend Aaron to anyone who's keen to be their best."</p>
+        <p class="testimonial-text">&ldquo;His programs are awesome! I've learned so much about myself and those around me. I thoroughly recommend Aaron to anyone who's keen to be their best.&rdquo;</p>
         <div class="testimonial-name">Rony Roussetty</div>
         <div class="testimonial-role">Finance Manager</div>
       </div>
 
-      <!-- Jarrad -->
       <div class="testimonial-card reveal" style="--reveal-delay:300ms">
         <div class="testimonial-avatar"><img src="images/testimonial_jarrod-matheson.jpg" alt="Jarrad Matheson"></div>
         <div class="testimonial-quotes-row"><span class="testimonial-q">&ldquo;</span><span class="testimonial-q">&rdquo;</span></div>
-        <p class="testimonial-text">"The Game Changer program is second to none. As someone who's played competitive sport, at the highest levels, all my life, I can definitely say, it's like no other. I highly recommend the program to anyone serious about their sport."</p>
+        <p class="testimonial-text">&ldquo;The Game Changer program is second to none. As someone who's played competitive sport, at the highest levels, all my life, I can definitely say, it's like no other. I highly recommend the program to anyone serious about their sport.&rdquo;</p>
         <div class="testimonial-name">Jarrad Matheson</div>
         <div class="testimonial-role">Podiatrist &amp; Movement Specialist</div>
       </div>
-
     </div>
   </div>
 </section>
@@ -946,9 +1805,9 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
   <div class="contact-inner">
     <span class="section-label reveal">Contact</span>
     <h2 class="section-title reveal" style="--reveal-delay:80ms">Get in touch</h2>
-    <div class="section-rule reveal" style="--reveal-delay:160ms; margin-bottom:40px;"></div>
+    <div class="section-rule section-rule--lg reveal" style="--reveal-delay:160ms"></div>
     <div class="contact-grid">
-      <div class="reveal" style="--reveal-delay:0ms">
+      <div class="reveal">
         <div class="contact-name">Aaron Montague</div>
         <div class="contact-biz">Life In My Hands</div>
         <div class="contact-lines">
@@ -967,7 +1826,6 @@ textarea.form-field:focus ~ .form-label, textarea.form-field.has-value ~ .form-l
         </div>
       </div>
       <div class="reveal" style="--reveal-delay:150ms">
-        <!-- PLACEHOLDER: Formspree endpoint — Tom/Aaron to create account at formspree.io and replace YOUR_FORM_ID below with the actual endpoint ID. -->
         <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
           <div class="form-group">
             <input type="text" class="form-field" id="f-name" name="name" placeholder=" " autocomplete="name" required>
@@ -1040,17 +1898,10 @@ const ENN_TYPES = {
   9: { name: 'The Peacemaker', tagline: 'Easygoing &amp; Reassuring', desire: 'To have inner stability and peace', desc: 'Type Nines are accepting, trusting and stable. They are usually optimistic and supportive, but can be too willing to go along with others to avoid conflict.', connections: [3, 6] }
 };
 
-// Connection map: which line IDs connect to each type
 const ENN_LINE_TYPES = {
-  1: ['1,4','7,1'],
-  2: ['4,2','2,8'],
-  3: ['3,6','9,3'],
-  4: ['1,4','4,2'],
-  5: ['8,5','5,7'],
-  6: ['3,6','6,9'],
-  7: ['5,7','7,1'],
-  8: ['2,8','8,5'],
-  9: ['6,9','9,3']
+  1: ['1,4','7,1'], 2: ['4,2','2,8'], 3: ['3,6','9,3'],
+  4: ['1,4','4,2'], 5: ['8,5','5,7'], 6: ['3,6','6,9'],
+  7: ['5,7','7,1'], 8: ['2,8','8,5'], 9: ['6,9','9,3']
 };
 
 let selectedType = null;
@@ -1061,11 +1912,10 @@ function selectType(num) {
   const lines = svg.querySelectorAll('.enn-connecting-line');
   const data = ENN_TYPES[num];
 
-  // If clicking same type, deselect
   if (selectedType === num) {
     selectedType = null;
-    nodes.forEach(n => { n.classList.remove('selected','dimmed'); });
-    lines.forEach(l => { l.classList.remove('active','dimmed'); });
+    nodes.forEach(n => n.classList.remove('selected','dimmed'));
+    lines.forEach(l => l.classList.remove('active','dimmed'));
     document.getElementById('enn-info-panel').classList.remove('visible');
     document.getElementById('enn-prompt').textContent = 'Click a type to explore';
     return;
@@ -1074,41 +1924,29 @@ function selectType(num) {
   selectedType = num;
   const connectedLines = ENN_LINE_TYPES[num] || [];
 
-  // Update nodes
   nodes.forEach(n => {
     const t = parseInt(n.getAttribute('data-type'));
     n.classList.remove('selected','dimmed');
-    if (t === num) {
-      n.classList.add('selected');
-    } else if (!data.connections.includes(t)) {
-      n.classList.add('dimmed');
-    }
+    if (t === num) n.classList.add('selected');
+    else if (!data.connections.includes(t)) n.classList.add('dimmed');
   });
 
-  // Update lines
   lines.forEach(l => {
     const lt = l.getAttribute('data-types');
     l.classList.remove('active','dimmed');
-    if (connectedLines.includes(lt)) {
-      l.classList.add('active');
-    } else {
-      l.classList.add('dimmed');
-    }
+    if (connectedLines.includes(lt)) l.classList.add('active');
+    else l.classList.add('dimmed');
   });
 
-  // Update info panel
   document.getElementById('enn-num').textContent = num;
   document.getElementById('enn-name').innerHTML = data.name;
   document.getElementById('enn-tagline').innerHTML = data.tagline;
   document.getElementById('enn-desire').textContent = 'Core desire: ' + data.desire;
   document.getElementById('enn-desc').textContent = data.desc;
   document.getElementById('enn-prompt').textContent = '';
-
-  const panel = document.getElementById('enn-info-panel');
-  panel.classList.add('visible');
+  document.getElementById('enn-info-panel').classList.add('visible');
 }
 
-// Keyboard accessibility for Enneagram nodes
 document.querySelectorAll('.enn-node-group').forEach(node => {
   node.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -1129,7 +1967,6 @@ function initHeroEntrance() {
   const body = document.getElementById('hero-body');
   const scroll = document.getElementById('hero-scroll');
 
-  // Stagger timeline
   setTimeout(() => since.classList.add('visible'), 100);
   setTimeout(() => words[0].classList.add('visible'), 300);
   setTimeout(() => words[1].classList.add('visible'), 450);
@@ -1142,104 +1979,40 @@ window.addEventListener('load', initHeroEntrance);
 
 
 /* ---------------------------------------------------------------
-   SCROLL REVEAL — IntersectionObserver
+   SCROLL REVEAL — single IntersectionObserver
 --------------------------------------------------------------- */
 function initReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
-    });
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
   }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Section rules (separate observer for the rule elements)
-  const ruleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        ruleObserver.unobserve(entry.target);
-      }
-    });
+  const ruleObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); ruleObs.unobserve(e.target); } });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.section-rule').forEach(el => ruleObserver.observe(el));
+  document.querySelectorAll('.section-rule').forEach(el => ruleObs.observe(el));
 
-  // About photos colour restore
-  const photoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        photoObserver.unobserve(entry.target);
-      }
-    });
+  const photoObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); photoObs.unobserve(e.target); } });
   }, { threshold: 0.2 });
-  document.querySelectorAll('.about-photo-wrap').forEach(el => photoObserver.observe(el));
+  document.querySelectorAll('.about-photo-wrap').forEach(el => photoObs.observe(el));
 
-  // Workshop category rule lines
-  const catObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('rule-drawn');
-        catObserver.unobserve(entry.target);
-      }
-    });
+  const catObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('rule-drawn'); catObs.unobserve(e.target); } });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.workshop-cat-label[data-cat-rule]').forEach(el => catObserver.observe(el));
+  document.querySelectorAll('.workshop-cat-label[data-cat-rule]').forEach(el => catObs.observe(el));
 
-  // Enneagram SVG draw
-  const ennObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('drawn');
-        ennObserver.unobserve(entry.target);
-      }
-    });
+  const ennObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); ennObs.unobserve(e.target); } });
   }, { threshold: 0.3 });
   const ennSvg = document.getElementById('enneagram-svg');
-  if (ennSvg) ennObserver.observe(ennSvg);
+  if (ennSvg) ennObs.observe(ennSvg);
 }
 document.addEventListener('DOMContentLoaded', initReveal);
 
 
 /* ---------------------------------------------------------------
-   COUNT-UP ANIMATION
---------------------------------------------------------------- */
-function animateCountUp(el) {
-  const target = parseInt(el.getAttribute('data-target').replace(/,/g, ''));
-  const duration = 1200;
-  const start = performance.now();
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // easeOutQuart
-    const eased = 1 - Math.pow(1 - progress, 4);
-    const current = Math.round(eased * target);
-    el.textContent = current.toLocaleString();
-    if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = target.toLocaleString();
-  }
-  requestAnimationFrame(update);
-}
-
-function initCountUp() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCountUp(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.count-up').forEach(el => observer.observe(el));
-}
-// count-up removed
-
-
-/* ---------------------------------------------------------------
-   NAVIGATION — scroll behaviour & active section
+   NAVIGATION — scroll & active section
 --------------------------------------------------------------- */
 function initNav() {
   const nav = document.getElementById('nav');
@@ -1247,16 +2020,10 @@ function initNav() {
   const drawer = document.getElementById('nav-drawer');
   const drawerLinks = document.querySelectorAll('.drawer-link');
 
-  // Scroll state
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
+    nav.classList.toggle('scrolled', window.scrollY > 80);
   }, { passive: true });
 
-  // Hamburger
   hamburger.addEventListener('click', () => {
     const open = hamburger.classList.toggle('open');
     drawer.classList.toggle('open', open);
@@ -1265,7 +2032,6 @@ function initNav() {
     document.body.style.overflow = open ? 'hidden' : '';
   });
 
-  // Close drawer on link click
   drawerLinks.forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
@@ -1276,22 +2042,17 @@ function initNav() {
     });
   });
 
-  // Active section tracking
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link[data-section]');
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(l => {
-          l.classList.toggle('active', l.getAttribute('data-section') === id);
-        });
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-section') === id));
       }
     });
   }, { threshold: 0.4 });
-
-  sections.forEach(s => sectionObserver.observe(s));
+  sections.forEach(s => sectionObs.observe(s));
 }
 document.addEventListener('DOMContentLoaded', initNav);
 
@@ -1302,9 +2063,7 @@ document.addEventListener('DOMContentLoaded', initNav);
 function toggleTier(header) {
   const tier = header.closest('.service-tier');
   const isOpen = tier.classList.contains('open');
-  // Close all others in same menu
-  const siblings = tier.parentElement.querySelectorAll('.service-tier.open');
-  siblings.forEach(s => { if (s !== tier) s.classList.remove('open'); });
+  tier.parentElement.querySelectorAll('.service-tier.open').forEach(s => { if (s !== tier) s.classList.remove('open'); });
   tier.classList.toggle('open', !isOpen);
 }
 
@@ -1321,7 +2080,7 @@ function loadVideo() {
   iframe.src = 'https://www.youtube.com/embed/sBEKq6mAtCc?autoplay=1&rel=0&modestbranding=1';
   iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
   iframe.allowFullscreen = true;
-  iframe.title = 'Ron\'s video testimonial — Life In My Hands';
+  iframe.title = "Ron's video testimonial — Life In My Hands";
 
   embedWrap.appendChild(iframe);
   embedWrap.style.display = 'block';
@@ -1329,14 +2088,11 @@ function loadVideo() {
 }
 
 
-
-
-
 /* ---------------------------------------------------------------
    TESLA QUOTE TYPEWRITER
 --------------------------------------------------------------- */
 (function() {
-  const quote = '“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”';
+  const quote = '\u201CIf you want to find the secrets of the universe, think in terms of energy, frequency and vibration.\u201D';
   const el = document.getElementById('tesla-typewriter');
   const attr = document.getElementById('tesla-attr');
   if (!el || !attr) return;
@@ -1344,17 +2100,12 @@ function loadVideo() {
   function typeIt() {
     if (started) return;
     started = true;
+    el.textContent = '';
     el.classList.add('typing');
     let i = 0;
     function tick() {
-      if (i < quote.length) {
-        el.textContent += quote[i++];
-        setTimeout(tick, 26);
-      } else {
-        el.classList.remove('typing');
-        el.classList.add('done');
-        attr.classList.add('visible');
-      }
+      if (i < quote.length) { el.textContent += quote[i++]; setTimeout(tick, 26); }
+      else { el.classList.remove('typing'); el.classList.add('done'); attr.classList.add('visible'); }
     }
     tick();
   }
@@ -1365,6 +2116,7 @@ function loadVideo() {
   if (section) obs.observe(section);
 })();
 
+
 /* ---------------------------------------------------------------
    CONTACT FORM — Formspree async submit
 --------------------------------------------------------------- */
@@ -1372,12 +2124,10 @@ function initForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  // Floating label: handle select
   const selects = form.querySelectorAll('select.form-field');
   selects.forEach(sel => {
     sel.addEventListener('change', () => {
-      if (sel.value) sel.classList.add('has-value');
-      else sel.classList.remove('has-value');
+      sel.classList.toggle('has-value', !!sel.value);
     });
   });
 
@@ -1386,7 +2136,6 @@ function initForm() {
     const btn = document.getElementById('form-submit');
     const msg = document.getElementById('form-msg');
 
-    // Simple validation
     let valid = true;
     form.querySelectorAll('[required]').forEach(field => {
       if (!field.value.trim()) { field.style.borderColor = '#c0392b'; valid = false; }
@@ -1399,24 +2148,17 @@ function initForm() {
 
     try {
       const data = new FormData(form);
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
       if (res.ok) {
         btn.classList.remove('loading');
         btn.classList.add('success');
         btn.querySelector('.btn-text').style.display = 'flex';
-        btn.querySelector('.btn-text').textContent = '✓ Message sent';
-        msg.textContent = "Thank you — Aaron will be in touch shortly.";
+        btn.querySelector('.btn-text').textContent = '\u2713 Message sent';
+        msg.textContent = 'Thank you \u2014 Aaron will be in touch shortly.';
         msg.style.color = 'var(--olive)';
         form.reset();
         selects.forEach(sel => sel.classList.remove('has-value'));
-      } else {
-        throw new Error('Server error');
-      }
+      } else { throw new Error('Server error'); }
     } catch (err) {
       btn.classList.remove('loading');
       msg.textContent = 'Something went wrong. Please email aaron@lifeinmyhands.com.au directly.';
@@ -1425,7 +2167,6 @@ function initForm() {
   });
 }
 document.addEventListener('DOMContentLoaded', initForm);
-
 </script>
 </body>
 </html>
