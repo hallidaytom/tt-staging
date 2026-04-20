@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Life In My Hands — Personal Coaching, Business Solutions, Enneagram Profiling and Workshops with Aaron Montague. Helping individuals and organisations realise their potential since 2011.">
-<title>Life In My Hands — Aaron Montague | Coaching &amp; Consulting</title>
+<meta name="description" content="Aaron Montague is a coach and advisor helping individuals and organisations navigate change, growth and transition. Personal coaching, business solutions and Enneagram workshops.">
+<title>Life In My Hands | Aaron Montague — Coaching, Advisory &amp; Enneagram</title>
 <link rel="preload" href="images/aaron-face.jpg" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1336,6 +1336,39 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
   /* Footer */
   .footer-inner { padding: 0 20px; }
 }
+
+/* ----------------------------------------------------------------
+   16. FAQ ACCORDION
+   ---------------------------------------------------------------- */
+.faq-section { max-width: 800px; margin-top: 56px; }
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.faq-item:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
+.faq-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; width: 100%; padding: 16px 0 12px; cursor: pointer;
+  text-align: left; background: none; border: none; min-height: 44px;
+  font-family: var(--font-ui);
+}
+.faq-header:hover .faq-q { color: var(--olive); }
+.faq-q { font-weight: 600; font-size: 15px; color: var(--heading-dark); transition: color 200ms ease; flex: 1; }
+.faq-icon {
+  font-size: 20px; font-weight: 300; color: var(--olive); flex-shrink: 0;
+  line-height: 1; transition: transform 300ms var(--ease-out);
+  width: 20px; text-align: center; display: inline-block;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 400ms var(--ease-out); }
+.faq-item.open .faq-body { max-height: 800px; }
+.faq-body p { font-weight: 300; font-size: 14px; color: var(--muted); line-height: 1.75; padding-bottom: 16px; padding-right: 40px; }
+/* Dark variant */
+.faq-section--dark .faq-item { border-bottom-color: rgba(255,255,255,0.1); }
+.faq-section--dark .faq-item:first-child { border-top-color: rgba(255,255,255,0.1); }
+.faq-section--dark .faq-q { color: rgba(255,255,255,0.85); }
+.faq-section--dark .faq-header:hover .faq-q { color: var(--olive-light); }
+.faq-section--dark .faq-body p { color: rgba(255,255,255,0.55); }
+.faq-section--dark .faq-icon { color: var(--olive-light); }
+
 </style>
 </head>
 <body>
@@ -1436,12 +1469,12 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
 </section>
 
 <!-- TESLA QUOTE -->
-<section id="tesla-quote" aria-label="Nikola Tesla quote">
+<section id="tesla-quote" aria-label="Quote">
   <div class="tesla-quote-mark" aria-hidden="true">&ldquo;</div>
   <img class="tesla-bird" src="images/LIMH-birddot.svg" alt="" aria-hidden="true" style="filter:invert(1) brightness(2);">
   <div class="tesla-quote-inner">
-    <p class="tesla-quote-text done" id="tesla-typewriter">&ldquo;If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.&rdquo;</p>
-    <div class="tesla-quote-attr visible" id="tesla-attr">&mdash; Nikola Tesla</div>
+    <p class="tesla-quote-text done" id="tesla-typewriter">&ldquo;Everyone has the potential for healthy, average and unhealthy attitudes and behaviours. With awareness and practice, you&rsquo;ll be better able to maintain beneficial attitudes and behaviours.&rdquo;</p>
+    <div class="tesla-quote-attr visible" id="tesla-attr">&mdash; Aaron Montague</div>
   </div>
 </section>
 
@@ -1509,12 +1542,12 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
         <div class="service-menu">
           <div class="service-tier reveal">
             <div class="service-tier-header" onclick="toggleTier(this)">
-              <span class="service-tier-name">Initial Enneagram Profiling Session</span>
+              <span class="service-tier-name">Initial | Enneagram Personality Profiling Session</span>
               <span class="service-tier-price">$225 + GST</span>
               <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
             </div>
             <div class="service-tier-body">
-              <p class="service-tier-desc">1 &times; 90 minute session. A deep-dive one-on-one session to identify your Enneagram type, understand your core motivations, and create a personalised roadmap for growth. Ideal as a starting point or standalone exploration.</p>
+              <p class="service-tier-desc">90 minutes. A deep dive into your primary and secondary Enneagram types, providing insight into how you think, behave and make decisions across key areas of life.</p>
             </div>
           </div>
           <div class="service-tier reveal" style="--reveal-delay:80ms">
@@ -1524,39 +1557,38 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
               <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
             </div>
             <div class="service-tier-body">
-              <p class="service-tier-desc">A structured introduction to personal coaching using Enneagram profiling as the foundation. Covers self-awareness, core patterns, and practical growth strategies. Includes multiple sessions with summaries and between-session support.</p>
+              <p class="service-tier-desc">Enneagram profiling + 3 sessions. A structured coaching program designed to build clarity, confidence and practical tools for long-term change.</p>
             </div>
           </div>
           <div class="service-tier reveal" style="--reveal-delay:160ms">
             <div class="service-tier-header" onclick="toggleTier(this)">
-              <span class="service-tier-name">Essentials Plus</span>
+              <span class="service-tier-name">Essentials Plus Program</span>
               <span class="service-tier-price">$895 + GST</span>
               <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
             </div>
             <div class="service-tier-body">
-              <p class="service-tier-desc">An extended version of the Essentials Program with additional sessions, deeper Enneagram exploration, and more personalised coaching touchpoints. Ideal for those ready for a more comprehensive transformation journey.</p>
+              <p class="service-tier-desc">Enneagram profiling + 3 sessions + added support. Includes all elements of the Essentials Program, with additional support between sessions for accountability and continuity.</p>
             </div>
           </div>
           <div class="service-tier reveal" style="--reveal-delay:240ms">
             <div class="service-tier-header" onclick="toggleTier(this)">
-              <span class="service-tier-name">Additional Coaching</span>
+              <span class="service-tier-name">Additional Coaching Time</span>
               <span class="service-tier-price">$495 + GST</span>
               <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
             </div>
             <div class="service-tier-body">
-              <p class="service-tier-desc">For returning clients who have completed an initial program and wish to continue their growth journey. Sessions are tailored to your current goals and challenges.</p>
+              <p class="service-tier-desc">180 minutes. Available for returning clients seeking continued support, either in full sessions or shorter check-ins.</p>
             </div>
           </div>
           <div class="service-tier reveal" style="--reveal-delay:320ms">
             <div class="service-tier-header" onclick="toggleTier(this)">
               <span class="service-tier-name">Mindset Advantage Program</span>
-              <span class="service-tier-price service-tier-price--enquire">Enquire</span>
+              <span class="service-tier-price service-tier-price--enquire">from $695</span>
               <span class="service-tier-toggle">Details<span class="service-tier-toggle-icon">&#9662;</span></span>
             </div>
             <div class="service-tier-body">
               <div class="ma-graphic-wrap"><img src="images/ma-graphic.png" alt="Mindset Advantage Program" class="ma-graphic"></div>
-              <p class="service-tier-desc">Mindset Advantage is a performance mindset program for athletes seeking consistency, confidence and focus under pressure. Using individualised profiling and practical mindset tools, athletes learn to manage stress, reduce over-thinking and perform more reliably in training and competition.</p>
-              <p class="service-tier-desc">The program is tailored specifically to each athlete's needs — no generic scripts or motivational templates.</p>
+              <p class="service-tier-desc">Tailored athlete program. A performance mindset program designed to improve consistency, confidence and focus under pressure.</p>
               <a href="docs/LIMH-Mindset-Advantage.pdf" target="_blank" rel="noopener" class="service-tier-pdf-link">View the Mindset Advantage Program Overview &rarr;</a>
             </div>
           </div>
@@ -1590,6 +1622,72 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
       </div>
     </div>
   </div>
+
+    <!-- Personal Coaching FAQs -->
+    <div class="faq-section reveal" style="--reveal-delay:100ms;">
+      <span class="section-label">Common Questions</span>
+      <h3 class="section-title section-title--sm" style="margin-top:8px;">Personal Coaching FAQs</h3>
+      <div class="section-rule section-rule--sm"></div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What is coaching with Aaron like?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Aaron’s coaching is direct, practical and grounded in genuine insight about who you are. Sessions are one-on-one and centred on your goals and challenges. Rather than generic frameworks or motivational scripts, Aaron uses the Enneagram — one of the most sophisticated personality systems available — combined with Law of Attraction principles to give you both self-knowledge and a clear sense of direction. Most clients describe it as the most useful conversation they’ve had about themselves.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What is the Enneagram and why is it central to the coaching?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>The Enneagram is a personality typology system that maps nine distinct types, each defined by core motivations, fears and behavioural patterns. Unlike surface-level assessments, the Enneagram gets at the <em>why</em> behind how you think, feel and act — particularly under stress or pressure. Aaron uses the Enneagram as a foundation because it creates genuine self-awareness that translates into practical, lasting change. It is not used as a label, but as a lens through which to understand yourself and grow.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">How is coaching delivered — in person or online?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Sessions are delivered both in person and via video call, depending on your location and preference. Aaron works with clients locally and remotely across Australia. All programs are structured to work equally well in either format.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">How long does a program run and how many sessions are involved?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Program length varies by tier. The Initial Enneagram Profiling Session is a single 90-minute deep-dive. The Essentials Program includes multiple sessions over a structured period, typically spread across 6–8 weeks. The Essentials Plus Program extends this further. Specific session numbers and timelines are confirmed when you book. Aaron’s approach ensures momentum is maintained between sessions with summaries and support materials.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">Do I need to know my Enneagram type before starting?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>No — and in fact, arriving without a fixed idea of your type is often better. Aaron uses a skilled profiling process to identify your type through conversation and observation, rather than relying solely on self-report questionnaires. This means the identification is more accurate and more useful as a starting point for growth.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What areas of life does coaching cover?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Life In My Hands coaching takes a holistic view of life — covering relationships, career and purpose, health and wellbeing, and financial clarity. These areas are addressed together, because change in one area inevitably affects the others. Rather than siloing your challenges, Aaron works with you to understand the underlying patterns driving your experience across all of them.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What makes Life In My Hands different from other coaching services?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Aaron is the sole practitioner — every client works directly with him from start to finish. There are no juniors, no handoffs and no template approaches. The depth of the Enneagram work, combined with Aaron’s corporate and change management background, means clients get both psychological depth and practical, grounded guidance. It’s a rare combination.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">How do I get started?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>The best first step is simply to get in touch. Use the contact form below, call or email Aaron directly to have a brief conversation about what you’re looking for. From there, Aaron will recommend the most appropriate starting point — whether that’s the Initial Enneagram Profiling Session or one of the broader programs. There’s no pressure and no obligation in that first conversation.</p></div>
+        </div>
+      </div>
+    </div>
+
 </section>
 
 <!-- BUSINESS SOLUTIONS -->
@@ -1667,6 +1765,58 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
       </a>
     </div>
   </div>
+
+    <!-- Business Solutions FAQs -->
+    <div class="faq-section faq-section--dark reveal" style="--reveal-delay:100ms;margin-top:48px;">
+      <span class="section-label" style="color:var(--olive-light);">Common Questions</span>
+      <h3 class="section-title section-title--light section-title--sm" style="margin-top:8px;">Business Solutions FAQs</h3>
+      <div class="section-rule reveal" style="--reveal-delay:160ms;"></div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What kind of businesses does Aaron work with?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Aaron works with businesses of all sizes — from small owner-operated businesses through to larger organisations and corporate teams. The common thread is a need for clarity: whether that’s understanding what’s driving friction, how to improve accountability, or how to better align leadership and culture with the business’s strategic intent. Life In My Hands has worked with clients across professional services, transport, retail and creative industries.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What does an initial advisory session involve?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>An initial session is a focused conversation to clarify the issue, understand the context and determine the right path forward. It’s not a sales pitch — it’s a working session. Aaron will ask direct questions, listen carefully, and by the end you’ll have a much clearer picture of what’s actually going on and what the options are. From there, you can decide whether to proceed with further engagement.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">How is the advisory work scoped and priced?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Advisory work is scoped individually based on the nature and scale of the issue. The hourly rate is $150 + GST. For broader programs of work, Aaron prepares a tailored proposal covering scope, priorities, sequencing and timeframes — so you know exactly what you’re getting and what it will cost. There are no surprises.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">What is organisational effectiveness and why does it matter?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Organisational effectiveness is the ability of a business to consistently execute its intent. It exists when strategy, structure, leadership, systems and ways of working are aligned and mutually reinforcing. When these foundations are clear, businesses reduce friction, improve accountability and create the conditions for sustainable performance. When they’re out of alignment, even talented, motivated people struggle to produce consistent results. Aaron’s advisory work focuses on identifying and addressing the root cause of that misalignment.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">Can Aaron work with our leadership team directly?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>Yes. Leadership coaching and team effectiveness work is a core part of what Life In My Hands offers. Aaron can work with individual leaders or with a leadership team, using Enneagram-informed profiling and coaching to improve self-awareness, communication and collective performance. This work is tailored to the specific dynamics and goals of your team.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+            <span class="faq-q">Is there a minimum commitment required?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body"><p>No. Engagements begin with an initial session, and both parties decide from there what the right next step is. Some clients need a single advisory session; others move into broader programs or ongoing support roles. The structure always follows the need, not the other way around.</p></div>
+        </div>
+      </div>
+    </div>
+
 </section>
 
 <!-- EDUCATION & WORKSHOPS -->
@@ -1695,7 +1845,8 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
             <div class="edu-workshop-info">
               <span class="edu-workshop-code">EP2</span>
               <span class="edu-workshop-name">The Art of Enneagram Personality Profiling</span>
-              <span class="edu-workshop-detail">1-day — learn to read personality through physiognomy. Prerequisite: EP1</span>
+              <span class="edu-workshop-detail">1-day workshop — learn to read personality through physiognomy. Prerequisite: EP1.</span>
+              <p class="edu-workshop-body">Building on EP1, this workshop teaches participants to identify Enneagram types through physiognomy — the art of reading personality from physical characteristics and non-verbal cues. This skill deepens your ability to understand and connect with others more quickly and accurately. Ideal for coaches, practitioners, managers and anyone working closely with people.</p>
             </div>
             <span class="edu-workshop-price">$795 + GST</span>
           </div>
@@ -1703,7 +1854,8 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
             <div class="edu-workshop-info">
               <span class="edu-workshop-code">EP3</span>
               <span class="edu-workshop-name">Enneagram Profiling Masterclass</span>
-              <span class="edu-workshop-detail">6 &times; 2hr intensive — perfect your profiling skills. Prerequisites: EP1 + EP2</span>
+              <span class="edu-workshop-detail">6 &times; 2-hour sessions — intensive profiling practice. Prerequisites: EP1 + EP2.</span>
+              <p class="edu-workshop-body">A structured intensive program that develops advanced profiling skills through practice, supervised exercises and direct feedback. Participants work with real-world scenarios to build the accuracy and confidence to profile individuals reliably — in personal and professional settings. The masterclass is delivered as a series of six two-hour sessions.</p>
             </div>
             <span class="edu-workshop-price">$1,395 + GST</span>
           </div>
@@ -1722,6 +1874,58 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
             <span class="edu-workshop-price">$595 + GST</span>
           </div>
         </div>
+
+        <!-- Education FAQs -->
+        <div class="faq-section reveal" style="--reveal-delay:100ms;margin-top:40px;">
+          <span class="section-label">Common Questions</span>
+          <h3 class="section-title section-title--sm" style="margin-top:8px;">Workshop FAQs</h3>
+          <div class="section-rule section-rule--sm"></div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-q">Who are these workshops designed for?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-body"><p>The Enneagram workshops are designed for anyone with a genuine interest in understanding themselves and others more deeply — whether for personal growth, professional development or to build skills as a practitioner or coach. The goal-setting workshop is open to anyone ready to approach their goals with more clarity and intention. Participants 17 and over are welcome.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-q">Do I need any prior knowledge to attend EP1?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-body"><p>No prior knowledge is required for EP1. It is the entry point into the Enneagram education pathway and is fully self-contained. You will leave with a thorough understanding of all nine personality types, a copy of <em>The Wisdom of the Enneagram</em> by Riso &amp; Hudson, and a set of Enneagram Personality Cards.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-q">What is physiognomy and how does it relate to Enneagram profiling?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-body"><p>Physiognomy is the practice of reading personality traits from physical characteristics and non-verbal cues — facial structure, posture, gestures and expression. In the context of Enneagram profiling, it allows a skilled practitioner to identify someone’s type through observation, rather than relying solely on what a person says about themselves. This makes profiling more accurate and more useful. EP2 teaches this skill to participants who have completed EP1.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-q">How are workshops delivered — in person or online?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-body"><p>Workshops are currently delivered in person. Contact Aaron to discuss upcoming scheduled dates and your location. For groups or organisations interested in having a workshop delivered privately, Aaron can discuss options for a tailored delivery.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-q">Can I purchase a workshop as a gift?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-body"><p>Yes. All workshops are available as gift certificates — a thoughtful and practical gift for anyone ready to invest in self-development. Gift certificates are available for any workshop tier. Contact Aaron directly to arrange one.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-header" onclick="toggleFaq(this)" aria-expanded="false">
+                <span class="faq-q">When are the next workshops scheduled?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-body"><p>Workshop dates are scheduled throughout the year. Contact Aaron directly — by phone on 0407 938 932 or by email at aaron@lifeinmyhands.com.au — to find out about upcoming availability and to register your interest.</p></div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- RIGHT: Gift cert + CTA -->
@@ -1739,10 +1943,20 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
           </ul>
         </div>
         <a href="#contact" style="text-decoration:none;display:block;margin-top:20px;">
-          <div class="cta-box cta-box--sm-title" style="border-color:var(--rule);">
+          <div class="cta-box cta-box--full" style="border-color:var(--rule);">
             <div class="cta-box-text">
               <div class="cta-box-title">Register Your Interest</div>
-              <div class="cta-box-sub">Contact Aaron for upcoming workshop dates.</div>
+              <div class="cta-box-sub">Contact Aaron for upcoming workshop dates and availability.</div>
+            </div>
+            <div class="cta-contacts">
+              <a href="tel:0407938932" class="cta-contact-line">
+                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+                0407 938 932
+              </a>
+              <a href="mailto:aaron@lifeinmyhands.com.au" class="cta-contact-line">
+                <svg class="cta-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                aaron@lifeinmyhands.com.au
+              </a>
             </div>
           </div>
         </a>
@@ -1772,6 +1986,7 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
     <div class="video-embed" id="video-embed"></div>
 
     <!-- Cards -->
+    <!-- TODO: verify testimonial content per mock-up -->
     <div class="testimonials-cards-grid">
       <div class="testimonial-card reveal">
         <div class="testimonial-avatar"><img src="images/testimonial_mitch-kibby.jpg" alt="Mitch Kibby"></div>
@@ -1834,6 +2049,7 @@ textarea.form-field.has-value ~ .form-label { top: 8px; font-size: 11px; }
         </div>
       </div>
       <div class="reveal" style="--reveal-delay:150ms">
+        <!-- TODO: Replace YOUR_FORM_ID with live Formspree endpoint before launch -->
         <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
           <div class="form-group">
             <input type="text" class="form-field" id="f-name" name="name" placeholder=" " autocomplete="name" required>
@@ -2063,6 +2279,20 @@ function initNav() {
   sections.forEach(s => sectionObs.observe(s));
 }
 document.addEventListener('DOMContentLoaded', initNav);
+
+
+/* ---------------------------------------------------------------
+   FAQ EXPAND/COLLAPSE
+--------------------------------------------------------------- */
+function toggleFaq(header) {
+  const item = header.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  item.parentElement.querySelectorAll('.faq-item.open').forEach(i => {
+    if (i !== item) { i.classList.remove('open'); i.querySelector('.faq-header').setAttribute('aria-expanded', 'false'); }
+  });
+  item.classList.toggle('open', !isOpen);
+  header.setAttribute('aria-expanded', String(!isOpen));
+}
 
 
 /* ---------------------------------------------------------------
